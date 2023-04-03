@@ -6,26 +6,26 @@
 # DATA
 
 hado_22:
-  type: hado_cares.ods_data_set.ODSDataSet
+  type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/HADO 22.ods
-  sheet_name: Hoja1
+  sheet: Hoja1
 
 hado_21:
-  type: hado_cares.ods_data_set.ODSDataSet
+  type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/HADO21.ods
 
 hado_20:
-  type: hado_cares.ods_data_set.ODSDataSet
+  type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/HADO 20.ods
 
 hado_19:
-  type: hado_cares.ods_data_set.ODSDataSet
+  type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/HADO 19.ods
 
 hado_18:
-  type: hado_cares.ods_data_set.ODSDataSet
+  type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/Estadistica 2018.ods
 
 hado_17:
-  type: hado_cares.ods_data_set.ODSDataSet
+  type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/Estadistica 2017.ods
