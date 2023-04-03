@@ -21,8 +21,9 @@ from kedro.io.core import get_filepath_str, get_protocol_and_path
 # get_filepath_str, get_protocol_and_path: Estas funciones de utilidad de Kedro se utilizan para obtener el protocolo, la ruta y la ruta del archivo
 # como cadena a partir de una ruta de archivo dada.
 
+from io import BytesIO
 class ODSDataSet(AbstractDataSet):
-    def __init__(self, filepath: str, sheet: str = 1):
+    def __init__(self, filepath: str, sheet: str):
         # Extraer el protocolo y la ruta del archivo de la ruta proporcionada.
         protocol, path = get_protocol_and_path(filepath)
         self.protocol = protocol
@@ -34,10 +35,7 @@ class ODSDataSet(AbstractDataSet):
 
     def _load(self) -> pd.DataFrame:
         # Obtener la ruta del archivo en formato de cadena.
-        load_path = get_filepath_str(self.filepath, self.protocol)
-        # Abrir el archivo con el sistema de archivos y leerlo usando pandas_ods_reader.
-        with self._fs.open(load_path) as f:
-            return read_ods(f, self.sheet)
+        return read_ods(self.filepath, self.sheet)
 
     def _save(self, data: pd.DataFrame) -> None:
         # No se implementa la función de guardado, ya que la clase solo está diseñada para leer archivos ODS.

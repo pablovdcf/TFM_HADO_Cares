@@ -3,7 +3,7 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
-# DATA
+# This data should be in the path "src/hado_cares/extras/datasets"
 
 hado_22:
   type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
@@ -13,19 +13,24 @@ hado_22:
 hado_21:
   type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/HADO21.ods
+  sheet: Hoja1
 
 hado_20:
   type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/HADO 20.ods
+  sheet: Hoja1
 
 hado_19:
   type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/HADO 19.ods
+  sheet: Hoja1
 
 hado_18:
   type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/Estadistica 2018.ods
+  sheet: Sheet1
 
 hado_17:
   type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
-  filepath: data/01_raw/Estadistica 2017.ods
+  filepath: data/01_raw/Estadística 2017.ods
+  sheet: Sheet1
