@@ -34,3 +34,10 @@ hado_17:
   type: hado_cares.extras.datasets.custom_data_set.ODSDataSet
   filepath: data/01_raw/Estadística 2017.ods
   sheet: Sheet1
+
+hado_concat:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/HADO_concat.csv
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
