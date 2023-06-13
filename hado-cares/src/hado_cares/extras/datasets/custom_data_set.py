@@ -22,6 +22,8 @@ from kedro.io.core import get_filepath_str, get_protocol_and_path
 # como cadena a partir de una ruta de archivo dada.
 
 from io import BytesIO
+from pymongo import MongoClient
+
 class ODSDataSet(AbstractDataSet):
     def __init__(self, filepath: str, sheet: str):
         # Extraer el protocolo y la ruta del archivo de la ruta proporcionada.
@@ -49,3 +51,29 @@ class ODSDataSet(AbstractDataSet):
     def _describe(self) -> dict:
         # Devolver una descripción del conjunto de datos en forma de diccionario.
         return dict(filepath=self.filepath, sheet=self.sheet)
+
+
+class MongoDBDataSet(AbstractDataSet):
+    def __init__(self, uri: str, database: str, collection: str, load_args: dict = None, save_args: dict = None):
+        self._uri = uri
+        self._database = database
+        self._collection = collection
+        self._load_args = load_args if load_args is not None else dict()
+        self._save_args = save_args if save_args is not None else dict()
+
+    def _load(self) -> pd.DataFrame:
+        client = MongoClient(self._uri)
+        db = client[self._database]
+        collection = db[self._collection]
+        # Modificar esta parte según cómo desees utilizar load_args
+        return pd.DataFrame(list(collection.find(**self._load_args)))
+
+    def _save(self, data: pd.DataFrame) -> None:
+        client = MongoClient(self._uri)
+        db = client[self._database]
+        collection = db[self._collection]
+        # Modificar esta parte según cómo desees utilizar save_args
+        collection.insert_many(data.to_dict('records'), **self._save_args)
+
+    def _describe(self) -> dict:
+        return dict(uri=self._uri, database=self._database, collection=self._collection, load_args=self._load_args, save_args=self._save_args)
