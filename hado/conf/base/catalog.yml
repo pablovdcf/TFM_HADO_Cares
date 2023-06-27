@@ -1,0 +1,76 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+# This data should be in the path "src/hado/extras/datasets"
+
+hado_22:
+  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+  uri: mongodb://localhost:27017
+  database: HADO_raw
+  collection: HADO22
+  load_args: 
+    _id: False
+
+hado_21:
+  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+  uri: mongodb://localhost:27017
+  database: HADO_raw
+  collection: HADO21
+  load_args: 
+    _id: False
+
+hado_20:
+  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+  uri: mongodb://localhost:27017
+  database: HADO_raw
+  collection: HADO20
+  load_args: 
+    _id: False
+
+hado_19:
+  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+  uri: mongodb://localhost:27017
+  database: HADO_raw
+  collection: HADO19
+  load_args: 
+    _id: False
+
+hado_18:
+  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+  uri: mongodb://localhost:27017
+  database: HADO_raw
+  collection: HADO18
+  load_args: 
+    _id: False
+
+hado_17:
+  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+  uri: mongodb://localhost:27017
+  database: HADO_raw
+  collection: HADO17
+  load_args: 
+    _id: False
+
+hado_concat:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/HADO_concat.csv
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+
+hado_concat_clean:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/HADO_concat_clean.csv
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+
+hado_values:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/HADO_values.csv
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+    
