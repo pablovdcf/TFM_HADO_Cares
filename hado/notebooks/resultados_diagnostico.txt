@@ -1,7 +1,7 @@
 diagnostico
-ca orl
+cancer orl
 melanoma vulvar
-ca broncogenico
+cancer broncogenico
 cirrosis hepatica
 neplasia de mama estadio iv
 anemia
@@ -11,82 +11,77 @@ fx meseta tibial
 cancer de mama
 cancer de prostata
 deterioro estado general
-cancer próstata
+cancer prostata
 tumor cerebral
 adenoca colon iv
-ca prostata
 cancer colon
-ca próstata
 neumonia
 niemannpick
 sarcoidosis
-ca mama
+cancer mama
 cancer pancreas
-infección urinaria fallo cardiaco
+infeccion urinaria fallo cardiaco
 melanoma fosa nasal
-ca timo
+cancer timo
 infeccion respiratoria
 sdown
 bocio intratoracico
 sepsisi respiratoria
 intolerancia oral
 infeccion urinaria
-esclerosis múltiple
+esclerosis multiple
 demencia fallo multiorganico
 cancer de parotida
-itu
-úlceras mmii
+ITU (infeccion del tracto urinario)
+ulceras mmii
 smd
-cancer de cólon estadio iv
+cancer de colon estadio iv
 fractura cadera
-infección respiratoria
 fallo cardiaco
-infec resp
-ca endometrio
+infeccion resp
+cancer endometrio
 cancer suprarrenal
-amputación
+amputacion
 fractura vertebral
 acv
 ulceras vasculares
-epoc e infección respiratoria
-infección herida quirúrgica
+epoc e infeccion respiratoria
+infeccion herida quirurgica
 hsa
 deteriorocognitivo
 deterioro cognitivo
-miocardiopatia hipertrófica
+miocardiopatia hipertrofica
 sindrome general
 masa abdominal
 hepatopatia cronica
 politraumatismo
 melanoma
-epoc infección respiratoria
+epoc infeccion respiratoria
 adenoca recto
-ca de sigma
+cancer de sigma
 cancer de vejiga
 ictus
 fa valvulopatia aortica ic
 sindrome febril irc
 diverticulitis aguda
 caepidermoide labio
-itu asintomática
+ITU (infeccion del tracto urinario) asintomatica
 sifilis terciaria cardiopatia congenita
 craneofaringioma
 mieloma multiple
 endocarditis
-ca pulmon
+cancer pulmon
 oclusion intestinal
 isquemia eeii
-ca colon
 lma
 sepsis urinaria
 amputacion transmetatarsiana
-ca sigma
-ca vejiga
+cancer sigma
+cancer vejiga
 cancer gastrico
 tratamiento antibiotico iv
 demencia
 ela
-ca gastrico
 bronquiectasias
 insuficiencia cardiaca
 cancer de lengua estadio iv
@@ -94,7 +89,7 @@ carcinoma de sigma
 infeccion bronquiectasias
 colangiocarcinima
 infeccion material
-ca pulmon estadio iv
+cancer pulmon estadio iv
 fractura d12
 ucera mid
 broncoaspiracion
@@ -107,7 +102,6 @@ neo recto infeccion respiratoria
 linfoma hodking
 deterioro estado general trastorno metabolico
 infeccion respiratoria alzheimer
-infeccion herida quirurgica
 cancer de colon
 trombocitemia esencial
 neo colon
@@ -121,32 +115,27 @@ hepatocarcinoma estadio iv
 linfoma bajo grado
 deteriioro cogitivo grave
 anoxia cerebral
-ca pancreas
 sindrome mielodisplasico
 deterioro cognitivo neumonia
 lmmc
 gastroenteritis
 bronquiectasias infectadas
-ca epidermoide sien estadio iv
-cáncer de pulmon
+cancer epidermoide sien estadio iv
+cancer de pulmon
 bronquiectasias sobreinfectadas
 cancer de recto
-síndrome mielodisplásico
 cancer urotelial
-talasemiasíndrome anemico
+talasemiasindrome anemico
 infeccion urinaria hemorragia digestiva
 neoplasia rectosepsi urinaria
 insuficiencia cardiaca descompensada
 deterioro cognitivo avanzado
 masa abdominal anexial
 arteriopatia obliterante generalizada
-cancer orl
 glioblastoma
-esquizofreniaanciano frágil
-ca laringe
-ca de mama
+esquizofreniaanciano fragil
+cancer laringe
 cancer de vulva
-cancer de pulmon
 cancer ce cavum
 enfermedad charcot
 loes snc
@@ -159,72 +148,68 @@ neoplasia pancreas
 adenocarcinoma gastrico estadio iv
 neoplasia pulmonar cirrosis
 amputacion y ulceras pie izquierdo
-adenocarcinoma colñom estadio iv
+adenocarcinoma colnom estadio iv
 adernocarcinoma gastrico estadio iv
 adenocarcinoma recto estadio iv
 adenocarcinoma ovarico estadio iv
 neoplasia vejiga estadio iv
-neoplasia rectoacvborncoaspiracionº
+neoplasia rectoacvborncoaspiraciono
 glioblastoma multiforme
 sepsis urinariaanciano fragil
 insuficiencia cardiaca llc atipica
-oclusión intestinal esquizofrenia paranoide
-ca esofago
-ca ovario
-ca gastrico de  lauren
-ca de pancreas estadio iv
+oclusion intestinal esquizofrenia paranoide
+cancer esofago
+cancer ovario
+cancer gastrico de  lauren
+cancer de pancreas estadio iv
 deshidratacion
 adenocaercinoma colon estadio iv
 neoplasia colon estadio iv
-ca sigma met hepáticas
+cancer sigma met hepaticas
 sde mielodisplasico
 neumonia deterioro cognitivo
 broquiectasias
 leucemia aguda
-ca epidermoide senos paranasales
-sospecha ca tiroides
-ca colon estadio iv
+cancer epidermoide senos paranasales
+sospecha cancer tiroides
+cancer colon estadio iv
 meningitis postoperatoria
 vomitosneo recto estadio iv
 ulceras multiples
-itu klebsiella transplante renal
-itu klebsiella
+ITU (infeccion del tracto urinario) klebsiella transplante renal
+ITU (infeccion del tracto urinario) klebsiella
 rectorragia
 neo biliar
 epidermoide paranasales
 osteomielitis vertebral
-ca cervix est figo iv b
-ca renal estadio iv
+cancer cervix est figo iv b
+cancer renal estadio iv
 hepatocarcinoma
-itu hepatopatía crónica
+ITU (infeccion del tracto urinario) hepatopatia cronica
 timoma miastenia gravis
-leucemialinfática aguda
+leucemialinfatica aguda
 tumor malar
 pielonefritis
-carcinoma de próstata
+carcinoma de prostata
 recambio peg
-cancer páncreas
 cancer cavidad oral
 cancer cae
 fpi
 sindrome febril
-cancer gástrico
 talasemia
-ca cavum e infeccion nosocomial
-ca ocario estadío iv
+cancer cavum e infeccion nosocomial
+cancer ocario estadio iv
 cancer vesicula
-adenoca pulmón
-cancer boca mama y esófago
-ca  pulmon
+adenoca pulmon
+cancer boca mama y esofago
+cancer  pulmon
 adenoca ciego
 demencia severa
 diverticulitis
 hidrocefalia obstructivaadenoca colon
-cancer gástrico est iv
-ca trecto est iv met pulm y cerebrales
+cancer gastrico est iv
+cancer trecto est iv met pulm y cerebrales
 peg
-cancer ovario
-cancer pulmon
 linfoma folicular
 cancer vagina y recto
 espondilodiscitis
@@ -251,17 +236,16 @@ s mielodisplasico
 colangiocarcinoma
 deterioro cognitivo 67
 tetraplejia
-ca recto estadio iv
-adenica biliarpancreático
+cancer recto estadio iv
+adenica biliarpancreatico
 e parkinson
-enf de charcot infección de herida quirúrgica
-ca cervix
+enf de charcot infeccion de herida quirurgica
+cancer cervix
 cancer parotida en progresion
 endocaditis baceriana
 cancer de sigma e iv
 deterioro cognitivo severo
-anemia ferropénica
-esclerosis multiple
+anemia ferropenica
 acv y deterioro cognitivo
 sidrome de anciano fragil
 demencia grave
@@ -272,23 +256,21 @@ s ansioso depresivo
 hemotorax
 bronquiolis infecciosa
 adenocarcinoma de pancreas
-anemia ferropenica
 enfermedad de parkinson
 adenocarcinoma de pulmon
 acv isquemico
 adenocarcinoma anillo de sello
 absceso
 smdlma
-ca esofago e iv
-demencia avanzada obstrucción intestinal
+cancer esofago e iv
+demencia avanzada obstruccion intestinal
 acv sng
-ca indiferenciado de pulmón
+cancer indiferenciado de pulmon
 ulceras por decubito
-ca riñon estadio iv
+cancer rinon estadio iv
 linfoma no hodking
 lnhg
 ulcera sacra grado iv
-broncoaspiración
 adenocarcinoma de colon estadio iv
 adenocarcinoma de sigma
 carcinoma microcitico de pulmon estadio iv
@@ -296,56 +278,52 @@ epoc
 brnquiectasias
 adenocarcinoma gastrico
 adenocarcionoa de prostata
-infeccioón respiratoria
+infeccioon respiratoria
 lmcsmd
-ulceras mmii
 acdenocarcinoma prostata estadio iv
 infeccion respiratoriaela
 adenocarcinoma endometrial
 adenocarcinoma de recto estadio iv
-tumor ovárico
+tumor ovarico
 cirrosis
 adenoca de colon
 colangiocarcinoma est iv
-sde anciano fragilinsuf cardiaca inf respirat reagudiz insuf renal
+sde anciano fragilinsuf cardiaca infeccion respirat reagudiz insuf renal
 adenoca de recto
 carcinoma suelo boca en control sintomas
-ca epidermoide cervix
+cancer epidermoide cervix
 cirrosis biliar primaria
 neoplasia suelo de la boca
 dolor abdominal
-ca epidermoide pulmón
-sde mielodisplásico
-arteriopatia periferica sde metabólico f auricular
+cancer epidermoide pulmon
+arteriopatia periferica sde metabolico f auricular
 cancer colorrectal est iv
-deterioro cognitivo severo ca vejiga
-ca colonlnhsilicosis
-miocardiopatia dilatadaicccirrosis hepática
+deterioro cognitivo severo cancer vejiga
+cancer colonlnhsilicosis
+miocardiopatia dilatadaicccirrosis hepatica
 diverticulitis aguda no complicada
 colangitis ag coledocolitiasis
-ca pulmonepocbronquiectasias
+cancer pulmonepocbronquiectasias
 deterioro estado generalfr cadera
-ca endometrioca colon
-ca colon est iv
-ca colorrectal est iv
+cancer endometrioca colon
+cancer colon est iv
 osteoartrosis rodilla dcha artroplastia total
-infección respiratoria ictus
-dehiscencia herida quirúrgicaarteriopatía periféricasde metabólico
+infeccion respiratoria ictus
+dehiscencia herida quirurgicaarteriopatia perifericasde metabolico
 endocarditis bacteriana
-úlceras por presión paraplejia
-ca mama est iv
-cancer de pulmón
+ulceras por presion paraplejia
+cancer mama est iv
 leucemia linfoide
-anemia crónica no filiada
-ca de colon est iv
-itu ca renal intervenido
+anemia cronica no filiada
+cancer de colon est iv
+ITU (infeccion del tracto urinario) cancer renal intervenido
 fr de tibia intervenida
-neumonia epoc agudizado insuf cardíaca
-infec respiratoriasuboclusión intestinalca recto
-miocardiopatia hipertróficaiccprótesis valvulares
+neumonia epoc agudizado insuf cardiaca
+infeccion respiratoriasuboclusion intestinalca recto
+miocardiopatia hipertroficaiccprotesis valvulares
 insuf renal aguda
-infec urinaria versus intestinal
-infec urinaria ca riñon
+infeccion urinaria versus intestinal
+infeccion urinaria cancer rinon
 absceso supravesical enf de crohn
 colonizacion bronquial p aeruginosa
 cancer seno paranasal
@@ -357,14 +335,14 @@ upp paraplejia
 carcinoma celulas merkel
 demencia vascular
 s de alzheimer
-ituca próstata hepatopatia crónica
-infección respiratoria yo urinaria deterioro cognitivo severo
-ca mama estadio iv
+ituca prostata hepatopatia cronica
+infeccion respiratoria yo urinaria deterioro cognitivo severo
+cancer mama estadio iv
 neoplasia gastrica estadio iv
 celulitis eeii
-agudizacion epocº
+agudizacion epoco
 neo recto estadio iv
-ca maama estadio iv
+cancer maama estadio iv
 ineumonia basal izquierda
 pluripatologia
 demencia fast7
@@ -375,53 +353,52 @@ infeccion por blea
 astrocitoma
 demencia cuerpos lewy fast 7
 demencia avanzada fast 7c
-ca gastrico estadio iv
-ca urotelial estadio iv
+cancer gastrico estadio iv
+cancer urotelial estadio iv
 erisipela
 sindrome mieloproliferatico progresion a leucemia
 adenocarcinoma pancreas
 pie diabetico ulceras
-ca endometrio estadio iv
-ca ovario estadio iv
+cancer endometrio estadio iv
+cancer ovario estadio iv
 demencia senil
 sindrome down obesidad saos
 fractura de cadera
-síndrome anciano frágil con set
-infección heridas quirúrgicas
-ca mamam estadioiv
+sindrome anciano fragil con set
+infeccion heridas quirurgicas
+cancer mamam estadioiv
 insuficiencia respiratoria
 dolor inguinal
 control dolor
 discitis
 ulceras de mal conmtrol en eeii
-ca recto dehiscencia colostomia
+cancer recto dehiscencia colostomia
 encefalopatia postanoxica
-ca de recto est iv
+cancer de recto est iv
 anaplasico de tiroides
 cancer de pulmon estadio iv
 enfermedad de pompe
-ca colon iv
+cancer colon iv
 absceso pie
 deterioro cognitivo avanzado let
 absceso renal
 celulitis en eeii
 cancer de endometrio75
-síndrome mielodisplasico
-síndrome anémico
-ca urotelial eiv
+sindrome anemico
+cancer urotelial eiv
 demencia senil avanzado
-ca cavidad oral intervenido
+cancer cavidad oral intervenido
 cirrosis hepatoca
 tumor pelvico
 deterioro cognictivo avanzado
 icardiaca
 insuficiencia cardio respiratoria
-ca orl y pulmon
+cancer orl y pulmon
 insuficiencia cardiorespiratoria
 cancer de endometrio
-itu cirrosis
+ITU (infeccion del tracto urinario) cirrosis
 cirrosis  colonizado por bleas
-cirrosis itu
+cirrosis ITU (infeccion del tracto urinario)
 niemanpick
 neumonia nosocomial
 infeccion respiratoeia ic
@@ -431,47 +408,43 @@ dolor
 proceso linfoproliferativo
 masa pulmonar
 epoc masa pulmonar
-síndrome de anciano fragil
+sindrome de anciano fragil
 carcinomatosis peritoneal demencia
-tetraparesia itu sonda vesical permanente
-cancer de páncreas
-insuficiencia respiratoria crónica
-ca duodeno
+tetraparesia ITU (infeccion del tracto urinario) sonda vesical permanente
+insuficiencia respiratoria cronica
+cancer duodeno
 colangiocarcinomatumor renal
 adenocarcinoma de endometrio
-ca mamaest iv epoc grave
-itu paraplejía
+cancer mamaest iv epoc grave
+ITU (infeccion del tracto urinario) paraplejia
 infeccion protesis
-ituincont urinaria ca cuello uterino
+ituincont urinaria cancer cuello uterino
 fungemia
 carcinoma de vesicula
 sepsis de origen respiratorio
 septicemia
-icc hematoma mmii
+insuficiencia cardiaca cronica hematoma mmii
 carcinomatosis peritoneal
-sde anciano frágil
+sde anciano fragil
 adenoca ovario
-diverticulitis aguda complicada perforación
+diverticulitis aguda complicada perforacion
 estenosis del canal lumbar
 insuficiencia renal
 alzheimer
-ca pulmón est ivca próstata est iv
-ca prostata est iv
+cancer pulmon est ivca prostata est iv
+cancer prostata est iv
 ciatalgia
-ca de prostata
-infeccion postquirúrgica artrodesis cv
-itu dmellitus acv
-infección artroplastia hombro izq
+infeccion postquirurgica artrodesis cv
+ITU (infeccion del tracto urinario) dmellitus acv
+infeccion artroplastia hombro izq
 piomiositis bacteriemia marsa
 espondilodiscitis anemia irc
-itu sondaje vesical permanente
+ITU (infeccion del tracto urinario) sondaje vesical permanente
 artropatia degenerativa
 masa pelvica carcinomatosis ascitis
-adenoca pulmon
 masa ovarica carcinomatosis
 hombro doloroso traumatico
 cancer de utero
-sindrome anemico
 polimiositis
 insuficiencia renal deterioro cognitivo
 caner de mama estadio iv
@@ -484,9 +457,9 @@ infeccion klebsiella multirresistente
 endocarditis bacterianaosteosarcoma femur
 pielonefritis aguda
 bornquiectasias infectadas asma
-ca epidermoide labio sup
-ca colon mx endobronquial
-ca sigma est iv
+cancer epidermoide labio sup
+cancer colon mx endobronquial
+cancer sigma est iv
 sarcoma fusocelular muslo dcho est iv
 sd noonan celulitis
 e parkinson avanzada
@@ -494,20 +467,17 @@ ulcera vascular sobreinfectada
 anciana fragil
 osteomielitis
 neumonia pancitopenia
-metastasis múltiples
+metastasis multiples
 adenocarcinoma de ciego estadio iv
-cancer pulmón
-ca páncreas
-ca cólon
 adeno pancreas estadio iv
 alteracion deglucion pluripatologico
 microcitico pulmon estadio iv
 hepatocarcinoma encefalopatia
 parkinson demencia avanzada fast 7c
-ca prostata celulitis subcutanea eeii
+cancer prostata celulitis subcutanea eeii
 linfoma no hodgkin
 cancer deprimario desconocido
-síndrome de anciano frágil en situación de final de vida
+sindrome de anciano fragil en situacion de final de vida
 neoplasia ginecologia carcinomatosis fistula enterovaginal
 nefroangioesclerosis
 neumonia bilateral
@@ -516,29 +486,26 @@ bacteriemia
 carcinoma de recto
 carcinoma de vejiga
 carcinoma de colon
-ca tiroides
+cancer tiroides
 adenoca gastrico
-ca prostata hematuria
+cancer prostata hematuria
 demencia alt comportamiento perdida de la via oral
 carcinoma de mama
-capulmón
-adenoca gástrico
+capulmon
 dolor abdominal no filiado
 epoc terminal
-adenoca de pulmón estadio iv
-ca indiferenciado est iv
-ca de recto
+adenoca de pulmon estadio iv
+cancer indiferenciado est iv
 secuelas tras tce estenosis ao severa deterioro cognitivo grave
-ca prostata estadio iv
-ca hepatobiliar estadio iv
-ca pulmón est iv
+cancer prostata estadio iv
+cancer hepatobiliar estadio iv
+cancer pulmon est iv
 colonizacion por klebsiela
-ca suelo de boca est iv
+cancer suelo de boca est iv
 paciente pluripatologico
-ca renalestadio iv
-ca gastrica
+cancer renalestadio iv
+cancer gastrica
 sospecha acvenfermedad de alzheimer
-ca próstata est iv
 infeccion broncoaspirativaparkinsondeterioro cognitiva
 iccbacteriemia por estafilococo htp ascitis insuf renal
 cancer intestinal
@@ -547,7 +514,7 @@ deterioro cognitivo severo enf parkinson
 neumonia neumococica bilateral colangiocarcinoma
 infeccion protesis hombro
 infeccion broncoaspirativa
-ca epidermoide de esofago
+cancer epidermoide de esofago
 demencia avanzada
 fracturas craneales
 epoc agudizado
@@ -563,12 +530,12 @@ adenocarcinoma de mama estadio iv
 ulcera traumatica
 colangitis de repeticion
 adenoma hipofisis
-ca endometrio e iv
+cancer endometrio e iv
 neo gastrica estadio iv
 probable infeccion urinaria
 prostatis
 cardiopatia refractaria
-insuficiencia renal crónica
+insuficiencia renal cronica
 ulcera infectada
 masa anexial
 bocio endotoracico
@@ -576,54 +543,51 @@ sindrome confusional
 adenocarcinoma de pulmon estadio iv
 linfoma t cutaneo
 adenoca de prostata
-ca pulmon est iv
-itudeterioro cognitivo severo sospecha neoplasia pulmón
-cirrosis hepática insuf renal crónicaendocarditis mitralinfarto esplénico colección intaabdominalfístula umbilical
-hepatopatia crónica
-ulcera varicosaobesidad mórbida
+itudeterioro cognitivo severo sospecha neoplasia pulmon
+cirrosis hepatica insuf renal cronicaendocarditis mitralinfarto esplenico coleccion intaabdominalfistula umbilical
+ulcera varicosaobesidad morbida
 posible sepsis de origen no filiado
 ulcera sacra
 deterioro cognitivo severo enf parkison dmellituscardiopatia valvulargammapatia monoclonalinsuf renal
-deterioro cognitivo severoesquizofrenianeoplasia pulmónitu
-deterioro cognitivo severo insuf cardiaca valvulopatía mitral
-infección respiratora anciana frágil
-suboclusión intestinal adenoca recto
-leucemia linfátic crónica
-ca recto
-ca pulmónmieloma múltiple
-iccinsuficiencia respiratoria globalcardiopatía hipertensiva
-cefalea y sde confusional icc
+deterioro cognitivo severoesquizofrenianeoplasia pulmonitu
+deterioro cognitivo severo insuf cardiaca valvulopatia mitral
+infeccion respiratora anciana fragil
+suboclusion intestinal adenoca recto
+leucemia linfatic cronica
+cancer recto
+cancer pulmonmieloma multiple
+iccinsuficiencia respiratoria globalcardiopatia hipertensiva
+cefalea y sde confusional insuficiencia cardiaca cronica
 ulceras vasculares en eeii
-sde confusional leve icc
-ca epidermoide oral región mentoniana
+sde confusional leve insuficiencia cardiaca cronica
+cancer epidermoide oral region mentoniana
 ituneoplasia pulonardeterioro cognitivo
-ca ovario est iv
+cancer ovario est iv
 itudiabetes mellitusdeterioro cognitivo severo
-itu anenoca recto
+ITU (infeccion del tracto urinario) anenoca recto
 agonia deterioro cognitivo
-itu deterioro cognitivo
+ITU (infeccion del tracto urinario) deterioro cognitivo
 neumoniaic
-infección respiratoria por pseudomonas bronquiectasias
+infeccion respiratoria por pseudomonas bronquiectasias
 itudemencia severa
-neoplasia mieloproliferativa crónica tipo policitemia vera enfermedad renal crónica avanzada
+neoplasia mieloproliferativa cronica tipo policitemia vera enfermedad renal cronica avanzada
 deterioro estado general paciente fragil
-deshidratación irenal cr
+deshidratacion irenal cr
 bronquiectasias infectadas por ps aeruginosa
 ic avanzada clase funcional iv
-ca renal est iv
-anemiasospecha suboclusión intestinal probable proceso neoplásico intestinal
-agitacióndeterioro cognitivo gravepatología de cadera dcha no diagnosticada
-ca próstata broncopatía cr
-itu deterioro cognitivo severo
-ulcera trocánter izq
-sospecha suboclusión intestinal probable neo de colon
-edema agudo de pulmónneo colon transverso
-ca renal
-suboclusión intestinal por bridas y nódulo hepático
-adenocarcinoma pancreas estadio iv
-icc insuf respiratoria mixtaadenoma velloso rectosigmoideosangrado digestivo bajo
-icc fa broncopatía crónica adenoma tubulosovelloso rectosigmoideo y sangrado digestivo bajo
+cancer renal est iv
+anemiasospecha suboclusion intestinal probable proceso neoplasico intestinal
+agitaciondeterioro cognitivo gravepatologia de cadera dcha no diagnosticada
+cancer prostata broncopatia cr
+ITU (infeccion del tracto urinario) deterioro cognitivo severo
+ulcera trocanter izq
+sospecha suboclusion intestinal probable neo de colon
+edema agudo de pulmonneo colon transverso
 cancer renal
+suboclusion intestinal por bridas y nodulo hepatico
+adenocarcinoma pancreas estadio iv
+insuficiencia cardiaca cronica insuf respiratoria mixtaadenoma velloso rectosigmoideosangrado digestivo bajo
+insuficiencia cardiaca cronica fa broncopatia cronica adenoma tubulosovelloso rectosigmoideo y sangrado digestivo bajo
 broncoaspiracion sindrome general
 ulcera pierna
 i respiratoria bursitis rodilla
@@ -637,7 +601,7 @@ celulitis
 politraumatismo conlesion axonal difusa
 adenoma hipofisario
 trombosis vyugular izq
-lesión ulcerosa en pierna
+lesion ulcerosa en pierna
 epoc severo
 cancer vias biliar
 colangiocarcinoma es iv
@@ -648,10 +612,8 @@ eca de vejiga infeccion urinaria
 sindrome de millerdieker
 cancer de orofarnge
 colonizacion germenes multirresistentes
-síndrome anciano frágil
 cancer de tiroides
 cancer de endometriocontrol analgesico
-ca de pancreas
 hemorragia digestiva
 infeccion respiratoria y urinaria
 broquiectasias sobreinfectadas
@@ -661,7 +623,7 @@ linfoma
 merkeloma
 poliquistosis renal
 cancer prostata y vejiga
-ca de recto estiv
+cancer de recto estiv
 1tu
 lumbalgia
 cancer de prostata y gist
@@ -669,41 +631,39 @@ sacroileitis
 cancer de cervix
 irc
 hepatocarcinoma multicentrico
-síndrome general
 adca colon eiv
 cancer neuroendocrino
-infecion ptc
+infeccion ptc
 protocolo enf de pompe
-ca pulmon e iv
+cancer pulmon e iv
 artritis rodilla
 sarcoidosis silicosis
 epoc avanzado
-ca prostata ee iv
+cancer prostata ee iv
 deterioro estado general paciemnte fragil
-ca pulmon  iv
+cancer pulmon  iv
 cushing
 hiponatremia
 cancer epidermoide
 shock septico
 adenocarcinoma pulmon estadio iv
-ca pancreas estadio iv
+cancer pancreas estadio iv
 demencia avanzada fast 7
 sind hallerman sterif
 neoplasia prostata estadio iv
 adenocarcinoma pulmonar estadio iv
 enf crohn sind intestino corto
 sindrome facetario
-amputacion
 leucemia mieloide aguda
 hepatocarcinoma  smd
-ca epidermoide suelo de boca
-icc
-let broncoaspiracion de repèticion
+cancer epidermoide suelo de boca
+insuficiencia cardiaca cronica
+let broncoaspiracion de repeticion
 colanfgiocarcinoma
-ca colon e iv
+cancer colon e iv
 cancer de vesicula
 dehiscencia herida quirurgica
-ca urotelial alto grado
+cancer urotelial alto grado
 infeccion abdominal
 neoplasia pulmon estadio iv
 insuficiencia cardiaca avanzada
@@ -714,8 +674,8 @@ neoplasia mama traumatismo por caida
 neoplasia vesicula estadio iv
 demencia cuerpos lewi
 prostatitis
-adenocarcinoma hepatobilñiar
-ca microcitico pulmón e iv
+adenocarcinoma hepatobilniar
+cancer microcitico pulmon e iv
 adenocarcinoma colon estadio iv
 neoplasia mieloproliferativa
 neoplasia mama estadio iv
@@ -725,40 +685,38 @@ hemorragia subaracnoidea
 abcesos hepaticos
 neoplasia esofago
 adenocarcinoma de recto
-ca renal e iv
+cancer renal e iv
 sarcoma abdominal
-ca orofaringe
-ca epidermoide de orofaringe
+cancer orofaringe
+cancer epidermoide de orofaringe
 absceso cerebral
 adenocarcinoma de prostata estadio iv
-anciano frágil
 celulitis facial
 neoplasia prostata
 diabetes anciana fragil
 obliteracion iliaca  grado iv
 crisis asmatica
 ulcera vascular
-ca trigono retromolar
+cancer trigono retromolar
 bronqiectasias
 colecistitis aguda
 mts oseas
 distrofia muscular
 pancreatitis
-colangitiscirrosis hepáticasospecha de hepatocarcinoma
+colangitiscirrosis hepaticasospecha de hepatocarcinoma
 leucoencefalopatia vascularinfec respirat
 uppesquizofrenia
 sarcoma
 bronquiectasis infectadas
 calculos biliares
-leucemia mielomonocítica
-insufcardíaca
-infec respirat deterioro cognitivo severo
+leucemia mielomonocitica
+insufcardiaca
+infeccion respirat deterioro cognitivo severo
 adenoca colon
 miocardiopatia dilatada
 ait
 enterolisis
 isquemia arterial aguda
-infecion respiratoria
 obliteracion femoro poplitea derecha
 fibrosis quistica
 infeccion urinarui
@@ -766,24 +724,21 @@ ineumonia retrocardiaca
 deterioro anciana fragil
 pseudomixoma peritoneal
 nieman pick
-ca bronquialveolar
+cancer bronquialveolar
 artritis carpo derecho
 demenciam avanzada
 adenocarcinoma pulmon
 cardiopatia isquemica cronica
 herida abdominal
 miocardiopatia
-infecc respiratoria
 pie diabetico
 cancer de rectoanemia
-ca urotelial
 enfermedad crohn  fournier
-itu agitacion
+ITU (infeccion del tracto urinario) agitacion
 neoplasia urotelial fibrosis pulmonar
-trasplante cardíacoteposteomielitis esternal
-icardíaca
+trasplante cardiacoteposteomielitis esternal
 infeccion herida quirugica
-ca celulas renales
+cancer celulas renales
 neoplasia de vulva
 neoplasia de colon
 neoplasia de pulmon
@@ -792,101 +747,92 @@ neoplasia de sigma
 obliteracion femoro poplitea izquierda
 neoplasia de ovario estadio iv
 hernia lumbar
-sde mielodisplásicolma
-icc miocardiopatía dilatada
+sde mielodisplasicolma
+insuficiencia cardiaca cronica miocardiopatia dilatada
 upps deterioro cognitivo severo
 absceso abdominal
 absceso pared abdominal
-neumonia ca colon
-itu irenal cr
-absceso msd icc ir global ircr
+neumonia cancer colon
+ITU (infeccion del tracto urinario) irenal cr
+absceso msd insuficiencia cardiaca cronica ir global ircr
 neumonia basal dcha empiema
 ulceras varicosas
-deterioro cognitivo severo itu inf resp
-infec resp epoc
-inf respcirrosis hepática irc en hemodiálisis ca pulmón
-leucemia linf crónica
-neomonia por broncoaspiración
+deterioro cognitivo severo ITU (infeccion del tracto urinario) infeccion resp
+infeccion resp epoc
+infeccion respcirrosis hepatica irc en hemodialisis cancer pulmon
+leucemia linf cronica
+neomonia por broncoaspiracion
 demencia avanzada anciana fragil
 diverticulitis aguda demencia
 neoplasia sigmarecto
-cirrosis hepatica itu
+cirrosis hepatica ITU (infeccion del tracto urinario)
 dolor de dificil control
 by pass obliteracion femoro poplitea
 metastasis oseas de primario desconocido
 celulitis brazo derecho
 dolor mal controlado
-ca colon estadio iv metas cerebrales
-itu anciano fragil
+cancer colon estadio iv metas cerebrales
+ITU (infeccion del tracto urinario) anciano fragil
 neoplasia colon sigma
 demencia avanzada perdida via oral
 neo pulmon estadio iv
 cacer de colon estadio iv
 mesotelioma pleural
-ca de colon
-cancer recto estadio iv
-ca encia
+cancer encia
 sarcoma pleomorfico
 ulceras de decubito eeii
-ca colos penfogoide ampolloso
+cancer colos penfogoide ampolloso
 neo mama estadio iv
 bacteriemiapancreatitis agtce
 ulceras vasculares paciente fragil
 encefalopatia
 adenocarcinoma pancreaas estadio iv
-bacteriemia ir cr ca pulmón
-ca gástrico isquemia mesentérica tep
+bacteriemia ir cr cancer pulmon
+cancer gastrico isquemia mesenterica tep
 ulceras vasculares eeiiizq
-cancer vejiga
-ca pancreas estadioiv
-ca pulmón e iv
+cancer pancreas estadioiv
 tratamiento antibiotico ic delirium
 hematuria
-icc hipoalbuminemia
+insuficiencia cardiaca cronica hipoalbuminemia
 dificultad para tragar
-cirrosis hepática hepatocarcinoma
-icc i renal cr
-ictus isquémico
+cirrosis hepatica hepatocarcinoma
+insuficiencia cardiaca cronica i renal cr
+ictus isquemico
 liposarcoma pleomorfico
-ca de pulmon estadio iv
-icardíaca epoc
-demencia itu
-icc herida abierta en flexura codo derecho
+icardiaca epoc
+demencia ITU (infeccion del tracto urinario)
+insuficiencia cardiaca cronica herida abierta en flexura codo derecho
 deteriroro cognitivo
 artritis reumatoidea
 adenoca colon e iv
-ca pulmón
 cancer de colon y gastrico
-estado vegetativo infecion respiratoria
-itu paraplejia
-icc cor pulmonale
+estado vegetativo infeccion respiratoria
+insuficiencia cardiaca cronica cor pulmonale
 laminectomia c3 c4
 by pass femorom popliteo izquierdo ulceran talon
 anmputacion transmetatarsiana  4 y 5 dedo pie derecho
 meningitis virus hzoster
-insuficiencia cardíaca
-ca prostata estadio iv lumboartrosis itu en paciente sondado
+cancer prostata estadio iv lumboartrosis ITU (infeccion del tracto urinario) en paciente sondado
 endocarditis bacteriana acv
 fiebrediarreadeterioro cognitivo
 valoracion ulceras
-ca colon estenosis gástrica
+cancer colon estenosis gastrica
 ulcera pierna izq insuf venosa
 enfermedad de whiple
-ca colo toxicidad a quimioterapia
+cancer colo toxicidad a quimioterapia
 isquemia eeii izquierda demencia
 ulceras  en eeii izquierda pantorrilla
 compresion medular
 psraplejia
 enf nieman pick
 leucemia mielomonocitica cronica
-upps esclerosis múltiple epilepsia
+upps esclerosis multiple epilepsia
 linfoma alto grado
 epid agudizada
-ca microcitico pulmon e iv
 neoplasia de pancreas estadio
 enfermedad de lyme
-ca pulmón transplantado cardíaco
-icc i renal crónica
+cancer pulmon transplantado cardiaco
+insuficiencia cardiaca cronica i renal cronica
 anemia microcitica
 adenocarcinoma esofagogastrico
 neo colon estadio iv
@@ -894,131 +840,126 @@ infeccion tracto urinario
 neoplasia orl
 colangiocarcinoma estadio iv
 carcinoma urotelial estadio iv
-itu teptraplejia
+ITU (infeccion del tracto urinario) teptraplejia
 ulcera vascular minfizqmiocardiopatia insufrenal cr
 bypass
-ca microcítico pulmón
+cancer microcitico pulmon
 absceso uterino
 neoplasia colon dolor mal controlado
-neoplasia colon itu
+neoplasia colon ITU (infeccion del tracto urinario)
 leucemia mieloide
-adenoca páncreas
+adenoca pancreas
 bacteriemia sospecha de colangitis
 neo orofaringe
 bacteriemis seminoma
 cancer escamoso
-ulcera traumática muslo izq covid
-recidiva ca esófago
-infección respiratoria deterioro cognitivo severo
-infección respitoria ic
-adenoca próstata e iv
+ulcera traumatica muslo izq covid 
+recidiva cancer esofago
+infeccion respiratoria deterioro cognitivo severo
+infeccion respitoria ic
+adenoca prostata e iv
 acv   isquemico alteracion deglucion
 isquemia mesenterica
 lesion medular
-ca colon eiv
-ca neuroendocrino
-ca vejiga acv
-cirrosis alcohólica
+cancer colon eiv
+cancer vejiga acv
+cirrosis alcoholica
 enfermedad cavitada m avium
 gist
-colangiocarcinomaadenocarcinoma de pulmóncarcinoma epidermoide de glotis
-dispepsia icc
+colangiocarcinomaadenocarcinoma de pulmoncarcinoma epidermoide de glotis
+dispepsia insuficiencia cardiaca cronica
 meningitis
 encefalopatia postcovid
 ulcera isquiatica
-icardíacaulcera traumática pierna dcha
+icardiacaulcera traumatica pierna dcha
 revascularizacion
-ca pancreas infección peripancreatica
+cancer pancreas infeccion peripancreatica
 tumor cereblal
-abscesos hepáticos
+abscesos hepaticos
 desnutricion proteicacalorica
 hipogammaglobulinemia
 protesis vascular infectada
-ca pulmón oblit aortofemoral izq
+cancer pulmon oblit aortofemoral izq
 aneurismectomia
 hipertiroidismo por amiodarona
 ulcera  miembro inferiror derecho
 ulceras
 enfermedad intersticial fase fibrotica
 cancer de prostata estadio iv
-i cardíaca
+i cardiaca
 tumor indiferenciado abdominal de origen desconocido estadio iv
-ca pancreas colección encapsulada peripancreaticaca próstata
+cancer pancreas coleccion encapsulada peripancreaticaca prostata
 hematoma
-icc infecc respiratoria
+insuficiencia cardiaca cronica infeccion respiratoria
 ic descompensada
-ca mama estadio ivfr patológica cuello y diáfisis femoral ixqtumor neuroendocrino de páncreas
-deterioro cognitivo avanzadotrastorno motor esofágico
-sospecha de itu encefalopatía anóxica
+cancer mama estadio ivfr patologica cuello y diafisis femoral ixqtumor neuroendocrino de pancreas
+deterioro cognitivo avanzadotrastorno motor esofagico
+sospecha de ITU (infeccion del tracto urinario) encefalopatia anoxica
 lumbalgia aneurisma de aorta
 ulcera isquion
-cancer de sigma
 epoc infecrespirat
 isquemia arterial aguda eeii
 absceso paravesical
-ca epidermoide est iv
+cancer epidermoide est iv
 hipernefroma
 dolor precordial
-ituinfección respiratoria deterioro cognitivo severo
-ulcera pierna izq insuf venosa icardíaca
+ituinfeccion respiratoria deterioro cognitivo severo
+ulcera pierna izq insuf venosa icardiaca
 ulcera isquiatica esclerosis multiple
-linfoma b de células grandes intravascular
+linfoma b de celulas grandes intravascular
 encefalopatia post anoxica
-encefalopatía hepática cirrosis hepática
+encefalopatia hepatica cirrosis hepatica
 hipertension demencia avanzada
 neoplasia pancreas estadio iv
-ca gástrico
 scffv
-icc deterioro cognitivo grave
+insuficiencia cardiaca cronica deterioro cognitivo grave
 ella
 carcinomatosis
 ulcera venosa
 leiomiosarcoma
 astrocitoma est iv
-ca epidermoide cavum
-arteriopatía periférica crónica obliteración iliofemoral bilateral grado iv en mii
-infección bypass aortofemoral izq
-ca recto est iv
-capulmón est iv
+cancer epidermoide cavum
+arteriopatia periferica cronica obliteracion iliofemoral bilateral grado iv en mii
+infeccion bypass aortofemoral izq
+cancer recto est iv
+capulmon est iv
 gonartrosis bilateral
-amputación digital
+amputacion digital
 linfoma no hogkin
 mesotelioma
 obliteracion fpmii
 cirrosis criptogenica
 cardiopatia en fa
-cordoma infección sacroccigea
-mieloma múltiple
-amputacion digital
+cordoma infeccion sacroccigea
 isquemia mid
-infección pie dcho
+infeccion pie dcho
 sepsis urinaria pielonefritis aguda
 amputacion infracondilea derecha
 ulceras eeii
 neo pancreas
 adenocarcinoma recto
 cea microcitico pulmon
-icc irc
+insuficiencia cardiaca cronica irc
 bronconeumonia
 sangrado digestivo
 reseccion femur y tenotomias
-icc refrectaria
+insuficiencia cardiaca cronica refrectaria
 liposarcoma est iv
 sde confusional agudo acva
 ulceras presion
 amputacion mii
-ca vejiga est vi
+cancer vejiga est vi
 neoplsaia cerebral
 sindrome millerdieker
 artropatia
-ulcera mii cisquémicamiocardiopatia dilatada
+ulcera mii cisquemicamiocardiopatia dilatada
 diabetes grave
 neoplasia colon epoc
 cirrosis criptogenetica
-anemia cronica ca colon
+anemia cronica cancer colon
 ulcera 5 dedo mii
-ca gastrico e iv
-epocinfección respiratoria
+cancer gastrico e iv
+epocinfeccion respiratoria
 adenoca sigma e iv
 ulceras  de presion
 paralisis supranuclear progresiva
@@ -1030,23 +971,23 @@ perforacion intestinal
 rectorragi
 enfermedasd parkinson
 infeccion respiratoria aguda
-ca urotelial e iv
-ca cabeza pancreas e iv
-obliteración fp iv mid hta diabetes mellitus antecedentes cardiológicos ett 2012 con insuficiencia mitral y aórtica ligeras y fevi preservada posible broncopatía crónica ictus isquémico acm izquierda en 2011 sin secuelas
-ulcera crónica pierna izq
-ca colon transverso
+cancer urotelial e iv
+cancer cabeza pancreas e iv
+obliteracion fp iv mid hta diabetes mellitus antecedentes cardiologicos ett 2012 con insuficiencia mitral y aortica ligeras y fevi preservada posible broncopatia cronica ictus isquemico acm izquierda en 2011 sin secuelas
+ulcera cronica pierna izq
+cancer colon transverso
 ituictusendocarditis
 infeccion ulcera dedo izquierdo
 sindrome emetico no filiado
-ca ovarico estadio iv
-ca lengua estadio iv
-ca broncogenico estadio iv
+cancer ovarico estadio iv
+cancer lengua estadio iv
+cancer broncogenico estadio iv
 leiomiosarcoma estadio iv
 neo prostata estadio iv
 cancer estomago
-infecc resp deterioro cognitivo severo
-itu acv
-ca hepatico
+infeccion resp deterioro cognitivo severo
+ITU (infeccion del tracto urinario) acv
+cancer hepatico
 neoplasia intestinal
 carcinoma orofaringe
 amputacion supracondilea
@@ -1073,18 +1014,17 @@ enfermedad de crohn
 itudeterioro cognitivo
 infeccion protesis aortica
 infeccion protesis aortoilica
-adeno ca colon estadio iv
+adeno cancer colon estadio iv
 hbp
-amputacion transmetatarseiana 1º dedo pie derecho
+amputacion transmetatarseiana 1o dedo pie derecho
 iait
 bacteriemia por estafilococo
-ca colorrectal
-ca submandibular
+cancer colorrectal
+cancer submandibular
 obliteracion femoro poplitea
 fistula enterovesical
-ca páncreas estadio iv
-ca microcitico de pulmon
-ca  mama estadio iv
+cancer microcitico de pulmon
+cancer  mama estadio iv
 epilepsia vascular
 aden de pulmon estadio iv
 demencaparkinson
@@ -1097,23 +1037,19 @@ cirrosisencefalopatia
 adeno pulmon estadio iv
 hipocalcemia
 anciano fragil infeccion respiratoria
-ca epidermoide cutaneo
-i cardiaca
+cancer epidermoide cutaneo
 carcinomatosis peritoneal origen ovaricoascitis
 infeccion respiratotia
 situacion agonia
 ulcera maleolo
-ictus isquemico
 lnh linfocitico
-ca de pulmon
-absceso hepático
-abscesos hepaticos
+absceso hepatico
 demencia alzheimer
-infeccion prótesis rodilla
+infeccion protesis rodilla
 actinomicosis
 tromboembolismo pulmonar  sindrome linfoproliferativo
 fractura cadera anciana fragil
-neoplasia ovario  icc
+neoplasia ovario  insuficiencia cardiaca cronica
 pecoma
 neoplasia colon estadiom iv
 lupus
@@ -1126,29 +1062,29 @@ adenocarcinoma de panccreas
 sindrome hipoventiolacion obesidad
 cistoadenoma de ovario
 mtx hepaticas primario desconocido
-irc ca colon e iv
+irc cancer colon e iv
 obliteracion distal mii
-infección respiratoria ca colon esclerosis múltiple
-infección periprotésica rodilla dcha anciana frágil cardiopatía hipertensiva
-ca gastrico ca senos paranasales
+infeccion respiratoria cancer colon esclerosis multiple
+infeccion periprotesica rodilla dcha anciana fragil cardiopatia hipertensiva
+cancer gastrico cancer senos paranasales
 ulceras de decubito
 sincopes
 aneurisma aorta roto
 encefelopatia anoxica
 ulceras isquemicas
 neoplasia recto
-amputacion 4º y 5º dede pie izquierdo
+amputacion 4o y 5o dede pie izquierdo
 adeno pulmon  pericarditis
 trombosis arterial
-infección respiratoriadeterioro cognitivo severo
-lesión neoplásica hipofaringe
+infeccion respiratoriadeterioro cognitivo severo
+lesion neoplasica hipofaringe
 sepsis
 bursitis olecraniana
 trombosis bypass
 esclerosis multiplecancer de colon
-adenocarcinima pulmón est iv
-ca epidemoide piel
-mieloma múltiple obstrucción intestinal
+adenocarcinima pulmon est iv
+cancer epidemoide piel
+mieloma multiple obstruccion intestinal
 endocarditis sobre dai
 demencia  diverticulitis
 senf nieman pick
@@ -1158,139 +1094,135 @@ hemopatia maligna
 pancreatitis complicacda
 enfermo pluripatologico
 hernia de hiato giganteintolerancia alimentaria
-infección pulmonar en paciente con transplante bipulmonar
-infección respiratoria broncoaspirativa itu encefalopatía connatal
+infeccion pulmonar en paciente con transplante bipulmonar
+infeccion respiratoria broncoaspirativa ITU (infeccion del tracto urinario) encefalopatia connatal
 infeccion de protesis vascular
 isquemia eeii grado iv
 erc
 deterioro cognitivo sde de down insuf cardiorrespiratoria
-infección herida quirúrgica de hernioplastia dcha
-colangitis aguda icardíaca
+infeccion herida quirurgica de hernioplastia dcha
+colangitis aguda icardiaca
 isquemia grado in pierna izquieda y ulcera tobillo
-neoplasia riñon estadio iv
+neoplasia rinon estadio iv
 hepqtocarcinoma
 trombosis arterial mii
-ependimoma anaplásico
+ependimoma anaplasico
 izquemia mii
 smd leucemia agudaicc
-neumonia por broncoaspiracióndeterioro cognitivo severo
+neumonia por broncoaspiraciondeterioro cognitivo severo
 esquizofrenia paranoide
 s miller dieker
 epoc descompensadoinfec respirat
 osteonecrosis mandibular
-icc linfoma
+insuficiencia cardiaca cronica linfoma
 pancreatitis complicacada
 neoplasia del suelo de la boca
 niwmann pick
 neoplasia colon esatdio iv
 isquemia irreversible mmii
-cirrosis hepática criptogenetica
-ca recto estivinfección masa tumoral
-ca epidermoide pulmón eiv
+cirrosis hepatica criptogenetica
+cancer recto estivinfeccion masa tumoral
+cancer epidermoide pulmon eiv
 tumor retroperitoneal
 angiosracoma hepatico
 leucemia mieloide agudaiccfractura d12
 agonia en pac con neoplasia
-adenocarcinoma pulmón est iv
-ca de colon estadio iv
-ca vias biliares
+adenocarcinoma pulmon est iv
+cancer vias biliares
 neoplasia renal
-hepatocarcinomacirrosis hepáticaneo de recto
+hepatocarcinomacirrosis hepaticaneo de recto
 epoc descompensado
 neoplasia renal estadio iv
 neoplasia orofaringea estadio iv
-miocardiopatia dilatadamieloma múltiple
+miocardiopatia dilatadamieloma multiple
 insf cardiaca
 trombosis bypass mii
 demenca
-ca rectooclusión intestinal
-fr cadera y húmero dcho ic infección respiratoriaituhiponatremia
+cancer rectooclusion intestinal
+fr cadera y humero dcho ic infeccion respiratoriaituhiponatremia
 coledocolitiasis
-sospecha de endocarditis prótesicadiverticulis aguda
-vómitos y diarrea ca colon est iv
+sospecha de endocarditis protesicadiverticulis aguda
+vomitos y diarrea cancer colon est iv
 cor pulmonale cronico
 neoplasia de esofago
 ulceras infectadas
-camama est ivfractura cadera dchaluxación cadera dcha
-ca colon est ivoclusión intestinal
-itu por k pneumonie
-celulitis  miizq cirrosis hepática
+camama est ivfractura cadera dchaluxacion cadera dcha
+cancer colon est ivoclusion intestinal
+ITU (infeccion del tracto urinario) por k pneumonie
+celulitis  miizq cirrosis hepatica
 carcinomatosis peritoneal neoplasia digestiva baja est iv
-ca mama e iv
+cancer mama e iv
 celulitis midlifedematumor desmoide
-itu i cardíaca cistoprostatectomía radical
-ca gástrico est iv
-loes hepáticas
-infección respiratdeterioro cognitivo severo
+ITU (infeccion del tracto urinario) i cardiaca cistoprostatectomia radical
+loes hepaticas
+infeccion respiratdeterioro cognitivo severo
 tuberculosis medisatinica
 demencia diarrea
-anenocarcinoma pulmón est iv
-infección respiratoria probablemente broncoaspirativa itu
-adc rectoinfección masa tumoral
+anenocarcinoma pulmon est iv
+infeccion respiratoria probablemente broncoaspirativa ITU (infeccion del tracto urinario)
+adc rectoinfeccion masa tumoral
 carcinoma gastrico
 carcinoma de celulas renales
 carcinoma de parotida
 carcinoma endometrioide
-espondilodiscitiscardiopatíaartritis reumatoidesepsis urinaria
+espondilodiscitiscardiopatiaartritis reumatoidesepsis urinaria
 estesioneuroblastoma localmente avanzado
-neumonia por broncoaspiraciónhipernatremia
-ulceras pie diabético
-neumoniacelulitisitu icardíaca
-obliteración fp iii mii bypass
+neumonia por broncoaspiracionhipernatremia
+ulceras pie diabetico
+neumoniacelulitisitu icardiaca
+obliteracion fp iii mii bypass
 acv infeccion urinaria
 obstruccion iliaca estadio iv
 i cardiaca neumonia
-insuficiencia renal cronica
 bultoma cervical
 reamputacion 3 dedo mmii izquierdo
 embolectomia transpoplitea izquierda por isquemia aguda
-amputacion1ª dedo piwe izquierdo
+amputacion1a dedo piwe izquierdo
 neumonia broncoaspirativa
 neoplasia de mama estadio iv
 colangitis de repetcion
 obstruccion sonda urinaria
 carcinoma esofago
 encefalopatia postraumatica severa
-amputacion 1º y 2º pie izquierdo
+amputacion 1o y 2o pie izquierdo
 celulitis nivel inguinal
 metastasis hepaticas origen prostatico
 endocarditis aortica
 anciana fragil ulceras de decubito
 demencia severa broncoaspiracion
-ca epidermoide de pulmon
+cancer epidermoide de pulmon
 tia
 linfoma b difuso de celulas grandes
 neoplasia gastrica
 artropatia degenerativa cv
-deterioro cognitivo avanzadoprobable parálisis supranuclear progresiva
+deterioro cognitivo avanzadoprobable paralisis supranuclear progresiva
 tromboblebitis
-ulceras crónicas inefectadasirenal cr ictus no reciete fahta
-itutumor vesical adc próstata
+ulceras cronicas inefectadasirenal cr ictus no reciete fahta
+itutumor vesical adc prostata
 linfoma cerebral
 scffv en parkinson avanzado
-ca recto est iv infección masa tumoral
-ca colon est ivictericia obstructiva
+cancer recto est iv infeccion masa tumoral
+cancer colon est ivictericia obstructiva
 estesioneuroblastomaneutropenia febrilanemia
-insf cardíaca
-ca papilar urotelial
+cancer papilar urotelial
 melanoma de vulva
-sospecha de ca rectosigmoideo
+sospecha de cancer rectosigmoideo
 insuficiencia cardiaca ulceras
-ca microcitico de via biliar
-obliteración femoropoplítea grado iii miembro inferior izquierdo revascularizada
-sde anciana frágil
-mediastinitis ca pulmon
-ca páncreas est iv
-sospecha de endocarditis protésica tardía espondilodiscitis y pseudoaneurisma micótico femoral por streptococcus grupo viridans
+cancer microcitico de via biliar
+obliteracion femoropoplitea grado iii miembro inferior izquierdo revascularizada
+sde anciana fragil
+mediastinitis cancer pulmon
+cancer pancreas est iv
+sospecha de endocarditis protesica tardia espondilodiscitis y pseudoaneurisma micotico femoral por streptococcus grupo viridans
 coma hiperosmolar fragilidad extrema
 itudeterioro cognitivoartritis reumatoide
 bacteriemia por ecollipratatitis agudatumor vesical
-adenoca ovariosde en relación a fístula enterovaginal
-itu esclerosis múltiple dependiente para abvd portador de sonda vesical permante infecciones urinarias de repetición
+adenoca ovariosde en relacion a fistula enterovaginal
+ITU (infeccion del tracto urinario) esclerosis multiple dependiente para abvd portador de sonda vesical permante infecciones urinarias de repeticion
 carcinoma epidermoide orofaringe
 sindrome paraneoplasico
-insuf renal crónica i cardíaca loe heáticaprobable isquemia intestinaltvp
-infec resp agdependiente abvd
+insuf renal cronica i cardiaca loe heaticaprobable isquemia intestinaltvp
+infeccion resp agdependiente abvd
 colangitis adeno pancreas
 oligoastrocitoma
 sock septico
@@ -1300,24 +1232,23 @@ celulitis mmii
 absceso presacro
 metastasis hepaticas de primario desconocido
 obliteracion ileofemoral
-ca gastrico mts hepáticas abscesificadas
-ca biliar estadio iv
+cancer gastrico mts hepaticas abscesificadas
+cancer biliar estadio iv
 neo renal estadio iv
 tuberculosis pulmonar linfoma
 esclerosis lateral amiotrofica
-ca de vulva estadio iv
-ca de vulva
-demencia perdida de vía oral
+cancer de vulva estadio iv
+demencia perdida de via oral
 epoc reagudizado
-ulcera de decúbito anciano frágil
-ca de pulmon iv
-adc de pulmón estadio iv
-ca gastrico iv
-ca pulmón fístula esofágica
-demencia avanzada broncoaspiración
+ulcera de decubito anciano fragil
+cancer de pulmon iv
+adc de pulmon estadio iv
+cancer gastrico iv
+cancer pulmon fistula esofagica
+demencia avanzada broncoaspiracion
 celulitis miembro superior izquierdo
 neo vejiga estadio iv
-ca de fosa nasal iv
+cancer de fosa nasal iv
 trombosis bypass mmii izquierdo
 by pass axilo bifemoral neoplasia de pulmon
 apendicitis aguda
@@ -1331,7 +1262,7 @@ sindrome de inmunodeficiencia comun
 tromboflebitis septica bacteriemeia por s auresus
 pielonefritis derecha
 neumonia covid
-encefalopatía hepática
+encefalopatia hepatica
 primoinfeccion por pseudomona si
 obliteracion grado iv mmiiizquierdo
 sarcoidosis grado iv ulceras sacreas
@@ -1345,26 +1276,23 @@ deshiodratacion
 hepatopatia cronica de etiologia desconocida
 estesioneuroblastoma olfatorio avanzado
 estudio de anemia
-icc hiponatremia
+insuficiencia cardiaca cronica hiponatremia
 ulceras por presion extensas
 tetraparesia traumatica portador de vmi por sonda de traqueostomia
 demencia avanzada por enfermedad parkinson
 estesioneuroblastoma olfatoriao
-ca epidermoide de laringe
-carcinoma epidermoide de pulmón
-cirrosis hepática
+cancer epidermoide de laringe
+carcinoma epidermoide de pulmon
 meningioma angulo pontocerebeloso
 sacroidosis estadio iv
 tetraparesia traumatica
-úlcera sacra
 epidermoide de pulmon estadio iv
 estesioneuroblastoma olfatorio
 adenocarcinoma de origen desconocido  estadio iv
-cáncer de pulmón
-ca neuroendocrino con metastasis hepaticas
+cancer neuroendocrino con metastasis hepaticas
 vmi por insuficiencia respiratoria
 ventilacion mecanica invasiva
-acv  itu
+acv  ITU (infeccion del tracto urinario)
 adenocarcinoma endometrio posible origen pancreatico
 coma secundario a ictus fosa posterior
 tetraparesia traumatica vmi nocturna ppor canula traqueostomia
@@ -1373,120 +1301,111 @@ crisis epileptica  tia
 aplastamiento de d12 l1 l2
 infeccionn respiratoria
 epoc hipotension
-cáncer renal estadio iv
-ca epidermmoide de pene estadio iv metas ganglionares y pulmonares
-revascularización miocardica y de extr inf
+cancer epidermmoide de pene estadio iv metas ganglionares y pulmonares
+revascularizacion miocardica y de extr infeccion
 ulcera pie derechoendarterectomia femoral
-herida quirúrgica
-amputación infracondilea mii
-amputación supracondíleadmhtagastroparexia diabética
+herida quirurgica
+amputacion infracondilea mii
+amputacion supracondileadmhtagastroparexia diabetica
 bypass axilofemoralnecrosis dedos pie dcho
-sobreinfecc ulcera pierna dchaagudiz respasmacardiopatía valvular e isquémicaareumatoide
-infección driveline
-iccmiocardiopatía dilatada
+sobreinfecc ulcera pierna dchaagudiz respasmacardiopatia valvular e isquemicaareumatoide
+infeccion driveline
+iccmiocardiopatia dilatada
 hematoma pared abdominaldemencia
-infección prótesis de rodilla
-sepsis abdominalpancreatitis crónica
-sospecha de isquemia mesentérica
+infeccion protesis de rodilla
+sepsis abdominalpancreatitis cronica
+sospecha de isquemia mesenterica
 sospecha de masa abdominal infectada
 linfoma no hodgkintcehematoma subdural
 espondilodiscitisabsceso epiduralbacteriemia
 flebitis
-colecistitis agudaabsceso hepáticoicanemia normocitica normocrómica
+colecistitis agudaabsceso hepaticoicanemia normocitica normocromica
 endocarditis bacterianaituinfec covidinsuf renal ag
-bacteriemia de origen genitourinarioinfección covid
-endocarditis aórticaespondilodiscitis cervicalca urotelialsospecha de metástasis líticas cervicales
+bacteriemia de origen genitourinarioinfeccion covid
+endocarditis aorticaespondilodiscitis cervicalca urotelialsospecha de metastasis liticas cervicales
 piomiositis
-infección úlcera pierna dcha
+infeccion ulcera pierna dcha
 ""
-infec resp ic
-infec respinfec urinarialupus eritematoso sistémicodeterioro cognitivo
+infeccion resp ic
+infeccion respinfec urinarialupus eritematoso sistemicodeterioro cognitivo
 tep bilateralbacteriemia por klebsiella
-epoc agudizadoinfección respiratoriainsuf renal ag
+epoc agudizadoinfeccion respiratoriainsuf renal ag
 sarcoma estadio iv
 ucera sacra grado ivparaplejia
 deterioro cognitivonegativa a ingesta
-ca endometriotvp
-lesiones necróticas pie izqisquemia irreversible mii
+cancer endometriotvp
+lesiones necroticas pie izqisquemia irreversible mii
 fiebre en epoc
-herpes zoster costalsde anciana frágil
-ca epidermoide cara
-itu de repetciónencefalopatía connatal
+herpes zoster costalsde anciana fragil
+cancer epidermoide cara
+ITU (infeccion del tracto urinario) de repetcionencefalopatia connatal
 hipopotasemiadeterioro cognitivo severoic
 colangicarcinoma
-ca colorrectal est ivinfec masa abdominaltvpanemiasuboclusión intest
-ca púlmon est iv
-adenoca pulmón est iv
-colangitisca páncreas
+cancer colorrectal est ivinfec masa abdominaltvpanemiasuboclusion intest
+adenoca pulmon est iv
+colangitisca pancreas
 estesioneuroblastoma
-sarcoma pleomórfico est iv
-sarcoma pleomórfico est iv sospecha de oclusión intestinal
+sarcoma pleomorfico est iv
+sarcoma pleomorfico est iv sospecha de oclusion intestinal
 timoma est iv
-ca pulmónmasa pancreática
-ca páncreascolecistitis aguda
-fiebre adc esófago
-ca microcítico de pulmón
+cancer pulmonmasa pancreatica
+cancer pancreascolecistitis aguda
+fiebre adc esofago
 amigdalitis y epiglotitis
-ca vesical est iv
+cancer vesical est iv
 iccinfec respiratoria
-infec respiratoria irenal crónicadmellitus
-infec resp masa cerebral
-infección respiratoria ic
+infeccion respiratoria irenal cronicadmellitus
+infeccion resp masa cerebral
+infeccion respiratoria ic
 sde febril de origen biliarurinario
-itu en paciente con sondaje vesical
+ITU (infeccion del tracto urinario) en paciente con sondaje vesical
 lma hd baja angor coronario
-inección de probable origen biliar
+ineccion de probable origen biliar
 enf de parkinsonitu
-recambio catéter nefrostomía izqencefalopatía connatal
+recambio cateter nefrostomia izqencefalopatia connatal
 fiebre de probable origen biliar
-ituinfec respesclerosis múltiple
+ituinfec respesclerosis multiple
 bacteriemiadeterioro cognitivo
-infección urinaria en portadora de doble jj
+infeccion urinaria en portadora de doble jj
 sospecha de sepsis sin foco conocido
-itu ictus isquémico
+ITU (infeccion del tracto urinario) ictus isquemico
 itudeterioro cognitivoenf parkinson
-infección bypass
-amputación miembro inferior
+infeccion bypass
+amputacion miembro inferior
 hidrosadenitis
-laparotomía
+laparotomia
 absceso rectal
-cirugía esófago traqueo sny
-curas laparotomía media
+cirugia esofago traqueo sny
+curas laparotomia media
 arteriopatia periferica
 epid
 neoplasia cerebral
 ictus insuficiencia renal aguda
-fístula enterovesical
 neoplasia sigma
-parálisis supranuclear progresiva
-neoplasia ginecológica
-úlceras necróticas
+neoplasia ginecologica
+ulceras necroticas
 deterioro
 rash
 eccema vascular
-úlceras cutáneas
+ulceras cutaneas
 diarrea
-meningitis herpética
+meningitis herpetica
 neoplasia pulmonar
-neoplasia páncreas
-carcinoma microcítico de pulmón
-ca biliar
+carcinoma microcitico de pulmon
+cancer biliar
 neo orl
 ampuloma
-neo pulmón estadio iv
 neo urotelial estadio iv
-cancer de recto y pulmón sincrónico
+cancer de recto y pulmon sincronico
 neoplasia mama
 micosis oral
-infec resp icc insuf resp
-neumonía
-fístula biliar y drenajes
+infeccion resp insuficiencia cardiaca cronica insuf resp
+fistula biliar y drenajes
 dehiscencia bypass aorto femoral
 obliteracion iliaca
 plastron  apendicular
 leucemia mielode
 colitis clostridium
-infección urinaria
 let
 neumonitis por hipersensibilidad
 leucoencefalopatia multifocal progresiva
@@ -1499,99 +1418,89 @@ neoplasia de colon estadio iv
 celulitis miembro superior derecho
 coriocarcinoma de endometrio encefalopatia epileptica
 control de sintomas
-insuficiencia car¡diaca infeccion respiratoia sars cov 2
+insuficiencia cardiaca infeccion respiratoia sars cov 2
 hemorragia digestiva alta
 sindrome febril sin foco
 hemorragia cerebral
 infeccion urinaria multirresistente
 colangitia
 orquiepididimitis
-anemia hemolítica
+anemia hemolitica
 isquemia arterial
 trombosis bypass bilateral
-pie diabético
 colecistitis perforada
-oclusión intestinal
 ascitis refractaria
-esofaguectomía
-perforación uterina
+esofaguectomia
+perforacion uterina
 epi
 fiebre sin foco
 aplasia medudar
 bursitis
-icc derecha
-ic derecha úlceras vasculares
-pinza aortomesentérica
-infección de piel y partes blandas
+insuficiencia cardiaca cronica derecha
+ic derecha ulceras vasculares
+pinza aortomesenterica
+infeccion de piel y partes blandas
 negativa a la ingesta
 cancer suprarrenales
-traqueostomía
+traqueostomia
 masa cerebral
 carcinoma epidermoide cervical
-úlceras por presión
-neoplasia de pulmón
+ulceras por presion
 inmunodeficiencia comun variable
 loe cerebral
 neoplasia de recto estadio iv
 neoplasia de ovario
 fractura de rama isquiopubiana
 tumor vaina nervios
-intoxicación digitálica
-carcinoma neuroendocrino hepático
-adenocarcinoma de pulmón
+intoxicacion digitalica
+carcinoma neuroendocrino hepatico
 carcinoma neuroendocrino
-adc de páncreas estadio iv
-adc gástrico
+adc de pancreas estadio iv
+adc gastrico
 herida sobreinfectada
-neoplasia gástrica
-carcinoma neuroendocrino de pulmón
-cáncer de colon
+carcinoma neuroendocrino de pulmon
 tromboflebitis
-ca esófago
 necrosis seca en las 4 extremidades
 fistula aortoenterica
-úlceras vasculares
 obliteracion fp grado iii
-shock séptico
 neutropenia febril
-infeccion respiratoria icc
+infeccion respiratoria insuficiencia cardiaca cronica
 celuluitis
 fractura rama pelvica
 ulcera talon grado iii
-iccdescompensación hidropica
-infección craneoplastia
+iccdescompensacion hidropica
+infeccion craneoplastia
 demencia vascular gdsfast 7
-ca de mejilla
+cancer de mejilla
 demencia cuerpos lewy
 ulcera pie derecho
 ulcera talon grado iv
-ca gastrico mts hepáticas
+cancer gastrico mts hepaticas
 disnea laringea funcional
 colitis infecciosa
 hematemesis
 infeccion bypass aorto femoral
 isquemia extremidades inferiores
-cancer de mandíbula
+cancer de mandibula
 ileostomia
-anciana frágil
 anasarca
 infeccion osteosintesis
-anciana frágil ulceras
+anciana fragil ulceras
 infeccion fijador interno
 esofagitis
-ca esofago estadio iv
+cancer esofago estadio iv
 neo pancreatica estadio iv
-ca  microcitico de colon
+cancer  microcitico de colon
 tetraparesia
 ulceras brazo derecho
 meninghioma angulo pontyocerebeloso
 paralisis cerebral infantil
 neumonia derecha
 metastasis multiples de primario desconocido
-ca epidermoide de pulmon estadio iv
+cancer epidermoide de pulmon estadio iv
 ascitis secundaria a hepatopatia
 neoplasia pene estadio iv
-ca wpidermoide laringe
+cancer wpidermoide laringe
 hepatopatia
 colangitis aguda y absceso hepatico
 enfermedad de caroli colangitis
@@ -1601,49 +1510,47 @@ isquemia grado iv eeii izquierda ictus isquemico hemiplejia izquierda
 hematoma en dorso mano oizquerda traumatico
 masa pulmonar derrame pleural
 tenosinovitis
-itu ca de próstata estadio iv
+ITU (infeccion del tracto urinario) cancer de prostata estadio iv
 infeccion urinaria y respiratoria
 bacteriemia por upp
 estenosis aortica severa
-nac en paciente covid
-ictus hemorrágico
-itu hipernatremia
-itu neoplasia vejiga
-artritis séptica
-meningioma úlcera necrótica
-lesión cutánea
-ca no microcitico pulmon
+nac en paciente covid 
+ictus hemorragico
+ITU (infeccion del tracto urinario) hipernatremia
+ITU (infeccion del tracto urinario) neoplasia vejiga
+artritis septica
+meningioma ulcera necrotica
+lesion cutanea
+cancer no microcitico pulmon
 trtraparesia traumatica
 bypass femoro popliteo
-icc e infeccion respiratoria
+insuficiencia cardiaca cronica e infeccion respiratoria
 neoplasia vulva estadio iv
 infeccion urinaria de repeticion
 prostatis aguda
 carcinoma de pancreas
 cancer de recto fournier
-itu ca de recto estadio iv
-itu mieloma múltiple
+ITU (infeccion del tracto urinario) cancer de recto estadio iv
+ITU (infeccion del tracto urinario) mieloma multiple
 neoplasia de orl
 neoplasia de cervix
 acv neumonia aspirativa
 infeccion urinaria  anciano fragil
 0steomielitis femur
-ca de endometrio
 infeccion respiratoria trombopenia
 diabetes epoc
 infeccion respiratoria broncoaspiracion
-icc epoc irc
+insuficiencia cardiaca cronica epoc irc
 infeccion rspiratoria
-ca celulas de merkel
+cancer celulas de merkel
 artritis septica ambos hombros
 negativa ingesta oral
 tiroiditis
-infección bronquiectasias
-trombectomía bypass y fasciotomía
+trombectomia bypass y fasciotomia
 osteomielitis esternon
 upp sacra
-disfagia neurológica
+disfagia neurologica
 aplastamiento vertebral
-infección prótesis vascular
+infeccion protesis vascular
 pseudoartrosis de tibia
-neoplasia pulmón
+neoplasia pulmon
