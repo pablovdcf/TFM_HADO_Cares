@@ -1500,7 +1500,7 @@ neoplasia de orl
 neoplasia de cervix
 acv neumonia aspirativa
 infeccion urinaria  anciano fragil
-0steomielitis femur
+osteomielitis femur
 infeccion respiratoria trombopenia
 diabetes epoc
 infeccion respiratoria broncoaspiracion

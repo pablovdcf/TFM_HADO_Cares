@@ -3,3 +3,199 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/0.18.10/kedro_project_setup/configuration.html#parameters
+
+
+# We change the column names to standardise all the datasets so that they can be concatenated.
+rename_columns:
+  "2017":
+    hospital: h_procedencia
+    servicio: s_procedencia
+    ap: ap
+    otros: otros
+    diagnostico: diagnostico
+    motivo ing: motivo_ing
+    paliativo onc: paliativo_onc_noc
+    paliativo no onc: paliativo_no_onc_noc
+    fiebre: fiebre
+    disnea: disnea
+    dolor: dolor
+    delirium: delirium
+    astenia: astenia
+    anorexia: anorexia
+    otros.1: otros_1
+    agonía: agonia
+    p terminal: p_terminal
+    ps/ik: ps_ecog
+    barthel: barthel
+    gds-fast: gds_fast
+    eva ing: eva_ing
+    otros.2: otros_2
+    complicaciones: otros_complicaciones
+    nº estancias: n_estancias
+    nº visitas: n_visitas
+    sedación: sedacion
+    mot. alta: motivo_alta
+    médico: medico
+
+  "2018":
+    hospital: h_procedencia
+    servicio: s_procedencia
+    ap: ap
+    otros: otros
+    diagnostico: diagnostico
+    motivo ing: motivo_ing
+    paliativo onc: paliativo_onc_noc 
+    paliativo no onc: paliativo_no_onc_noc
+    fiebre: fiebre
+    disnea: disnea
+    dolor: dolor
+    delirium: delirium
+    astenia: astenia
+    anorexia: anorexia                               
+    otros.1: otros_1
+    agonía: agonia
+    p terminal: p_terminal
+    ps/ik: ps_ecog
+    barthel: barthel
+    gds-fast: gds_fast 
+    eva ing: eva_ing
+    otros.2: otros_2
+    complicaciones: otros_complicaciones
+    nº estancias: n_estancias
+    nº visitas: n_visitas
+    sedación: sedacion
+    mot. alta: motivo_alta 
+    médico: medico
+                               
+  "2019":
+    hospital: h_procedencia
+    servicio: s_procedencia
+    ap: ap
+    otros: otros
+    diagnostico: diagnostico
+    motivo ing: motivo_ing
+    pal onc: paliativo_onc_noc 
+    pal no onc: paliativo_no_onc_noc
+    fiebre: fiebre
+    disnea: disnea
+    dolor: dolor
+    delirium: delirium
+    astenia: astenia
+    anorexia: anorexia                               
+    otros_1: otros_1
+    agonía: agonia
+    p. terminal: p_terminal
+    ps/ik: ps_ecog
+    barthel: barthel
+    gds-fast: gds_fast 
+    eva ing: eva_ing
+    otros_2: otros_2
+    complicaciones: otros_complicaciones
+    nº estancias: n_estancias
+    nº visitas: n_visitas
+    sedación: sedacion
+    mot. alta: motivo_alta 
+    médico: medico
+                                
+  "2020":
+    h proced: h_procedencia 
+    s proced: s_procedencia
+    ap: ap
+    otros: otros
+    diag principal: diagnostico
+    motivo ing: motivo_ing
+    agudo estable: agudo_estable    # Posible otros
+    crónico reag: cronico_reag      # Posible otros
+    paliativo onc: paliativo_onc_noc 
+    pal no onc: paliativo_no_onc_noc
+    trato antibiótico: trato_antibiotico
+    dolor: dolor
+    delirium: delirium
+    disnea: disnea
+    ast-anorx: ast_anorx     # Agrupan astenia y anorexia (en 1718 y 19 la separaban)
+    fiebre: fiebre
+    transfusion: transfusion        # Posible otros
+    paracentesis: paracentesis      # Posible otros
+    toracocentesis: toracocentesis
+    ps/ik: ps_ecog
+    barthel: barthel
+    gds-fast: gds_fast
+    otros/complicaciones: otros_complicaciones
+    agonía: agonia
+    sedación: sedacion
+    motivo alta: motivo_alta
+    n.º estancias: n_estancias
+    n.º visitas: n_visitas
+    ayuntamiento: ayuntamiento          # Se empieza a incluir en el 2020
+    médico: medico
+
+  "2021":
+    h proced: h_procedencia 
+    s proced: s_procedencia
+    ap: ap
+    otros: otros
+    diag principal: diagnostico
+    motivo ing: motivo_ing
+    agudo estable: agudo_estable    # Posible otros
+    crónico reag: cronico_reag      # Posible otros
+    paliativo onc: paliativo_onc_noc 
+    pal no onc: paliativo_no_onc_noc
+    trato antibiótico: trato_antibiotico
+    dolor: dolor
+    delirium: delirium
+    disnea: disnea
+    ast-anorx: ast_anorx     # Agrupan astenia y anorexia (en 1718 y 19 la separaban)
+    fiebre: fiebre
+    transfusion: transfusion        # Posible otros
+    paracentesis: paracentesis      # Posible otros
+    toracocentesis: toracocentesis
+    ps/ik: ps_ecog
+    barthel: barthel
+    gds-fast: gds_fast
+    otros/complicaciones: otros_complicaciones
+    agonia: agonia
+    sedación: sedacion
+    motivo alta: motivo_alta
+    n.º estancias: n_estancias
+    n.º visitas: n_visitas
+    ayuntamiento: ayuntamiento          # Se empieza a incluir en el 2020
+    médico: medico
+                                
+  "2022":
+    fecha de alta: fecha_alta 
+    h.procedencia: h_procedencia
+    servicio: s_procedencia
+    ap: ap
+    motivo ing: motivo_ing
+    diagnóstico principal: diagnostico
+    agudo estable: agudo_estable    # Posible otros
+    crónico agud.: cronico_reag      # Posible otros
+    paliativo onc: paliativo_onc_noc 
+    palt no onc: paliativo_no_onc_noc
+    antibiotico iv: "trato_antibiotico"
+    dolor: dolor
+    disnea: disnea
+    s febril: fiebre
+    delirium: delirium
+    astenia/anorexia: ast_anorx # Agrupan astenia y anorexia (en 1718 y 19 la separaban)
+    fe iv: fe_iv          # Se añade en 2022                                                    
+    transf: transfusion        # Posible otros
+    paracen: paracentesis      # Posible otros
+    toracocen: toracocentesis
+    ps/ecog: ps_ecog
+    barthel: barthel
+    gds/fast: gds_fast
+    sedación: sedacion
+    motivo alta: motivo_alta
+    n.º estancias: "n_estancias"
+    n.º visitas: "n_visitas"
+    ayuntamiento: ayuntamiento          # Se empieza a incluir en el 2020
+    médico: medico
+
+year_2017: 2017
+year_2018: 2018
+year_2019: 2019
+year_2020: 2020
+year_2021: 2021
+year_2022: 2022
+

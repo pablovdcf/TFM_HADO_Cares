@@ -4,7 +4,7 @@
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
 # This data should be in the path "src/hado/extras/datasets"
-
+# RAW Data from MongoDB
 hado_22:
   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
   uri: mongodb://localhost:27017
@@ -12,6 +12,7 @@ hado_22:
   collection: HADO22
   load_args: 
     _id: False
+  layer: raw
 
 hado_21:
   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
@@ -20,6 +21,7 @@ hado_21:
   collection: HADO21
   load_args: 
     _id: False
+  layer: raw
 
 hado_20:
   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
@@ -28,6 +30,7 @@ hado_20:
   collection: HADO20
   load_args: 
     _id: False
+  layer: raw
 
 hado_19:
   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
@@ -36,6 +39,7 @@ hado_19:
   collection: HADO19
   load_args: 
     _id: False
+  layer: raw
 
 hado_18:
   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
@@ -44,6 +48,7 @@ hado_18:
   collection: HADO18
   load_args: 
     _id: False
+  layer: raw
 
 hado_17:
   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
@@ -52,25 +57,97 @@ hado_17:
   collection: HADO17
   load_args: 
     _id: False
+  layer: raw
 
+# Preprocessing Data
+strip_lower_hado_17:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/strip_lower_hado_17.csv
+
+strip_lower_hado_18:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/strip_lower_hado_18.csv
+
+strip_lower_hado_19:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/strip_lower_hado_19.csv
+
+strip_lower_hado_20:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/strip_lower_hado_20.csv
+
+strip_lower_hado_21:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/strip_lower_hado_21.csv
+
+strip_lower_hado_22:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/strip_lower_hado_22.csv
+
+
+# Processing Data
 hado_concat:
   type: pandas.CSVDataSet
-  filepath: data/01_raw/HADO_concat.csv
+  filepath: data/02_intermediate/HADO_concat.csv
+  save_args:
+    sep: "^"
+    index: False
   load_args:
     sep: "^"
     na_values: ["#NA", NA]
+  layer: raw_preprocessing
 
-hado_concat_clean:
+hado_clean:
   type: pandas.CSVDataSet
-  filepath: data/01_raw/HADO_concat_clean.csv
+  filepath: data/02_intermediate/HADO_clean.csv
+  save_args:
+    sep: "^"
+    index: False
   load_args:
     sep: "^"
     na_values: ["#NA", NA]
+  layer: raw_processing
 
+hado_clean_na:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/your_file.csv
+  save_args:
+    sep: "^"
+    index: False
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+  layer: intermediate_processing
+
+hado_replaced_words:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/your_file.csv
+  save_args:
+    sep: "^"
+    index: False
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+  layer: intermediate_processing
+
+hado_cleaned:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/your_file.csv
+  save_args:
+    sep: "^"
+    index: False
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+  layer: final_processing
+
+# TESTs
 hado_values:
   type: pandas.CSVDataSet
   filepath: data/01_raw/HADO_values.csv
   load_args:
     sep: "^"
     na_values: ["#NA", NA]
-    
+  layer: intermediate
+
+
