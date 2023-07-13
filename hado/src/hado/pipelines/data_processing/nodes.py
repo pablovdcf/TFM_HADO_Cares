@@ -72,7 +72,7 @@ def replace_missing(df: pd.DataFrame, params: Dict) -> pd.DataFrame:
         missing_values = df.isnull().sum()
         missing_percentage = missing_values / len(df) * 100
         print("\nPercentage of missing values per column:")
-        missing_percentage_sorted = round(missing_percentage.sort_values(ascending=False), 2)
+        missing_percentage_sorted = missing_percentage.sort_values(ascending=False)
         for col, value in missing_percentage_sorted.items():
             print(f"{col}: {value}%")
 
@@ -100,25 +100,48 @@ def replace_words(df: pd.DataFrame,\
     replacement_dict_otros_complicaciones: Dict
     ) -> pd.DataFrame:
     """
-    Replaces words in the 'diagnostico', 'h_procedencia' and 's_procedencia' columns of a DataFrame 
-    according to provided replacement dictionaries. 
+    Replaces words in multiple columns of a DataFrame according to provided replacement dictionaries. 
 
     Parameters
     ----------
     df : pd.DataFrame
         Input DataFrame in which words are replaced.
 
-    replacement_dict : Dict
-        Dictionary with the words to replace and the corresponding replacements in the 'diagnostico' column.
-        
     replacement_dict_general : Dict
-        Dictionary with the words to replace and the corresponding replacements in all columns.
-        
-    replacement_dict_procedencia : Dict
+        Dictionary with the words to replace and the corresponding replacements in all columns except 'ayuntamiento'.
+
+    replacement_dict_diagnostico : Dict
+        Dictionary with the words to replace and the corresponding replacements in the 'diagnostico' column.
+
+    replacement_dict_hospital_proc : Dict
         Dictionary with the words to replace and the corresponding replacements in the 'h_procedencia' column.
-        
-    replacement_dict_service_origin : Dict
+
+    replacement_dict_service_proc : Dict
         Dictionary with the words to replace and the corresponding replacements in the 's_procedencia' column.
+
+    replacement_dict_motivo_ing : Dict
+        Dictionary with the words to replace and the corresponding replacements in the 'motivo_ing' column.
+
+    replacement_dict_alta : Dict
+        Dictionary with the words to replace and the corresponding replacements in the 'motivo_alta' column.
+
+    replacement_dict_medic : Dict
+        Dictionary with the words to replace and the corresponding replacements in the 'medico' column.
+
+    replacement_dict_sedation : Dict
+        Dictionary with the words to replace and the corresponding replacements in the 'sedacion' column.
+
+    replacement_dict_city_council : Dict
+        Dictionary with the words to replace and the corresponding replacements in the 'ayuntamiento' column.
+
+    replacement_dict_otros : Dict
+        Dictionary with the words to replace and the corresponding replacements in the 'otros' column.
+
+    replacement_dict_otros_1 : Dict
+        Dictionary with the words to replace and the corresponding replacements in the 'otros_1' column.
+
+    replacement_dict_otros_complicaciones : Dict
+        Dictionary with the words to replace and the corresponding replacements in the 'otros_complicaciones' column.
 
     Returns
     -------
@@ -142,9 +165,19 @@ def replace_words(df: pd.DataFrame,\
     # Replace 'si' followed by a number with only the number
     df.replace(r'si\s*(\d+)', r'\1' ,regex=True, inplace=True)
     
-    # Replace words in all columns
+    # Get a list of column names except 'ayuntamiento'
+    general_columns = [col for col in df.columns if col != 'ayuntamiento']
+
+    # Filter the columns which are of type object (i.e., string)
+    string_columns = df[general_columns].select_dtypes(include='object').columns
+
+    # Now apply the replacements only on these string columns
     for word, replacement in replacement_dict_general.items():
-        df.replace(r'\b{}\b'.format(word), replacement, regex=True, inplace=True)
+        if isinstance(replacement, str):  # check if 'replacement' is a string
+            for col in string_columns:
+                df[col] = df[col].str.replace(r'\b{}\b'.format(word), replacement, case=False, regex=True)
+        else:
+            print(f"Skipping replacement for word '{word}' because replacement value is not a string: {replacement}")
     
     # List of columns and corresponding dictionaries
     cols_dicts = [
@@ -166,6 +199,7 @@ def replace_words(df: pd.DataFrame,\
         df = replace_and_print(df, col, replacement_dict)
 
     return df
+
 
 def process_fecha_alta(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -189,11 +223,12 @@ def process_fecha_alta(df: pd.DataFrame) -> pd.DataFrame:
     df['fecha_alta'] = df['fecha_alta'].str.replace('t', '')
     df['fecha_alta'] = pd.to_datetime(df['fecha_alta'], format='%Y%m%d%H%M%S', errors='coerce')
     df['fecha_alta'] = df['fecha_alta'].dt.strftime('%d/%m/%Y')
-    df['fecha_alta'] = df['fecha_alta'].fillna('')
+    # df['fecha_alta'] = df['fecha_alta'].fillna('')
+    df['fecha_alta'] = df['fecha_alta'].fillna('unknown')
 
     # Only include dates that are not empty strings
-    unique_values = [date for date in df['fecha_alta'].unique() if date != '']
+    unique_values = df['fecha_alta'].unique()
     
-    print(f"Unique values ({len(unique_values)}): {', '.join(unique_values)}")
+    print(f"Unique values ({len(unique_values)}): {unique_values}")
     
     return df

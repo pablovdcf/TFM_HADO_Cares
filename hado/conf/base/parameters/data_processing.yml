@@ -11,17 +11,18 @@ replacement_dict_na:
   vacio: ['fe_iv', 'toracocentesis', 'paracentesis', 'transfusion', 'trato_antibiotico', 'cronico_reag', 'agudo_estable', 'ast_anorx', 'agonia', 'p_terminal', 'delirium', 'dolor', 'disnea', 'fiebre', 'paliativo_no_onc_noc', 'paliativo_onc_noc', 'ap', 'fecha_alta']
 
 replacement_dict_general:
-  n0: no
-  np: no
-  nn: no
-  ono: no
-  son: no
-  ns: no
-  o: no
-  mo: no
-  nop: no
-  on: no
+  n0: 'no'
+  np: 'no'
+  nn: 'no'
+  ono: 'no'
+  son: 'no'
+  ns: 'no'
+  o: 'no'
+  mo: 'no'
+  nop: 'no'
+  'on': 'no'
   nsi: si
+  ni: 'no'
   ssi: si
   is: si
   s: si
@@ -282,30 +283,30 @@ replacement_dict_otros:
 
 
 replacement_dict_otros_1:
-    '0clusion intestinal': 'oclusion intestinal'
-    agitacionpanico: 'agitacion panico'
-    agitacioondiarrea: 'agitacion diarrea'
-    ansiedadinsomnio: 'ansiedad insomnio'
-    ascitisictericia: 'ascitis ictericia'
-    deterior: deterioro
-    diarreadeshidratacion: 'diarrea deshidratacion'
-    'policlinico la rosaleda': rosaleda
-    mareo: mareos
-    'n no': "no"
-    nauseasvomitos: 'nauseas y vomitos'
-    'si vomitos': vomitos
-    sinauseas: nauseas
-    siretencion: retencion
-    sivomitoshematemesis: 'vomitos hematemesis'
-    tosexpectoracion: 'tos y expectoracion'
-    'ulceras de presion': 'ulceras presion'
-    vomitosestrenimiento: 'vomitos estrenimiento'
-    ni: si
-    'perdida d ela via oral': 'perdida de via oral'
-    'perdida de la via oral': 'perdida de via oral'
-    sconfusional: 'sindrome confusional'
-    'sd confusional': 'sindrome confusional'
-    vomito: vomitos
+  '0clusion intestinal': 'oclusion intestinal'
+  agitacionpanico: 'agitacion panico'
+  agitacioondiarrea: 'agitacion diarrea'
+  ansiedadinsomnio: 'ansiedad insomnio'
+  ascitisictericia: 'ascitis ictericia'
+  deterior: deterioro
+  diarreadeshidratacion: 'diarrea deshidratacion'
+  'policlinico la rosaleda': rosaleda
+  mareo: mareos
+  'n no': "no"
+  nauseasvomitos: 'nauseas y vomitos'
+  'si vomitos': vomitos
+  sinauseas: nauseas
+  siretencion: retencion
+  sivomitoshematemesis: 'vomitos hematemesis'
+  tosexpectoracion: 'tos y expectoracion'
+  'ulceras de presion': 'ulceras presion'
+  vomitosestrenimiento: 'vomitos estrenimiento'
+  ni: si
+  'perdida d ela via oral': 'perdida de via oral'
+  'perdida de la via oral': 'perdida de via oral'
+  sconfusional: 'sindrome confusional'
+  'sd confusional': 'sindrome confusional'
+  vomito: vomitos
 
 
 replacement_dict_otros_complicaciones:
