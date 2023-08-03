@@ -1,18 +1,20 @@
 # This is a boilerplate parameters config generated for pipeline 'data_processing'
 # using Kedro 0.18.10.
 #
-# Documentation for this file format can be found in "Parameters"
+# Documentation for this file format can be found in 'Parameters'
 # Link: https://docs.kedro.org/en/0.18.10/kedro_project_setup/configuration.html#parameters
 
 # Dict for replaces in NA values for columns
 replacement_dict_na:
-  desconocido: ['diagnostico', 'motivo_ing', 'motivo_alta', 'medico', 'sedacion', 'ayuntamiento', 'otros_2']
-  "no": ['h_procedencia', 'otros', 'otros_1', 'otros_complicaciones']
+  desconocido: ['diagnostico', 'motivo_ing', 'motivo_alta', 'medico', 'sedacion', 'ayuntamiento', 'otros_2',  'ps_ecog']
+  'no': ['h_procedencia', 'otros', 'otros_1', 'otros_complicaciones']
   vacio: ['fe_iv', 'toracocentesis', 'paracentesis', 'transfusion', 'trato_antibiotico', 'cronico_reag', 'agudo_estable', 'ast_anorx', 'agonia', 'p_terminal', 'delirium', 'dolor', 'disnea', 'fiebre', 'paliativo_no_onc_noc', 'paliativo_onc_noc', 'ap', 'fecha_alta']
+  '0': ['gds_fast', 'eva_ing', 'barthel']
 
 replacement_dict_general:
   n0: 'no'
   np: 'no'
+  nk: 'no'
   nn: 'no'
   ono: 'no'
   son: 'no'
@@ -24,6 +26,7 @@ replacement_dict_general:
   nsi: si
   ni: 'no'
   ssi: si
+  so: si
   is: si
   s: si
   clincio: clinico
@@ -153,7 +156,8 @@ replacement_dict_service_proc:
   mirp: 'mir provincial'
 
 replacement_dict_motivo_ing:
-  admininistracio: admininistracion
+  admininistracio: administracion
+  admininistacion: administracion
   tratamientoantibiotico: 'tratamiento antibiotico'
   tratamientoiv: 'tratamiento IV'
   trtatamiento: tratamiento
@@ -184,6 +188,7 @@ replacement_dict_motivo_ing:
   controo: control
   contrl: control
   cntrl: control
+  desintomas: sintomas
   sintom: sintomas
   sintoms: sintomas
   sintpmas: sintomas
@@ -209,6 +214,7 @@ replacement_dict_motivo_ing:
   antiibiotico: antibiotico
   d: de
   e: de
+  'control de sintomas': 'control sintomas'
 
 
 replacement_dict_alta:
@@ -222,11 +228,12 @@ replacement_dict_alta:
   tralado: traslado
   trasado: traslado
   tto: tratamiento
+  'fin de cuidados': 'fin cuidados'
 
 replacement_dict_medic:
   'masa vazquez': masa
-  "suarez prado": suarez
-  "200": desconocido
+  'suarez prado': suarez
+  '200': desconocido
 
 replacement_dict_sedation:
   sibuscaphalopsinoganmorfmidaz: 'si buscapina haloperidol morfina'
@@ -292,7 +299,7 @@ replacement_dict_otros_1:
   diarreadeshidratacion: 'diarrea deshidratacion'
   'policlinico la rosaleda': rosaleda
   mareo: mareos
-  'n no': "no"
+  'n no': 'no'
   nauseasvomitos: 'nauseas y vomitos'
   'si vomitos': vomitos
   sinauseas: nauseas
@@ -366,3 +373,9 @@ replacement_dict_otros_complicaciones:
   ucera: ulcera
   'ulceras de presion': 'ulceras presion'
   'ulceras por presion': 'ulceras presion'
+
+replacement_dict_numeric:
+  'no': '00'
+  '0': '00'
+  'si': '00'
+  'b': '00'

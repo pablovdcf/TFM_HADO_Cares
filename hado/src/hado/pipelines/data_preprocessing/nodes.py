@@ -85,7 +85,7 @@ def rename_columns(data: pd.DataFrame, year: int, rename_map: Dict[str, str]) ->
 def check_convert_and_concat(**dataframes):
     """
     The function cleans and concats the input dataframes. Specifically, it converts the 'n_estancias' and 'n_visitas' 
-    columns to numeric, fills NaNs with the column mean, removes a specific outlier in the 2022 dataframe, and 
+    columns to numeric, fills NaNs with the column meadian, removes a specific outlier in the 2022 dataframe, and 
     concatenates all dataframes. The function also prints the unique sorted values of 'n_estancias' before and 
     after cleaning.
 
@@ -117,10 +117,17 @@ def check_convert_and_concat(**dataframes):
             data = data[data['n_estancias'] != 2.793914e+06]
 
         # Replace NaNs with the mean before converting to integer
-        data['n_estancias'].fillna(data['n_estancias'].mean(), inplace=True)
+        # data['n_estancias'].fillna(data['n_estancias'].mean(), inplace=True)
+        # data['n_estancias'] = data['n_estancias'].astype(int)
+
+        # data['n_visitas'].fillna(data['n_visitas'].mean(), inplace=True)
+        # data['n_visitas'] = data['n_visitas'].astype(int)
+        
+        # Replace NaNs with the median before converting to integer
+        data['n_estancias'].fillna(data['n_estancias'].median(), inplace=True)
         data['n_estancias'] = data['n_estancias'].astype(int)
 
-        data['n_visitas'].fillna(data['n_visitas'].mean(), inplace=True)
+        data['n_visitas'].fillna(data['n_visitas'].median(), inplace=True)
         data['n_visitas'] = data['n_visitas'].astype(int)
         
         unique_sorted_values = np.sort(data['n_estancias'].dropna().unique())[::-1]

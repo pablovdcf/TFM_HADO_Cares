@@ -36,7 +36,8 @@ def create_pipeline_data_processing(**kwargs):
                 "params:replacement_dict_city_council",\
                 "params:replacement_dict_otros",\
                 "params:replacement_dict_otros_1",\
-                "params:replacement_dict_otros_complicaciones"
+                "params:replacement_dict_otros_complicaciones",\
+                "params:replacement_dict_numeric"
                 ],
             outputs="hado_replaced_words",
             name="word_replacement_node",

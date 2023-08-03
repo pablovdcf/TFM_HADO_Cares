@@ -1,151 +1,151 @@
 diagnostico
-anciana fragil ulceras
-pecoma
-infeccion periprotesica rodilla dcha anciana fragil cardiopatia hipertensiva
-cancer de pancreas estadio IV
-sindrome anemico
-ITU (infeccion del tracto urinario) anciano fragil
-ITU (infeccion del tracto urinario) insuficiencia cardiaca cistoprostatectomia radical
-ineumonia basal izquierda
-obliteracion iliaca grado IV
-erc
-adenocarcinoma recto estadio IV
-cancer colon estadio ivictericia obstructiva
-neumonia derecha
-cancer colonlnhsilicosis
-demencia avanzada por enfermedad parkinson
-linfoma cerebral
-demencia cuerpos lewi
-sdown
-cancer indiferenciado estadio IV
-neoplasia pulmonar
-ulcera varicosa grave con infeccion stafilo multirresistente
-camama estadio ivfractura cadera dchaluxacion cadera dcha
-neoplasia sigma
-recambio cateter nefrostomia izqencefalopatia connatal
-demencia infeccion respiratoria
-fractura rama pelvica
-bultoma cervical
-infeccion respiratoria yo urinaria deterioro cognitivo severo
-adenocarcinoma esofagogastrico
-disfagia neurologica
-tuberculosis
-anemia
-pie diabetico
-cancer hepatico
-sde confusional leve insuficiencia cardiaca cronica
-cancer pulmon fistula esofagica
-linfoma no hodgkin
-si ansioso depresivo
-carcinoma de parotida
-timoma miastenia gravis
-cancer esofago estadio IV
-epoc agudizadoinfeccion respiratoriainsuf renal ag
-infeccion bypass
-neoplasia cerebral
-bacteriemia por ecollipratatitis agudatumor vesical
-alteracion deglucion pluripatologico
-colangitis ag coledocolitiasis
-absceso msd insuficiencia cardiaca cronica ir global ircr
-infeccion respiratoria
-ela
-paciente pluripatologico
-cancer epidermoide cervix
-carcinoma gastrico
-hemorragia digestiva alta
-miocardiopatia dilatadamieloma multiple
-obliteracion femoro poplitea izquierda
-insuficiencia cardio respiratoria
-neo colon
-cancer vesical estadio IV
-cancer mamaest IV epoc grave
-ITU (infeccion del tracto urinario) de repetcionencefalopatia connatal
-cancer bronquialveolar
-vomitos y diarrea cancer colon estadio IV
-neoplasia de orl
-cancer de sigma
-loes cerebrales
-fa valvulopatia aortica insuficiencia cardiaca
-scffv
-carcnoma de pulmon
-cancer escamoso
-adenocarcinoma colon estadio IV
-infeccion urinaria versus intestinal
-adenica biliarpancreatico
-ulceras
-bacteriemis seminoma
-acv
-ulcera pie derechoendarterectomia femoral
-sindrome febril sin foco
-esquizofreniaanciano fragil
-demencia avanzada obstruccion intestinal
-merkeloma
-cancer prostata
-sd noonan celulitis
-anemia cronica no filiada
-trasplante cardiacoteposteomielitis esternal
-infeccion respiratoria y urinaria
-pluripatologia
-estesioneuroblastoma olfatoriao
-neoplasia vejiga estadio IV
-deterioro
-ulcera miembro inferiror derecho
-colitis infecciosa
-ulceras cronicas inefectadasirenal cr ictus no reciete fahta
-demencia fallo multiorganico
-cirrosis hepatica ITU (infeccion del tracto urinario)
-fibrosis pulmonar
-metastasis hepaticas origen prostatico
-alzheimer
-colangiocarcinoma es IV
-cancer gastrico de lauren
-adenoca pulmon estadio IV
-insuficiencia cardiaca cronica epoc irc
-ulcera isquiatica esclerosis multiple
-neo color estadio IV
-acv ITU (infeccion del tracto urinario)
-infeccion tracto urinario
-tratamiento antibiotico IV
-mieloma multiple
-lmmc
-cancer cavum estadio infeccion nosocomial
-acv infeccion urinaria
-sepsisi respiratoria
-paralisis supranuclear progresiva
-neoplasia del suelo de la boca
-sindrome down obesidad saos
-rectorragias
-carcinoma de pulmon
-colonizacion bronquial p aeruginosa
-traqueostomia
-cancer colon estadio IV metas cerebrales
-enfermedad cavitada m avium
-sepsis de origen respiratorio
-sospecha de sepsis sin foco conocido
-pielonefritis derecha
-obliteracion femoropoplitea
+adenocarcinoma de ciego estadio IV
+sarcoma estadio IV
+leucemia mieloide agudaiccfractura d12
+cancer gastrico isquemia mesenterica tep
+enfermedad de nieman pick
+carcinoma de colon
+carcinomatosis
+loes snc
 melanoma de vulva
-cancer colon estadio IV
-ITU (infeccion del tracto urinario) paraplejia
-demencia avanzada fast 7
-neumonia broncoaspirativa
-cancer microcitico de pulmon
-insuficiencia cardiaca cronica hematoma mmii
-cancer mama
-recidiva cancer esofago
+arteriopatia obliterante generalizada
+artritis reumatoide
+sospecha de isquemia mesenterica
+adenocarcinoma de sigma
+infeccion protesis de rodilla
+herida sobreinfectada
+insuficiencia cardiaca cronica insuficiencia respiratoria mixtaadenoma velloso rectosigmoideosangrado digestivo bajo
+adenocarcinoma ovarico estadio IV
+absceso cerebral
+cancer vesicula
+upp paraplejia
+eccema vascular
+bronquiectasias
+hsa
+ascitis secundaria a hepatopatia
+estadio parkinson
+liposarcoma estadio IV
+infeccion bypass aortofemoral izq
+mediastinitis cancer pulmon
+obliteracion distal mii
+ulceras por presion
+deterioro cognitivo sde de down insuficiencia cardiorrespiratoria
+adenocarcinoma de pancreas
+tumor ovarico
+neoplasia esofago estadio IV
+adenoma hipofisis
+adenoca sigma estadio IV
+cancer de sigma estadio IV
 cancer pulmonmieloma multiple
-colangiocarcinomatumor renal
-cancer ovario estadio IV
-cancer sigma estadio IV
-niwmann pick
-ulcera talon grado IV
-epoc descompensado
-neumonia basal dcha empiema
-cancer hepatobiliar estadio IV
-cancer orofaringe
-cancer cae
+cancer colon estadio ivictericia obstructiva
+cancer endometrioca colon
+epoc severo
+celulitis miizq cirrosis hepatica
+cirrosis hepatoca
+tuberculosis medisatinica
+bacteriemia de origen genitourinarioinfeccion covid
+itudeterioro cognitivoartritis reumatoide
+adenocarcinima pulmon estadio IV
+ulcera eeii
+cancer de vesicula
+ITU (infeccion del tracto urinario) irenal cr
+neumonia neumococica bilateral colangiocarcinoma
+ulcera sacra grado IV
+fiebre en epoc
+endocarditis
+infeccion klebsiella multirresistente
+ITU (infeccion del tracto urinario)
+deterioro estado generalfr cadera
+acv isquemico alteracion deglucion
+cancer colon IV
+cancer rinon estadio IV
+ITU (infeccion del tracto urinario) hipernatremia
+deterioro estado general
+sde anciano fragilinsuf cardiaca infeccion respirat reagudiz insuficiencia renal
 ventilacion mecanica invasiva
-osteomielitis pilon tibial izquierdo
-adenocarcinoma de origen desconocido estadio IV
-celulitis miembro superior izquierdo
-colangitisca pancreas
+amputacion digital
+cancer epidermoide
+carcinomatosis peritoneal neoplasia digestiva baja estadio IV
+isquemia arterial mmii
+cancer epidermoide oral region mentoniana
+sindrome de caroli
+ITU (infeccion del tracto urinario) paraplejia
+absceso renal
+ulceras por presion extensas
+adenocarcinoma de esofago
+acv neumonia aspirativa
+microcitico pulmon estadio IV
+celulitis en eeii
+sindrome de millerdieker
+mieloma multiple obstruccion intestinal
+obliteracion femoro poplitea
+erc
+cirrosis
+infeccion urinaria por blea
+ulceras de mal conmtrol en eeii
+miocardiopatia dilatadaicccirrosis hepatica
+cancer de recto y pulmon sincronico
+meningitis
+upp sacra
+bypass axilofemoralnecrosis dedos pie dcho
+anemia cronica
+demencia vascular gdsfast 7
+hemorragia subaracnoidea
+cancer de colon y gastrico
+cor pulmonale cronico
+cancer hepatobiliar estadio IV
+anciano fragil
+ulceras vasculares eeiiizq
+sindrome anciano fragil
+osteonecrosis mandibular
+cirrosis hepatica
+ulceras infectadas
+adenoca ciego
+carcinoma suelo boca en control sintomas
+epoc
+cancer neuroendocrino con metastasis hepaticas
+lumbalgia
+amigdalitis y epiglotitis
+herniorrafia inguinal
+cancer pancreas estadioiv
+arteriopatia periferica
+artritis carpo derecho
+infeccion urinaria hemorragia digestiva
+neoplasia de sigma
+demencia cuerpos lewy
+lesion cutanea
+neumonia basal derecha
+masa abdominal anexial
+neoplasia colon estadio IV
+infeccion respiratoria por pseudomonas bronquiectasias
+infeccion tracto urinario
+cancer microcitico de colon
+coma secundario a ictus fosa posterior
+cancer deprimario desconocido
+linfangitis
+cancer broncogenico estadio IV
+leucemia mieloblastica
+adenoca de pulmon estadio IV
+smd
+neoplasia pulmon estadio IV
+insuficiencia renal aguda
+ulcera vascular
+bronquiectasias sobreinfectadas
+disnea laringea funcional
+encefalopatia
+craneofaringioma
+carcinoma de celulas renales
+hemopatia maligna
+meningitis virus hzoster
+fiebre sin foco
+obstruccion iliaca estadio IV
+carcnoma de pulmon
+anemia proceso cronico demencia
+neo mama estadio IV
+infeccion urinaria
+lnh linfocitico
+estesioneuroblastoma olfatorio avanzado
+sarcoma pleomorfico estadio IV sospecha de oclusion intestinal
+cancer urotelial eiv
+lesion medular
+absceso pie

@@ -97,7 +97,8 @@ def replace_words(df: pd.DataFrame,\
     replacement_dict_city_council: Dict,\
     replacement_dict_otros: Dict,\
     replacement_dict_otros_1: Dict,\
-    replacement_dict_otros_complicaciones: Dict
+    replacement_dict_otros_complicaciones: Dict,\
+    replacement_dict_numeric:Dict
     ) -> pd.DataFrame:
     """
     Replaces words in multiple columns of a DataFrame according to provided replacement dictionaries. 
@@ -143,6 +144,9 @@ def replace_words(df: pd.DataFrame,\
     replacement_dict_otros_complicaciones : Dict
         Dictionary with the words to replace and the corresponding replacements in the 'otros_complicaciones' column.
 
+    replacement_dict_numeric : Dict
+        Dictionary  with the words to replace and the corresponding replacements in the 'gds_fast', 'barhel' and 'eva_ing' columns.
+        
     Returns
     -------
     df : pd.DataFrame
@@ -191,13 +195,25 @@ def replace_words(df: pd.DataFrame,\
         ('ayuntamiento', replacement_dict_city_council),
         ('otros', replacement_dict_otros),
         ('otros_1', replacement_dict_otros_1),
-        ('otros_complicaciones', replacement_dict_otros_complicaciones)
+        ('otros_complicaciones', replacement_dict_otros_complicaciones),
+        ('gds_fast', replacement_dict_numeric),
+        ('barthel', replacement_dict_numeric),
+        ('eva_ing', replacement_dict_numeric)
     ]
     
     # Loop over columns and dictionaries and replace words
     for col, replacement_dict in cols_dicts:
         df = replace_and_print(df, col, replacement_dict)
 
+    # Replace non digits for columns 'gds_fast', 'eva_ing', 'barthel'
+    columns = ['gds_fast', 'eva_ing', 'barthel']
+    for col in columns:
+        df[col].replace(r'[^\d]+', '', regex=True, inplace=True)
+
+    # Convert the values to numeric
+    for col in columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+        
     return df
 
 
