@@ -4,13 +4,12 @@ generated using Kedro 0.18.10
 """
 
 from kedro.pipeline import Pipeline, node
-from .nodes import wrapped_rename_strip_lower_column,\
-                   rename_columns,\
-                   check_convert_and_concat
-                                         
-                   
+from .nodes import (
+    wrapped_rename_strip_lower_column,
+    rename_columns,
+    check_convert_and_concat,
+)
 
-    
 
 def create_pipeline_data_preprocessing(**kwargs):
     return Pipeline(
@@ -53,43 +52,70 @@ def create_pipeline_data_preprocessing(**kwargs):
             ),
             node(
                 func=rename_columns,
-                inputs=["strip_lower_hado_17", "params:year_2017", "params:rename_columns"],
+                inputs=[
+                    "strip_lower_hado_17",
+                    "params:year_2017",
+                    "params:rename_columns",
+                ],
                 outputs="rename_hado_17",
                 name="rename_columns_hado_17",
             ),
             node(
                 func=rename_columns,
-                inputs=["strip_lower_hado_18", "params:year_2018", "params:rename_columns"],
+                inputs=[
+                    "strip_lower_hado_18",
+                    "params:year_2018",
+                    "params:rename_columns",
+                ],
                 outputs="rename_hado_18",
                 name="rename_columns_hado_18",
             ),
             node(
                 func=rename_columns,
-                inputs=["strip_lower_hado_19", "params:year_2019", "params:rename_columns"],
+                inputs=[
+                    "strip_lower_hado_19",
+                    "params:year_2019",
+                    "params:rename_columns",
+                ],
                 outputs="rename_hado_19",
                 name="rename_columns_hado_19",
             ),
             node(
                 func=rename_columns,
-                inputs=["strip_lower_hado_20", "params:year_2020", "params:rename_columns"],
+                inputs=[
+                    "strip_lower_hado_20",
+                    "params:year_2020",
+                    "params:rename_columns",
+                ],
                 outputs="rename_hado_20",
                 name="rename_columns_hado_20",
             ),
             node(
                 func=rename_columns,
-                inputs=["strip_lower_hado_21", "params:year_2021", "params:rename_columns"],
+                inputs=[
+                    "strip_lower_hado_21",
+                    "params:year_2021",
+                    "params:rename_columns",
+                ],
                 outputs="rename_hado_21",
                 name="rename_columns_hado_21",
             ),
             node(
                 func=rename_columns,
-                inputs=["strip_lower_hado_22", "params:year_2022", "params:rename_columns"],
+                inputs=[
+                    "strip_lower_hado_22",
+                    "params:year_2022",
+                    "params:rename_columns",
+                ],
                 outputs="rename_hado_22",
                 name="rename_columns_hado_22",
             ),
             node(
                 func=check_convert_and_concat,
-                inputs={f"rename_hado_{year}": f"rename_hado_{year}" for year in range(17, 23)},
+                inputs={
+                    f"rename_hado_{year}": f"rename_hado_{year}"
+                    for year in range(17, 23)
+                },
                 outputs="hado_concat",
                 name="check_convert_and_concat",
             ),

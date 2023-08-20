@@ -6,10 +6,10 @@
 
 # Dict for replaces in NA values for columns
 replacement_dict_na:
-  desconocido: ['diagnostico', 'motivo_ing', 'motivo_alta', 'medico', 'sedacion', 'ayuntamiento', 'otros_2',  'ps_ecog']
+  desconocido: ['diagnostico', 'motivo_ing', 'motivo_alta', 'medico', 'sedacion', 'ayuntamiento', 'otros_2']
   'no': ['h_procedencia', 'otros', 'otros_1', 'otros_complicaciones']
   vacio: ['fe_iv', 'toracocentesis', 'paracentesis', 'transfusion', 'trato_antibiotico', 'cronico_reag', 'agudo_estable', 'ast_anorx', 'agonia', 'p_terminal', 'delirium', 'dolor', 'disnea', 'fiebre', 'paliativo_no_onc_noc', 'paliativo_onc_noc', 'ap', 'fecha_alta']
-  '0': ['gds_fast', 'eva_ing', 'barthel']
+  '0': ['gds_fast', 'eva_ing', 'barthel', 'ps_ecog']
 
 replacement_dict_general:
   n0: 'no'
@@ -247,7 +247,7 @@ replacement_dict_sedation:
   siclmorficomidazolam: 'si morfina midazolam'
   morfbuschalop: 'si morfina buscapina haloperidol'
   haloperidolmorfina: 'si haloperidol morfina'
-  sibuscapsonogancl: 'si buscapina morfina'
+  'sibuscapsonogancl morfmidaz': 'si buscapina morfina midazolam'
   simorfbuscapmidaz: 'si morfina buscapina midazolam'
   morfinasinogan: 'morfina'
   simidmorfbuscap: 'si midazolam morfina buscapina'
@@ -255,6 +255,7 @@ replacement_dict_sedation:
   buscapmidazmorf: 'buscapina midazolam morfina'
   midazolammorfina: 'midazolam morfina'
   midazmorfbuscap: 'midazolam morfina buscapina'
+  morfinahaloperidol: 'morfina haloperidol'
   buscap: 'buscapina'
   ' y ': ''
 
@@ -374,6 +375,7 @@ replacement_dict_otros_complicaciones:
   'ulceras de presion': 'ulceras presion'
   'ulceras por presion': 'ulceras presion'
 
+# Para las columnas ['gds_fast', 'eva_ing', 'barthel', 'ps_ecog'] asumimos que no, si o b son igual a '0'
 replacement_dict_numeric:
   'no': '00'
   '0': '00'

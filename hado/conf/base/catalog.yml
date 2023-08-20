@@ -4,6 +4,7 @@
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
 # This data should be in the path "src/hado/extras/datasets"
+
 # RAW Data from MongoDB
 hado_22:
   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
@@ -141,13 +142,70 @@ hado_cleaned:
     na_values: ["#NA", NA]
   layer: final_processing
 
-# TESTs
-hado_values:
+hado_cleaned_sedation:
   type: pandas.CSVDataSet
-  filepath: data/01_raw/HADO_values.csv
+  filepath: data/02_intermediate/hado_cleaned_medication.csv
+  save_args:
+    sep: "^"
+    index: False
   load_args:
     sep: "^"
     na_values: ["#NA", NA]
-  layer: intermediate
+  layer: final_processing
+
+hado_cleaned_medication:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/hado_cleaned_medication.csv
+  save_args:
+    sep: "^"
+    index: False
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+  layer: final_processing
+
+hado_categorized:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/data_categorized.csv
+  save_args:
+    sep: "^"
+    index: False
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+  layer: final_processing
+
+hado_final:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/hado_final.csv
+  save_args:
+    sep: "^"
+    index: False
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+  layer: final_processing
+
+# Modeling
+hado_model:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/hado_model.csv
+  save_args:
+    sep: "^"
+    index: False
+  load_args:
+    sep: "^"
+    na_values: ["#NA", NA]
+  layer: model
+
+rf_model:
+    type: pickle.PickleDataSet
+    filepath: data/06_models/RandomForest_{target_type}.pkl
+
+xgb_model:
+    type: pickle.PickleDataSet
+    filepath: data/06_models/XGBoost_{target_type}.pkl
+
+
 
 

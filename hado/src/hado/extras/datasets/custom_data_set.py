@@ -2,27 +2,32 @@ import pandas as pd
 
 from pathlib import Path, PurePosixPath
 from pandas_ods_reader import read_ods
-#pandas_ods_reader: La biblioteca pandas_ods_reader proporciona una manera fácil de leer archivos OpenDocument Spreadsheet (ODS) y convertirlos en DataFrames de pandas. 
+
+# pandas_ods_reader: La biblioteca pandas_ods_reader proporciona una manera fácil de leer archivos OpenDocument Spreadsheet (ODS) y convertirlos en DataFrames de pandas.
 # La función read_ods se utiliza para leer un archivo ODS y devolver un DataFrame de pandas.
 
 import fsspec
-# fsspec: La biblioteca fsspec (File System Spec) es una interfaz de sistema de archivos virtual 
-# que permite trabajar con diferentes sistemas de archivos como local, S3, HDFS, entre otros. 
+
+# fsspec: La biblioteca fsspec (File System Spec) es una interfaz de sistema de archivos virtual
+# que permite trabajar con diferentes sistemas de archivos como local, S3, HDFS, entre otros.
 # En este caso, se utiliza para crear un sistema de archivos que se ajuste al protocolo correspondiente (por ejemplo, local o S3) y abrir el archivo ODS.
 
 from kedro.io import AbstractDataSet
-# kedro.io: Kedro es un marco de trabajo de flujo de datos de Python que ayuda a organizar proyectos de ciencia de datos y aprendizaje automático. 
+
+# kedro.io: Kedro es un marco de trabajo de flujo de datos de Python que ayuda a organizar proyectos de ciencia de datos y aprendizaje automático.
 # En este caso, se utiliza para extender la funcionalidad de Kedro y crear un nuevo conjunto de datos personalizado que pueda leer archivos ODS.
 
-# AbstractDataSet: Es una clase base abstracta de Kedro que representa un conjunto de datos genérico. 
+# AbstractDataSet: Es una clase base abstracta de Kedro que representa un conjunto de datos genérico.
 # Al extender esta clase, podemos crear un nuevo conjunto de datos personalizado que se ajuste a nuestras necesidades específicas (en este caso, leer archivos ODS).
 
 from kedro.io.core import get_filepath_str, get_protocol_and_path
+
 # get_filepath_str, get_protocol_and_path: Estas funciones de utilidad de Kedro se utilizan para obtener el protocolo, la ruta y la ruta del archivo
 # como cadena a partir de una ruta de archivo dada.
 
 from io import BytesIO
 from pymongo import MongoClient
+
 
 class ODSDataSet(AbstractDataSet):
     def __init__(self, filepath: str, sheet: str):
@@ -42,7 +47,7 @@ class ODSDataSet(AbstractDataSet):
     def _save(self, data: pd.DataFrame) -> None:
         # No se implementa la función de guardado, ya que la clase solo está diseñada para leer archivos ODS.
         raise NotImplementedError("Saving ODS files is not supported.")
-    
+
     def _exists(self) -> bool:
         # Verificar si el archivo existe en el sistema de archivos.
         path = self._get_load_path()
@@ -54,7 +59,14 @@ class ODSDataSet(AbstractDataSet):
 
 
 class MongoDBDataSet(AbstractDataSet):
-    def __init__(self, uri: str, database: str, collection: str, load_args: dict = None, save_args: dict = None):
+    def __init__(
+        self,
+        uri: str,
+        database: str,
+        collection: str,
+        load_args: dict = None,
+        save_args: dict = None,
+    ):
         self._uri = uri
         self._database = database
         self._collection = collection
@@ -73,7 +85,13 @@ class MongoDBDataSet(AbstractDataSet):
         db = client[self._database]
         collection = db[self._collection]
         # Modificar esta parte según cómo desees utilizar save_args
-        collection.insert_many(data.to_dict('records'), **self._save_args)
+        collection.insert_many(data.to_dict("records"), **self._save_args)
 
     def _describe(self) -> dict:
-        return dict(uri=self._uri, database=self._database, collection=self._collection, load_args=self._load_args, save_args=self._save_args)
+        return dict(
+            uri=self._uri,
+            database=self._database,
+            collection=self._collection,
+            load_args=self._load_args,
+            save_args=self._save_args,
+        )
