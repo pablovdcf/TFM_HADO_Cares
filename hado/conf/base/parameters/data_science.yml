@@ -1,0 +1,140 @@
+# This is a boilerplate parameters config generated for pipeline 'data_model'
+# using Kedro 0.18.10.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/0.18.10/kedro_project_setup/configuration.html#parameters
+
+# Parámetros para el pipeline de modelado
+split_options:
+  test_size: 0.2
+  random_state: 3
+  target: ['alta_category', 'diagnosis_category']
+
+model_options_alta:
+  test_size: 0.2
+  random_state: 3
+  features:
+    - 'paliativo_onc_noc'
+    - 'paliativo_no_onc_noc'
+    - 'fiebre'
+    - 'disnea'
+    - 'dolor'
+    - 'delirium'
+    - 'p_terminal'
+    - 'agonia'
+    - 'ast_anorx'
+    - 'agudo_estable'
+    - 'cronico_reag'
+    - 'trato_antibiotico'
+    - 'transfusion'
+    - 'paracentesis'
+    - 'toracocentesis'
+    - 'fe_iv'
+    - 'ingreso_category'
+    - 'diagnosis_category'
+    - 'procedencia_category'
+    - 'otros_category'
+    - 'ps_ecog'
+    - 'barthel'
+    - 'gds_fast'
+    - 'eva_ing'
+    - 'n_estancias'
+    - 'n_visitas'
+    - 'tiene_sedacion'
+    - 'morfina'
+    - 'midazolam'
+    - 'buscapina'
+    - 'haloperidol'
+    - 'levomepromazina'
+    
+model_options_diagnosis:
+  test_size: 0.2
+  random_state: 3
+  features:
+    - 'paliativo_onc_noc'
+    - 'paliativo_no_onc_noc'
+    - 'fiebre'
+    - 'disnea'
+    - 'dolor'
+    - 'delirium'
+    - 'p_terminal'
+    - 'agonia'
+    - 'ast_anorx'
+    - 'agudo_estable'
+    - 'cronico_reag'
+    - 'trato_antibiotico'
+    - 'transfusion'
+    - 'paracentesis'
+    - 'toracocentesis'
+    - 'fe_iv'
+    - 'ingreso_category'
+    - 'alta_category'
+    - 'procedencia_category'
+    - 'otros_category'
+    - 'ps_ecog'
+    - 'barthel'
+    - 'gds_fast'
+    - 'eva_ing'
+    - 'n_estancias'
+    - 'n_visitas'
+    - 'tiene_sedacion'
+    - 'morfina'
+    - 'midazolam'
+    - 'buscapina'
+    - 'haloperidol'
+    - 'levomepromazina'
+
+cross_validation:
+  cv: 5  # número de divisiones para validación cruzada
+
+grid_search_rf:  # Parámetros para la búsqueda en cuadrícula de RandomForest
+  n_estimators: [100, 300]
+  max_depth: [5, 15, None]
+  criterion: ['gini', 'entropy']
+
+grid_search_xgb:  # Parámetros para la búsqueda en cuadrícula de XGBoost
+  n_estimators: [100, 300]
+  learning_rate: [0.01, 0.1, 0.3]
+
+grid_search_lgbm:  # Parámetros para la búsqueda en cuadrícula de LightGBM
+  n_estimators: [100, 300]
+  learning_rate: [0.01, 0.1, 0.3]
+
+random_forest:
+  module: sklearn.ensemble
+  class: RandomForestClassifier
+  kwargs:
+    n_estimators: 100
+    criterion: gini
+    bootstrap: true
+    oob_score: false
+
+xgb:
+  module: xgboost
+  class: XGBClassifier
+  kwargs:
+    n_estimators: 100
+    learning_rate: 0.01
+    early_stopping_rounds: null 
+
+lgbm:
+  module: lightgbm
+  class: LGBMClassifier
+  kwargs:
+    n_estimators: 100
+    learning_rate: 0.01
+    early_stopping_rounds: null 
+
+# RandomForestRegressor:
+  # n_estimators: 100
+  # criterion: [giny", "entropy"]
+  # min_samples_split: 2
+  # min_samples_leaf: 1
+  # min_weight_fraction_leaf: 0
+  # max_features: "auto"
+  # min_impurity_decrease: 0
+  # bootstrap: true
+  # oob_score: false
+  # verbose: 0
+  # warm_start: false
+  # ccp_alpha: 0

@@ -5,7 +5,7 @@
 # Link: https://docs.kedro.org/en/0.18.10/kedro_project_setup/configuration.html#parameters
 
 
-# We change the column names to standardise all the datasets so that they can be concatenated.
+# Parameters to change the column names to standardise all the datasets so that they can be concatenated.
 rename_columns:
   "2017":
     hospital: h_procedencia
@@ -192,6 +192,7 @@ rename_columns:
     ayuntamiento: ayuntamiento          # Se empieza a incluir en el 2020
     médico: medico
 
+# Years for the datasets
 year_2017: 2017
 year_2018: 2018
 year_2019: 2019

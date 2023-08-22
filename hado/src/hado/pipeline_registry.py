@@ -4,7 +4,7 @@ from __future__ import annotations
 from kedro.pipeline import Pipeline
 from .pipelines.data_preprocessing.pipeline import create_pipeline_data_preprocessing
 from .pipelines.data_processing.pipeline import create_pipeline_data_processing
-from .pipelines.data_model.pipeline import create_models_pipeline
+from .pipelines.data_science.pipeline import create_models_pipeline
 
 
 def register_pipelines() -> dict[str, Pipeline]:
@@ -17,13 +17,13 @@ def register_pipelines() -> dict[str, Pipeline]:
     data_processing_pipeline = (
         create_pipeline_data_processing()
     )  # Crea la pipeline de procesamiento de datos
-    data_model = (
+    data_science = (
         create_models_pipeline()
     )
     pipelines = {
         "data_preprocessing": data_preprocessing_pipeline,
         "data_processing": data_processing_pipeline,  # Registra la pipeline de procesamiento de datos
-        "data_model": data_model,
+        "data_science": data_science,
     }
 
     pipelines["__default__"] = sum(pipelines.values())

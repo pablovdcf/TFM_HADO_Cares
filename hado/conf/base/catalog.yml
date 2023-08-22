@@ -140,7 +140,7 @@ hado_cleaned:
   load_args:
     sep: "^"
     na_values: ["#NA", NA]
-  layer: final_processing
+  layer: intermediate_processing
 
 hado_cleaned_sedation:
   type: pandas.CSVDataSet
@@ -177,19 +177,19 @@ hado_categorized:
 
 hado_final:
   type: pandas.CSVDataSet
-  filepath: data/02_intermediate/hado_final.csv
+  filepath: data/04_feature/hado_final.csv
   save_args:
     sep: "^"
     index: False
   load_args:
     sep: "^"
     na_values: ["#NA", NA]
-  layer: final_processing
+  layer: feature
 
 # Modeling
 hado_model:
   type: pandas.CSVDataSet
-  filepath: data/03_primary/hado_model.csv
+  filepath: data/05_model_input/hado_model.csv
   save_args:
     sep: "^"
     index: False
@@ -198,14 +198,66 @@ hado_model:
     na_values: ["#NA", NA]
   layer: model
 
-rf_model:
-    type: pickle.PickleDataSet
-    filepath: data/06_models/RandomForest_{target_type}.pkl
+X_train_preprocessed:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/X_train_alta.pkl
+  backend: pickle
+  layer: model
 
-xgb_model:
-    type: pickle.PickleDataSet
-    filepath: data/06_models/XGBoost_{target_type}.pkl
+y_train:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/y_train_alta.pkl
+  backend: pickle
+  layer: model
 
+X_train_diagnosis:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/X_train_diagnosis.pkl
+  backend: pickle
+  layer: model
 
+y_train_diagnosis:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/y_train_diagnosis.pkl
+  backend: pickle
+  layer: model
 
+X_test_preprocessed:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/X_test_pkl
+  backend: pickle
+  layer: model
 
+y_test:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/y_test_alta.pkl
+  backend: pickle
+
+X_test_diagnosis:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/X_test_diagnosis.pkl
+  backend: pickle
+  layer: model
+
+y_test_diagnosis:
+  type: pickle.PickleDataSet
+  filepath: data/07_model_output/y_test_diagnosis.pkl
+  backend: pickle
+
+random_forest_model_alta:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/RandomForest_model.pkl
+  versioned: true
+  layer: model
+
+xgboost_model:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/XGBoost_model.pkl
+  versioned: true
+  layer: model
+
+lightgbm_model:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/ligthgbm_model.pkl
+  versioned: true
+  layer: model

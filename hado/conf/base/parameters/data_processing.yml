@@ -375,9 +375,198 @@ replacement_dict_otros_complicaciones:
   'ulceras de presion': 'ulceras presion'
   'ulceras por presion': 'ulceras presion'
 
-# Para las columnas ['gds_fast', 'eva_ing', 'barthel', 'ps_ecog'] asumimos que no, si o b son igual a '0'
+# For columns ['gds_fast', 'eva_ing', 'barthel', 'ps_ecog'] we assume that no, yes or b are equal to '0'.
 replacement_dict_numeric:
   'no': '00'
   '0': '00'
   'si': '00'
   'b': '00'
+
+# Medications
+medications:
+  - morfina
+  - midazolam
+  - buscapina
+  - haloperidol
+  - levomepromazina
+
+# For the maps and encoding
+hospital_categories:
+  SANTIAGO: 1
+  "NO": 0
+  OTHERS: 2
+
+hospital_category_mapping:
+  gil casares: Santiago
+  clinico: Santiago
+  provincial: Santiago
+  conxo: Santiago
+  rosaleda: Santiago
+  residencia: Santiago
+  no: no
+
+yes_values:
+  - si
+  - 2 concentrados
+
+no_values:
+  - no
+  - vacio
+  - b
+  - m
+
+columns_to_map:
+  - ap
+  - paliativo_onc_noc
+  - paliativo_no_onc_noc
+  - fiebre
+  - disnea
+  - dolor
+  - delirium
+  - p_terminal
+  - agonia
+  - ast_anorx
+  - agudo_estable
+  - cronico_reag
+  - trato_antibiotico
+  - transfusion
+  - paracentesis
+  - toracocentesis
+  - fe_iv
+
+columns_for_freq_encoding:
+  - diagnostico
+  - motivo_ing
+  - motivo_alta
+  - s_procedencia
+  - otros
+  - otros_1
+  - otros_2
+  - otros_complicaciones
+
+columns_order:
+  - h_procedencia
+  - hospital_category
+  - s_procedencia
+  - procedencia_category
+  - diagnostico
+  - diagnosis_category
+  - motivo_ing
+  - ingreso_category
+  - motivo_alta
+  - alta_category
+  - fecha_alta
+  - ap
+  - n_estancias
+  - n_visitas
+  - paliativo_onc_noc
+  - paliativo_no_onc_noc
+  - fiebre
+  - disnea
+  - dolor
+  - delirium
+  - sedacion
+  - p_terminal
+  - agonia
+  - ast_anorx
+  - cronico_reag
+  - trato_antibiotico
+  - transfusion
+  - paracentesis
+  - agudo_estable
+  - toracocentesis
+  - fe_iv
+  - ps_ecog
+  - barthel
+  - gds_fast
+  - eva_ing
+  - otros_complicaciones
+  - otros
+  - otros_1
+  - otros_2
+  - tiene_sedacion
+  - morfina
+  - midazolam
+  - buscapina
+  - haloperidol
+  - levomepromazina
+  - medico
+  - ayuntamiento
+  - year
+
+
+diagnosis_category_map:
+  Canceres: 0
+  Enfermedades Cardiacas: 1
+  Infecciones: 2
+  Otros: 3
+
+ingreso_category_map:
+  Tratamientos: 0
+  Evaluaciones: 1
+  Sintomas: 2
+  Otros: 3
+
+alta_category_map:
+  Exitus: 0
+  Recuperacion: 1
+  Complicaciones: 2
+  Otros: 3
+
+procedencia_category_map:
+  Urgencias: 0
+  Oncologia: 1
+  MIR: 2
+  Otros: 3
+
+otros_category_map:
+  Especialidades Medicas: 0
+  No especificado: 1
+  Otros: 2
+
+categorized_combined_otros_map:
+  Condiciones relacionadas con la familia o el entorno: 0
+  Sintomas generales: 1
+  Desconocido/No especificado: 2
+  Complicaciones: 3
+  Otros: 4
+
+# For the categories
+diagnosis_categories:
+  Infecciones: ["infeccion", "ITU", "sepsis", "bacteriemia", "neumonia", "infectiva", "absceso"]
+  Enfermedades Cardiacas: ["cardiaca", "coronaria", "corazon", "miocardio", "arritmia"]
+  Canceres: ["cancer", "tumor", "neoplasia", "leucemia", "linfoma", "melanoma", "carcinoma"]
+
+ingreso_categories:
+  Sintomas: ["sintoma", "dolor", "disnea", "nauseas", "fiebre", "malestar"]
+  Tratamientos: ["tratamiento", "antibiotico", "quimioterapia", "radioterapia", "terapia", "medicacion"]
+  Evaluaciones: ["evaluacion", "valoracion", "control", "revision", "seguimiento"]
+
+alta_categories:
+  Recuperacion: ["mejoria", "recuperado", "alta voluntaria", "traslado"]
+  Tratamiento completado: ["tratamiento finalizado", "medicación completada"]
+  Complicaciones: ["complicaciones", "reingreso"]
+  Exitus: ["exitus", "fallecido", "muerte"]
+
+procedencia_categories:
+  Oncologia: ["oncologia"]
+  Urgencias: ["urgencias"]
+  MIR: ["mir"]
+
+otros_categories:
+  Especialidades Medicas: ["nefrologia", "oncologia", "cardiologia", "neumologia", "urologia", "digestivo", "vascular"]
+  No especificado: ["no", "ncr"]
+
+# categorize_and_group_combined_otros parameters
+
+combined_otros_categories:
+  Sintomas generales: ["nauseas", "vomitos", "agitacion", "insomnio", "diarrea", "ansiedad", "dolor", "fiebre"]
+  Complicaciones: ["infeccion respiratoria", "insuficiencia respiratoria", "retencion urinaria", "hematuria", "broncoaspiracion", "sepsis", "acv"]
+  Condiciones relacionadas con la familia o el entorno: ["claudicacion familiar", "residencia"]
+  Desconocido/No especificado: ["no", "ncr", "desconocido"]
+    
+combined_otros_columns:
+    - otros
+    - otros_1
+    - otros_2
+    - otros_complicaciones

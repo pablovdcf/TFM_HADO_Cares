@@ -79,7 +79,7 @@ def replace_missing(df: pd.DataFrame, params: Dict) -> pd.DataFrame:
         for col, value in missing_percentage_sorted.items():
             print(f"{col}: {value}%")
 
-    print_missing_percentage(df)
+    # print_missing_percentage(df)
 
     for value, columns in params.items():
         df[columns] = df[columns].fillna(value)
@@ -175,7 +175,7 @@ def replace_words(
                 r"\b{}\b".format(word), replacement, case=False, regex=True
             )
 
-        unique_values = df[col].astype(str).unique()
+        # unique_values = df[col].astype(str).unique()
         # print(
         #     f"\nAfter replacement - '{col}' unique values:",
         #     len(unique_values),
@@ -273,17 +273,16 @@ def process_fecha_alta(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-def asignar_sedacion(df):
+def assign_sedation(df: pd.DataFrame) -> pd.DataFrame:
     df['tiene_sedacion'] = df['sedacion'].apply(lambda x: 0 if x == 'no' else 1)
     return df
 
-def asignar_medicamentos(df):
-    medicamentos = ['morfina', 'midazolam', 'buscapina', 'haloperidol', 'levomepromazina']
-    for medicamento in medicamentos:
-        df[medicamento] = df['sedacion'].apply(lambda x: 1 if medicamento in x else 0)
+def assign_medication(df: pd.DataFrame, medications) -> pd.DataFrame:
+    for medication in medications:
+        df[medication] = df['sedacion'].apply(lambda x: 1 if medication in x else 0)
     return df
 
-def encoding_variables(df):
+def encoding_variables(df: pd.DataFrame, parameters) -> pd.DataFrame:
     """
     Encode and transform a given dataframe.
 
@@ -294,28 +293,15 @@ def encoding_variables(df):
     - pd.DataFrame: Transformed dataframe with specific columns and their data types converted.
     """
     
-    # Constants for clarity
-    SANTIAGO = 1
-    NO = 0
-    OTHERS = 2
-    
-    def map_hospital_categorie(hospital_name):
+    def map_hospital_category(hospital_name):
         """Map hospital name to a specific category."""
-        mapping = {
-            'gil casares': 'Santiago',
-            'clinico': 'Santiago',
-            'provincial': 'Santiago',
-            'conxo': 'Santiago',
-            'rosaleda': 'Santiago',
-            'residencia': 'Santiago',
-            'no': 'no'
-        }
+        mapping = parameters["hospital_category_mapping"]
         return mapping.get(hospital_name, 'otros')
 
     def map_values(val):
         """Map specific values to binary values."""
-        no_values = ['no', 'vacio', 'b', 'm']
-        yes_values = ['si', '2 concentrados']
+        no_values = parameters["no_values"]
+        yes_values = parameters["yes_values"]
         
         return 1 if val in yes_values else 0
     
@@ -324,133 +310,101 @@ def encoding_variables(df):
         frequencies = df[column_name].value_counts(normalize=True)
         df[column_name] = df[column_name].map(frequencies).fillna(0)  # Handling potential missing values
     
-    df['hospital_categorie'] = df['h_procedencia'].apply(map_hospital_categorie)
-    df['hospital_categorie'].replace({'Santiago': SANTIAGO, 'no': NO, 'otros': OTHERS}, inplace=True)
+    df['hospital_category'] = df['h_procedencia'].apply(map_hospital_category)
+    df['hospital_category'].replace(parameters["hospital_categories"], inplace=True)
     
-    columns_to_map = [
-        'ap', 'paliativo_onc_noc', 'paliativo_no_onc_noc', 'fiebre', 'disnea',
-        'dolor', 'delirium', 'p_terminal', 'agonia', 'ast_anorx', 'agudo_estable',
-        'cronico_reag', 'trato_antibiotico', 'transfusion', 'paracentesis',
-        'toracocentesis', 'fe_iv'
-    ]
+    columns_to_map = parameters["columns_to_map"]
     for col in columns_to_map:
         df[col] = df[col].apply(map_values)
     
-    columns_for_freq_encoding = [
-        'diagnostico', 'motivo_ing', 'motivo_alta', 's_procedencia',
-        'otros', 'otros_1', 'otros_2', 'otros_complicaciones'
-    ]
+    columns_for_freq_encoding = parameters["columns_for_freq_encoding"]
     for col in columns_for_freq_encoding:
         apply_frequency_encoding(col)
     
-    # Columns order
-    columns_order = ['h_procedencia','hospital_categorie', 's_procedencia', 'procedencia_category', 'diagnostico', 'diagnosis_category', 'motivo_ing', 'ingreso_category', 'motivo_alta', 'alta_category', 'fecha_alta',
-         'ap', 'n_estancias', 'n_visitas', 'paliativo_onc_noc', 'paliativo_no_onc_noc', 'fiebre', 'disnea',
-         'dolor', 'delirium', 'sedacion', 'p_terminal', 'agonia', 'ast_anorx', 'cronico_reag', 'trato_antibiotico', 'transfusion', 'paracentesis', 'agudo_estable', 'toracocentesis', 'fe_iv',
-         'ps_ecog',  'barthel', 'gds_fast', 'eva_ing',
-         'otros_complicaciones', 'otros', 'otros_1',  'otros_2',
-         'tiene_sedacion', 'morfina', 'midazolam', 'buscapina', 'haloperidol', 'levomepromazina',
-         'medico', 'ayuntamiento',
-         'year']
-        
+    # Mapeos para las categorías
+    diagnosis_category_map = parameters["diagnosis_category_map"]
+    ingreso_category_map = parameters["ingreso_category_map"]
+    alta_category_map = parameters["alta_category_map"]
+    procedencia_category_map = parameters["procedencia_category_map"]
+    otros_category_map = parameters["otros_category_map"]
+    categorized_combined_otros_map = parameters["categorized_combined_otros_map"]
+
+    # Aplicar los mapeos a las columnas correspondientes
+    df['diagnosis_category'] = df['diagnosis_category'].map(diagnosis_category_map)
+    df['ingreso_category'] = df['ingreso_category'].map(ingreso_category_map)
+    df['alta_category'] = df['alta_category'].map(alta_category_map)
+    df['procedencia_category'] = df['procedencia_category'].map(procedencia_category_map)
+    df['otros_category'] = df['otros_category'].map(otros_category_map)
+    df['categorized_combined_otros'] = df['categorized_combined_otros'].map(categorized_combined_otros_map)
+    
+    columns_order = parameters["columns_order"]
     df = df[columns_order]
     
-    # Columns to keep
     return df.select_dtypes(exclude=['object'])
+
 
 # Funciones para la categorización de columnas
 
-def classify_diagnosis(diagnosis):
-    categories = {
-        "Infecciones": ["infeccion", "ITU", "sepsis", "bacteriemia", "neumonia", "infectiva", "absceso"],
-        "Enfermedades Cardiacas": ["cardiaca", "coronaria", "corazon", "miocardio", "arritmia"],
-        "Canceres": ["cancer", "tumor", "neoplasia", "leucemia", "linfoma", "melanoma", "carcinoma"],
-    }
-    for category, keywords in categories.items():
-        for keyword in keywords:
-            if keyword in diagnosis.lower():
-                return category
-    return "Otros"
+def apply_categorization(df: pd.DataFrame, parameters) -> pd.DataFrame:
+    def classify(value, categories):
+        for category, keywords in categories.items():
+            for keyword in keywords:
+                if keyword in value.lower():
+                    return category
+        return "Otros"
 
-def classify_ingreso(motivo):
-    categories = {
-        "Sintomas": ["sintoma", "dolor", "disnea", "nauseas", "fiebre", "malestar"],
-        "Tratamientos": ["tratamiento", "antibiotico", "quimioterapia", "radioterapia", "terapia", "medicacion"],
-        "Evaluaciones": ["evaluacion", "valoracion", "control", "revision", "seguimiento"],
-    }
-    for category, keywords in categories.items():
-        for keyword in keywords:
-            if keyword in motivo.lower():
-                return category
-    return "Otros"
+    df['diagnosis_category'] = df['diagnostico'].apply(lambda x: classify(x, parameters["diagnosis_categories"]))
+    df['ingreso_category'] = df['motivo_ing'].apply(lambda x: classify(x, parameters["ingreso_categories"]))
+    df['alta_category'] = df['motivo_alta'].apply(lambda x: classify(x, parameters["alta_categories"]))
+    df['procedencia_category'] = df['s_procedencia'].apply(lambda x: classify(x, parameters["procedencia_categories"]))
+    df['otros_category'] = df['otros'].apply(lambda x: classify(x, parameters["otros_categories"]))
 
-def classify_alta(motivo):
-    categories = {
-        "Recuperación": ["mejoria", "recuperado", "alta voluntaria", "traslado"],
-        "Tratamiento completado": ["tratamiento finalizado", "medicación completada"],
-        "Complicaciones": ["complicaciones", "reingreso"],
-        "Exitus": ["exitus", "fallecido", "muerte"]
-    }
-    for category, keywords in categories.items():
-        for keyword in keywords:
-            if keyword in motivo.lower():
-                return category
-    return "Otros"
-
-def classify_procedencia(value):
-    categories = {
-        "Oncología": ["oncologia"],
-        "Urgencias": ["urgencias"],
-        "MIR": ["mir"],
-    }
-    for category, keywords in categories.items():
-        for keyword in keywords:
-            if keyword in value.lower():
-                return category
-    return "Otros"
-
-def classify_otros(value):
-    categories = {
-        "Especialidades Médicas": ["nefrologia", "oncologia", "cardiologia", "neumologia", "urologia", "digestivo", "vascular"],
-        "No especificado": ["no", "ncr"]
-    }
-    for category, keywords in categories.items():
-        for keyword in keywords:
-            if keyword in value.lower():
-                return category
-    return "Otros"
-
-def apply_categorization(df: pd.DataFrame) -> pd.DataFrame:
-    df['diagnosis_category'] = df['diagnostico'].apply(classify_diagnosis)
-    df['ingreso_category'] = df['motivo_ing'].apply(classify_ingreso)
-    df['alta_category'] = df['motivo_alta'].apply(classify_alta)
-    df['procedencia_category'] = df['s_procedencia'].apply(classify_procedencia)
-    df['otros_category'] = df['otros'].apply(classify_otros)
     return df
 
 # Funciones para la combinación y categorización de las columnas 'otros'
 
-def combine_columns(row):
-    values = [row['otros'], row['otros_1'], row['otros_2'], row['otros_complicaciones']]
-    combined_values = [val for val in values if val not in ['no', 'desconocido']]
-    return '|'.join(combined_values) if combined_values else 'no'
+def categorize_and_group_combined_otros(data: pd.DataFrame, parameters) -> pd.DataFrame:
+    """
+    Combine specified columns, categorize their values based on predefined categories, 
+    and group non-primary categories into the "Otros" category.
+    
+    Args:
+    - data (pd.DataFrame): The input dataframe containing the columns to be combined and categorized.
+    - parameters (dict): Parameters from the `data_processing.yml` file.
+    
+    Returns:
+    - pd.DataFrame: The dataframe with the combined and categorized column.
+    """
+    
+    # Function to combine columns
+    def combine_columns(row):
+        values = [row[column] for column in parameters["combined_otros_columns"]]
+        combined_values = [val for val in values if val not in ['no', 'desconocido']]
+        return '|'.join(combined_values) if combined_values else 'no'
+    
+    # Define keywords for 'combined_otros' categories
+    categories = parameters["combined_otros_categories"]
 
-def classify_combined_otros(value):
-    categories = {
-        "Sintomas generales": ["nauseas", "vomitos", "agitacion", "insomnio", "diarrea", "ansiedad", "dolor", "fiebre"],
-        "Complicaciones": ["infeccion respiratoria", "insuficiencia respiratoria", "retencion urinaria", "hematuria", "broncoaspiracion", "sepsis", "acv"],
-        "Condiciones relacionadas con la familia o el entorno": ["claudicacion familiar", "residencia"],
-        "Desconocido/No especificado": ["no", "ncr", "desconocido"]
-    }
-    categories_result = []
-    for category, keywords in categories.items():
-        for keyword in keywords:
-            if keyword in value.lower():
-                categories_result.append(category)
-                break
-    return '|'.join(categories_result) if categories_result else "Otros"
+    # Function to classify values into categories
+    def classify_combined_otros(value):
+        categories_result = []
+        for category, keywords in categories.items():
+            for keyword in keywords:
+                if keyword in value.lower():
+                    categories_result.append(category)
+                    break  # Break the inner loop if a match is found
+        return '|'.join(categories_result) if categories_result else "Otros"
 
-def apply_combined_otros_categorization(data: pd.DataFrame) -> pd.DataFrame:
+    # Combine the columns
     data['combined_otros'] = data.apply(combine_columns, axis=1)
+    
+    # Apply the function to classify values
     data['categorized_combined_otros'] = data['combined_otros'].apply(classify_combined_otros)
+    
+    # List of primary categories
+    main_categories = list(categories.keys())
+
+    # Replace any value not in main_categories with "Otros"
+    data['categorized_combined_otros'] = data['categorized_combined_otros'].apply(lambda x: x if x in main_categories else "Otros")
+    
     return data

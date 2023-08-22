@@ -118,7 +118,7 @@ def check_convert_and_concat(**dataframes):
             # Get unique sorted values of 'n_estancias' column in descending order, ignoring NaNs
             unique_sorted_values = np.sort(data["n_estancias"].dropna().unique())[::-1]
 
-            print(f"Data_{year} unique sorted 'n_estancias':\n{unique_sorted_values}\n")
+            # print(f"Data_{year} unique sorted 'n_estancias':\n{unique_sorted_values}\n")
         except KeyError:
             print(f"Data_{year} does not have 'n_estancias' column\n")
 
@@ -134,14 +134,12 @@ def check_convert_and_concat(**dataframes):
         # data['n_visitas'] = data['n_visitas'].astype(int)
 
         # Replace NaNs with the median before converting to integer
-        data["n_estancias"].fillna(data["n_estancias"].median(), inplace=True)
-        data["n_estancias"] = data["n_estancias"].astype(int)
+        data["n_estancias"] = data["n_estancias"].fillna(data["n_estancias"].median()).astype(int)
+        data["n_visitas"] = data["n_visitas"].fillna(data["n_visitas"].median()).astype(int)
 
-        data["n_visitas"].fillna(data["n_visitas"].median(), inplace=True)
-        data["n_visitas"] = data["n_visitas"].astype(int)
 
         unique_sorted_values = np.sort(data["n_estancias"].dropna().unique())[::-1]
-        print(f"Data_{year} fixed and sorted 'n_estancias':\n{unique_sorted_values}\n")
+        # print(f"Data_{year} fixed and sorted 'n_estancias':\n{unique_sorted_values}\n")
 
         # This line ensures that pandas does not change type of columns
         dataframes[year] = data
@@ -164,20 +162,3 @@ def refactor_rename_strip_lower_column(df, year):
         df.drop(columns="unnamed.1", inplace=True)
 
     return df
-
-
-def refactor_rename_columns(data: pd.DataFrame, rename_map: Dict[str, str]) -> pd.DataFrame:
-    """
-    This function renames the columns of the provided DataFrame based on the provided map.
-    """
-    data = data.rename(columns=rename_map)
-    return data
-
-def combine_columns(data: pd.DataFrame) -> pd.DataFrame:
-    """
-    Combines 'astenia' and 'anorexia' columns into a single 'ast_anorx' column.
-    """
-    if "astenia" in data.columns and "anorexia" in data.columns:
-        data["ast_anorx"] = np.where(data["astenia"] == "si", "si", data["anorexia"])
-        data.drop(["astenia", "anorexia"], axis=1, inplace=True)
-    return data

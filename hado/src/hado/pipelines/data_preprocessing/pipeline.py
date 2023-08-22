@@ -10,10 +10,21 @@ from .nodes import (
     check_convert_and_concat,
 )
 
-
 def create_pipeline_data_preprocessing(**kwargs):
+    """
+    Create a data preprocessing pipeline.
+    
+    This pipeline performs the following tasks:
+    1. Cleans and standardizes column names for each year.
+    2. Renames columns based on provided mappings.
+    3. Concatenates all yearly datasets into one.
+    
+    Returns:
+    - Pipeline: A Kedro pipeline object.
+    """
     return Pipeline(
         [
+            # Cleaning and standardizing column names for the year 2017
             node(
                 func=wrapped_rename_strip_lower_column("hado_17", 2017),
                 inputs="hado_17",
@@ -50,6 +61,7 @@ def create_pipeline_data_preprocessing(**kwargs):
                 outputs="strip_lower_hado_22",
                 name="cleaning_hado_22",
             ),
+            # Renaming columns for the year 2017 to 2022
             node(
                 func=rename_columns,
                 inputs=[
@@ -110,6 +122,7 @@ def create_pipeline_data_preprocessing(**kwargs):
                 outputs="rename_hado_22",
                 name="rename_columns_hado_22",
             ),
+            # Concatenate all yearly datasets into one
             node(
                 func=check_convert_and_concat,
                 inputs={
