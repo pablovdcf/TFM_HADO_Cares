@@ -42,14 +42,14 @@ def create_pipeline_data_processing(**kwargs):
                 func=clean_text,
                 inputs="hado_concat",
                 outputs="hado_clean",
-                name="clean_text",
+                name="clean_text_node",
             ),
             # Replace missing values based on a dictionary
             node(
                 func=replace_missing,
                 inputs=["hado_clean", "params:replacement_dict_na"],
                 outputs="hado_clean_na",
-                name="replace_missing",
+                name="replace_missing_node",
             ),
             # Replace specific words based on multiple dictionaries
             node(
@@ -112,8 +112,8 @@ def create_pipeline_data_processing(**kwargs):
             node(
                 func=encoding_variables,
                 inputs=["hado_final","parameters"],
-                outputs="hado_model",
-                name="dataframe_for_modeling"
+                outputs="hado_encoded",
+                name="dataframe_for_modeling_node"
             )
         ]
     )

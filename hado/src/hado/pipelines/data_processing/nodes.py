@@ -267,8 +267,8 @@ def process_fecha_alta(df: pd.DataFrame) -> pd.DataFrame:
     df["fecha_alta"] = df["fecha_alta"].fillna("unknown")
 
     # Only include dates that are not empty strings
+    
     # unique_values = df["fecha_alta"].unique()
-
     # print(f"Unique values ({len(unique_values)}): {unique_values}")
 
     return df
@@ -282,69 +282,7 @@ def assign_medication(df: pd.DataFrame, medications) -> pd.DataFrame:
         df[medication] = df['sedacion'].apply(lambda x: 1 if medication in x else 0)
     return df
 
-def encoding_variables(df: pd.DataFrame, parameters) -> pd.DataFrame:
-    """
-    Encode and transform a given dataframe.
-
-    Parameters:
-    - df (pd.DataFrame): Dataframe to encode and transform.
-
-    Returns:
-    - pd.DataFrame: Transformed dataframe with specific columns and their data types converted.
-    """
-    
-    def map_hospital_category(hospital_name):
-        """Map hospital name to a specific category."""
-        mapping = parameters["hospital_category_mapping"]
-        return mapping.get(hospital_name, 'otros')
-
-    def map_values(val):
-        """Map specific values to binary values."""
-        no_values = parameters["no_values"]
-        yes_values = parameters["yes_values"]
-        
-        return 1 if val in yes_values else 0
-    
-    def apply_frequency_encoding(column_name):
-        """Apply frequency encoding to a specific column."""
-        frequencies = df[column_name].value_counts(normalize=True)
-        df[column_name] = df[column_name].map(frequencies).fillna(0)  # Handling potential missing values
-    
-    df['hospital_category'] = df['h_procedencia'].apply(map_hospital_category)
-    df['hospital_category'].replace(parameters["hospital_categories"], inplace=True)
-    
-    columns_to_map = parameters["columns_to_map"]
-    for col in columns_to_map:
-        df[col] = df[col].apply(map_values)
-    
-    columns_for_freq_encoding = parameters["columns_for_freq_encoding"]
-    for col in columns_for_freq_encoding:
-        apply_frequency_encoding(col)
-    
-    # Mapeos para las categorías
-    diagnosis_category_map = parameters["diagnosis_category_map"]
-    ingreso_category_map = parameters["ingreso_category_map"]
-    alta_category_map = parameters["alta_category_map"]
-    procedencia_category_map = parameters["procedencia_category_map"]
-    otros_category_map = parameters["otros_category_map"]
-    categorized_combined_otros_map = parameters["categorized_combined_otros_map"]
-
-    # Aplicar los mapeos a las columnas correspondientes
-    df['diagnosis_category'] = df['diagnosis_category'].map(diagnosis_category_map)
-    df['ingreso_category'] = df['ingreso_category'].map(ingreso_category_map)
-    df['alta_category'] = df['alta_category'].map(alta_category_map)
-    df['procedencia_category'] = df['procedencia_category'].map(procedencia_category_map)
-    df['otros_category'] = df['otros_category'].map(otros_category_map)
-    df['categorized_combined_otros'] = df['categorized_combined_otros'].map(categorized_combined_otros_map)
-    
-    columns_order = parameters["columns_order"]
-    df = df[columns_order]
-    
-    return df.select_dtypes(exclude=['object'])
-
-
 # Funciones para la categorización de columnas
-
 def apply_categorization(df: pd.DataFrame, parameters) -> pd.DataFrame:
     def classify(value, categories):
         for category, keywords in categories.items():
@@ -353,11 +291,12 @@ def apply_categorization(df: pd.DataFrame, parameters) -> pd.DataFrame:
                     return category
         return "Otros"
 
-    df['diagnosis_category'] = df['diagnostico'].apply(lambda x: classify(x, parameters["diagnosis_categories"]))
-    df['ingreso_category'] = df['motivo_ing'].apply(lambda x: classify(x, parameters["ingreso_categories"]))
-    df['alta_category'] = df['motivo_alta'].apply(lambda x: classify(x, parameters["alta_categories"]))
-    df['procedencia_category'] = df['s_procedencia'].apply(lambda x: classify(x, parameters["procedencia_categories"]))
-    df['otros_category'] = df['otros'].apply(lambda x: classify(x, parameters["otros_categories"]))
+    df['hospital_category'] = df['h_procedencia'].apply(lambda x: classify(x, parameters['hospital_categories']))
+    df['diagnosis_category'] = df['diagnostico'].apply(lambda x: classify(x, parameters['diagnosis_categories']))
+    df['ingreso_category'] = df['motivo_ing'].apply(lambda x: classify(x, parameters['ingreso_categories']))
+    df['alta_category'] = df['motivo_alta'].apply(lambda x: classify(x, parameters['alta_categories']))
+    df['procedencia_category'] = df['s_procedencia'].apply(lambda x: classify(x, parameters['procedencia_categories']))
+    df['otros_category'] = df['otros'].apply(lambda x: classify(x, parameters['otros_categories']))
 
     return df
 
@@ -408,3 +347,59 @@ def categorize_and_group_combined_otros(data: pd.DataFrame, parameters) -> pd.Da
     data['categorized_combined_otros'] = data['categorized_combined_otros'].apply(lambda x: x if x in main_categories else "Otros")
     
     return data
+
+def encoding_variables(df: pd.DataFrame, parameters) -> pd.DataFrame:
+    """
+    Encode and transform a given dataframe.
+
+    Parameters:
+    - df (pd.DataFrame): Dataframe to encode and transform.
+
+    Returns:
+    - pd.DataFrame: Transformed dataframe with specific columns and their data types converted.
+    """
+    def map_values(val):
+        """Map specific values to binary values."""
+        no_values = parameters["no_values"]
+        yes_values = parameters["yes_values"]
+        
+        return 1 if val in yes_values else 0
+    
+    def apply_frequency_encoding(column_name):
+        """Apply frequency encoding to a specific column."""
+        frequencies = df[column_name].value_counts(normalize=True)
+        df[column_name] = df[column_name].map(frequencies).fillna(0)  # Handling potential missing values
+    
+    columns_to_map = parameters['columns_to_map']
+    for col in columns_to_map:
+        df[col] = df[col].apply(map_values)
+    
+    columns_for_freq_encoding = parameters['columns_for_freq_encoding']
+    if columns_for_freq_encoding:
+        for col in columns_for_freq_encoding:
+            apply_frequency_encoding(col)
+    else:
+        pass
+    
+    # Maps for the categories
+    hospital_category_map = parameters['hospital_category_map'] # Values {Santiago, no, Otros}
+    diagnosis_category_map = parameters['diagnosis_category_map']
+    ingreso_category_map = parameters['ingreso_category_map']
+    alta_category_map = parameters['alta_category_map']
+    procedencia_category_map = parameters['procedencia_category_map']
+    otros_category_map = parameters['otros_category_map']
+    categorized_combined_otros_map = parameters['categorized_combined_otros_map']
+
+    # Aplicar los mapeos a las columnas correspondientes
+    df['hospital_category'] = df['hospital_category'].map(hospital_category_map)
+    df['diagnosis_category'] = df['diagnosis_category'].map(diagnosis_category_map)
+    df['ingreso_category'] = df['ingreso_category'].map(ingreso_category_map)
+    df['alta_category'] = df['alta_category'].map(alta_category_map)
+    df['procedencia_category'] = df['procedencia_category'].map(procedencia_category_map)
+    df['otros_category'] = df['otros_category'].map(otros_category_map)
+    df['categorized_combined_otros'] = df['categorized_combined_otros'].map(categorized_combined_otros_map)
+    
+    columns_order = parameters["columns_order"]
+    df = df[columns_order]
+    
+    return df

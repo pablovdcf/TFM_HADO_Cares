@@ -187,9 +187,9 @@ hado_final:
   layer: feature
 
 # Modeling
-hado_model:
+hado_encoded:
   type: pandas.CSVDataSet
-  filepath: data/05_model_input/hado_model.csv
+  filepath: data/04_feature/hado_encoded.csv
   save_args:
     sep: "^"
     index: False
@@ -198,66 +198,112 @@ hado_model:
     na_values: ["#NA", NA]
   layer: model
 
-X_train_preprocessed:
+# DATA SPLIT X_train `preprocessed`
+X_alta_train_preprocessed:
   type: pickle.PickleDataSet
-  filepath: data/07_model_output/X_train_alta.pkl
+  filepath: data/05_model_input/X_alta_train_preprocessed.pkl
   backend: pickle
   layer: model
 
-y_train:
+X_diag_train_preprocessed:
   type: pickle.PickleDataSet
-  filepath: data/07_model_output/y_train_alta.pkl
+  filepath: data/05_model_input/X_diag_train_preprocessed.pkl
   backend: pickle
   layer: model
 
-X_train_diagnosis:
+# DATA SPLIT Y_train
+y_alta_train:
   type: pickle.PickleDataSet
-  filepath: data/07_model_output/X_train_diagnosis.pkl
+  filepath: data/05_model_input/y_alta_train.pkl
   backend: pickle
   layer: model
 
-y_train_diagnosis:
+y_diag_train:
   type: pickle.PickleDataSet
-  filepath: data/07_model_output/y_train_diagnosis.pkl
+  filepath: data/05_model_input/y_diag_train.pkl
   backend: pickle
   layer: model
 
-X_test_preprocessed:
+# DATA SPLIT test `preprocessed`
+X_alta_test_preprocessed:
   type: pickle.PickleDataSet
-  filepath: data/07_model_output/X_test_pkl
+  filepath: data/05_model_input/X_alta_test_preprocessed.pkl
   backend: pickle
   layer: model
 
-y_test:
+y_alta_test:
   type: pickle.PickleDataSet
-  filepath: data/07_model_output/y_test_alta.pkl
+  filepath: data/05_model_input/y_test_alta.pkl
   backend: pickle
 
-X_test_diagnosis:
+X_diag_test_preprocessed:
   type: pickle.PickleDataSet
-  filepath: data/07_model_output/X_test_diagnosis.pkl
+  filepath: data/05_model_input/X_test_diag_preprocessed.pkl
   backend: pickle
   layer: model
 
 y_test_diagnosis:
   type: pickle.PickleDataSet
-  filepath: data/07_model_output/y_test_diagnosis.pkl
+  filepath: data/05_model_input/y_test_diagnosis.pkl
   backend: pickle
 
+# Classification and Regression Models
 random_forest_model_alta:
   type: pickle.PickleDataSet
-  filepath: data/06_models/RandomForest_model.pkl
+  filepath: data/06_models/RandomForest_alta_model.pkl
   versioned: true
   layer: model
 
-xgboost_model:
+random_forest_model_diag:
   type: pickle.PickleDataSet
-  filepath: data/06_models/XGBoost_model.pkl
+  filepath: data/06_models/RandomForest_diag_model.pkl
   versioned: true
   layer: model
 
-lightgbm_model:
+xgboost_model_alta:
   type: pickle.PickleDataSet
-  filepath: data/06_models/ligthgbm_model.pkl
+  filepath: data/06_models/XGBoost_alta_model.pkl
   versioned: true
   layer: model
+
+xgboost_model_diag:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/XGBoost_diag_model.pkl
+  versioned: true
+  layer: model
+
+lightgbm_model_alta:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/ligthgbm_alta_model.pkl
+  versioned: true
+  layer: model
+
+lightgbm_model_diag:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/ligthgbm_diag_model.pkl
+  versioned: true
+  layer: model
+
+confusion_matrix_rf_alta_image:
+  type: kedro.extras.datasets.pillow.ImageDataSet
+  filepath: data/07_model_output/confusion_matrix_rf_alta_image.png
+
+confusion_matrix_rf_diag_image:
+  type: kedro.extras.datasets.pillow.ImageDataSet
+  filepath: data/07_model_output/confusion_matrix_rf_diag_image.png
+
+confusion_matrix_lgb_alta_image:
+  type: kedro.extras.datasets.pillow.ImageDataSet
+  filepath: data/07_model_output/confusion_matrix_lgb_alta_image.png
+
+confusion_matrix_lgb_diag_image:
+  type: kedro.extras.datasets.pillow.ImageDataSet
+  filepath: data/07_model_output/confusion_matrix_lgb_diag_image.png
+
+confusion_matrix_xgb_alta_image:
+  type: kedro.extras.datasets.pillow.ImageDataSet
+  filepath: data/07_model_output/confusion_matrix_xgb_alta_image.png
+
+confusion_matrix_xgb_diag_image:
+  type: kedro.extras.datasets.pillow.ImageDataSet
+  filepath: data/07_model_output/confusion_matrix_xgb_diag_image.png

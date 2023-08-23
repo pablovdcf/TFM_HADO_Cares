@@ -4,13 +4,8 @@
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/0.18.10/kedro_project_setup/configuration.html#parameters
 
-# Parámetros para el pipeline de modelado
-split_options:
-  test_size: 0.2
-  random_state: 3
-  target: ['alta_category', 'diagnosis_category']
-
 model_options_alta:
+  target: 'alta_category'
   test_size: 0.2
   random_state: 3
   features:
@@ -48,6 +43,7 @@ model_options_alta:
     - 'levomepromazina'
     
 model_options_diagnosis:
+  target: 'diagnosis_category'
   test_size: 0.2
   random_state: 3
   features:
