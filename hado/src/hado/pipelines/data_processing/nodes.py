@@ -302,7 +302,7 @@ def apply_categorization(df: pd.DataFrame, parameters) -> pd.DataFrame:
 
 # Funciones para la combinación y categorización de las columnas 'otros'
 
-def categorize_and_group_combined_otros(data: pd.DataFrame, parameters) -> pd.DataFrame:
+def categorize_and_group_combined_otros(df: pd.DataFrame, parameters) -> pd.DataFrame:
     """
     Combine specified columns, categorize their values based on predefined categories, 
     and group non-primary categories into the "Otros" category.
@@ -335,18 +335,22 @@ def categorize_and_group_combined_otros(data: pd.DataFrame, parameters) -> pd.Da
         return '|'.join(categories_result) if categories_result else "Otros"
 
     # Combine the columns
-    data['combined_otros'] = data.apply(combine_columns, axis=1)
+    df['combined_otros'] = df.apply(combine_columns, axis=1)
     
     # Apply the function to classify values
-    data['categorized_combined_otros'] = data['combined_otros'].apply(classify_combined_otros)
+    df['categorized_combined_otros'] = df['combined_otros'].apply(classify_combined_otros)
     
     # List of primary categories
     main_categories = list(categories.keys())
 
     # Replace any value not in main_categories with "Otros"
-    data['categorized_combined_otros'] = data['categorized_combined_otros'].apply(lambda x: x if x in main_categories else "Otros")
+    df['categorized_combined_otros'] = df['categorized_combined_otros'].apply(lambda x: x if x in main_categories else "Otros")
     
-    return data
+    # Order df columns
+    columns_order = parameters["columns_order"]
+    df = df[columns_order]
+    
+    return df
 
 def encoding_variables(df: pd.DataFrame, parameters) -> pd.DataFrame:
     """
@@ -398,8 +402,5 @@ def encoding_variables(df: pd.DataFrame, parameters) -> pd.DataFrame:
     df['procedencia_category'] = df['procedencia_category'].map(procedencia_category_map)
     df['otros_category'] = df['otros_category'].map(otros_category_map)
     df['categorized_combined_otros'] = df['categorized_combined_otros'].map(categorized_combined_otros_map)
-    
-    columns_order = parameters["columns_order"]
-    df = df[columns_order]
-    
+        
     return df

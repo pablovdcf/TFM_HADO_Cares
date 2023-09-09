@@ -400,9 +400,15 @@ hospital_categories:
   Otros: ['si', 'hula', 'salnes', 'chuac', 'rosaleda', 'pontevedra', 'lucus augusti', 'quiron la coruna','san rafael la coruna']
 
 diagnosis_categories:
-  Infecciones: ["infeccion", "ITU", "sepsis", "bacteriemia", "neumonia", "infectiva", "absceso"]
-  Enfermedades Cardiacas: ["cardiaca", "coronaria", "corazon", "miocardio", "arritmia"]
-  Canceres: ["cancer", "tumor", "neoplasia", "leucemia", "linfoma", "melanoma", "carcinoma"]
+  Cardiacas: ["cardiaca", "corazon", "miocardio", "arritmia", "insuficiencia cardiaca", "endocarditis"]
+  Pulmonares y respiratorias: ["pulmon", "neumonia", "broncoaspiracion", "bronquiectasias", "fibrosis pulmonar", "insuficiencia respiratoria"]
+  Neurologicas: ["demencia", "ela", "acv", "encefalopatia", "glioblastoma"]
+  Hepaticas y pancreaticas: ["cirrosis", "hepatocarcinoma", "colangitis", "colangiocarcinoma", "pancreas"]
+  Renales y urinarias: ["ITU", "infeccion urinaria", "pielonefritis", "prostatitis", "renal"]
+  Canceres y neoplasias: ["cancer", "tumor", "glioblastoma", "linfoma", "mieloma", "carcinoma", "neoplasia", "hepatocarcinoma", "colangiocarcinoma"]
+  Hematologicas: ["anemia", "linfoma", "mieloma", "leucemia", "sindrome mielodisplasico"]
+  Infecciones: ["infeccion", "sepsis", "bacteriemia", "bronquiectasias infectadas", "endocarditis", "pielonefritis", "prostatitis", "diverticulitis", "celulitis"]
+  Musculoesqueléticas y de piel: ["amputacion", "ulcera", "fractura"]
 
 ingreso_categories:
   Sintomas: ["sintoma", "dolor", "disnea", "nauseas", "fiebre", "malestar"]
@@ -419,6 +425,12 @@ procedencia_categories:
   Oncologia: ["oncologia"]
   Urgencias: ["urgencias"]
   MIR: ["mir"]
+  Unidad Paliativos: ["upal"]
+  Neumologia: ["neumologia"]
+  Digestivo: ["digestivo"]
+  Hematologia: ["hematologia"]
+  Cardiologia: ["cgd", "cardiologia"]
+  Neurologia: ["neurologia"]
 
 otros_categories:
   Especialidades Medicas: ["nefrologia", "oncologia", "cardiologia", "neumologia", "urologia", "digestivo", "vascular"]
@@ -442,7 +454,7 @@ combined_otros_columns:
 # map_values (cols to map ap, paliativo_onc_noc, paliativo_no_onc_noc ...)
 yes_values:
   - si
-  - 2 concentrados
+  - '2 concentrados'
 
 no_values:
   - 'no'
@@ -488,9 +500,17 @@ hospital_category_map:
 
 diagnosis_category_map:
   Canceres: 0
-  Enfermedades Cardiacas: 1
+  Cardiacas: 1
   Infecciones: 2
-  Otros: 3
+  Pulmonares y respiratorias: 3
+  Neurologicas: 4
+  Hepaticas y pancreaticas: 5
+  Renales y urinarias: 6
+  Canceres y neoplasias: 7
+  Hematologicas: 8
+  Infecciones: 9
+  Musculoesqueléticas y de piel: 10
+  Otros: 11
 
 ingreso_category_map:
   Tratamientos: 0
@@ -508,7 +528,14 @@ procedencia_category_map:
   Urgencias: 0
   Oncologia: 1
   MIR: 2
+  Unidad Paliativos: 3
+  Neumologia: 4
+  Digestivo: 5
+  Hematologia: 6
+  Cardiologia: 7
+  Neurologia: 8
   Otros: 3
+
 
 otros_category_map:
   Especialidades Medicas: 0

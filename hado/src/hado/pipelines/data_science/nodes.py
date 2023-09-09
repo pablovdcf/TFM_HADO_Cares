@@ -19,6 +19,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.base import BaseEstimator
+from sklearn.model_selection import GridSearchCV, StratifiedKFold
 import importlib
 import logging
 
@@ -83,7 +84,7 @@ def preprocess_split_data(data: pd.DataFrame, parameters) -> Tuple[pd.DataFrame,
     # Aplicar el preprocesador a los datos
     X_train_preprocessed = preprocessor.fit_transform(X_train)
     X_test_preprocessed = preprocessor.transform(X_test)
-    print(f"y_train\n{y_train.unique()}\n{'='*50}\ny_test\n{y_test.unique()}")
+    # print(f"y_train\n{y_train.unique()}\n{'='*50}\ny_test\n{y_test.unique()}")
     return X_train_preprocessed, X_test_preprocessed, y_train, y_test
 
 # Entrenar los modelos
@@ -106,7 +107,10 @@ def train_clf_model(
     model_module = model_options.get("module")
     model_type = model_options.get("class")
     model_arguments = model_options.get("kwargs")
-
+    
+    # Parse parameters for GridSearchCV
+    param_grid = model_options.get("param_grid", {})
+    
     # Import and instantiate the classifier object
     classifier_class = getattr(importlib.import_module(model_module), model_type)
     
@@ -117,6 +121,8 @@ def train_clf_model(
         y_train = label_encoder.fit_transform(y_train)
 
     classifier_instance = classifier_class(**model_arguments)
+    
+    # Descomentar para usar los mejores parámetros del Grid Search cambiandolos en data_science.yml
 
     logger = logging.getLogger(__name__)
     logger.info(f"Fitting classifier of type {type(classifier_instance)}")
@@ -126,12 +132,26 @@ def train_clf_model(
     flat_model_params = {**{"model_type": model_type}, **model_arguments}
     
     return classifier_instance, flat_model_params, label_encoder
+    
+    # Descomentar para usar Grid Search (param_grid) y comentar desde logger hasta return classifier
+    # # Use stratified cross-validation to maintain the class distribution
+    # cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+    # # GridSearchCV
+    # grid_search = GridSearchCV(classifier_instance, param_grid, cv=cv, scoring='accuracy', n_jobs=-1)
+    # grid_search.fit(X_train, y_train)
+    
+    # best_model = grid_search.best_estimator_
+    # best_params = grid_search.best_params_
+    
+    # return best_model, best_params, label_encoder
 
 
-# Evaluacion
+# Evaluation for the model
 
 def evaluate_model(model_and_params: Tuple[BaseEstimator, Dict[str, Any], Optional[LabelEncoder]], X_test: pd.DataFrame, y_test: pd.Series) -> Image:
     model, _, label_encoder = model_and_params  # Desempaquetamos la tupla
+    
     # Si hay un label_encoder, codificar y_test antes de predecir
     if label_encoder is not None:
         y_test_encoded = label_encoder.transform(y_test)

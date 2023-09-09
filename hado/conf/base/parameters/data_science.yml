@@ -80,46 +80,62 @@ model_options_diagnosis:
     - 'haloperidol'
     - 'levomepromazina'
 
-cross_validation:
-  cv: 5  # número de divisiones para validación cruzada
-
-grid_search_rf:  # Parámetros para la búsqueda en cuadrícula de RandomForest
-  n_estimators: [100, 300]
-  max_depth: [5, 15, None]
-  criterion: ['gini', 'entropy']
-
-grid_search_xgb:  # Parámetros para la búsqueda en cuadrícula de XGBoost
-  n_estimators: [100, 300]
-  learning_rate: [0.01, 0.1, 0.3]
-
-grid_search_lgbm:  # Parámetros para la búsqueda en cuadrícula de LightGBM
-  n_estimators: [100, 300]
-  learning_rate: [0.01, 0.1, 0.3]
-
 random_forest:
   module: sklearn.ensemble
   class: RandomForestClassifier
   kwargs:
-    n_estimators: 100
-    criterion: gini
-    bootstrap: true
-    oob_score: false
+      bootstrap:  False
+      max_depth: 30
+      n_estimators: 150
+
+  param_grid:
+      n_estimators: [50, 100, 150]
+      max_depth: [None, 10, 20, 30]
+      min_samples_split: [2, 5, 10]
 
 xgb:
   module: xgboost
   class: XGBClassifier
   kwargs:
-    n_estimators: 100
-    learning_rate: 0.01
-    early_stopping_rounds: null 
+      colsample_bytree: 0.8
+      gamma: 0.1
+      learning_rate: 0.01
+      max_depth: 7
+      n_estimators: 150
+      reg_lambda: 1
+      subsample: 0.9
+
+  param_grid:
+      learning_rate: [0.01, 0.05, 0.1]
+      n_estimators: [50, 100, 150]
+      max_depth: [3, 5, 7]
+      subsample: [0.8, 0.9, 1.0]
+      colsample_bytree: [0.8, 0.9, 1.0]
+      gamma: [0, 0.1, 0.2]
+      reg_lambda: [1, 1.5, 2]
+
 
 lgbm:
   module: lightgbm
   class: LGBMClassifier
   kwargs:
-    n_estimators: 100
-    learning_rate: 0.01
-    early_stopping_rounds: null 
+      colsample_bytree: 0.8
+      learning_rate: 0.01
+      max_depth: 7
+      n_estimators: 150
+      reg_alpha: 0
+      reg_lambda: 2
+      subsample: 0.8
+
+  param_grid:
+      learning_rate: [0.01, 0.05, 0.1]
+      n_estimators: [50, 100, 150]
+      max_depth: [3, 5, 7]
+      subsample: [0.8, 0.9, 1.0]
+      colsample_bytree: [0.8, 0.9, 1.0]
+      reg_lambda: [1, 1.5, 2]
+      reg_alpha: [0, 0.1, 0.2]
+
 
 # RandomForestRegressor:
   # n_estimators: 100

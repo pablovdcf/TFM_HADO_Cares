@@ -91,10 +91,10 @@ hado_concat:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/HADO_concat.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: raw_preprocessing
 
@@ -102,10 +102,10 @@ hado_clean:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/HADO_clean.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: raw_processing
 
@@ -113,10 +113,10 @@ hado_clean_na:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/hado_clean_na.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: intermediate_processing
 
@@ -124,10 +124,10 @@ hado_replaced_words:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/hado_replaced_words.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: intermediate_processing
 
@@ -135,10 +135,10 @@ hado_cleaned:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/hado_cleaned.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: intermediate_processing
 
@@ -146,10 +146,10 @@ hado_cleaned_sedation:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/hado_cleaned_medication.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: final_processing
 
@@ -157,10 +157,10 @@ hado_cleaned_medication:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/hado_cleaned_medication.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: final_processing
 
@@ -168,10 +168,10 @@ hado_categorized:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/data_categorized.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: final_processing
 
@@ -179,10 +179,10 @@ hado_final:
   type: pandas.CSVDataSet
   filepath: data/04_feature/hado_final.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: feature
 
@@ -191,10 +191,10 @@ hado_encoded:
   type: pandas.CSVDataSet
   filepath: data/04_feature/hado_encoded.csv
   save_args:
-    sep: "^"
+    sep: ","
     index: False
   load_args:
-    sep: "^"
+    sep: ","
     na_values: ["#NA", NA]
   layer: model
 
