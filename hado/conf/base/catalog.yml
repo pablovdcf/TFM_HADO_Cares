@@ -120,9 +120,53 @@ hado_clean_na:
     na_values: ["#NA", NA]
   layer: intermediate_processing
 
+hado_barthel_cleaned:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/hado_clean_barthel.csv
+  save_args:
+    sep: ","
+    index: False
+  load_args:
+    sep: ","
+    na_values: ["#NA", NA]
+  layer: intermediate_processing
+
+hado_ps_ecog_cleaned:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/hado_clean_ps_ecog.csv
+  save_args:
+    sep: ","
+    index: False
+  load_args:
+    sep: ","
+    na_values: ["#NA", NA]
+  layer: intermediate_processing
+
+hado_gds_fast_cleaned:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/hado_gds_fast.csv
+  save_args:
+    sep: ","
+    index: False
+  load_args:
+    sep: ","
+    na_values: ["#NA", NA]
+  layer: intermediate_processing
+
 hado_replaced_words:
   type: pandas.CSVDataSet
   filepath: data/02_intermediate/hado_replaced_words.csv
+  save_args:
+    sep: ","
+    index: False
+  load_args:
+    sep: ","
+    na_values: ["#NA", NA]
+  layer: intermediate_processing
+
+hado_lat_lon:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/hado_lat_lon.csv
   save_args:
     sep: ","
     index: False

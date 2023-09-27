@@ -7,389 +7,424 @@
 # Dict for replaces in NA values for columns replace_missing_node
 
 replacement_dict_na:
-  desconocido: ['diagnostico', 'motivo_ing', 'motivo_alta', 'medico', 'sedacion', 'ayuntamiento', 'otros_2']
-  'no': ['h_procedencia', 'otros', 'otros_1', 'otros_complicaciones']
-  vacio: ['fe_iv', 'toracocentesis', 'paracentesis', 'transfusion', 'trato_antibiotico', 'cronico_reag', 'agudo_estable', 'ast_anorx', 'agonia', 'p_terminal', 'delirium', 'dolor', 'disnea', 'fiebre', 'paliativo_no_onc_noc', 'paliativo_onc_noc', 'ap', 'fecha_alta']
+  desconocido: ['diagnostico', 'motivo_ing', 'motivo_alta', 'medico', 'sedacion', 'ayuntamiento', 'otros_2','h_procedencia', 'otros', 'otros_1', 'otros_complicaciones','fe_iv', 'toracocentesis', 'paracentesis', 'transfusion', 'trato_antibiotico', 'cronico_reag', 'agudo_estable', 'ast_anorx', 'agonia', 'p_terminal', 'delirium', 'dolor', 'disnea', 'fiebre', 'paliativo_no_onc_noc', 'paliativo_onc_noc', 'ap', 'fecha_alta']
   '0': ['gds_fast', 'eva_ing', 'barthel', 'ps_ecog']
 
 
 # ------------------------- START word_replacement_node -------------------------
-replacement_dict_general:
-  n0: 'no'
-  np: 'no'
-  nk: 'no'
-  nn: 'no'
-  ono: 'no'
-  son: 'no'
-  ns: 'no'
-  o: 'no'
-  mo: 'no'
-  nop: 'no'
-  'on': 'no'
-  nsi: si
-  ni: 'no'
-  ssi: si
-  so: si
-  is: si
-  s: si
-  clincio: clinico
-  clnico: clinico
-  clínico: clinico
-  cliinico: clinico
-  clincico: clinico
-  clinoco: clinico
-  clinicoap: clinico
+word_replacement:
+  replacement_dict_general:
+    n0: 'no'
+    np: 'no'
+    nk: 'no'
+    nn: 'no'
+    ono: 'no'
+    son: 'no'
+    ns: 'no'
+    o: 'no'
+    mo: 'no'
+    nop: 'no'
+    'on': 'no'
+    nsi: si
+    ni: 'no'
+    ssi: si
+    so: si
+    is: si
+    s: si
+    clincio: clinico
+    clnico: clinico
+    clínico: clinico
+    cliinico: clinico
+    clincico: clinico
+    clinoco: clinico
+    clinicoap: clinico
 
-replacement_dict_diagnostico:
-  iccbacteriemia: 'insuficiencia cardiaca cronica bacteriemia'
-  icc: 'insuficiencia cardiaca cronica'
-  ic: 'insuficiencia cardiaca'
-  'insf ': insuficiencia
-  'i cardiaca': 'insuficiencia cardiaca'
-  icardiaca: 'insuficiencia cardiaca'
-  insufcardiaca: 'insuficiencia cardiaca'
-  insuficienciacardiaca: 'insuficiencia cardiaca'
-  1tu: 'ITU (infeccion del tracto urinario)'
-  itu: 'ITU (infeccion del tracto urinario)'
-  ituinfeccion: infeccion
-  inf: infeccion
-  infecc: 'infeccion'
-  infecion: 'infeccion'
-  infec: 'infeccion'
-  capulmon: 'cancer pulmon'
-  canc: cancer
-  ca: cancer
-  insuf: insuficiencia
-  est: estadio
-  e: estadio
-  fr: fractura
-  deteriorocognitivo: 'deterioro cognitivo'
-  iv: IV
-  resp: respiratoria
-  0steomielitis: osteomielitis
+  replacement_dict_diagnostico:
+    iccbacteriemia: 'insuficiencia cardiaca cronica bacteriemia'
+    icc: 'insuficiencia cardiaca cronica'
+    ic: 'insuficiencia cardiaca'
+    'insf ': insuficiencia
+    'i cardiaca': 'insuficiencia cardiaca'
+    icardiaca: 'insuficiencia cardiaca'
+    insufcardiaca: 'insuficiencia cardiaca'
+    insuficienciacardiaca: 'insuficiencia cardiaca'
+    1tu: 'ITU'
+    itu: 'ITU'
+    ituinfeccion: infeccion
+    inf: infeccion
+    infecc: 'infeccion'
+    infecion: 'infeccion'
+    infec: 'infeccion'
+    capulmon: 'cancer pulmon'
+    canc: cancer
+    ca: cancer
+    insuf: insuficiencia
+    est: estadio
+    e: estadio
+    fr: fractura
+    deteriorocognitivo: 'deterioro cognitivo'
+    iv: IV
+    resp: respiratoria
+    0steomielitis: osteomielitis
+    neplasia: neoplasia
+    adenoca: adenoma
+    sepsisi: sepsis
+    caepidermoide: carcinoma epidermoide
+    ucera: ulcera
+    alzheimertromboembolismo: alzheimer trombo embolismo
+    deteriioro: deterioro
+    miasteniabronquiectasias: miastenia bronquiectasia
+    brnquiectasias: bronquiectasia
+    quirurgicaarteriopatia: quirurgica arteriopatia
+    respiratoriasuboclusion: respiratoria suboclusion
+    respiratoriainsuf: respiratoria insuficiencia
+    sistemicodeterioro: sistemico deterioro
+    ituca: itu cancer
+    ituincont: itu incontinencia
+    ituinfec: itu infeccion
+    piwe: pie
+    pulm: pulmon
+    urinarui: urinaria
+    trtraparesia: tetraparesia
+    colangiocarcinima: colangiocarcinoma
+    bacteriemiadeterioro: bacteriemia deterioro
+    wpidermoide: epidermoide
+    (infeccion del tracto urinario): ITU
+    conmtrol: control
+    mamam: mama
 
-replacement_dict_hospital_proc:
-  hgc: 'gil casares'
-  hcg: 'gil casares'
-  hm rosaleda: rosaleda
-  hm: rosaleda
 
-replacement_dict_service_proc:
-  'con ext oncologia': 'oncologia consultas externas'
-  'con ext onco': 'oncologia consultas externas'
-  'oncconsultas externa': 'oncologia consultas externas'
-  oncconsultas: 'oncologia consultas externas'
-  'oncol consulta externa': 'oncologia consultas externas'
-  oncourg: 'oncologia urgencias'
-  oncurg: 'oncologia urgencias'
-  urgonc: 'oncologia urgencias'
-  oncolo: oncologia
-  onco: oncologia
-  0nc: oncologia
-  onc: oncologia
-  'consultas externas cplastica': 'consultas externas cirugia plastica'
-  cplastica: 'cirugia plastica'
-  cpl: 'cirugia plastica'
-  endocrino: endocrinologia
-  end: endocrinologia
-  urgurg:  urgencias
-  urgrn: urgencias
-  urgcirugia: 'urgencias cirugia'
-  urg: urgencias
-  ccee: 'consultas externas'
-  uro: urologia
-  tramatologia: traumatologia
-  trauma: traumatologia
-  tra: traumatologia
-  'nmlconsultas esterna': 'neumologia consultas externas'
-  'nmlconsutas externas': 'neumologia consultas externas'
-  'nmlcosultas externas': 'neumologia consultas externas'
-  'cexternas neumologia': 'neumologia consultas externas'
-  nmlurg : 'neumologia urgencias'
-  'hdd neumologia': 'hado neumologia'
-  neeumologia: neumologia
-  neomologia: neumologia
-  nemologia: neumologia
-  neumo: neumologia
-  neum: neumologia
-  nmlp: neumologia
-  neu: neumologia
-  mnl: neumologia
-  nml: neumologia
-  maxilofac: maxilofacial
-  cmx: 'cirugia maxilofacial'
-  cmf: 'cirugia maxilofacial'
-  'urgencias nrl': 'urgencias neurología'
-  neurc: neurologia
-  neuro: neurologia
-  nrl: neurologia
-  nof: nefrologia
-  nfr: nefrologia
-  reu: reumatologia
-  'cexternas mir': 'consultas externas mir'
-  rehab: rehabilitacion
-  ccardiaca: 'cirugia cardiaca'
-  ccar: 'cirugia cardiologia'
-  cadiologia: cardiologia
-  card: cardiologia
-  car: cardiologia
-  digstivo: digestivo
-  dig: digestivo
-  'gine': ginecologia
-  gin: ginecologia
-  hematoloxia: hematologia
-  hematolog: hematologia
-  hematol: hematologia
-  hemato: hematologia
-  hem: hematologia
-  hemurg: 'hematologia urgencias'
-  'c externas': 'consultas externas'
-  'cee nefrologia': nefrologia
-  nef: nefrologia
-  cee: 'consultas externas'
-  c: cirugia
-  cvascular: 'cirugia vascular'
-  'cirugia vasc': 'cirugia vascular'
-  radtp: radioterapia
-  rdp: radioterapia
-  rdt: radioterapia
-  rtp: radioterapia
-  mirpro: 'mir provincial'
-  mirp: 'mir provincial'
+  replacement_dict_hospital_proc:
+    hgc: 'gil casares'
+    hcg: 'gil casares'
+    hm rosaleda: rosaleda
+    hm: rosaleda
 
-replacement_dict_motivo_ing:
-  admininistracio: administracion
-  admininistacion: administracion
-  tratamientoantibiotico: 'tratamiento antibiotico'
-  tratamientoiv: 'tratamiento IV'
-  trtatamiento: tratamiento
-  trratamiento: tratamiento
-  trato : tratamiento
-  trto: tratamiento
-  trtamiento: tratamiento
-  tratmiento: tratamiento
-  tratatmiento: tratamiento
-  tratamioento: tratamiento
-  tratamientyo: tratamiento
-  antiibiotico: antibiotico
-  tsindrome: 'tratamiento sindrome'
-  tto : tratamiento
-  anemiatransfusion: 'anemia transfusion'
-  cquirurgicas: quirurgicas
-  ivcontrol: 'IV control'
-  ' i v': IV
-  iv: IV
-  'secrecione ': secreciones
-  traqueostomia: traqueotomia
-  'control desintomas': 'control de sintomas'
-  'contro d ': 'control de'
-  contrlol: control 
-  ncontrol: control
-  cantrol: control 
-  controld: control
-  controo: control
-  contrl: control
-  cntrl: control
-  desintomas: sintomas
-  sintom: sintomas
-  sintoms: sintomas
-  sintpmas: sintomas
-  simtomas: sintomas
-  cadra: cadera
-  couidados: cuidados
-  palaitivos: paliativos
-  paniativos: paliativos
-  avanzadios: avanzados
-  uirurgica: quirurgica
-  'valoracio ': valoracion
-  valracion: valoracion
-  vaoracion: valoracion
-  valrar: valoracion
-  diahgnostico: diagnostico
-  infeccio: infeccion
-  infec: infeccion
-  trao: tratamiento
-  'trat ': tratamiento
-  'respirat ': respiratoria
-  administacion: administracion
-  adminiostracion:  administracion
-  antiibiotico: antibiotico
-  d: de
-  e: de
-  'control de sintomas': 'control sintomas'
+  replacement_dict_service_proc:
+    'con ext oncologia': 'oncologia consultas externas'
+    'con ext onco': 'oncologia consultas externas'
+    'oncconsultas externa': 'oncologia consultas externas'
+    oncconsultas: 'oncologia consultas externas'
+    'oncol consulta externa': 'oncologia consultas externas'
+    oncourg: 'oncologia urgencias'
+    oncurg: 'oncologia urgencias'
+    urgonc: 'oncologia urgencias'
+    oncolo: oncologia
+    onco: oncologia
+    0nc: oncologia
+    onc: oncologia
+    'consultas externas cplastica': 'consultas externas cirugia plastica'
+    cplastica: 'cirugia plastica'
+    cpl: 'cirugia plastica'
+    endocrino: endocrinologia
+    end: endocrinologia
+    urgurg:  urgencias
+    urgrn: urgencias
+    urgcirugia: 'urgencias cirugia'
+    urg: urgencias
+    ccee: 'consultas externas'
+    uro: urologia
+    tramatologia: traumatologia
+    trauma: traumatologia
+    tra: traumatologia
+    'nmlconsultas esterna': 'neumologia consultas externas'
+    'nmlconsutas externas': 'neumologia consultas externas'
+    'nmlcosultas externas': 'neumologia consultas externas'
+    'cexternas neumologia': 'neumologia consultas externas'
+    nmlurg : 'neumologia urgencias'
+    'hdd neumologia': 'hado neumologia'
+    neeumologia: neumologia
+    neomologia: neumologia
+    nemologia: neumologia
+    neumo: neumologia
+    neum: neumologia
+    nmlp: neumologia
+    neu: neumologia
+    mnl: neumologia
+    nml: neumologia
+    maxilofac: maxilofacial
+    cmx: 'cirugia maxilofacial'
+    cmf: 'cirugia maxilofacial'
+    'urgencias nrl': 'urgencias neurología'
+    neurc: neurologia
+    neuro: neurologia
+    nrl: neurologia
+    nof: nefrologia
+    nfr: nefrologia
+    reu: reumatologia
+    'cexternas mir': 'consultas externas mir'
+    rehab: rehabilitacion
+    ccardiaca: 'cirugia cardiaca'
+    ccar: 'cirugia cardiologia'
+    cadiologia: cardiologia
+    card: cardiologia
+    car: cardiologia
+    digstivo: digestivo
+    dig: digestivo
+    'gine': ginecologia
+    gin: ginecologia
+    hematoloxia: hematologia
+    hematolog: hematologia
+    hematol: hematologia
+    hemato: hematologia
+    hem: hematologia
+    hemurg: 'hematologia urgencias'
+    'c externas': 'consultas externas'
+    'cee nefrologia': nefrologia
+    nef: nefrologia
+    cee: 'consultas externas'
+    c: cirugia
+    cvascular: 'cirugia vascular'
+    'cirugia vasc': 'cirugia vascular'
+    radtp: radioterapia
+    rdp: radioterapia
+    rdt: radioterapia
+    rtp: radioterapia
+    mirpro: 'mir provincial'
+    mirp: 'mir provincial'
 
-replacement_dict_alta:
-  uregncias: urgencias
-  urg: urgencias
-  cuidadso: cuidados
-  onco: oncologia
-  onc: oncologia
-  reingres: reingreso
-  reingresoupal: reingreso upal
-  tralado: traslado
-  trasado: traslado
-  tto: tratamiento
-  'fin de cuidados': 'fin cuidados'
+  replacement_dict_motivo_ing:
+    admininistracio: administracion
+    admininistacion: administracion
+    tratamientoantibiotico: 'tratamiento antibiotico'
+    tratamientoiv: 'tratamiento IV'
+    trtatamiento: tratamiento
+    trratamiento: tratamiento
+    trato : tratamiento
+    trto: tratamiento
+    trtamiento: tratamiento
+    tratmiento: tratamiento
+    tratatmiento: tratamiento
+    tratamioento: tratamiento
+    tratamientyo: tratamiento
+    antiibiotico: antibiotico
+    tsindrome: 'tratamiento sindrome'
+    tto : tratamiento
+    anemiatransfusion: 'anemia transfusion'
+    cquirurgicas: quirurgicas
+    ivcontrol: 'IV control'
+    ' i v': IV
+    iv: IV
+    'secrecione ': secreciones
+    traqueostomia: traqueotomia
+    'control desintomas': 'control de sintomas'
+    'contro d ': 'control de'
+    contrlol: control 
+    ncontrol: control
+    cantrol: control 
+    controld: control
+    controo: control
+    contrl: control
+    cntrl: control
+    desintomas: sintomas
+    sintom: sintomas
+    sintoms: sintomas
+    sintpmas: sintomas
+    simtomas: sintomas
+    cadra: cadera
+    couidados: cuidados
+    palaitivos: paliativos
+    paniativos: paliativos
+    avanzadios: avanzados
+    uirurgica: quirurgica
+    'valoracio ': valoracion
+    valracion: valoracion
+    vaoracion: valoracion
+    valrar: valoracion
+    diahgnostico: diagnostico
+    infeccio: infeccion
+    infec: infeccion
+    trao: tratamiento
+    'trat ': tratamiento
+    'respirat ': respiratoria
+    administacion: administracion
+    adminiostracion:  administracion
+    antiibiotico: antibiotico
+    d: de
+    e: de
+    'control de sintomas': 'control sintomas'
 
-replacement_dict_medic:
-  'masa vazquez': masa
-  'suarez prado': suarez
-  '200': desconocido
+  replacement_dict_alta:
+    uregncias: urgencias
+    urg: urgencias
+    cuidadso: cuidados
+    onco: oncologia
+    onc: oncologia
+    reingres: reingreso
+    reingresoupal: reingreso upal
+    tralado: traslado
+    trasado: traslado
+    tto: tratamiento
+    'fin de cuidados': 'fin cuidados'
 
-replacement_dict_sedation:
-  sibuscaphalopsinoganmorfmidaz: 'si buscapina haloperidol morfina'
-  simidzmorfhaloperidolbuscap: 'si midazolam morfina buscapina haloperidol buscapina'
-  simorfbuscaphaloperidolmidaz: 'si morfina buscapina haloperidol midazolam'
-  buscapmidazmorfhaloperidol: 'buscapina midazolam morfina haloperidol'
-  simidazolanmorhhaloperidol: 'si midazolam morfina haloperidol'
-  sibuscapmidazolammorfina: 'si buscapina midazolam morfina'
-  simidazolammorfinabuscapina: 'si midazolam morfina buscapina'
-  sibuscmidmorfhalop: 'si buscapina midazolam morfina haloperidol'
-  siclmorficomidazolam: 'si morfina midazolam'
-  morfbuschalop: 'si morfina buscapina haloperidol'
-  haloperidolmorfina: 'si haloperidol morfina'
-  'sibuscapsonogancl morfmidaz': 'si buscapina morfina midazolam'
-  simorfbuscapmidaz: 'si morfina buscapina midazolam'
-  morfinasinogan: 'morfina'
-  simidmorfbuscap: 'si midazolam morfina buscapina'
-  simidazolam: 'si midazolam'
-  buscapmidazmorf: 'buscapina midazolam morfina'
-  midazolammorfina: 'midazolam morfina'
-  midazmorfbuscap: 'midazolam morfina buscapina'
-  morfinahaloperidol: 'morfina haloperidol'
-  buscap: 'buscapina'
-  ' y ': ''
+  replacement_dict_medic:
+    'masa vazquez': masa
+    'suarez prado': suarez
+    '200': desconocido
 
-replacement_dict_city_council:
-  'la estrada': estrada
-  'a estrada': estrada
-  losame: lousame
-  ordenes: ordes
-  pontecesuras: pontecesures
-  'santiago compostela': santiago
-  'santiago de com': santiago
-  'santiago de compostela': santiago
-  tordoya: tordoia
-  noya: noia
+  replacement_dict_sedation:
+    sibuscaphalopsinoganmorfmidaz: 'si buscapina haloperidol morfina'
+    simidzmorfhaloperidolbuscap: 'si midazolam morfina buscapina haloperidol buscapina'
+    simorfbuscaphaloperidolmidaz: 'si morfina buscapina haloperidol midazolam'
+    buscapmidazmorfhaloperidol: 'buscapina midazolam morfina haloperidol'
+    simidazolanmorhhaloperidol: 'si midazolam morfina haloperidol'
+    sibuscapmidazolammorfina: 'si buscapina midazolam morfina'
+    simidazolammorfinabuscapina: 'si midazolam morfina buscapina'
+    sibuscmidmorfhalop: 'si buscapina midazolam morfina haloperidol'
+    siclmorficomidazolam: 'si morfina midazolam'
+    morfbuschalop: 'si morfina buscapina haloperidol'
+    haloperidolmorfina: 'si haloperidol morfina'
+    'sibuscapsonogancl morfmidaz': 'si buscapina morfina midazolam'
+    simorfbuscapmidaz: 'si morfina buscapina midazolam'
+    morfinasinogan: 'morfina'
+    simidmorfbuscap: 'si midazolam morfina buscapina'
+    simidazolam: 'si midazolam'
+    buscapmidazmorf: 'buscapina midazolam morfina'
+    midazolammorfina: 'midazolam morfina'
+    midazmorfbuscap: 'midazolam morfina buscapina'
+    morfinahaloperidol: 'morfina haloperidol'
+    buscap: 'buscapina'
+    ' y ': ''
 
-replacement_dict_otros:
-  ccee: 'consultas externas'
-  ce: 'consultas externas'
-  consulta: consultas
-  familia: familiares
-  'hla rosaleda': rosaleda
-  'hospital la rosaleda': rosaleda
-  'p la rosaleda': rosaleda
-  'policlinico la rosaleda': rosaleda
-  nef: nefrologia
-  nefro: nefrologia
-  dig: digestivo
-  nml: neumologia
-  nmlend: 'neumologia endocrino'
-  onc: oncologia
-  urg: urgencias
-  uro: urologia
+  replacement_dict_city_council:
+    'la estrada': estrada
+    'a estrada': estrada
+    losame: lousame
+    ordenes: ordes
+    pontecesuras: pontecesures
+    'santiago compostela': santiago
+    'santiago de com': santiago
+    'santiago de compostela': santiago
+    tordoya: tordoia
+    noya: noia
 
-replacement_dict_otros_1:
-  '0clusion intestinal': 'oclusion intestinal'
-  agitacionpanico: 'agitacion panico'
-  agitacioondiarrea: 'agitacion diarrea'
-  ansiedadinsomnio: 'ansiedad insomnio'
-  ascitisictericia: 'ascitis ictericia'
-  deterior: deterioro
-  diarreadeshidratacion: 'diarrea deshidratacion'
-  'policlinico la rosaleda': rosaleda
-  mareo: mareos
-  'n no': 'no'
-  nauseasvomitos: 'nauseas y vomitos'
-  'si vomitos': vomitos
-  sinauseas: nauseas
-  siretencion: retencion
-  sivomitoshematemesis: 'vomitos hematemesis'
-  tosexpectoracion: 'tos y expectoracion'
-  'ulceras de presion': 'ulceras presion'
-  vomitosestrenimiento: 'vomitos estrenimiento'
-  ni: si
-  'perdida d ela via oral': 'perdida de via oral'
-  'perdida de la via oral': 'perdida de via oral'
-  sconfusional: 'sindrome confusional'
-  'sd confusional': 'sindrome confusional'
-  vomito: vomitos
+  replacement_dict_otros:
+    ccee: 'consultas externas'
+    ce: 'consultas externas'
+    consulta: consultas
+    familia: familiares
+    'hla rosaleda': rosaleda
+    'hospital la rosaleda': rosaleda
+    'p la rosaleda': rosaleda
+    'policlinico la rosaleda': rosaleda
+    nef: nefrologia
+    nefro: nefrologia
+    dig: digestivo
+    nml: neumologia
+    nmlend: 'neumologia endocrino'
+    onc: oncologia
+    urg: urgencias
+    uro: urologia
 
-replacement_dict_otros_complicaciones:
-  celilitis: celulitis
-  agudoneumonia: 'agudo neumonia'
-  claud: claudicacion
-  situacionultimosdias: 'situacion ultimos dias'
-  cura: curas
-  diarreaestrenimientodiabetes: 'diarrea estrenimiento diabetes'
-  dipepsiaalteracion: 'dispepsia alteracion'
-  disna: disnea
-  'insuficiencia resp aguda': 'insuficiencia respiratoria aguda'
-  'inf respiratoria': 'infeccion respiratoria'
-  'infecc respiratoria': 'infeccion respiratoria'
-  'ifec respirat': 'infeccion respiratoria'
-  broncoaspiraciondiarrea: 'broncoaspiracion diarrea'
-  hematuriacancer: 'hematuria cancer'
-  hiperglucemiaicc: 'hiperglucemia icc'
-  htadiabetes: 'hta diabetes'
-  'i cardiaca irenal cr': 'insuficiencia cardiaca insuficiencia renal cronica'
-  icc: 'insuficiencia cardiaca cronica'
-  inquietudinsomnio: 'inquietud insomnio'
-  nauseasvomitos: 'nauseas y vomitos'
-  nuseas: nauseas
-  intestinalclaudicacion: 'intestinal claudicacion'
-  insuf: insuficiencia
-  'sde confusional': 'sindrome confusional'
-  'sd confusional': 'sindrome confusional'
-  sconfusional: 'sindrome confusional'
-  'si ': '' # modifico todos los 'si ' con espacio por nada ya que se entiende que presenta sintomas enfermedades ttos etc.
-  siclaudicacion: claudicacion
-  sibroncoaspiracion: broncoaspiracion
-  siagitacion: agitacion
-  siacv: acv
-  sicaida: caida
-  sicovid: covid
-  sideterioro: deterioro
-  sidisnea: disnea
-  sidolor: dolor
-  sifallo: fallo
-  sifracaso: fracaso
-  siinsuficiencia: insuficiencia
-  siisquemia: isquemia
-  sihemorragia: hemorragia
-  siinfecciones: infecciones
-  siinfeccion: infeccion
-  sinauseas: nauseas
-  sioclusion: oclusion
-  vomitosestrenimiento: 'vomitos estrenimiento'
-  siparada: parada
-  sirectorragias: rectorragias
-  sirectorragia: rectorragia
-  sisangrado: sangrado
-  digestivoitu: 'digestivo itu'
-  sisepsis: sepsis
-  sivomitos: vomitos
-  ucera: ulcera
-  'ulceras de presion': 'ulceras presion'
-  'ulceras por presion': 'ulceras presion'
+  replacement_dict_otros_1:
+    '0clusion intestinal': 'oclusion intestinal'
+    agitacionpanico: 'agitacion panico'
+    agitacioondiarrea: 'agitacion diarrea'
+    ansiedadinsomnio: 'ansiedad insomnio'
+    ascitisictericia: 'ascitis ictericia'
+    deterior: deterioro
+    diarreadeshidratacion: 'diarrea deshidratacion'
+    'policlinico la rosaleda': rosaleda
+    mareo: mareos
+    'n no': 'no'
+    nauseasvomitos: 'nauseas y vomitos'
+    'si vomitos': vomitos
+    sinauseas: nauseas
+    siretencion: retencion
+    sivomitoshematemesis: 'vomitos hematemesis'
+    tosexpectoracion: 'tos y expectoracion'
+    'ulceras de presion': 'ulceras presion'
+    vomitosestrenimiento: 'vomitos estrenimiento'
+    ni: si
+    'perdida d ela via oral': 'perdida de via oral'
+    'perdida de la via oral': 'perdida de via oral'
+    sconfusional: 'sindrome confusional'
+    'sd confusional': 'sindrome confusional'
+    vomito: vomitos
 
-# For columns ['gds_fast', 'eva_ing', 'barthel', 'ps_ecog'] we assume that no, yes or b are equal to '0'.
-replacement_dict_numeric:
-  'no': '00'
-  '0': '00'
-  'si': '00'
-  'b': '00'
+  replacement_dict_otros_complicaciones:
+    celilitis: celulitis
+    agudoneumonia: 'agudo neumonia'
+    claud: claudicacion
+    situacionultimosdias: 'situacion ultimos dias'
+    cura: curas
+    diarreaestrenimientodiabetes: 'diarrea estrenimiento diabetes'
+    dipepsiaalteracion: 'dispepsia alteracion'
+    disna: disnea
+    'insuficiencia resp aguda': 'insuficiencia respiratoria aguda'
+    'inf respiratoria': 'infeccion respiratoria'
+    'infecc respiratoria': 'infeccion respiratoria'
+    'ifec respirat': 'infeccion respiratoria'
+    broncoaspiraciondiarrea: 'broncoaspiracion diarrea'
+    hematuriacancer: 'hematuria cancer'
+    hiperglucemiaicc: 'hiperglucemia icc'
+    htadiabetes: 'hta diabetes'
+    'i cardiaca irenal cr': 'insuficiencia cardiaca insuficiencia renal cronica'
+    icc: 'insuficiencia cardiaca cronica'
+    inquietudinsomnio: 'inquietud insomnio'
+    nauseasvomitos: 'nauseas y vomitos'
+    nuseas: nauseas
+    intestinalclaudicacion: 'intestinal claudicacion'
+    insuf: insuficiencia
+    'sde confusional': 'sindrome confusional'
+    'sd confusional': 'sindrome confusional'
+    sconfusional: 'sindrome confusional'
+    'si ': '' # modifico todos los 'si ' con espacio por nada ya que se entiende que presenta sintomas enfermedades ttos etc.
+    siclaudicacion: claudicacion
+    sibroncoaspiracion: broncoaspiracion
+    siagitacion: agitacion
+    siacv: acv
+    sicaida: caida
+    sicovid: covid
+    sideterioro: deterioro
+    sidisnea: disnea
+    sidolor: dolor
+    sifallo: fallo
+    sifracaso: fracaso
+    siinsuficiencia: insuficiencia
+    siisquemia: isquemia
+    sihemorragia: hemorragia
+    siinfecciones: infecciones
+    siinfeccion: infeccion
+    sinauseas: nauseas
+    sioclusion: oclusion
+    vomitosestrenimiento: 'vomitos estrenimiento'
+    siparada: parada
+    sirectorragias: rectorragias
+    sirectorragia: rectorragia
+    sisangrado: sangrado
+    digestivoitu: 'digestivo itu'
+    sisepsis: sepsis
+    sivomitos: vomitos
+    ucera: ulcera
+    'ulceras de presion': 'ulceras presion'
+    'ulceras por presion': 'ulceras presion'
+
+  # For columns ['gds_fast', 'eva_ing', 'ps_ecog'] we assume that no, yes or b are equal to '0'.
+  replacement_dict_numeric:
+    'no': '00'
+    '0': '00'
+    'si': '00'
+    'b': '00'
+
+  # Columns to exclude the replacement  
+  exclude_columns:
+      - barthel_classification
+      - gds_fast_classification
+      - ps_ecog_classification
+      - ayuntamiento
 
 # ------------------------- END word_replacement_node -------------------------
 
-# assign_medications_node -> Medications from sedation (column split)
+  # assign_medications_node -> Medications from sedation (column split)
 medications:
   - morfina
   - midazolam
   - buscapina
   - haloperidol
   - levomepromazina
+  #  
+  
 
 
 # ------------------------- START categorized_data_node apply_categorization-------------------------
@@ -427,9 +462,9 @@ procedencia_categories:
   MIR: ["mir"]
   Unidad Paliativos: ["upal"]
   Neumologia: ["neumologia"]
-  Digestivo: ["digestivo"]
+  Digestivo: ["digestivo", "cgd"]
   Hematologia: ["hematologia"]
-  Cardiologia: ["cgd", "cardiologia"]
+  Cardiologia: ["cardiologia"]
   Neurologia: ["neurologia"]
 
 otros_categories:
@@ -549,6 +584,210 @@ categorized_combined_otros_map:
   Complicaciones: 3
   Otros: 4
 
+# ------------------------- BARTHEL, GDS_FAST, PS_ECOG NODE PARAMETERS -------------------------
+# Values replace and clasification for barthel, gds_fast and ps_ecog
+barthel_cleaning:
+  barthel_replacements:
+    'no': 0
+    n20: 20
+    n80: 80
+    z30: 30
+    '4050': 50
+    '3040': 40
+    '5060': 60
+    '990': 90
+    '650': 65
+  high_values: [200, 300, 400, 500, 600, 700, 800, 900, 950, 980, 120, 450, 250, 850, 350]
+  classification_rules:
+    Dependencia total: 20
+    Dependencia severa: 40
+    Dependencia moderada: 60
+    Dependencia leve o minima: 90
+
+
+ps_ecog_cleaning:
+  ambiguous_values:
+    - 'no'
+    - 'nk'
+    - 'si'
+    - 'np'
+    - 'o'
+    - 'nop'
+    - '7'
+    - 'n23'
+  value_replacements:
+    '1000': '1'
+    '00': '0'
+  classification_rules:
+    Dependencia total: '4'
+    Dependencia severa: '3'
+    Dependencia moderada: '2'
+    Dependencia leve o minima: '1'
+    Independencia: '0'
+  ecog_classification:
+    '0': 'Totalmente asintomatico'
+    '1': 'Sintomas leves'
+    '2': 'Sintomas moderados'
+    '3': 'Necesita ayuda para la mayoria de actividades'
+    '4': 'Encamado el 100%'
+    '5': 'Fallecido'
+
+gds_fast_cleaning:
+  ambiguous_values_to_zero: ["no", "o", "n0", "b"]
+  barthel_to_gds_mappings:
+    Dependencia total: '7'
+    Dependencia severa: '5'
+  gds_classification:
+    1: "Ausencia de deficit cognitivo"
+    2: "Deficit cognitivo muy leve"
+    3: "Deficit cognitivo leve"
+    4: "Deficit cognitivo moderado"
+    5: "Deficit cognitivo moderadamente grave"
+    6: "Deficit cognitivo grave"
+    7: "Deficit cognitivo muy grave"
+    0: "No realizado o desconocido"
+
+
+# ------------------------- AYUNTAMIENTOS NODE PARAMETERS -------------------------
+
+locations:
+  santiago: 
+    lat: 42.8802346
+    lon: -8.5653691
+  brion: 
+    lat: 42.8638741 
+    lon: -8.683631
+  lalin:
+    lat: 42.6575423 
+    lon: -8.2088615
+  ames: 
+    lat: 42.9041982 
+    lon: -8.6606262
+  negreira: 
+    lat: 42.9116283 
+    lon: -8.747251
+  teo: 
+    lat: 42.7947054 
+    lon: -8.6034114
+  padron: 
+    lat: 42.7609099 
+    lon: -8.6695439
+  rois: 
+    lat: 42.7602463 
+    lon: -8.7019033
+  'a bana': 
+    lat: 42.9635722 
+    lon: -8.769065
+  oroso: 
+    lat: 43.0002915 
+    lon: -8.4235429
+  ordes: 
+    lat: 43.0768989 
+    lon: -8.4096096
+  trazo: 
+    lat: 43.0248492 
+    lon: -8.5236963
+  estrada: 
+    lat: 42.6908664 
+    lon: -8.4973435
+  'o pino': 
+    lat: 42.9355503 
+    lon: -8.3339269
+  touro: 
+    lat: 42.8649244 
+    lon: -8.3131769
+  boqueixon: 
+    lat: 42.8122256 
+    lon: -8.4153957
+  vedra: 
+    lat: 42.7757026 
+    lon: -8.4838101
+  tordoia: 
+    lat: 43.1082372 
+    lon: -8.5762032
+  'val do dubra': 
+    lat: 43.0281114 
+    lon: -8.6588731
+  dodro: 
+    lat: 42.9413584 
+    lon: -8.2382767
+  valga: 
+    lat: 42.7004872 
+    lon: -8.6501199
+  santa comba: 
+    lat: 43.0348597 
+    lon: -8.8173215
+  pontecesures: 
+    lat: 42.7171503 
+    lon: -8.6630965
+  silleda: 
+    lat: 42.7005922 
+    lon: -8.2560419
+  sionlla: 
+    lat: 42.9055181 
+    lon: -8.4493104
+  lousame: 
+    lat: 42.7715919 
+    lon: -8.855805
+  frades: 
+    lat: 43.0492117 
+    lon: -8.2978538
+  pontevea: 
+    lat: 42.7617985 
+    lon: -8.5484485
+  rianxo: 
+    lat: 42.6488057 
+    lon: -8.8185183
+  noia: 
+    lat: 42.7841408 
+    lon: -8.8991033
+  sigueiro: 
+    lat: 42.9735381 
+    lon: -8.4461462
+  'vila de cruces': 
+    lat: 42.7923819 
+    lon: -8.1699849
+  ortono: 
+    lat: 42.8469419 
+    lon: -8.637518
+            
+name_mapping:
+  desconocido: desconocido
+  'a bana': 'A Baña'
+  santiago: 'Santiago de Compostela'
+  brion: Brión
+  ames: Ames
+  negreira: Negreira
+  teo: Teo
+  padron: Padrón
+  rois: Rois
+  oroso: Oroso
+  ordes: Ordes
+  trazo: Trazo
+  estrada: 'A Estrada'
+  'o pino': 'O Pino'
+  touro: Touro
+  boqueixon: Boqueixón
+  vedra: Vedra
+  tordoia: Tordoia
+  'val do dubra': 'Val do Dubra'
+  dodro: Dodro
+  valga: Valga
+  'santa comba': 'Santa Comba'
+  pontecesures: Pontecesures
+  silleda: Silleda
+  sionlla: Sionlla  # No encontré un equivalente directo, pertenece a Santiago
+  lousame: Lousame
+  frades: Frades
+  pontevea: Pontevea  # No encontré un equivalente directo, pertence a Teo
+  rianxo: Rianxo
+  noia: Noia
+  lalin: Lalín
+  sigueiro: Sigüeiro  # No encontré un equivalente directo, pertenece a la parroquia de Oroso
+  'vila de cruces': 'Vila de Cruces'
+  ortono: Ortoño   # No encontré un equivalente directo, pertenece al municipio de Ames
+  
+
 columns_order:
   - h_procedencia
   - hospital_category
@@ -582,8 +821,11 @@ columns_order:
   - toracocentesis
   - fe_iv
   - ps_ecog
+  - ps_ecog_classification
   - barthel
+  - barthel_classification
   - gds_fast
+  - gds_fast_classification
   - eva_ing
   - otros_complicaciones
   - otros
@@ -600,3 +842,5 @@ columns_order:
   - medico
   - ayuntamiento
   - year
+  - latitude
+  - longitude
