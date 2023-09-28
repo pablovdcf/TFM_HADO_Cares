@@ -20,7 +20,12 @@ from visualization import plot_classification_heatmap,\
                             plot_heatmap, \
                             plot_time_trends, \
                             plot_total_patients
-from interactive_maps import folium_static, generate_interactive_maps
+from interactive_maps import folium_static,\
+                            generate_interactive_maps,\
+                            plot_patients_by_ayuntamiento,\
+                            plot_average_metrics_by_ayuntamiento,\
+                            plot_top_ayuntamientos_for_category
+                            
 from utils import machine_learning
 
 
@@ -315,12 +320,53 @@ Esta escala es fundamental para evaluar la evolución, pronóstico y decidir el 
             except Exception as e:
                 st.info("Por favor suba el archivo GeoJson para observar el mapa con los municipios")
                 # st.error(f"Ocurrió un error: {e}")
-            
+            md_expander = st.expander("➕ Información")
+            with md_expander:
+                st.markdown("""
+                           ### Guía de Uso de las Visualizaciones 🌟
+
+¡Bienvenido a la sección de visualizaciones! Aquí podrás explorar diferentes aspectos de los datos a través de gráficos interactivos y mapas. A continuación, te presentamos una guía detallada para ayudarte a navegar y aprovechar al máximo esta sección.
+
+#### 1. Subida del Archivo GeoJson 📤
+
+Antes de empezar a explorar el mapa interactivo, es necesario subir el archivo GeoJson que contiene la información geográfica de los municipios. Encontrarás una opción para cargar este archivo en la parte superior de la sección. Una vez cargado correctamente, podrás visualizar el mapa y explorar los datos geográficos.
+
+💡 **Consejo:** Si no se carga el archivo GeoJson o si ocurre algún error durante la carga, se mostrará una advertencia, y no podrás visualizar el mapa.
+
+---
+#### 2. Mapa Interactivo 🗺️
+
+En esta sección, encontrarás un mapa interactivo que muestra información geográfica relevante. Para personalizar tu experiencia y visualizar los datos que te interesan, puedes utilizar los siguientes filtros:
+
+- **Seleccione un Año:** Este filtro te permite visualizar los datos correspondientes a un año específico. La selección de un año afectará todas las visualizaciones de la página.
+- **Seleccione la Columna para Visualizar:** Aquí, puedes elegir la métrica que deseas visualizar en el mapa. Las opciones disponibles son: 'barthel', 'gds_fast', 'ps_ecog', 'n_visitas', y 'n_estancias'.
+
+**Visualizaciones Adicionales:**
+Además del mapa, encontrarás las siguientes visualizaciones que proporcionan insights adicionales:
+- **Número de Pacientes por Ayuntamiento:** Este gráfico de barras te muestra la cantidad de pacientes por cada ayuntamiento para el año seleccionado.
+- **Promedios de Métricas Clave por Ayuntamiento:** Aquí podrás ver varios gráficos de barras que representan los promedios de diferentes métricas clave por ayuntamiento.
+
+---
+#### 3. Top de Ayuntamientos por Columnas 📊
+
+En la parte inferior de la página, podrás explorar los ayuntamientos que destacan en diferentes categorías. Utiliza los filtros disponibles para personalizar la visualización:
+
+- **Seleccione una Categoría:** Permite elegir una categoría (columna) del conjunto de datos para analizar.
+- **Seleccione Valores de Categoría:** Después de seleccionar una categoría, podrás filtrar por valores específicos dentro de ella.
+- **Seleccione Ayuntamientos:** Este filtro te da la opción de seleccionar uno o varios ayuntamientos para incluir en la visualización.
+- **Seleccione un Tipo de Gráfico:** Aquí, puedes decidir el formato en el que deseas visualizar los datos, pudiendo elegir entre 'Gráfico de barras' y 'Gráfico de puntos'.
+
+💡 **Consejo:** Solo podrás seleccionar categorías que tengan 15 o menos valores únicos.
+                            """)
             container = st.container()
             col1, col2, col3 = container.columns([0.5, 2, 0.5])
             if gdf is not None:
                 with col1:
+                    st.write("### Filtros para el mapa")
+                    st.info("La selección del año afecta a todas las visualizaciones de esta página")
+                        
                     selected_year = st.selectbox("Seleccione un año:", sorted(df['year'].unique()))
+                        
                     column = st.selectbox("Seleccione la columna para visualizar:", ['barthel', 'gds_fast', 'ps_ecog', 'n_visitas', 'n_estancias'])
                 
                 with col2: 
@@ -333,8 +379,48 @@ Esta escala es fundamental para evaluar la evolución, pronóstico y decidir el 
                         
             else:
                 st.warning("No se pudo cargar el archivo GeoJson o el archivo no existe.")
-
             
+            st.write("")
+            with col2: 
+                df_filtered = df[df['year'] == selected_year]
+                plot_patients_by_ayuntamiento(df_filtered, selected_year)
+
+                st.divider()
+                plot_average_metrics_by_ayuntamiento(df, selected_year)
+                st.info("No se tienen en cuenta ayuntamientos desconocidos para el calculo de los promedios")
+
+                st.divider()
+                
+                
+                st.markdown("""
+                            ## Top de Ayuntamientos por columnas
+                            """)
+                selected_plot_type = st.selectbox("Seleccione un tipo de gráfico:", ['Gráfico de barras', 'Gráfico de puntos'])
+                container = st.container()
+                col1, col2 = container.columns([1, 1])
+                # Columna 1
+                with col1:
+                    # Lista de columnas categóricas con 15 o menos valores únicos
+                    categorical_columns = [col for col in df.select_dtypes(include='object').columns if df[col].nunique() <= 15]
+                    
+                    # Crear un selector para estas columnas
+                    selected_category = st.selectbox("Seleccione una categoría:", categorical_columns)
+                    
+                    # Obtener los valores únicos de la columna de categoría seleccionada y crear un selector para estos valores
+                    unique_category_values = sorted(df[selected_category].unique().tolist())
+                    selected_category_values = st.multiselect(f"Seleccione valores de {selected_category}:", unique_category_values, default=unique_category_values)
+
+                # Columna 2
+                with col2:
+                    # Obtener la lista de ayuntamientos únicos y crear un selector para estos ayuntamientos
+                    unique_ayuntamientos = sorted(df['ayuntamiento'].unique().tolist())
+                    selected_ayuntamientos = st.multiselect("Seleccione ayuntamientos:", unique_ayuntamientos, default=unique_ayuntamientos)
+                    
+
+                plot_top_ayuntamientos_for_category(df, selected_year,selected_ayuntamientos, selected_category, selected_category_values, selected_plot_type)
+                
+                
+                
         # CRUD Operations
         with tab5:
             crud_operations(df)
