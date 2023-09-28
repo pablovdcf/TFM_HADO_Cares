@@ -3,6 +3,12 @@
 import streamlit as st
 from streamlit_pandas_profiling import st_profile_report
 import base64
+import pandas as pd
+
+import ydata_profiling
+from streamlit_pandas_profiling import st_profile_report
+from ydata_profiling import ProfileReport
+
 
 from data_processing import sidebar_and_upload,\
                             apply_filters, \
@@ -31,11 +37,18 @@ if 'show_filters' not in st.session_state:
 # Main Function
 def main():
     
-    st.write("HADO CARES")
+    st.write("# HADO CARES")
     tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
-        "Home", "Filtros", "Visualizaciones", "Mapa", "CRUD Operations", "ML", "Pandas Profiling"
+        "Home 🏠", "Filtros 🔍", "Visualizaciones 📊", "Mapa 🗺️", "CRUD Operations ✍️", "ML 🖥️", "Pandas Profiling 📃"
     ])
-    df = sidebar_and_upload()
+    try:
+        df = None
+        df = sidebar_and_upload()
+        
+    except Exception as e:
+        st.sidebar.info("Por favor suba el archivo CSV para inicialzar la aplicación")
+        # st.sidebar.write(f"Ocurrió un error: {e}")
+        
     if df is not None:
         with tab1:
             st.write("## Datos de muestra")
@@ -295,8 +308,13 @@ Esta escala es fundamental para evaluar la evolución, pronóstico y decidir el 
 
         # Mapa
         with tab4:
-            
-            gdf = load_gdf()
+            try:
+                gdf = None
+                gdf = load_gdf()
+                
+            except Exception as e:
+                st.info("Por favor suba el archivo GeoJson para observar el mapa con los municipios")
+                # st.error(f"Ocurrió un error: {e}")
             
             container = st.container()
             col1, col2, col3 = container.columns([0.5, 2, 0.5])
@@ -314,7 +332,7 @@ Esta escala es fundamental para evaluar la evolución, pronóstico y decidir el 
                         folium_static(map_object)
                         
             else:
-                st.warning("No se pudo cargar el archivo GeoJson o el archivo ESP_adm4.shp no existe.")
+                st.warning("No se pudo cargar el archivo GeoJson o el archivo no existe.")
 
             
         # CRUD Operations
@@ -342,6 +360,7 @@ Esta aplicación te permite explorar y analizar conjuntos de datos. Utiliza Pand
 2. **Generar Informe:** Haz clic en el botón 'Generar Pandas Profiling Report' para crear un informe detallado de tu conjunto de datos.
 3. **Explorar Informe:** Navega a través del informe generado para obtener insights valiosos y estadísticas detalladas sobre cada columna de tu conjunto de datos.
 
+---
 ### 🔍 Sobre Pandas Profiling
 
 Pandas Profiling es una herramienta de exploración de datos que genera informes de perfiles a partir de un DataFrame pandas. El informe resultante actúa como una descripción general de alta calidad del conjunto de datos y ofrece lo siguiente:
@@ -354,15 +373,23 @@ Pandas Profiling es una herramienta de exploración de datos que genera informes
 
 Esta herramienta es útil tanto para la exploración inicial de datos como para la limpieza y preprocesamiento de datos antes de la modelización.
 
+---
 ### 💡 Tips
 
 - Utiliza Pandas Profiling para identificar problemas en tu conjunto de datos rápidamente.
 - Explora las correlaciones entre variables para obtener insights sobre relaciones.
 - Revisa los valores faltantes y considera estrategias de imputación.
-""")
-            if st.button('Generar Pandas Profiling Report'):
-                report = generate_pandas_profiling(df)
-                st_profile_report(report)
+
+---
+    """)        
+            container = st.container()
+            col1, col2, col3 = container.columns([0.5, 2, 0.5])
+            with col1:
+                st.info("Sube un archivo al sidebar que quieras explorar, dale al botón 👇 y espera a que se haga la magia 🪄")
+                if st.button('Generar Pandas Profiling Report'):
+                    report = generate_pandas_profiling(df)
+                    with col2:
+                        st_profile_report(report)
 
 if __name__ == "__main__":
     main()
