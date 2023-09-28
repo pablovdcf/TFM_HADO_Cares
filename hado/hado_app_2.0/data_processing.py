@@ -10,18 +10,50 @@ import geopandas as gpd
 # Function for sidebar and file upload
 @st.cache_data(experimental_allow_widgets=True)
 def sidebar_and_upload():
+    """
+    This function creates a file uploader widget in the Streamlit sidebar, 
+    allowing the user to upload a CSV file. The function reads the uploaded 
+    file into a pandas DataFrame and saves a copy of it as "uploaded_file.csv". 
+    If no file is uploaded, a message is displayed on the Streamlit app.
+
+    The function leverages Streamlit's caching mechanism to avoid reloading 
+    the file upon every interaction, which is controlled by the 
+    `@st.cache_data(experimental_allow_widgets=True)` decorator.
+
+    Returns:
+        pd.DataFrame: The DataFrame created from the uploaded CSV file. 
+                      If no file is uploaded, the function will return None.
+    
+    Example:
+        >>> df = sidebar_and_upload()
+        >>> if df is not None:
+        >>>     st.write(df.head())
+    """
+    # Set the title and information message in the sidebar
     st.sidebar.title("App HADO")
     st.sidebar.info("Aplicación en pruebas")
+    
+    # Create a file uploader widget in the sidebar
     uploaded_file = st.sidebar.file_uploader("Sube tu archivo Excel en formato CSV", type=["csv"])
+    
+    # Check if a file has been uploaded
     if uploaded_file:
+        # Notify the user that the file has been uploaded
+        st.sidebar.write("Archivo subido con éxito")
+        
+        # Read the uploaded file into a pandas DataFrame
         df_original = pd.read_csv(uploaded_file)
         df = df_original.copy()
-        df.to_csv("uploaded_file.csv", index=False)
-    elif os.path.exists("hado_final.csv"):
-        df = pd.read_csv("hado_final.csv")
+        
+        # Save a copy of the DataFrame as "uploaded_file.csv"
+        # df.to_csv("uploaded_file.csv", index=False)
     else:
-        return None
+        # Display a message if no file is uploaded
+        st.write("No se subió ningún archivo")
+        
+    # Return the DataFrame
     return df
+
 
 # Function for Data Filters    
 def apply_filters(df, reset=False):
@@ -199,12 +231,13 @@ def generate_pandas_profiling(df):
 @st.cache_data(experimental_allow_widgets=True)
 def load_gdf():
     # Definir la ruta del archivo .shp
-    uploaded_file = st.file_uploader("Sube tu archivo GeoJson")
-    if uploaded_file:
-        gdf = gpd.read_file(uploaded_file)
-        gdf_clean = gdf[gdf['geometry'].notnull()]
-    elif os.path.exists("ESP_adm4.shp"):
-        gdf = gpd.read_file("ESP_adm4.shp")
-    else:
-        return None
+    container = st.container()
+    col1, col2, col3 = container.columns([0.5, 2, 0.5])
+    with col2:
+        uploaded_file = st.file_uploader("Sube tu archivo GeoJson")
+        if uploaded_file:
+            gdf = gpd.read_file(uploaded_file)
+            gdf_clean = gdf[gdf['geometry'].notnull()]
+        else:
+            st.write("Subir archivo GeoJson")
     return gdf_clean
