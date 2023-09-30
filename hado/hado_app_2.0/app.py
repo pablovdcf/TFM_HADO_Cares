@@ -3,11 +3,8 @@
 import streamlit as st
 from streamlit_pandas_profiling import st_profile_report
 import base64
-import pandas as pd
 
-import ydata_profiling
 from streamlit_pandas_profiling import st_profile_report
-from ydata_profiling import ProfileReport
 
 
 from data_processing import sidebar_and_upload,\
@@ -376,48 +373,50 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
                         st.error(map_object)
                     else:
                         folium_static(map_object)
+            
+                st.write("")
+            
+                with col2:
+                
+                    df_filtered = df[df['year'] == selected_year]
+                    plot_patients_by_ayuntamiento(df_filtered, selected_year)
+
+                    st.divider()
+                    plot_average_metrics_by_ayuntamiento(df, selected_year)
+                    st.info("No se tienen en cuenta ayuntamientos desconocidos para el calculo de los promedios")
+
+                    st.divider()
+                    
+                    
+                    st.markdown("""
+                                ## Top de Ayuntamientos por columnas
+                                """)
+                    selected_plot_type = st.selectbox("Seleccione un tipo de gráfico:", ['Gráfico de barras', 'Gráfico de puntos'])
+                    container = st.container()
+                    col1, col2 = container.columns([1, 1])
+                    # Columna 1
+                    with col1:
+                        # Lista de columnas categóricas con 15 o menos valores únicos
+                        categorical_columns = [col for col in df.select_dtypes(include='object').columns if df[col].nunique() <= 15]
                         
+                        # Crear un selector para estas columnas
+                        selected_category = st.selectbox("Seleccione una categoría:", categorical_columns)
+                        
+                        # Obtener los valores únicos de la columna de categoría seleccionada y crear un selector para estos valores
+                        unique_category_values = sorted(df[selected_category].unique().tolist())
+                        selected_category_values = st.multiselect(f"Seleccione valores de {selected_category}:", unique_category_values, default=unique_category_values)
+
+                    # Columna 2
+                    with col2:
+                        # Obtener la lista de ayuntamientos únicos y crear un selector para estos ayuntamientos
+                        unique_ayuntamientos = sorted(df['ayuntamiento'].unique().tolist())
+                        selected_ayuntamientos = st.multiselect("Seleccione ayuntamientos:", unique_ayuntamientos, default=unique_ayuntamientos)
+                        
+
+                    plot_top_ayuntamientos_for_category(df, selected_year,selected_ayuntamientos, selected_category, selected_category_values, selected_plot_type)
+             
             else:
                 st.warning("No se pudo cargar el archivo GeoJson o el archivo no existe.")
-            
-            st.write("")
-            with col2: 
-                df_filtered = df[df['year'] == selected_year]
-                plot_patients_by_ayuntamiento(df_filtered, selected_year)
-
-                st.divider()
-                plot_average_metrics_by_ayuntamiento(df, selected_year)
-                st.info("No se tienen en cuenta ayuntamientos desconocidos para el calculo de los promedios")
-
-                st.divider()
-                
-                
-                st.markdown("""
-                            ## Top de Ayuntamientos por columnas
-                            """)
-                selected_plot_type = st.selectbox("Seleccione un tipo de gráfico:", ['Gráfico de barras', 'Gráfico de puntos'])
-                container = st.container()
-                col1, col2 = container.columns([1, 1])
-                # Columna 1
-                with col1:
-                    # Lista de columnas categóricas con 15 o menos valores únicos
-                    categorical_columns = [col for col in df.select_dtypes(include='object').columns if df[col].nunique() <= 15]
-                    
-                    # Crear un selector para estas columnas
-                    selected_category = st.selectbox("Seleccione una categoría:", categorical_columns)
-                    
-                    # Obtener los valores únicos de la columna de categoría seleccionada y crear un selector para estos valores
-                    unique_category_values = sorted(df[selected_category].unique().tolist())
-                    selected_category_values = st.multiselect(f"Seleccione valores de {selected_category}:", unique_category_values, default=unique_category_values)
-
-                # Columna 2
-                with col2:
-                    # Obtener la lista de ayuntamientos únicos y crear un selector para estos ayuntamientos
-                    unique_ayuntamientos = sorted(df['ayuntamiento'].unique().tolist())
-                    selected_ayuntamientos = st.multiselect("Seleccione ayuntamientos:", unique_ayuntamientos, default=unique_ayuntamientos)
-                    
-
-                plot_top_ayuntamientos_for_category(df, selected_year,selected_ayuntamientos, selected_category, selected_category_values, selected_plot_type)
                 
                 
                 
