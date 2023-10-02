@@ -33,6 +33,9 @@ def sidebar_and_upload():
     st.sidebar.title("App HADO")
     st.sidebar.info("Aplicación en pruebas")
     
+    # Initialize df to None
+    # df = None
+    
     # Create a file uploader widget in the sidebar
     uploaded_file = st.sidebar.file_uploader("Sube tu archivo Excel en formato CSV", type=["csv"])
     
