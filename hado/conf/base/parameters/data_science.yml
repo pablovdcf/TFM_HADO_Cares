@@ -6,8 +6,8 @@
 
 model_options_alta:
   target: 'alta_category'
-  test_size: 0.2
-  random_state: 3
+  test_size: 0.5
+  random_state: 0
   features:
     - 'paliativo_onc_noc'
     - 'paliativo_no_onc_noc'
@@ -44,8 +44,8 @@ model_options_alta:
     
 model_options_diagnosis:
   target: 'diagnosis_category'
-  test_size: 0.2
-  random_state: 3
+  test_size: 0.5
+  random_state: 0
   features:
     - 'paliativo_onc_noc'
     - 'paliativo_no_onc_noc'
@@ -138,16 +138,11 @@ lgbm:
       reg_alpha: [0, 0.1, 0.2]
 
 
-# RandomForestRegressor:
-  # n_estimators: 100
-  # criterion: [giny", "entropy"]
-  # min_samples_split: 2
-  # min_samples_leaf: 1
-  # min_weight_fraction_leaf: 0
-  # max_features: "auto"
-  # min_impurity_decrease: 0
-  # bootstrap: true
-  # oob_score: false
-  # verbose: 0
-  # warm_start: false
-  # ccp_alpha: 0
+best_model_alta:
+  module: sklearn.ensemble
+  class: RandomForestClassifier
+  kwargs:
+      bootstrap: False
+      max_depth: 30
+      n_estimators: 150
+  target: alta_category

@@ -8,8 +8,7 @@ from pandas_ods_reader import read_ods
 
 import fsspec
 
-# fsspec: La biblioteca fsspec (File System Spec) es una interfaz de sistema de archivos virtual
-# que permite trabajar con diferentes sistemas de archivos como local, S3, HDFS, entre otros.
+# fsspec: La biblioteca fsspec (File System Spec) es una interfaz de sistema de archivos virtual que permite trabajar con diferentes sistemas de archivos como local, S3, HDFS, entre otros.
 # En este caso, se utiliza para crear un sistema de archivos que se ajuste al protocolo correspondiente (por ejemplo, local o S3) y abrir el archivo ODS.
 
 from kedro.io import AbstractDataSet
@@ -22,10 +21,8 @@ from kedro.io import AbstractDataSet
 
 from kedro.io.core import get_filepath_str, get_protocol_and_path
 
-# get_filepath_str, get_protocol_and_path: Estas funciones de utilidad de Kedro se utilizan para obtener el protocolo, la ruta y la ruta del archivo
-# como cadena a partir de una ruta de archivo dada.
+# get_filepath_str, get_protocol_and_path: Estas funciones de utilidad de Kedro se utilizan para obtener el protocolo, la ruta y la ruta del archivo como cadena a partir de una ruta de archivo dada.
 
-from io import BytesIO
 from pymongo import MongoClient
 
 

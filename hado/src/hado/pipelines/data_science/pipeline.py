@@ -4,7 +4,7 @@ generated using Kedro 0.18.10
 """
 
 from kedro.pipeline import Pipeline, node
-from .nodes import preprocess_split_data, train_clf_model, evaluate_model
+from .nodes import preprocess_split_data, train_clf_model, evaluate_model, retrain_and_evaluate_best_model
 
 def create_models_pipeline():
      return Pipeline(
@@ -12,13 +12,13 @@ def create_models_pipeline():
             node(
                 func=preprocess_split_data,
                 inputs=["hado_final", "params:model_options_alta"],
-                outputs=["X_alta_train_preprocessed", "X_alta_test_preprocessed", "y_alta_train", "y_alta_test"],
+                outputs=["X_alta_train_preprocessed", "X_alta_test_preprocessed", "y_alta_train", "y_alta_test", "preprocessor_alta"],
                 name="preprocess_split_data_alta_node",
             ),
             node(
                 func=preprocess_split_data,
                 inputs=["hado_final", "params:model_options_diagnosis"],
-                outputs=["X_diag_train_preprocessed", "X_diag_test_preprocessed", "y_diag_train", "y_diag_test"],
+                outputs=["X_diag_train_preprocessed", "X_diag_test_preprocessed", "y_diag_train", "y_diag_test", "preprocessor_diag"],
                 name="preprocess_split_data_diagnosis_node",
             ),
             # Random Forest Models
@@ -97,6 +97,13 @@ def create_models_pipeline():
                 outputs='confusion_matrix_lgb_diag_image',
                 name="evaluate_lightgbm_diag_model_node",
             ),
+            node(
+                func=retrain_and_evaluate_best_model,
+                inputs=["hado_final", "preprocessor_alta", "params:best_model_alta"],
+                outputs=["evaluation_report_alta"],
+                name="retrain_and_evaluate_best_model_node"
+                )
+
         ]
     )
 

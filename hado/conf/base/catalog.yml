@@ -5,60 +5,99 @@
 
 # This data should be in the path "src/hado/extras/datasets"
 
-# RAW Data from MongoDB
+# RAW Data from MongoDB or ODSDataSet
+
+# ODS
 hado_22:
-  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
-  uri: mongodb://localhost:27017
-  database: HADO_raw
-  collection: HADO22
-  load_args: 
-    _id: False
+  type: hado.extras.datasets.custom_data_set.ODSDataSet
+  filepath: "data/01_raw/HADO 22.ods"
+  sheet: "Hoja1"
   layer: raw
 
 hado_21:
-  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
-  uri: mongodb://localhost:27017
-  database: HADO_raw
-  collection: HADO21
-  load_args: 
-    _id: False
+  type: hado.extras.datasets.custom_data_set.ODSDataSet
+  filepath: "data/01_raw/HADO21.ods"
+  sheet: "Hoja1"
   layer: raw
 
 hado_20:
-  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
-  uri: mongodb://localhost:27017
-  database: HADO_raw
-  collection: HADO20
-  load_args: 
-    _id: False
+  type: hado.extras.datasets.custom_data_set.ODSDataSet
+  filepath: "data/01_raw/HADO 20.ods"
+  sheet: "Hoja1"
   layer: raw
 
 hado_19:
-  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
-  uri: mongodb://localhost:27017
-  database: HADO_raw
-  collection: HADO19
-  load_args: 
-    _id: False
+  type: hado.extras.datasets.custom_data_set.ODSDataSet
+  filepath: "data/01_raw/HADO 19.ods"
+  sheet: "Hoja1"
   layer: raw
 
 hado_18:
-  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
-  uri: mongodb://localhost:27017
-  database: HADO_raw
-  collection: HADO18
-  load_args: 
-    _id: False
+  type: hado.extras.datasets.custom_data_set.ODSDataSet
+  filepath: "data/01_raw/Estadistica 2018.ods"
+  sheet: "Sheet1"
   layer: raw
 
 hado_17:
-  type: hado.extras.datasets.custom_data_set.MongoDBDataSet
-  uri: mongodb://localhost:27017
-  database: HADO_raw
-  collection: HADO17
-  load_args: 
-    _id: False
+  type: hado.extras.datasets.custom_data_set.ODSDataSet
+  filepath: "data/01_raw/Estadística 2017.ods"
+  sheet: "Sheet1"
   layer: raw
+
+# MongoDB
+# hado_22:
+#   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+#   uri: mongodb://localhost:27017
+#   database: HADO_raw
+#   collection: HADO22
+#   load_args: 
+#     _id: False
+#   layer: raw
+
+# hado_21:
+#   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+#   uri: mongodb://localhost:27017
+#   database: HADO_raw
+#   collection: HADO21
+#   load_args: 
+#     _id: False
+#   layer: raw
+
+# hado_20:
+#   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+#   uri: mongodb://localhost:27017
+#   database: HADO_raw
+#   collection: HADO20
+#   load_args: 
+#     _id: False
+#   layer: raw
+
+# hado_19:
+#   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+#   uri: mongodb://localhost:27017
+#   database: HADO_raw
+#   collection: HADO19
+#   load_args: 
+#     _id: False
+#   layer: raw
+
+# hado_18:
+#   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+#   uri: mongodb://localhost:27017
+#   database: HADO_raw
+#   collection: HADO18
+#   load_args: 
+#     _id: False
+#   layer: raw
+
+# hado_17:
+#   type: hado.extras.datasets.custom_data_set.MongoDBDataSet
+#   uri: mongodb://localhost:27017
+#   database: HADO_raw
+#   collection: HADO17
+#   load_args: 
+#     _id: False
+#   layer: raw
 
 # Preprocessing Data
 strip_lower_hado_17:
@@ -247,86 +286,88 @@ X_alta_train_preprocessed:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/X_alta_train_preprocessed.pkl
   backend: pickle
-  layer: model
+  layer: model_alta
 
 X_diag_train_preprocessed:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/X_diag_train_preprocessed.pkl
   backend: pickle
-  layer: model
+  layer: model_diagnostic
 
 # DATA SPLIT Y_train
 y_alta_train:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/y_alta_train.pkl
   backend: pickle
-  layer: model
+  layer: model_alta
 
 y_diag_train:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/y_diag_train.pkl
   backend: pickle
-  layer: model
+  layer: model_diagnostic
 
 # DATA SPLIT test `preprocessed`
 X_alta_test_preprocessed:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/X_alta_test_preprocessed.pkl
   backend: pickle
-  layer: model
+  layer: model_alta
 
 y_alta_test:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/y_test_alta.pkl
   backend: pickle
+  layer: model_alta
 
 X_diag_test_preprocessed:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/X_test_diag_preprocessed.pkl
   backend: pickle
-  layer: model
+  layer: model_diagnostic
 
 y_test_diagnosis:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/y_test_diagnosis.pkl
   backend: pickle
+  layer: model_diagnostic
 
-# Classification and Regression Models
+# Classification Models
 random_forest_model_alta:
   type: pickle.PickleDataSet
   filepath: data/06_models/RandomForest_alta_model.pkl
   versioned: true
-  layer: model
+  layer: model_alta
 
 random_forest_model_diag:
   type: pickle.PickleDataSet
   filepath: data/06_models/RandomForest_diag_model.pkl
   versioned: true
-  layer: model
+  layer: model_diagnostic
 
 xgboost_model_alta:
   type: pickle.PickleDataSet
   filepath: data/06_models/XGBoost_alta_model.pkl
   versioned: true
-  layer: model
+  layer: model_alta
 
 xgboost_model_diag:
   type: pickle.PickleDataSet
   filepath: data/06_models/XGBoost_diag_model.pkl
   versioned: true
-  layer: model
+  layer: model_diagnostic
 
 lightgbm_model_alta:
   type: pickle.PickleDataSet
   filepath: data/06_models/ligthgbm_alta_model.pkl
   versioned: true
-  layer: model
+  layer: model_alta
 
 lightgbm_model_diag:
   type: pickle.PickleDataSet
   filepath: data/06_models/ligthgbm_diag_model.pkl
   versioned: true
-  layer: model
+  layer: model_diagnostic
 
 confusion_matrix_rf_alta_image:
   type: kedro.extras.datasets.pillow.ImageDataSet
@@ -351,3 +392,25 @@ confusion_matrix_xgb_alta_image:
 confusion_matrix_xgb_diag_image:
   type: kedro.extras.datasets.pillow.ImageDataSet
   filepath: data/07_model_output/confusion_matrix_xgb_diag_image.png
+
+# ------- Best Model --------
+
+preprocessor_alta:
+  type: kedro.extras.datasets.pickle.PickleDataSet
+  filepath: data/06_models/preprocessor_alta.pkl
+  layer: model_alta
+
+preprocessor_diag:
+  type: kedro.extras.datasets.pickle.PickleDataSet
+  filepath: data/06_models/preprocessor_diag.pkl
+  layer: model_diagnostic
+
+best_model_alta:
+  type: kedro.extras.datasets.pickle.PickleDataSet
+  filepath: data/06_models/best_model_alta.pkl
+  layer: model_alta
+
+evaluation_report_alta:
+  type: kedro.extras.datasets.text.TextDataSet
+  filepath: data/08_reporting/evaluation_report_alta.txt
+  layer: evaluate

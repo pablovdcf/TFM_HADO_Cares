@@ -2,24 +2,28 @@
 This is a boilerplate pipeline 'data_model'
 generated using Kedro 0.18.10
 """
-from pathlib import Path
 from typing import Dict, Tuple, Any, Optional
-from xgboost import XGBClassifier
-from lightgbm import LGBMClassifier
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, mean_squared_error, mean_absolute_error, r2_score, accuracy_score, confusion_matrix, roc_curve, auc
 import pandas as pd
 import matplotlib.pyplot as plt
-from io import BytesIO
-from PIL import Image
-import seaborn as sns
+
+from xgboost import XGBClassifier
+from lightgbm import LGBMClassifier
+
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.base import BaseEstimator
-from sklearn.model_selection import GridSearchCV, StratifiedKFold
+from sklearn.model_selection import GridSearchCV
+
+from imblearn.over_sampling import SMOTE
+
+from io import BytesIO
+from PIL import Image
+import seaborn as sns
 import importlib
 import logging
 
@@ -60,11 +64,11 @@ def preprocess_split_data(data: pd.DataFrame, parameters) -> Tuple[pd.DataFrame,
         ('scaler', StandardScaler())])
 
     categorical_features = data.select_dtypes(include=['object']).columns.tolist()
-    valid_columns_2_12 = data[categorical_features].nunique().between(2, 12)
-    selected_categorical_features_2_12 = valid_columns_2_12[valid_columns_2_12].index.tolist()
+    valid_columns_2_15 = data[categorical_features].nunique().between(2, 15)
+    selected_categorical_features_2_15 = valid_columns_2_15[valid_columns_2_15].index.tolist()
     
-    if target in selected_categorical_features_2_12:
-        selected_categorical_features_2_12.remove(target)
+    if target in selected_categorical_features_2_15:
+        selected_categorical_features_2_15.remove(target)
     else:
         pass
 
@@ -76,7 +80,7 @@ def preprocess_split_data(data: pd.DataFrame, parameters) -> Tuple[pd.DataFrame,
     preprocessor = ColumnTransformer(
         transformers=[
             ('num', numeric_transformer, numeric_features),
-            ('cat', categorical_transformer, selected_categorical_features_2_12)])
+            ('cat', categorical_transformer, selected_categorical_features_2_15)])
 
     # Dividir los datos en conjuntos de entrenamiento y prueba
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state, stratify=y)
@@ -84,8 +88,15 @@ def preprocess_split_data(data: pd.DataFrame, parameters) -> Tuple[pd.DataFrame,
     # Aplicar el preprocesador a los datos
     X_train_preprocessed = preprocessor.fit_transform(X_train)
     X_test_preprocessed = preprocessor.transform(X_test)
+    
+        # Apply SMOTE only to the training set SMOTE is for class rebalancing..
+    if target != 'alta_category':
+        smote = SMOTE(random_state=random_state)
+        X_train_preprocessed, y_train = smote.fit_resample(X_train_preprocessed, y_train)
+    else:
+        pass
     # print(f"y_train\n{y_train.unique()}\n{'='*50}\ny_test\n{y_test.unique()}")
-    return X_train_preprocessed, X_test_preprocessed, y_train, y_test
+    return X_train_preprocessed, X_test_preprocessed, y_train, y_test, preprocessor
 
 # Entrenar los modelos
 def train_clf_model(
@@ -102,6 +113,7 @@ def train_clf_model(
     Returns:
     - Tuple containing the trained model and its parameters.
     """
+    logger = logging.getLogger(__name__)
 
     # Parse parameters
     model_module = model_options.get("module")
@@ -124,7 +136,6 @@ def train_clf_model(
     
     # Descomentar para usar los mejores parámetros del Grid Search cambiandolos en data_science.yml
 
-    logger = logging.getLogger(__name__)
     logger.info(f"Fitting classifier of type {type(classifier_instance)}")
 
     # Fit model
@@ -149,7 +160,11 @@ def train_clf_model(
 
 # Evaluation for the model
 
-def evaluate_model(model_and_params: Tuple[BaseEstimator, Dict[str, Any], Optional[LabelEncoder]], X_test: pd.DataFrame, y_test: pd.Series) -> Image:
+def evaluate_model(model_and_params: Tuple[BaseEstimator, Dict[str, Any], Optional[LabelEncoder]], 
+                   X_test: pd.DataFrame, 
+                   y_test: pd.Series
+                   ) -> Image:
+    
     model, _, label_encoder = model_and_params  # Desempaquetamos la tupla
     
     # Si hay un label_encoder, codificar y_test antes de predecir
@@ -157,8 +172,10 @@ def evaluate_model(model_and_params: Tuple[BaseEstimator, Dict[str, Any], Option
         y_test_encoded = label_encoder.transform(y_test)
         y_pred_encoded = model.predict(X_test)
         y_pred = label_encoder.inverse_transform(y_pred_encoded)  # Decodificar las predicciones
+        
     else:
         y_pred = model.predict(X_test)
+        
     classification_results = classification_report(y_test, y_pred)
     confusion_mat = confusion_matrix(y_test, y_pred)
     
@@ -188,9 +205,6 @@ def evaluate_model(model_and_params: Tuple[BaseEstimator, Dict[str, Any], Option
     return image
 
 # GridSearch
-
-from sklearn.model_selection import GridSearchCV
-
 def grid_search_rf_alta(X_train: pd.DataFrame, y_train: pd.Series, parameters: Dict) -> RandomForestClassifier:
     """
     Conduct a grid search over hyperparameters for a Random Forest Classifier.
@@ -212,3 +226,40 @@ def grid_search_rf_alta(X_train: pd.DataFrame, y_train: pd.Series, parameters: D
     grid_search.fit(X_train, y_train)
     best_model = grid_search.best_estimator_
     return best_model
+
+def retrain_and_evaluate_best_model(data: pd.DataFrame, preprocessor: ColumnTransformer, parameters: dict) -> Tuple[str]:
+    """
+    Retrain the best model using the full dataset.
+    
+    Args:
+    - data: Complete dataset.
+    - preprocessor: Fitted preprocessor instance.
+    - parameters: Parameters dictionary with model details and target column.
+    
+    Returns:
+    - BaseEstimator: Retrained model.
+    """
+    print(parameters)
+
+    target = parameters["target"]
+    X = data.drop(target, axis=1)
+    y = data[target]
+    
+    # Transform using the fitted preprocessor
+    X_preprocessed = preprocessor.transform(X)
+    
+    # Import and instantiate the classifier object
+    model_module = parameters["module"]
+    model_class = parameters["class"]
+    model_kwargs = parameters["kwargs"]
+    
+    classifier_class = getattr(importlib.import_module(model_module), model_class)
+    best_model = classifier_class(**model_kwargs)
+    
+    best_model.fit(X_preprocessed, y)
+    
+    # Evaluate the model
+    y_pred = best_model.predict(X_preprocessed)
+    report = classification_report(y, y_pred)
+    
+    return (report,)

@@ -85,7 +85,7 @@ def replace_missing(df: pd.DataFrame, params: Dict) -> pd.DataFrame:
     for value, columns in params.items():
         df[columns] = df[columns].fillna(value)
 
-    print_missing_percentage(df)
+    # print_missing_percentage(df)
 
     return df
 
@@ -139,7 +139,7 @@ def clean_and_classify_barthel(df: pd.DataFrame,
 
     # Aplicar la función classify_barthel
     df['barthel_classification'] = df['barthel'].apply(classify_barthel)
-    print(df['barthel_classification'].value_counts())
+    # print(df['barthel_classification'].value_counts())
     return df
 
 
@@ -183,7 +183,7 @@ def clean_ps_ecog(df: pd.DataFrame,
     
     # Convertir la columna 'ps_ecog' a string antes de inferir valores
     df['ps_ecog'] = df['ps_ecog'].astype(str)
-    print(f"\n{df['ps_ecog'].value_counts()}")
+    # print(f"\n{df['ps_ecog'].value_counts()}")
     # Inferir valores de ps_ecog basados en barthel_classification
     df['ps_ecog'] = df.apply(infer_values, axis=1)
     
