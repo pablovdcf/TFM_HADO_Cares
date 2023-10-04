@@ -14,18 +14,19 @@ def plot_selected_category(df, selected_column):
     # Configuration of the displays
     fig, ax = plt.subplots(figsize=(12, 7))
     order = df[selected_column].value_counts().index
-    sns.countplot(data=df, y=selected_column, order=order, ax=ax, palette='viridis')
+    sns.countplot(data=df, y=selected_column, order=order, ax=ax, palette='pastel')
     ax.set_title(f'Distribución de {selected_column}', fontsize=16)
     ax.set_ylabel(f'Categorías de {selected_column}', fontsize=14)
-    ax.set_xlabel('Número de Registros',fontsize=14)
+    ax.set_xlabel('Número de Pacientes',fontsize=12)
     ax.grid(axis='x', linestyle='--')
-        
+     
     # Showing the quantities in each bar
     for p in ax.patches:
         ax.annotate(f'{int(p.get_width())}', (p.get_width(), p.get_y() + p.get_height()/2.), 
                     ha='left', va='center', fontsize=10, color='black', xytext=(5,0), 
                     textcoords='offset points')
         
+    ax.text(0.5, -0.1, f"Este gráfico muestra la distribución total de {selected_column} para todos los años.", ha='center', va='center', transform=ax.transAxes, fontsize=14)
     plt.tight_layout()
     st.pyplot(fig)
 
@@ -68,7 +69,7 @@ def plot_total_patients(df):
 
     # Configure titles and labels
     ax.set_title('Número de Pacientes por Año', fontsize=16)
-    ax.set_xlabel('Año', fontsize=14)
+    # ax.set_xlabel('Año', fontsize=14)
     ax.set_ylabel('Número de Pacientes', fontsize=14)
 
     # Axis limits
@@ -81,6 +82,7 @@ def plot_total_patients(df):
     for x, y in zip(data_to_plot.index, data_to_plot.values):
         ax.text(x, y + 10, str(y), ha='center', va='bottom')
 
+    ax.text(0.5, -0.1, f"Este gráfico muestra el registro de pacientes a lo largo de los años.", ha='center', va='center', transform=ax.transAxes, fontsize=14)
     # Design adjustment
     plt.tight_layout()
 
@@ -91,21 +93,25 @@ def plot_time_trends(df, selected_column):
     # Chart style
     plt.style.use('bmh')
     
+    # Calculate the order of the bars based on the count of the 'selected_column'
+    order = sorted(df['year'].unique())
+    hue_order = df[selected_column].value_counts().index
+    
     fig, ax = plt.subplots(1, 1, figsize=(12, 7))
-
+    
     # Bar chart
-    count_plot = sns.countplot(data=df, x='year', hue=selected_column, palette='pastel', ax=ax)
+    count_plot = sns.countplot(data=df, x='year', hue=selected_column, palette='pastel', ax=ax, order=order, hue_order=hue_order)
 
     # Configure titles and labels
     ax.set_title(f'Distribución de {selected_column} por Año', fontsize=16)
-    ax.set_xlabel('Año', fontsize=14)
+    ax.set_xlabel('Año', fontsize=12)
     ax.set_ylabel('Número de Registros', fontsize=14)
-
+    
     # Axis limits
     ax.set_ylim(bottom=0)
 
     # Legend
-    ax.legend(title=f'Categoría de {selected_column}', loc='upper right', fontsize='small', bbox_to_anchor=(1, 1))
+    ax.legend(title=f'Valores {selected_column}', loc='best', fontsize='small', bbox_to_anchor=(1, 1))
 
     # Grid
     ax.grid(True, axis='y', linestyle='--')
@@ -117,7 +123,10 @@ def plot_time_trends(df, selected_column):
                             ha='center', va='center', 
                             xytext=(0, 9), 
                             textcoords='offset points')
-
+        
+    # Add description inside the graphic
+    ax.text(0.5, -0.1, f"Este gráfico muestra la distribución de {selected_column} a lo largo de los años.",
+            ha='center', va='center', transform=ax.transAxes)
     # Design adjustment
     plt.tight_layout()
 
@@ -157,3 +166,7 @@ def plot_heatmap(df, selected_column, selected_column_2):
 
     # Show the graph in Streamlit
     st.pyplot(fig)
+    
+    st.markdown(f"""
+    ##### Este conjunto de mapas de calor visualiza la relación entre *{selected_column}* y *{selected_column_2}*. El primer mapa de calor muestra los porcentajes normalizados de las ocurrencias combinadas de cada par de valores, representando la proporción de todas las observaciones que caen en cada combinación de categorías. Mientras que el segundo mapa de calor muestra la cantidad absoluta de registros para cada combinación de categorías, brindando una perspectiva más directa sobre la distribución real de los datos en el conjunto de datos. Las celdas más oscuras indican una mayor frecuencia o un porcentaje más alto de observaciones, mientras que las celdas más claras indican lo contrario, ayudando a identificar rápidamente las combinaciones de categorías más y menos comunes.
+""")

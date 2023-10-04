@@ -13,9 +13,46 @@ def load_csv(input_csv):
     with st.expander('Ver datos'):
         st.write(f"{input_csv.name} tiene {df.shape[0]} filas y {df.shape[1]} columnas.")
         st.write(df)
-        st.write("Resumen de los datos:")
-        st.write(df.describe(include='all').T, )
-        
+        container = st.container()
+        col1, col2 = container.columns([1, 1])
+        with col1:
+            st.write("Resumen de los datos numéricos:")
+            st.write(df.describe(exclude='object').T, )
+            st.divider()
+            st.write("Resumen de los datos categóricos:")
+            st.write(df.describe(include='object').T, )
+        with col2:
+            st.markdown("""
+                        ## Distribución y centralidad de los datos
+
+                        #### Para Datos Numéricos:
+                        - **Count**: Número total de elementos no nulos.
+                        - **Mean**: La media aritmética de los datos.
+                        - **Std**: La desviación estándar, que mide la cantidad de variación o dispersión de un conjunto de valores.
+                        - **Min**: El valor mínimo en el conjunto de datos.
+                        - **25%**: El primer cuartil o percentil 25.
+                        - **50%**: La mediana o percentil 50.
+                        - **75%**: El tercer cuartil o percentil 75.
+                        - **Max**: El valor máximo en el conjunto de datos.
+
+                        #### Para Datos Categóricos:
+                        - **Count**: Número total de elementos no nulos.
+                        - **Unique**: Número de categorías únicas.
+                        - **Top**: La categoría más común.
+                        - **Freq**: La frecuencia de la categoría más común.
+
+                        #### Intercuartiles Explicados:
+                        - **25%** (Primer Cuartil): El valor por debajo del cual se encuentra el 25% de los datos.
+                        - **50%** (Mediana): El valor medio que separa la mitad superior de la mitad inferior de los datos.
+                        - **75%** (Tercer Cuartil): El valor por debajo del cual se encuentra el 75% de los datos.
+
+                        Los cuartiles pueden ayudarnos a entender la dispersión de los datos entre diferentes puntos y a identificar posibles outliers o anomalías.
+
+                        ---
+
+                        Estas métricas se utilizan para obtener una visión general rápida de los datos y para entender mejor las tendencias y variaciones dentro del conjunto de datos.
+
+                                                """)
     return df
 
 # Function for sidebar and file upload
@@ -64,26 +101,26 @@ def apply_filters(df, reset=False):
     
     
 # with col1:
-    with st.expander("### Año"):
-        selected_year = st.multiselect("Seleccione un año:", sorted(df['year'].unique()))
+    with st.expander("Año"):
+        selected_year = st.multiselect("Seleccione año:", sorted(df['year'].unique()), default=None, placeholder="Selecciona uno o varios años")
         if selected_year:
             df = df[df['year'].isin(selected_year)]
             
-    with st.expander("### Ayuntamiento"):
-        selected_council = st.multiselect("Seleccione Ayuntamiento:", sorted(df['ayuntamiento'].unique()))
+    with st.expander("Ayuntamiento"):
+        selected_council = st.multiselect("Seleccione Ayuntamiento:", sorted(df['ayuntamiento'].unique()), default=None, placeholder="Elige el ayuntamiento que quieras filtrar")
         if selected_council:
             df = df[df['ayuntamiento'].isin(selected_council)]
     
-    with st.expander("### Estado de pacientes"):
+    with st.expander("Estado de pacientes"):
         filtered_columns_2 = [col for col in df.columns if 'classif' in col]
         df_cat_2 = df[filtered_columns_2]
         for col in df_cat_2.columns:
             unique_values = df[col].unique().tolist()
-            filters[col] = st.multiselect(f"##### {col}", unique_values, default=unique_values)
+            filters[col] = st.multiselect(f"##### {col}", unique_values, default=None, placeholder="Selecciona los valores por los que filtrar")
             if filters[col]:
                 df = df[df[col].isin(filters[col])]
                 
-    with st.expander("### Visitas y Estancias"):
+    with st.expander("Visitas y Estancias"):
         # Filter for numeric columns
         df_num = df.select_dtypes(exclude='object')
         for col in df_num.columns[:2]:

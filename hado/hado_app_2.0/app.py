@@ -209,12 +209,14 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
             
                 # If the user selects "Specific year", we display an additional selector for the user to choose the year
                 if year_option == "Año específico":
-                    selected_year = st.selectbox("### Seleccione un año:", sorted(df_tab3['year'].unique()))
-                    df_tab3 = df_tab3[df_tab3['year'] == selected_year]  # Filter the DataFrame by the selected year
-                
-            filtered_columns = [col for col in df_tab3.columns if 'category' in col or 'medico' in col or 'classification' in col]
+                    selected_year = st.selectbox("Seleccione un año:", sorted(df_tab3['year'].unique()), index=None, placeholder="Selecciona un año para visualizar los datos")
+                    if selected_year != None:
+                        df_tab3 = df_tab3[df_tab3['year'] == selected_year]  # Filter the DataFrame by the selected year
+            
+            # Filter columns by number of unique values in columns    
+            filtered_columns = df_tab3.columns[(df_tab3.nunique() >= 2) & (df_tab3.nunique() <= 15)].tolist()
             with col2:
-                selected_column = st.selectbox("### Seleccione una columna para visualizar:", filtered_columns)
+                selected_column = st.selectbox("Seleccione una columna para visualizar:", filtered_columns, index=None, placeholder="Puedes ver los diferentes datos de cada categoría")
             
             col1, col2 = st.columns(2)
             with col1:
@@ -234,16 +236,16 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                         st.divider()
             st.divider()
             
-            with st.expander('### Relación con Otra Variable', expanded=True):
-                st.info("Seleccione otra columna para explorar la relación con la columna previamente seleccionada.")
+            with st.expander('Relación con Otra Variable', expanded=True):
+                st.info("Seleccione dos columnas distintas para explorar la relación entre ellas.")
                 col1, col2 = st.columns([1,1])
                 with col1:
-                    selected_column1 = st.selectbox("#### Seleccione una columna:", filtered_columns)
-                    selected_column2 = st.selectbox("#### Seleccione Otra Columna para observar la relación entre ambas:", filtered_columns)
+                    selected_column1 = st.selectbox("#### Seleccione una columna (eje y):", filtered_columns, index=None, placeholder="Escoge una única opción")
+                    selected_column2 = st.selectbox("#### Seleccione una columna (eje x):", filtered_columns, index=None, placeholder="Escoge una única opción")
 
                 if selected_column1 == selected_column2:
                     st.warning("🧐 No pueden ser las mismas columnas. Por favor, escoja otra columna.")
-                else:
+                if selected_column1 != None and selected_column2 !=None:
                     st.write("### Heatmap de Relación")
 
                     # Obtén los valores únicos de las columnas seleccionadas
@@ -252,8 +254,8 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                     
                     with col2:
                         # SelectBoxes para seleccionar valores únicos
-                        selected_value_col1 = st.multiselect(f"#### Seleccione un valor único para {selected_column1}:", unique_values_col1)
-                        selected_value_col2 = st.multiselect(f"#### Seleccione un valor único para {selected_column2}:", unique_values_col2)
+                        selected_value_col1 = st.multiselect(f"#### Seleccione un valor único para {selected_column1}:", unique_values_col1, default=unique_values_col1)
+                        selected_value_col2 = st.multiselect(f"#### Seleccione un valor único para {selected_column2}:", unique_values_col2, default=unique_values_col2)
 
                     # Filtra el DataFrame basado en los valores seleccionados
                     filtered_df_tab3 = df_tab3[(df_tab3[selected_column1].isin(selected_value_col1)) & (df_tab3[selected_column2].isin(selected_value_col2))]
