@@ -3,17 +3,26 @@
 # Modules and libraries
 import streamlit as st
 import pandas as pd
-import os
 from ydata_profiling import ProfileReport
 import geopandas as gpd
 
+
+# Load CSV file
+def load_csv(input_csv):
+    df = pd.read_csv(input_csv)
+    with st.expander('Ver datos'):
+        st.write(f"{input_csv.name} tiene {df.shape[0]} filas y {df.shape[1]} columnas.")
+        st.write(df)
+        st.write("Resumen de los datos:")
+        st.write(df.describe(include='all').T, )
+        
+    return df
+
 # Function for sidebar and file upload
 @st.cache_data(experimental_allow_widgets=True)
-def sidebar_and_upload():
+def sidebar_and_upload(csv_file):
     """
-    This function creates a file uploader widget in the Streamlit sidebar, 
-    allowing the user to upload a CSV file. The function reads the uploaded 
-    file into a pandas DataFrame and saves a copy of it as "uploaded_file.csv". 
+    The function reads the uploaded file into a pandas DataFrame.
     If no file is uploaded, a message is displayed on the Streamlit app.
 
     The function leverages Streamlit's caching mechanism to avoid reloading 
@@ -23,40 +32,21 @@ def sidebar_and_upload():
     Returns:
         pd.DataFrame: The DataFrame created from the uploaded CSV file. 
                       If no file is uploaded, the function will return None.
-    
-    Example:
-        >>> df = sidebar_and_upload()
-        >>> if df is not None:
-        >>>     st.write(df.head())
     """
-    # Set the title and information message in the sidebar
-    st.sidebar.title("App HADO")
-    st.sidebar.info("Aplicación en pruebas")
-    
-    # Initialize df to None
-    # df = None
-    
-    # Create a file uploader widget in the sidebar
-    uploaded_file = st.sidebar.file_uploader("Sube tu archivo Excel en formato CSV", type=["csv"])
     
     # Check if a file has been uploaded
-    if uploaded_file:
+    if csv_file:
+        container = st.container()
+        col1, col2, col3 = container.columns([0.5, 2, 0.5])
+        with col2:
         # Notify the user that the file has been uploaded
-        st.sidebar.write("Archivo subido con éxito")
-        
+            st.info("Archivo subido con éxito 😊")
         # Read the uploaded file into a pandas DataFrame
-        df_original = pd.read_csv(uploaded_file)
+        df_original = load_csv(csv_file)
         df = df_original.copy()
-        
-        # Save a copy of the DataFrame as "uploaded_file.csv"
-        # df.to_csv("uploaded_file.csv", index=False)
-    else:
-        # Display a message if no file is uploaded
-        st.write("No se subió ningún archivo")
-        
+    
     # Return the DataFrame
     return df
-
 
 # Function for Data Filters    
 def apply_filters(df, reset=False):
@@ -114,11 +104,11 @@ def apply_filters(df, reset=False):
 
 # Function for CRUD Operations
 @st.cache_data(experimental_allow_widgets=True)
-def crud_operations(df):
+def crud_operations(df, csv_file):
     # CRUD Page
-    with st.expander("➕ Información CRUD"):
+    with st.expander("➕ Información CRUD", expanded=True):
         st.markdown(
-    """
+    f"""
     # **Operaciones CRUD para Archivos Excel** 🛠️
     
     En esta sección, puedes realizar operaciones de Crear, Leer, Actualizar y Eliminar (CRUD) en tu archivo Excel.
@@ -145,7 +135,7 @@ def crud_operations(df):
     
     ## **5. Guardar Cambios** 💾
     - Una vez realizadas las operaciones, haz clic en 'Guardar Cambios'.
-    - Los cambios se guardarán en un nuevo archivo CSV llamado 'uploaded_file.csv'.
+    - Los cambios se guardarán en un nuevo archivo CSV llamado {csv_file.name}.
     
     ## **Nota:** 📝
     - Este CRUD es un ejemplo para demostrar la posibilidad de modificar datos desde Streamlit.
@@ -153,32 +143,22 @@ def crud_operations(df):
     """
 )
 
-    # CRUD functionalities will be added here
-
-    # Upload Excel file
-    # uploaded_file = st.file_uploader("Upload an Excel file", type=["csv"])
-    # if uploaded_file:
-    #     df = pd.read_csv(uploaded_file)
-    #     st.write("Uploaded data:")
-    #     st.write(df.head())
-        # Additional CRUD functionalities will be added here
-
     # Read Data
     st.divider()
-    st.subheader("View Data")
+    st.subheader("Datos")
     st.write(df)
     
     col1, col2 = st.columns([1, 1])
     # Update Data
-    with col1.expander("Edit Data"):
-        row_to_edit = st.number_input("#### Enter the index of the row you want to edit:", min_value=0, max_value=df.shape[0]-1, value=0, step=1)
+    with col1.expander("Editar Datos"):
+        row_to_edit = st.number_input("#### Introduzca el índice de la fila que desea editar:", min_value=0, max_value=df.shape[0]-1, value=0, step=1)
         
         if row_to_edit is not None:
-            column_to_edit = st.selectbox("#### Select the column you want to edit:", df.columns.tolist())
+            column_to_edit = st.selectbox("#### Seleccione la columna que desea editar:", df.columns.tolist())
             if column_to_edit:
-                new_value = st.text_input(f"#### Enter the new value for {column_to_edit} at index {row_to_edit}:")
+                new_value = st.text_input(f"#### Introduzca el nuevo valor para {column_to_edit} en índice {row_to_edit}:")
         
-        if st.button("Update"):
+        if st.button("Actualizar"):
             if row_to_edit is not None and column_to_edit is not None and new_value is not None:
                 original_value = df.at[row_to_edit, column_to_edit]
                 original_dtype = df[column_to_edit].dtype
@@ -186,16 +166,16 @@ def crud_operations(df):
                 try:
                     new_value_casted = original_dtype.type(new_value)
                     df.at[row_to_edit, column_to_edit] = new_value_casted
-                    st.success(f"Updated {column_to_edit} from {original_value} to {new_value_casted}")
+                    st.success(f"Actualizado para la columna {column_to_edit} con el valor {original_value} modificado por {new_value_casted}")
                     
                     # Guarda los cambios en un archivo CSV
-                    df.to_csv("uploaded_file.csv", index=False)
+                    df.to_csv(csv_file.name, index=False)
                     
                     # Muestra solo la fila actualizada
-                    st.write("Updated row:")
+                    st.write("Fila actualizada:")
                     st.write(df.loc[[row_to_edit]])
                 except ValueError:
-                    st.error(f"Invalid input. Expected data type: {original_dtype}")
+                    st.error(f"Entrada no válida. Tipo de datos esperado: {original_dtype}")
 
     
     # Search Data like Patient Records
@@ -233,14 +213,13 @@ def generate_pandas_profiling(df):
 
 @st.cache_data(experimental_allow_widgets=True)
 def load_gdf():
-    # Definir la ruta del archivo .shp
-    container = st.container()
-    col1, col2, col3 = container.columns([0.5, 2, 0.5])
-    with col2:
-        uploaded_file = st.file_uploader("Sube tu archivo GeoJson")
-        if uploaded_file:
-            gdf = gpd.read_file(uploaded_file)
-            gdf_clean = gdf[gdf['geometry'].notnull()]
-        else:
-            st.write("Subir archivo GeoJson")
+    # Definir la ruta del archivo .geojson
+    file_path = "hado_app_2.0/data/ESP_adm4.geojson"
+    
+    # Cargar los datos geojson
+    gdf = gpd.read_file(file_path)
+    
+    # Limpiar el DataFrame Geo, eliminando las filas donde la geometría es nula
+    gdf_clean = gdf[gdf['geometry'].notnull()]
+    
     return gdf_clean

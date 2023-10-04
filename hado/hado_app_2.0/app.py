@@ -1,5 +1,4 @@
 # Principal file for the Streamlit Aplication
-
 import streamlit as st
 from streamlit_pandas_profiling import st_profile_report
 import base64
@@ -23,7 +22,7 @@ from interactive_maps import folium_static,\
                             plot_average_metrics_by_ayuntamiento,\
                             plot_top_ayuntamientos_for_category
                             
-from utils import machine_learning
+from utils import machine_learning, ui_info, ui_spacer
 
 
 
@@ -32,37 +31,78 @@ st.set_page_config(page_title="HADO",
                    initial_sidebar_state = 'auto',
                     page_icon="🏥")
 
-if 'show_filters' not in st.session_state:
-    st.session_state.show_filters = True
-    
+ss = st.session_state
 
+if 'show_filters' not in ss:
+    ss.show_filters = True
+    
 # Main Function
 def main():
     
+    # Set the title and information message in the sidebar
     st.write("# HADO CARES")
+    
+    with st.sidebar:
+        ui_info()
+        ui_spacer(2)
+    
+    # Initialize with None df
+    df=None
     tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
         "Home 🏠", "Filtros 🔍", "Visualizaciones 📊", "Mapa 🗺️", "CRUD Operations ✍️", "ML 🖥️", "Pandas Profiling 📃"
     ])
-    try:
-        df = None
-        df = sidebar_and_upload()
-        
-    except Exception as e:
-        st.sidebar.info("Por favor suba el archivo CSV para inicialzar la aplicación")
-        # st.sidebar.write(f"Ocurrió un error: {e}")
-        
+    with tab1:
+        md_expander = st.expander("📃Información", expanded=True)
+        with md_expander:
+            st.markdown("""
+                        # Bienvenido a HADO CARES 🚀
+
+HADO CARES es una aplicación interactiva diseñada para facilitar el análisis y la exploración de datos de atención médica. Esta plataforma ofrece una variedad de herramientas para visualizar, filtrar, y comprender los datos, proporcionando insights valiosos para la toma de decisiones.
+
+## 🏠 Home
+
+En esta sección, puedes cargar tu archivo CSV para empezar a explorar los datos. Una vez cargados los datos, las diversas pestañas en la parte superior te permitirán navegar a través de las diferentes funcionalidades de la aplicación:
+
+- **Filtros 🔍**: Aplica filtros avanzados a los datos para focalizar tus análisis en subconjuntos específicos.
+- **Visualizaciones 📊**: Explora visualizaciones detalladas generadas a partir de los datos.
+- **Mapa 🗺️**: Investiga distribuciones geográficas y patrones a través de mapas interactivos.
+- **CRUD Operations ✍️**: Realiza operaciones de Crear, Leer, Actualizar y Eliminar en los datos.
+- **ML 🖥️**: Explora y aplica algoritmos de machine learning a los datos.
+- **Pandas Profiling 📃**: Genera informes detallados del análisis exploratorio de los datos.
+
+### ¿Cómo Utilizar HADO CARES?
+
+1. **Cargar Datos**: Utiliza la sección de carga de datos para subir tu archivo CSV. (Justo aquí abajo 👇)
+2. **Navegar**: Utiliza las pestañas para explorar las diferentes secciones y funcionalidades de la aplicación.
+3. **Interactuar**: Aprovecha los filtros y opciones disponibles en cada sección para personalizar tus análisis y visualizaciones.
+4. **Analizar**: Utiliza las visualizaciones y herramientas proporcionadas para obtener insights sobre los datos.
+
+### ¡Empecemos!
+Por favor, carga tu archivo CSV para comenzar a explorar y analizar los datos. Si tienes dudas o necesitas ayuda, no dudes en consultar la sección de información en la barra lateral.
+
+_Disfruta explorando e interactuando con los datos en HADO CARES!_
+                    
+                            """)
+        try:
+            container = st.container()
+            col1, col2, col3 = container.columns([0.5, 2, 0.5])
+            with col2:
+                # Create a file uploader widget in the sidebar
+                uploaded_file = st.file_uploader("Sube tu archivo Excel en formato CSV", type=["csv"], key="csv_file")
+            df = sidebar_and_upload(csv_file=uploaded_file)
+            
+        except Exception as e:
+            st.info("Por favor suba el archivo CSV para inicialzar la aplicación")
+            # st.sidebar.write(f"Ocurrió un error: {e}")
+            
     if df is not None:
-        with tab1:
-            st.write("## Datos de muestra")
-            st.write(df.head(10))
-            st.write(f"El dataset tiene {df.shape[0]} filas y {df.shape[1]} columnas.")
         
         # Apply Filters
         with tab2:
             st.header("Filtrado y Descarga de Datos")
             # Uso de columnas para organizar el contenido
             col1, col2, col3 = st.columns([1, 0.05, 1])
-            with col1.expander("Instrucciones para el uso de filtros 🛠️"):
+            with col1.expander("Instrucciones para el uso de filtros 🛠️", expanded=True):
                 st.markdown(
     """
     ### **Instrucciones para el uso de filtros:** 🛠️
@@ -130,7 +170,8 @@ def main():
         
         # Data Visualizations
         with tab3:
-            with st.expander("Información para el uso de Visualizaciones"):
+            df_tab3 = df.copy()
+            with st.expander("Información para el uso de Visualizaciones", expanded=True):
                 st.markdown(
     """
     # **Visualizaciones de Datos** 📊
@@ -168,32 +209,32 @@ def main():
             
                 # If the user selects "Specific year", we display an additional selector for the user to choose the year
                 if year_option == "Año específico":
-                    selected_year = st.selectbox("### Seleccione un año:", sorted(df['year'].unique()))
-                    df = df[df['year'] == selected_year]  # Filter the DataFrame by the selected year
+                    selected_year = st.selectbox("### Seleccione un año:", sorted(df_tab3['year'].unique()))
+                    df_tab3 = df_tab3[df_tab3['year'] == selected_year]  # Filter the DataFrame by the selected year
                 
-            filtered_columns = [col for col in df.columns if 'category' in col or 'medico' in col or 'classification' in col]
+            filtered_columns = [col for col in df_tab3.columns if 'category' in col or 'medico' in col or 'classification' in col]
             with col2:
                 selected_column = st.selectbox("### Seleccione una columna para visualizar:", filtered_columns)
             
             col1, col2 = st.columns(2)
             with col1:
                 if year_option != "Año específico":
-                    plot_total_patients(df)
+                    plot_total_patients(df_tab3)
                     st.divider()
                     if selected_column:
-                        plot_selected_category(df, selected_column)
+                        plot_selected_category(df_tab3, selected_column)
                 else:
                     if selected_column:
-                        plot_selected_category(df, selected_column)
+                        plot_selected_category(df_tab3, selected_column)
                 
             with col2:
                 if year_option != "Año específico":
                     if selected_column:
-                        plot_time_trends(df, selected_column)
+                        plot_time_trends(df_tab3, selected_column)
                         st.divider()
             st.divider()
             
-            with st.expander('### Relación con Otra Variable'):
+            with st.expander('### Relación con Otra Variable', expanded=True):
                 st.info("Seleccione otra columna para explorar la relación con la columna previamente seleccionada.")
                 col1, col2 = st.columns([1,1])
                 with col1:
@@ -206,8 +247,8 @@ def main():
                     st.write("### Heatmap de Relación")
 
                     # Obtén los valores únicos de las columnas seleccionadas
-                    unique_values_col1 = df[selected_column1].unique()
-                    unique_values_col2 = df[selected_column2].unique()
+                    unique_values_col1 = df_tab3[selected_column1].unique()
+                    unique_values_col2 = df_tab3[selected_column2].unique()
                     
                     with col2:
                         # SelectBoxes para seleccionar valores únicos
@@ -215,15 +256,15 @@ def main():
                         selected_value_col2 = st.multiselect(f"#### Seleccione un valor único para {selected_column2}:", unique_values_col2)
 
                     # Filtra el DataFrame basado en los valores seleccionados
-                    filtered_df = df[(df[selected_column1].isin(selected_value_col1)) & (df[selected_column2].isin(selected_value_col2))]
+                    filtered_df_tab3 = df_tab3[(df_tab3[selected_column1].isin(selected_value_col1)) & (df_tab3[selected_column2].isin(selected_value_col2))]
                     
                     # Verifica si el DataFrame filtrado está vacío
-                    if filtered_df.empty:
+                    if filtered_df_tab3.empty:
                         st.warning("Por favor, seleccione al menos un valor de cada columna para visualizar el heatmap.")
 
                     col1, col2, col3 = st.columns([0.5,2,0.5])
                     with col2:
-                        plot_heatmap(filtered_df, selected_column1, selected_column2)
+                        plot_heatmap(filtered_df_tab3, selected_column1, selected_column2)
             
             # Create or retrieve status variables for each chart
             if 'show_barthel' not in st.session_state:
@@ -256,7 +297,7 @@ Esta herramienta es útil para valorar la funcionalidad, evolución, pronóstico
                     if st.button("Mostrar/Ocultar Gráfico Barthel"):
                         st.session_state.show_barthel = not st.session_state.show_barthel
                     if st.session_state.show_barthel:
-                        plot_classification_heatmap(df, 'barthel_classification', 'barthel')
+                        plot_classification_heatmap(df_tab3, 'barthel_classification', 'barthel')
                 
                 # PS_ECOG
                 ps_ecog_expander = st.expander("### PS_ECOG")
@@ -280,7 +321,7 @@ Diseñada por el Eastern Cooperative Oncology Group (ECOG) y validada por la OMS
                     if st.button("Mostrar/Ocultar Gráfico PS_ECOG"):
                         st.session_state.show_ps_ecog = not st.session_state.show_ps_ecog
                     if st.session_state.show_ps_ecog:
-                        plot_classification_heatmap(df, 'ps_ecog_classification', 'ps_ecog')
+                        plot_classification_heatmap(df_tab3, 'ps_ecog_classification', 'ps_ecog')
                 
                 # GDS_FAST
                 gds_fast_expander = st.expander("### GDS_FAST")
@@ -306,32 +347,19 @@ Esta escala es fundamental para evaluar la evolución, pronóstico y decidir el 
                     if st.button("Mostrar/Ocultar Gráfico GDS_FAST"):
                         st.session_state.show_gds_fast = not st.session_state.show_gds_fast
                     if st.session_state.show_gds_fast:
-                        plot_classification_heatmap(df, 'gds_fast_classification', 'gds_fast')
+                        plot_classification_heatmap(df_tab3, 'gds_fast_classification', 'gds_fast')
 
         # Mapa
         with tab4:
-            try:
-                gdf = None
-                gdf = load_gdf()
-                
-            except Exception as e:
-                st.info("Por favor suba el archivo GeoJson para observar el mapa con los municipios")
-                # st.error(f"Ocurrió un error: {e}")
-            md_expander = st.expander("➕ Información")
+            df_tab4 = df.copy()
+            md_expander = st.expander("➕ Información", expanded=True)
             with md_expander:
                 st.markdown("""
                            ### Guía de Uso de las Visualizaciones 🌟
 
 ¡Bienvenido a la sección de visualizaciones! Aquí podrás explorar diferentes aspectos de los datos a través de gráficos interactivos y mapas. A continuación, te presentamos una guía detallada para ayudarte a navegar y aprovechar al máximo esta sección.
 
-#### 1. Subida del Archivo GeoJson 📤
-
-Antes de empezar a explorar el mapa interactivo, es necesario subir el archivo GeoJson que contiene la información geográfica de los municipios. Encontrarás una opción para cargar este archivo en la parte superior de la sección. Una vez cargado correctamente, podrás visualizar el mapa y explorar los datos geográficos.
-
-💡 **Consejo:** Si no se carga el archivo GeoJson o si ocurre algún error durante la carga, se mostrará una advertencia, y no podrás visualizar el mapa.
-
----
-#### 2. Mapa Interactivo 🗺️
+#### 1. Mapa Interactivo 🗺️
 
 En esta sección, encontrarás un mapa interactivo que muestra información geográfica relevante. Para personalizar tu experiencia y visualizar los datos que te interesan, puedes utilizar los siguientes filtros:
 
@@ -344,7 +372,7 @@ Además del mapa, encontrarás las siguientes visualizaciones que proporcionan i
 - **Promedios de Métricas Clave por Ayuntamiento:** Aquí podrás ver varios gráficos de barras que representan los promedios de diferentes métricas clave por ayuntamiento.
 
 ---
-#### 3. Top de Ayuntamientos por Columnas 📊
+#### 2. Top de Ayuntamientos por Columnas 📊
 
 En la parte inferior de la página, podrás explorar los ayuntamientos que destacan en diferentes categorías. Utiliza los filtros disponibles para personalizar la visualización:
 
@@ -355,74 +383,89 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
 
 💡 **Consejo:** Solo podrás seleccionar categorías que tengan 15 o menos valores únicos.
                             """)
+            try:
+                gdf = None
+                gdf = load_gdf()
+                
+            except Exception as e:
+                st.info("Por favor suba el archivo GeoJson para observar el mapa con los municipios")
+                # st.error(f"Ocurrió un error: {e}")
             container = st.container()
             col1, col2, col3 = container.columns([0.5, 2, 0.5])
             if gdf is not None:
                 with col1:
-                    st.write("### Filtros para el mapa")
+                    st.write("### Filtros 🔍")
                     st.info("La selección del año afecta a todas las visualizaciones de esta página")
                         
-                    selected_year = st.selectbox("Seleccione un año:", sorted(df['year'].unique()))
+                    selected_year = st.selectbox("Seleccione un año:", sorted(df_tab4['year'].unique()),index=None, placeholder="Pulsa para ver los años y seleccionar")
                         
-                    column = st.selectbox("Seleccione la columna para visualizar:", ['barthel', 'gds_fast', 'ps_ecog', 'n_visitas', 'n_estancias'])
+                    column = st.selectbox("Seleccione la columna para visualizar:", ['barthel', 'gds_fast', 'ps_ecog', 'n_visitas', 'n_estancias'], index=None, placeholder="Escoge la columna que deseas visualizar en el mapa")
                 
-                with col2: 
-                    map_object = generate_interactive_maps(df, column, gdf, selected_year)
-
-                    if isinstance(map_object, str):
-                        st.error(map_object)
-                    else:
-                        folium_static(map_object)
-            
-                st.write("")
-            
                 with col2:
+                    if column == None:
+                        map_object = None
+                        st.info("Selecciona una columna para visualizar el mapa con los ayuntamientos", icon="🚨")
+                    else:
+                        map_object = generate_interactive_maps(df_tab4, column, gdf, selected_year)
+
+                        if isinstance(map_object, str):
+                            st.error(map_object)
+                        else:
+                            folium_static(map_object)
+            
+                ui_spacer(1)
                 
-                    df_filtered = df[df['year'] == selected_year]
-                    plot_patients_by_ayuntamiento(df_filtered, selected_year)
+                with col2:
+                    if selected_year != None:    
+                        df_filtered_tab4 = df_tab4[df_tab4['year'] == selected_year]
+                        plot_patients_by_ayuntamiento(df_filtered_tab4, selected_year)
 
-                    st.divider()
-                    plot_average_metrics_by_ayuntamiento(df, selected_year)
-                    st.info("No se tienen en cuenta ayuntamientos desconocidos para el calculo de los promedios")
+                        st.divider()
+                        plot_average_metrics_by_ayuntamiento(df_tab4, selected_year)
+                        st.info("No se tienen en cuenta ayuntamientos desconocidos para el calculo de los promedios")
 
-                    st.divider()
-                    
-                    
-                    st.markdown("""
-                                ## Top de Ayuntamientos por columnas
-                                """)
-                    selected_plot_type = st.selectbox("Seleccione un tipo de gráfico:", ['Gráfico de barras', 'Gráfico de puntos'])
-                    container = st.container()
-                    col1, col2 = container.columns([1, 1])
-                    # Columna 1
-                    with col1:
-                        # Lista de columnas categóricas con 15 o menos valores únicos
-                        categorical_columns = [col for col in df.select_dtypes(include='object').columns if df[col].nunique() <= 15]
+                        st.divider()
                         
-                        # Crear un selector para estas columnas
-                        selected_category = st.selectbox("Seleccione una categoría:", categorical_columns)
                         
-                        # Obtener los valores únicos de la columna de categoría seleccionada y crear un selector para estos valores
-                        unique_category_values = sorted(df[selected_category].unique().tolist())
-                        selected_category_values = st.multiselect(f"Seleccione valores de {selected_category}:", unique_category_values, default=unique_category_values)
+                        st.markdown("""
+                                    ## Top de Ayuntamientos por columnas
+                                    """)
+                        selected_plot_type = st.selectbox("Seleccione un tipo de gráfico:", ['Gráfico de barras', 'Gráfico de puntos'], index=None, placeholder="Elige entre gráfico de barras o de puntos")
+                        container = st.container()
+                        col1, col2 = container.columns([1, 1])
+                        # Columna 1
+                        with col1:
+                            # Lista de columnas categóricas con 15 o menos valores únicos
+                            categorical_columns = [col for col in df_tab4.select_dtypes(include='object').columns if df_tab4[col].nunique() <= 15]
+                            
+                            # Crear un selector para estas columnas
+                            selected_category = st.selectbox("Seleccione una categoría:", categorical_columns, key="category_tab4", index=None, placeholder="¿Qué columna quieres visualizar?")
+                            
+                            # Obtener los valores únicos de la columna de categoría seleccionada y crear un selector para estos valores
+                            if selected_category != None and selected_plot_type != None:
+                                unique_category_values = sorted(df_tab4[selected_category].unique().tolist())
+                                selected_category_values = st.multiselect(f"Seleccione valores de {selected_category}:", unique_category_values, default=unique_category_values, key="category_values_tab4")
+                            else:
+                                st.warning("Una vez escojas gráfico y categoría se mostrará la visualización")
 
-                    # Columna 2
-                    with col2:
-                        # Obtener la lista de ayuntamientos únicos y crear un selector para estos ayuntamientos
-                        unique_ayuntamientos = sorted(df['ayuntamiento'].unique().tolist())
-                        selected_ayuntamientos = st.multiselect("Seleccione ayuntamientos:", unique_ayuntamientos, default=unique_ayuntamientos)
-                        
+                        # Columna 2
+                        if selected_category != None and selected_plot_type != None:
+                            with col2:
+                                # Obtener la lista de ayuntamientos únicos y crear un selector para estos ayuntamientos
+                                unique_ayuntamientos = sorted(df_tab4['ayuntamiento'].unique().tolist())
+                                selected_ayuntamientos = st.multiselect("Seleccione ayuntamientos:", unique_ayuntamientos, default=unique_ayuntamientos, key="council_tab4")
+                                
 
-                    plot_top_ayuntamientos_for_category(df, selected_year,selected_ayuntamientos, selected_category, selected_category_values, selected_plot_type)
-             
-            else:
-                st.warning("No se pudo cargar el archivo GeoJson o el archivo no existe.")
+                            plot_top_ayuntamientos_for_category(df_tab4, selected_year,selected_ayuntamientos, selected_category, selected_category_values, selected_plot_type)
+                
+            # else:
+            #     st.warning("No se pudo cargar el archivo GeoJson o el archivo no existe.")
                 
                 
                 
         # CRUD Operations
         with tab5:
-            crud_operations(df)
+            crud_operations(df,csv_file=uploaded_file)
         
         # Machine Learning
         with tab6:
@@ -432,7 +475,7 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
         # Pandas Profiling
         with tab7:
             st.header("**Pandas Profiling Report**")
-            pandas_pr_expander = st.expander("### ➕ Información")
+            pandas_pr_expander = st.expander("### ➕ Información", expanded=True)
             with pandas_pr_expander:
                 st.markdown("""
                         ### 📘 Acerca de la Aplicación
