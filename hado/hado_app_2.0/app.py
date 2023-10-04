@@ -24,7 +24,12 @@ from interactive_maps import folium_static,\
                             plot_top_ayuntamientos_for_category
                             
 from utils import machine_learning, ui_info, ui_spacer
-
+import seaborn
+import pandas
+import streamlit_pandas_profiling
+import ydata_profiling
+import geopandas
+import folium
 
 
 st.set_page_config(page_title="HADO",
@@ -39,7 +44,6 @@ if 'show_filters' not in ss:
     
 # Main Function
 def main():
-    
     # Set the title and information message in the sidebar
     st.write("# HADO CARES")
     
@@ -281,7 +285,7 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
             col1, col2, col3 = container.columns([0.5, 2, 0.5])
             with col2:
                 # Barthel
-                barthel_expander = st.expander("### Barthel")
+                barthel_expander = st.expander("### Barthel", expanded=True)
                 with barthel_expander:
                     st.markdown("""
                                 ### Índice de Barthel
@@ -303,7 +307,7 @@ Esta herramienta es útil para valorar la funcionalidad, evolución, pronóstico
                     plot_classification_heatmap(df_tab3, 'barthel_classification', 'barthel')
                 
                 # PS_ECOG
-                ps_ecog_expander = st.expander("### PS_ECOG")
+                ps_ecog_expander = st.expander("### PS_ECOG", expanded=True)
                 with ps_ecog_expander:
                     st.markdown("""
                                 ### Escala PS ECOG
@@ -327,7 +331,7 @@ Diseñada por el Eastern Cooperative Oncology Group (ECOG) y validada por la OMS
                     plot_classification_heatmap(df_tab3, 'ps_ecog_classification', 'ps_ecog')
                 
                 # GDS_FAST
-                gds_fast_expander = st.expander("### GDS_FAST")
+                gds_fast_expander = st.expander("### GDS_FAST", expanded=True)
                 with gds_fast_expander:
                     st.markdown("""
                                 ### Escala GDS-FAST
