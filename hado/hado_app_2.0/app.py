@@ -16,7 +16,9 @@ from visualization import plot_classification_heatmap,\
                             plot_selected_category, \
                             plot_heatmap, \
                             plot_time_trends, \
-                            plot_total_patients
+                            plot_total_patients,\
+                            plot_time_trends_line
+                            
 from interactive_maps import folium_static,\
                             generate_interactive_maps,\
                             plot_patients_by_ayuntamiento,\
@@ -237,8 +239,9 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
             with col2:
                 if year_option != "Año específico":
                     if selected_column:
-                        plot_time_trends(df_tab3, selected_column)
+                        plot_time_trends_line(df_tab3, selected_column)
                         st.divider()
+                        plot_time_trends(df_tab3, selected_column)
             st.divider()
             
             with st.expander('Relación con Otra Variable', expanded=True):

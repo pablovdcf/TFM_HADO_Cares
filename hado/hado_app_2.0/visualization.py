@@ -44,7 +44,7 @@ def plot_classification_heatmap(df, classification_column, score_column):
     fig, ax = plt.subplots(figsize=(15, 10))
     
     # Create heatmap
-    sns.heatmap(classification_group_sorted, annot=True, cmap="YlGnBu", fmt=".0f", cbar_kws={'label': 'Count'})
+    sns.heatmap(classification_group_sorted, annot=True, cmap="YlGnBu", fmt=".5g", cbar_kws={'label': 'Count'})
     
     # Configure titles and labels
     ax.set_title(f'Classification of {score_column} Scores', fontsize=20)
@@ -170,3 +170,38 @@ def plot_heatmap(df, selected_column, selected_column_2):
     st.markdown(f"""
     ##### Este conjunto de mapas de calor visualiza la relación entre *{selected_column}* y *{selected_column_2}*. El primer mapa de calor muestra los porcentajes normalizados de las ocurrencias combinadas de cada par de valores, representando la proporción de todas las observaciones que caen en cada combinación de categorías. Mientras que el segundo mapa de calor muestra la cantidad absoluta de registros para cada combinación de categorías, brindando una perspectiva más directa sobre la distribución real de los datos en el conjunto de datos. Las celdas más oscuras indican una mayor frecuencia o un porcentaje más alto de observaciones, mientras que las celdas más claras indican lo contrario, ayudando a identificar rápidamente las combinaciones de categorías más y menos comunes.
 """)
+    
+def plot_time_trends_line(df, selected_column):
+    # Estilo del gráfico
+    plt.style.use('bmh')
+
+    # Calcula los conteos por año y por la categoría seleccionada
+    count_data = df.groupby(['year', selected_column]).size().reset_index(name='count')
+
+    # Crea el gráfico de líneas
+    fig, ax = plt.subplots(figsize=(12, 7))
+    sns.lineplot(data=count_data, x='year', y='count', hue=selected_column, palette='pastel', marker="o", ax=ax)
+
+    # Configura los títulos y etiquetas
+    ax.set_title(f'Evolución de {selected_column} por Año', fontsize=16)
+    ax.set_xlabel('Año', fontsize=12)
+    ax.set_ylabel('Número de Registros', fontsize=14)
+
+    # Límites de los ejes
+    ax.set_ylim(bottom=0)
+
+    # Leyenda
+    ax.legend(title=f'Valores {selected_column}', loc='best', fontsize='small', bbox_to_anchor=(1, 1))
+
+    # Cuadrícula
+    ax.grid(True, axis='y', linestyle='--')
+
+    # Descripción dentro del gráfico
+    ax.text(0.5, -0.1, f"Este gráfico muestra la evolución de {selected_column} a lo largo de los años.",
+            ha='center', va='center', transform=ax.transAxes)
+
+    # Ajuste del diseño
+    plt.tight_layout()
+
+    # Muestra el gráfico en Streamlit
+    st.pyplot(fig)
