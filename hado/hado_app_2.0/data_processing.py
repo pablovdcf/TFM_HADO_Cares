@@ -5,7 +5,8 @@ import streamlit as st
 import pandas as pd
 from ydata_profiling import ProfileReport
 import geopandas as gpd
-
+import requests
+from io import StringIO
 
 # Load CSV file
 def load_csv(input_csv):
@@ -250,11 +251,15 @@ def generate_pandas_profiling(df):
 
 @st.cache_data(experimental_allow_widgets=True)
 def load_gdf():
-    # Definir la ruta del archivo .geojson
-    file_path = "/TFM_HADO_Cares/hado/hado_app_2.0/ESP_adm4.geojson"
+    # Define the path to the .geojson file
+    file_url = 'https://raw.githubusercontent.com/pablovdcf/TFM_HADO_Cares/main/hado/hado_app_2.0/ESP_adm4.geojson'
+    # file_path = "./hado_app_2.0/ESP_adm4.geojson"
     
+    # Download the file
+    response = requests.get(file_url)
+    response.raise_for_status() 
     # Cargar los datos geojson
-    gdf = gpd.read_file(file_path)
+    gdf = gpd.read_file(StringIO(response.text))
     
     # Limpiar el DataFrame Geo, eliminando las filas donde la geometría es nula
     gdf_clean = gdf[gdf['geometry'].notnull()]
