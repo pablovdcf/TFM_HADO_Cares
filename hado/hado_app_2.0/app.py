@@ -42,6 +42,15 @@ def main():
     
     st.write(f"Streamlit version: {st.__version__}")
     st.write(f"Matplotlib version: {matplotlib.__version__}")
+    st.write(f"Matplotlib version: {matplotlib.__version__}")
+    st.write(f"Pandas version: {pandas.__version__}")
+    st.write(f"streamlit_pandas_profiling version: {streamlit_pandas_profiling.__version__}")
+    st.write(f"ydata_profiling version: {ydata_profiling.__version__}")
+    st.write(f"geopandas version: {geopandas.__version__}")
+    st.write(f"folium version: {folium.__version__}")
+    st.write(f"seaborn version: {seaborn.__version__}")
+    st.write(f"seaborn version: {seaborn.__version__}")
+
     # Set the title and information message in the sidebar
     st.write("# HADO CARES")
     
