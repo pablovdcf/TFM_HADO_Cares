@@ -141,9 +141,11 @@ def apply_filters(df, reset=False):
 
 
 # Function for CRUD Operations
-@st.cache_data(experimental_allow_widgets=True)
 def crud_operations(df, csv_file):
-    # CRUD Page
+    # Inicializar session_state si no existe
+    if 'df' not in st.session_state:
+        st.session_state['df'] = df
+    
     with st.expander("➕ Información CRUD", expanded=True):
         st.markdown(
     f"""
@@ -184,63 +186,73 @@ def crud_operations(df, csv_file):
     # Read Data
     st.divider()
     st.subheader("Datos")
-    st.write(df)
+    st.write(st.session_state['df'])  # mostrar el DataFrame desde session_state
     
     col1, col2 = st.columns([1, 1])
     # Update Data
     with col1.expander("Editar Datos"):
-        row_to_edit = st.number_input("#### Introduzca el índice de la fila que desea editar:", min_value=0, max_value=df.shape[0]-1, value=0, step=1)
+        row_to_edit = st.number_input("#### Introduzca el índice de la fila que desea editar:",
+                                      min_value=0, 
+                                      max_value=st.session_state['df'].shape[0]-1, 
+                                      value=0,
+                                      step=1
+                                      )
         
         if row_to_edit is not None:
-            column_to_edit = st.selectbox("#### Seleccione la columna que desea editar:", df.columns.tolist())
+            column_to_edit = st.selectbox("#### Seleccione la columna que desea editar:",  
+                                          st.session_state['df'].columns.tolist()
+                                          )
             if column_to_edit:
                 new_value = st.text_input(f"#### Introduzca el nuevo valor para {column_to_edit} en índice {row_to_edit}:")
         
-        if st.button("Actualizar"):
+        if st.button("Actualizar", key="update"):
             if row_to_edit is not None and column_to_edit is not None and new_value is not None:
-                original_value = df.at[row_to_edit, column_to_edit]
-                original_dtype = df[column_to_edit].dtype
+                original_value = st.session_state['df'].at[row_to_edit, column_to_edit]
+                original_dtype = st.session_state['df'][column_to_edit].dtype
                 
                 try:
                     new_value_casted = original_dtype.type(new_value)
-                    df.at[row_to_edit, column_to_edit] = new_value_casted
+                    st.session_state['df'].at[row_to_edit, column_to_edit] = new_value_casted  # actualizar session_state['df']
                     st.success(f"Actualizado para la columna {column_to_edit} con el valor {original_value} modificado por {new_value_casted}")
                     
                     # Guarda los cambios en un archivo CSV
-                    df.to_csv(csv_file.name, index=False)
+                    st.session_state['df'].to_csv(csv_file.name, index=False)
                     
                     # Muestra solo la fila actualizada
                     st.write("Fila actualizada:")
-                    st.write(df.loc[[row_to_edit]])
+                    st.write(st.session_state['df'].loc[[row_to_edit]])
                 except ValueError:
                     st.error(f"Entrada no válida. Tipo de datos esperado: {original_dtype}")
 
     
     # Search Data like Patient Records
-    with col2.expander("Search Data"):
-        search_column = st.selectbox("Choose the column to search in:", df.columns.tolist())
-        search_term = st.text_input("Enter a search term:")
-        if st.button("Search"):
-            search_results = df[df[search_column].astype(str).str.contains(search_term, case=False)]
-            st.write(f"Search results for '{search_term}' in column '{search_column}':")
+    with col2.expander("Buscar datos"):
+        search_column = st.selectbox("#### Selecciona la columna sobre la que deseas buscar:", df.columns.tolist(), index=None, placeholder="Escoge una única columna para iniciar la búsqueda")
+        search_term = st.text_input("#### Introduzca un término de búsqueda:", placeholder="Escribe el valor que deseas buscar igual que se encuentra en los datos")
+        if st.button("Buscar", key="search"):
+            search_results = st.session_state['df'][st.session_state['df'][search_column].astype(str).str.contains(search_term, case=False)]
+            st.write(f"Resultados de búsqueda para '{search_term}' en la columna '{search_column}':")
             st.write(search_results)
             
     # Delete Data
-    with col2.expander("Delete Data"):
-        row_to_delete = st.number_input("Enter the index of the row you want to delete:", min_value=0, max_value=df.shape[0]-1, value=0, step=1)
-        if st.button("Delete"):
-            df = df.drop(index=row_to_delete)
-            df.reset_index(drop=True, inplace=True)
-            st.success(f"Deleted row {row_to_delete}")
+    with col2.expander("Borrar datos"):
+        row_to_delete = st.number_input("#### Introduzca el índice de la fila que desea borrar:", min_value=0, max_value=df.shape[0]-1, value=0, step=1)
+        if st.button("Eliminar", key="delete"):
+            deleted_row = st.session_state['df'].iloc[[row_to_delete]]
+            
+            st.session_state['df'] = st.session_state['df'].drop(index=row_to_delete)  # actualizar session_state['df']
+            st.session_state['df'].reset_index(drop=True, inplace=True)
+            st.success(f"Fila borrada {row_to_delete}")
+            st.write(deleted_row)
             
     # Botón para guardar cambios en un archivo CSV
-    if st.button("Save Changes"):
-        df.to_csv("uploaded_file.csv", index=False)
+    if st.button("Guardar cambios", key="save_changes"):
+        st.session_state['df'].to_csv("uploaded_file.csv", index=False)  # guardar session_state['df'] a un archivo
         st.success("Changes saved to 'uploaded_file.csv'")
     
     st.info("Este solo es un ejemplo para ver que se pueden introducir datos y modificar datos desde la aplicación de streamlit, aunque sería mejor y más dinámico trabajar en el archivo Excel y subir para ver los insights o desde una BBDD como MongoDb")
     
-    return df
+    return st.session_state['df']
 
 
 @st.cache_data(experimental_allow_widgets=True)
@@ -251,7 +263,7 @@ def generate_pandas_profiling(df):
 
 @st.cache_data(experimental_allow_widgets=True)
 def load_gdf():
-    # Define the path to the .geojson file
+    # Definir la ruta del archivo .geojson
     file_url = 'https://raw.githubusercontent.com/pablovdcf/TFM_HADO_Cares/main/hado/hado_app_2.0/ESP_adm4.geojson'
     # file_path = "./hado_app_2.0/ESP_adm4.geojson"
     
