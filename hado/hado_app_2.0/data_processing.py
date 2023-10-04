@@ -251,7 +251,7 @@ def generate_pandas_profiling(df):
 @st.cache_data(experimental_allow_widgets=True)
 def load_gdf():
     # Definir la ruta del archivo .geojson
-    file_path = "TFM_HADO_Cares/hado/hado_app_2.0/ESP_adm4.geojson"
+    file_path = "/TFM_HADO_Cares/hado/hado_app_2.0/ESP_adm4.geojson"
     
     # Cargar los datos geojson
     gdf = gpd.read_file(file_path)
