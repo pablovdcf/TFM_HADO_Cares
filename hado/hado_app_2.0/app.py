@@ -40,6 +40,8 @@ if 'show_filters' not in ss:
 # Main Function
 def main():
     
+    st.write(f"Streamlit version: {st.__version__}")
+    st.write(f"Matplotlib version: {matplotlib.__version__}")
     # Set the title and information message in the sidebar
     st.write("# HADO CARES")
     
@@ -281,7 +283,7 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
             col1, col2, col3 = container.columns([0.5, 2, 0.5])
             with col2:
                 # Barthel
-                barthel_expander = st.expander("### Barthel")
+                barthel_expander = st.expander("### Barthel", expanded=True)
                 with barthel_expander:
                     st.markdown("""
                                 ### Índice de Barthel
@@ -300,10 +302,10 @@ Esta herramienta es útil para valorar la funcionalidad, evolución, pronóstico
                     # if st.button("Mostrar/Ocultar Gráfico Barthel"):
                     #     ss.show_barthel = not ss.show_barthel
                     # if ss.show_barthel:
-                plot_classification_heatmap(df_tab3, 'barthel_classification', 'barthel')
+                    plot_classification_heatmap(df_tab3, 'barthel_classification', 'barthel')
                 
                 # PS_ECOG
-                ps_ecog_expander = st.expander("### PS_ECOG")
+                ps_ecog_expander = st.expander("### PS_ECOG", expanded=True)
                 with ps_ecog_expander:
                     st.markdown("""
                                 ### Escala PS ECOG
@@ -324,10 +326,10 @@ Diseñada por el Eastern Cooperative Oncology Group (ECOG) y validada por la OMS
                     # if st.button("Mostrar/Ocultar Gráfico PS_ECOG"):
                     #     ss.show_ps_ecog = not ss.show_ps_ecog
                     # if ss.show_ps_ecog:
-                plot_classification_heatmap(df_tab3, 'ps_ecog_classification', 'ps_ecog')
+                    plot_classification_heatmap(df_tab3, 'ps_ecog_classification', 'ps_ecog')
                 
                 # GDS_FAST
-                gds_fast_expander = st.expander("### GDS_FAST")
+                gds_fast_expander = st.expander("### GDS_FAST", expanded=True)
                 with gds_fast_expander:
                     st.markdown("""
                                 ### Escala GDS-FAST
@@ -350,7 +352,7 @@ Esta escala es fundamental para evaluar la evolución, pronóstico y decidir el 
                     # if st.button("Mostrar/Ocultar Gráfico GDS_FAST"):
                     #     ss.show_gds_fast = not ss.show_gds_fast
                     # if ss.show_gds_fast:
-                plot_classification_heatmap(df_tab3, 'gds_fast_classification', 'gds_fast')
+                    plot_classification_heatmap(df_tab3, 'gds_fast_classification', 'gds_fast')
 
         # Mapa
         with tab4:
