@@ -4,6 +4,6 @@ pandas
 ydata_profiling 
 geopandas 
 folium 
-matplotlib 
+matplotlib == 3.7.1
 seaborn 
 pycaret
