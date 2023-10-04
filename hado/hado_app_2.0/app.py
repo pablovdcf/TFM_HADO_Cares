@@ -11,6 +11,7 @@ from data_processing import sidebar_and_upload,\
                             crud_operations,\
                             generate_pandas_profiling,\
                             load_gdf
+                            
 from visualization import plot_classification_heatmap,\
                             plot_selected_category, \
                             plot_heatmap, \
@@ -48,8 +49,8 @@ def main():
     
     # Initialize with None df
     df=None
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
-        "Home 🏠", "Filtros 🔍", "Visualizaciones 📊", "Mapa 🗺️", "CRUD Operations ✍️", "ML 🖥️", "Pandas Profiling 📃"
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+        "Home 🏠", "Filtros 🔍", "Visualizaciones 📊", "Mapa 🗺️", "CRUD Operations ✍️", "Pandas Profiling 📃"
     ])
     with tab1:
         md_expander = st.expander("📃Información", expanded=True)
@@ -465,18 +466,20 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
         with tab5:
             crud_operations(df,csv_file=uploaded_file)
         
-        # Machine Learning
-        with tab6:
-            
-            machine_learning(df)
+            # Machine Learning
+            # with tab7:
+    # La parte de Machine learning no está funcionando correctamente, devuelve el resultado en el log para la app en deploy
+    # Funciona de manera local por si interesa utilizarse solo habría que descomentar las filas "with tab7" y la función "machine_learning(df)"
+    # También crear un nuevo tab7 arriba seguido de "Pandas Profiling 📃" con "ML" por ejemplo y definirlo
+            #     machine_learning(df)
         
-        # Pandas Profiling
-        with tab7:
-            st.header("**Pandas Profiling Report**")
-            pandas_pr_expander = st.expander("### ➕ Información", expanded=True)
-            with pandas_pr_expander:
-                st.markdown("""
-                        ### 📘 Acerca de la Aplicación
+    # Pandas Profiling
+    with tab6:
+        st.header("**Pandas Profiling Report**")
+        pandas_pr_expander = st.expander("### ➕ Información", expanded=True)
+        with pandas_pr_expander:
+            st.markdown("""
+                    ### 📘 Acerca de la Aplicación
 
 Esta aplicación te permite explorar y analizar conjuntos de datos. Utiliza Pandas Profiling para generar informes detallados que te proporcionan una visión general de la distribución, limpieza y estructura de tus datos.
 
@@ -507,15 +510,18 @@ Esta herramienta es útil tanto para la exploración inicial de datos como para 
 - Revisa los valores faltantes y considera estrategias de imputación.
 
 ---
-    """)        
-            container = st.container()
-            col1, col2, col3 = container.columns([0.5, 2, 0.5])
-            with col1:
-                st.info("Sube un archivo al sidebar que quieras explorar, dale al botón 👇 y espera a que se haga la magia 🪄")
-                if st.button('Generar Pandas Profiling Report'):
-                    report = generate_pandas_profiling(df)
-                    with col2:
-                        st_profile_report(report)
+""")        
+        container = st.container()
+        col1, col2, col3 = container.columns([0.5, 2, 0.5])
+        with col2:
+            uploaded_file = st.file_uploader("Sube tu archivo Excel en formato CSV", type=["csv"], key="pr_csv_file")
+        with col1:
+            ui_spacer(2)
+            st.info("Sube un archivo en formato CSV que quieras explorar, dale al botón 👇 y espera a que se haga la magia 🪄")
+            if st.button('Generar Pandas Profiling Report'):
+                report = generate_pandas_profiling(uploaded_file)
+                with col2:
+                    st_profile_report(report)
 
 if __name__ == "__main__":
     main()

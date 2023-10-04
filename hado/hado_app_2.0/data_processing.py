@@ -256,8 +256,9 @@ def crud_operations(df, csv_file):
 
 
 @st.cache_data(experimental_allow_widgets=True)
-def generate_pandas_profiling(df):
-    pr = ProfileReport(df, explorative=True)
+def generate_pandas_profiling(uploaded_file):
+    df_pr = pd.read_csv(uploaded_file)
+    pr = ProfileReport(df_pr, explorative=True)
     
     return pr
 
