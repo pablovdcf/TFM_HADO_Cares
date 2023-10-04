@@ -2,8 +2,8 @@
 import streamlit as st
 from streamlit_pandas_profiling import st_profile_report
 import base64
-
-from streamlit_pandas_profiling import st_profile_report
+import matplotlib
+matplotlib.rc('font', family='DejaVu Sans')
 
 
 from data_processing import sidebar_and_upload,\
@@ -140,17 +140,17 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
             # Filtros y acciones en la segunda columna
             with col3:
                 st.write("### Filtros ⬇️")     
-                if st.session_state.show_filters:
+                if ss.show_filters:
                     df_filtered = apply_filters(df)
 
                 if st.button("Reset Filters"):
                     
                     # Hides filters and shows the original DataFrame
-                    st.session_state.show_filters = False
+                    ss.show_filters = False
                     df_filtered = df.copy()
 
                 # Show filters again (this will reset them)
-                st.session_state.show_filters = True
+                ss.show_filters = True
             
             with col1:
                 st.write("## Datos filtrados")
@@ -269,12 +269,12 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                         plot_heatmap(filtered_df_tab3, selected_column1, selected_column2)
             
             # Create or retrieve status variables for each chart
-            if 'show_barthel' not in st.session_state:
-                st.session_state.show_barthel = False
-            if 'show_ps_ecog' not in st.session_state:
-                st.session_state.show_ps_ecog = False
-            if 'show_gds_fast' not in st.session_state:
-                st.session_state.show_gds_fast = False
+            if 'show_barthel' not in ss:
+                ss.show_barthel = False
+            if 'show_ps_ecog' not in ss:
+                ss.show_ps_ecog = False
+            if 'show_gds_fast' not in ss:
+                ss.show_gds_fast = False
 
             container = st.container()
             col1, col2, col3 = container.columns([0.5, 2, 0.5])
@@ -296,10 +296,10 @@ El índice de Barthel evalúa la independencia de una persona para realizar acti
 Esta herramienta es útil para valorar la funcionalidad, evolución, pronóstico del paciente y planificar su atención, permitiendo comparar el estado funcional entre pacientes.
 
 """)
-                    if st.button("Mostrar/Ocultar Gráfico Barthel"):
-                        st.session_state.show_barthel = not st.session_state.show_barthel
-                    if st.session_state.show_barthel:
-                        plot_classification_heatmap(df_tab3, 'barthel_classification', 'barthel')
+                    # if st.button("Mostrar/Ocultar Gráfico Barthel"):
+                    #     ss.show_barthel = not ss.show_barthel
+                    # if ss.show_barthel:
+                    plot_classification_heatmap(df_tab3, 'barthel_classification', 'barthel')
                 
                 # PS_ECOG
                 ps_ecog_expander = st.expander("### PS_ECOG")
@@ -320,10 +320,10 @@ Diseñada por el Eastern Cooperative Oncology Group (ECOG) y validada por la OMS
 
 
 """)
-                    if st.button("Mostrar/Ocultar Gráfico PS_ECOG"):
-                        st.session_state.show_ps_ecog = not st.session_state.show_ps_ecog
-                    if st.session_state.show_ps_ecog:
-                        plot_classification_heatmap(df_tab3, 'ps_ecog_classification', 'ps_ecog')
+                    # if st.button("Mostrar/Ocultar Gráfico PS_ECOG"):
+                    #     ss.show_ps_ecog = not ss.show_ps_ecog
+                    # if ss.show_ps_ecog:
+                    plot_classification_heatmap(df_tab3, 'ps_ecog_classification', 'ps_ecog')
                 
                 # GDS_FAST
                 gds_fast_expander = st.expander("### GDS_FAST")
@@ -346,10 +346,10 @@ La escala GDS-FAST mide el grado de deterioro cognitivo y funcional en personas 
 Esta escala es fundamental para evaluar la evolución, pronóstico y decidir el tratamiento y cuidados adecuados para pacientes con demencia.
 
 """)
-                    if st.button("Mostrar/Ocultar Gráfico GDS_FAST"):
-                        st.session_state.show_gds_fast = not st.session_state.show_gds_fast
-                    if st.session_state.show_gds_fast:
-                        plot_classification_heatmap(df_tab3, 'gds_fast_classification', 'gds_fast')
+                    # if st.button("Mostrar/Ocultar Gráfico GDS_FAST"):
+                    #     ss.show_gds_fast = not ss.show_gds_fast
+                    # if ss.show_gds_fast:
+                    plot_classification_heatmap(df_tab3, 'gds_fast_classification', 'gds_fast')
 
         # Mapa
         with tab4:
@@ -385,13 +385,9 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
 
 💡 **Consejo:** Solo podrás seleccionar categorías que tengan 15 o menos valores únicos.
                             """)
-            try:
-                gdf = None
-                gdf = load_gdf()
-                
-            except Exception as e:
-                st.info("Por favor suba el archivo GeoJson para observar el mapa con los municipios")
-                # st.error(f"Ocurrió un error: {e}")
+            gdf = None
+            gdf = load_gdf()
+            
             container = st.container()
             col1, col2, col3 = container.columns([0.5, 2, 0.5])
             if gdf is not None:
@@ -460,8 +456,8 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
 
                             plot_top_ayuntamientos_for_category(df_tab4, selected_year,selected_ayuntamientos, selected_category, selected_category_values, selected_plot_type)
                 
-            # else:
-            #     st.warning("No se pudo cargar el archivo GeoJson o el archivo no existe.")
+            else:
+                st.warning("No se pudo cargar el archivo GeoJson o el archivo no existe.")
                 
                 
                 
