@@ -250,7 +250,7 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
 
                 if selected_column1 == selected_column2:
                     st.warning("🧐 No pueden ser las mismas columnas. Por favor, escoja otra columna.")
-                if selected_column1 != None and selected_column2 !=None:
+                if selected_column1 != None and selected_column2 !=None and selected_column1 != selected_column2:
                     st.write("### Heatmap de Relación")
 
                     # Obtén los valores únicos de las columnas seleccionadas
@@ -259,8 +259,20 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                     
                     with col2:
                         # SelectBoxes para seleccionar valores únicos
-                        selected_value_col1 = st.multiselect(f"#### Seleccione un valor único para {selected_column1}:", unique_values_col1, default=unique_values_col1)
-                        selected_value_col2 = st.multiselect(f"#### Seleccione un valor único para {selected_column2}:", unique_values_col2, default=unique_values_col2)
+                        selected_value_col1 = st.multiselect(
+                            f"#### Seleccione un valor único para {selected_column1}:",
+                            unique_values_col1,
+                            default=unique_values_col1,
+                            key=f"unique_select_{selected_column1}"
+                            )
+
+                        selected_value_col2 = st.multiselect(
+                            f"#### Seleccione un valor único para {selected_column2}:",
+                            unique_values_col2,
+                            default=unique_values_col2,
+                            key=f"second_unique_select_{selected_column2}"
+                            )
+
 
                     # Filtra el DataFrame basado en los valores seleccionados
                     filtered_df_tab3 = df_tab3[(df_tab3[selected_column1].isin(selected_value_col1)) & (df_tab3[selected_column2].isin(selected_value_col2))]
