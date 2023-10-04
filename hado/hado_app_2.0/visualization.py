@@ -44,7 +44,7 @@ def plot_classification_heatmap(df, classification_column, score_column):
     fig, ax = plt.subplots(figsize=(15, 10))
     
     # Create heatmap
-    sns.heatmap(classification_group_sorted, annot=True, cmap="YlGnBu", fmt=".0f", cbar_kws={'label': 'Count'})
+    sns.heatmap(classification_group_sorted, annot=True, cmap="YlGnBu", fmt=".5g", cbar_kws={'label': 'Count'})
     
     # Configure titles and labels
     ax.set_title(f'Classification of {score_column} Scores', fontsize=20)
