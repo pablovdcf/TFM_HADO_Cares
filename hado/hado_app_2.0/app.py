@@ -24,7 +24,12 @@ from interactive_maps import folium_static,\
                             plot_top_ayuntamientos_for_category
                             
 from utils import machine_learning, ui_info, ui_spacer
-
+import seaborn
+import pandas
+import streamlit_pandas_profiling
+import ydata_profiling
+import geopandas
+import folium
 
 
 st.set_page_config(page_title="HADO",
@@ -49,7 +54,7 @@ def main():
     st.write(f"geopandas version: {geopandas.__version__}")
     st.write(f"folium version: {folium.__version__}")
     st.write(f"seaborn version: {seaborn.__version__}")
-    st.write(f"seaborn version: {seaborn.__version__}")
+    
 
     # Set the title and information message in the sidebar
     st.write("# HADO CARES")
