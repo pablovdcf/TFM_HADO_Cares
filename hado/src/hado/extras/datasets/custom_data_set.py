@@ -27,7 +27,7 @@ from pymongo import MongoClient
 
 
 class ODSDataSet(AbstractDataSet):
-    def __init__(self, filepath: str, sheet: str):
+    def __init__(self, filepath: str, sheet: str, metadata: dict = None):
         # Extraer el protocolo y la ruta del archivo de la ruta proporcionada.
         protocol, path = get_protocol_and_path(filepath)
         self.protocol = protocol
@@ -36,6 +36,8 @@ class ODSDataSet(AbstractDataSet):
         self._fs = fsspec.filesystem(self.protocol)
         # Indicar la hoja del archivo ODS que se cargará (por defecto, la primera hoja).
         self.sheet = sheet
+        
+        self.metadata = metadata or {}
 
     def _load(self) -> pd.DataFrame:
         # Obtener la ruta del archivo en formato de cadena.
@@ -53,6 +55,15 @@ class ODSDataSet(AbstractDataSet):
     def _describe(self) -> dict:
         # Devolver una descripción del conjunto de datos en forma de diccionario.
         return dict(filepath=self.filepath, sheet=self.sheet)
+    
+    @property
+    def metadata(self):
+        return self._metadata
+    
+    @metadata.setter
+    def metadata(self, value):
+        self._metadata = value
+
 
 
 class MongoDBDataSet(AbstractDataSet):
@@ -63,12 +74,14 @@ class MongoDBDataSet(AbstractDataSet):
         collection: str,
         load_args: dict = None,
         save_args: dict = None,
+        metadata: dict = None,
     ):
         self._uri = uri
         self._database = database
         self._collection = collection
         self._load_args = load_args if load_args is not None else dict()
         self._save_args = save_args if save_args is not None else dict()
+        self.metadata = metadata or {}
 
     def _load(self) -> pd.DataFrame:
         client = MongoClient(self._uri)
@@ -92,3 +105,10 @@ class MongoDBDataSet(AbstractDataSet):
             load_args=self._load_args,
             save_args=self._save_args,
         )
+    @property
+    def metadata(self):
+        return self._metadata
+    
+    @metadata.setter
+    def metadata(self, value):
+        self._metadata = value

@@ -21,7 +21,9 @@ word_replacement:
     ono: 'no'
     son: 'no'
     ns: 'no'
+    m: 'no'
     o: 'no'
+    b: 'no'
     mo: 'no'
     nop: 'no'
     'on': 'no'
@@ -257,6 +259,14 @@ word_replacement:
     tto: tratamiento
     'fin de cuidados': 'fin cuidados'
 
+  replacement_dict_ap:
+    ap: 'si'
+    residencia: 'no'
+    pac: 'no'
+    desconocido: 'no'
+    'consulta externa': 'no'
+    uro: 'no'
+
   replacement_dict_medic:
     'masa vazquez': masa
     'suarez prado': suarez
@@ -400,6 +410,9 @@ word_replacement:
     'ulceras de presion': 'ulceras presion'
     'ulceras por presion': 'ulceras presion'
 
+  replacement_dict_transfusion:
+    '2 concentrados': 'si'
+  
   # For columns ['gds_fast', 'eva_ing', 'ps_ecog'] we assume that no, yes or b are equal to '0'.
   replacement_dict_numeric:
     'no': '00'
@@ -424,9 +437,6 @@ medications:
   - haloperidol
   - levomepromazina
   #  
-  
-
-
 # ------------------------- START categorized_data_node apply_categorization-------------------------
 # For the categories
 hospital_categories:
