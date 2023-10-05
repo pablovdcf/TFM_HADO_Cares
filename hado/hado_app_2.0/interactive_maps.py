@@ -118,6 +118,7 @@ def generate_interactive_maps(data, column, gdf, year, selected_value=None):
     
     return m
 
+@st.spinner("🧑‍💻Dibujando gráficas, por favor espera...")
 def plot_patients_by_ayuntamiento(df_filtered, selected_year):
     # Estilo del gráfico
     plt.style.use('bmh')
@@ -164,18 +165,25 @@ def plot_patients_by_ayuntamiento(df_filtered, selected_year):
 
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
-    
+
+@st.spinner("🧑‍💻Dibujando gráficas, por favor espera...")
 def plot_average_metrics_by_ayuntamiento(df, selected_year):
-    # Filtrar el DataFrame por el año seleccionado
-    df_filtered = df[df['year'] == selected_year]
 
     # Verificar si df_filtered está vacío
-    if df_filtered.empty:
+    if df.empty:
         st.warning(f"No hay datos disponibles para el año {selected_year}.")
         return
 
+    # Almacenar temporalmente la columna 'ayuntamiento'
+    ayuntamiento_column = df['ayuntamiento'].copy()
+
+    # Excluir las columnas categóricas
+    df_filtered = df.select_dtypes(exclude=['object'])
+
+    # Volver a agregar la columna 'ayuntamiento'
+    df_filtered['ayuntamiento'] = ayuntamiento_column
+    
     # Calcular los promedios de métricas por ayuntamiento
-    df_filtered = df_filtered.select_dtypes(exclude=['object'])
     average_metrics_by_ayuntamiento = df_filtered.groupby('ayuntamiento').mean().reset_index()
 
     # Eliminar 'desconocido' de los ayuntamientos para una mejor visualización
@@ -214,7 +222,7 @@ def plot_average_metrics_by_ayuntamiento(df, selected_year):
     # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
 
-
+@st.spinner("🧑‍💻Dibujando gráficas, por favor espera...")
 def plot_top_ayuntamientos_for_category(df, selected_year, selected_ayuntamientos, category_column, selected_category_values, plot_type='bar'):
     # Filtrar el DataFrame por el año seleccionado y los ayuntamientos seleccionados
     df_filtered = df[(df['year'] == selected_year) & (df['ayuntamiento'].isin(selected_ayuntamientos))]

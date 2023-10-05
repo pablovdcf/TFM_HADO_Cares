@@ -489,7 +489,8 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
                         st.markdown("""
                                     ## Top de Ayuntamientos por columnas
                                     """)
-                        selected_plot_type = st.selectbox("Seleccione un tipo de gráfico:", ['Gráfico de barras', 'Gráfico de puntos'], index=None, placeholder="Elige entre gráfico de barras o de puntos")
+                        with st.spinner('Dando forma al gráfico seleccionado'):
+                            selected_plot_type = st.selectbox("Seleccione un tipo de gráfico:", ['Gráfico de barras', 'Gráfico de puntos'], index=None, placeholder="Elige entre gráfico de barras o de puntos")
                         container = st.container()
                         col1, col2 = container.columns([1, 1])
                         # Columna 1
@@ -498,12 +499,14 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
                             categorical_columns = [col for col in df_tab4.select_dtypes(include='object').columns if df_tab4[col].nunique() <= 15]
                             
                             # Crear un selector para estas columnas
-                            selected_category = st.selectbox("Seleccione una categoría:", categorical_columns, key="category_tab4", index=None, placeholder="¿Qué columna quieres visualizar?")
+                            with st.spinner(f'Dibujando el {selected_plot_type}'):
+                                selected_category = st.selectbox("Seleccione una categoría:", categorical_columns, key="category_tab4", index=None, placeholder="¿Qué columna quieres visualizar?")
                             
                             # Obtener los valores únicos de la columna de categoría seleccionada y crear un selector para estos valores
                             if selected_category != None and selected_plot_type != None:
                                 unique_category_values = sorted(df_tab4[selected_category].unique().tolist())
-                                selected_category_values = st.multiselect(f"Seleccione valores de {selected_category}:", unique_category_values, default=unique_category_values, key="category_values_tab4")
+                                with st.spinner(f'Cambiando los valores para {selected_category}'):
+                                    selected_category_values = st.multiselect(f"Seleccione valores de {selected_category}:", unique_category_values, default=unique_category_values, key="category_values_tab4")
                             else:
                                 st.warning("Una vez escojas gráfico y categoría se mostrará la visualización")
 
@@ -512,7 +515,8 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
                             with col2:
                                 # Obtener la lista de ayuntamientos únicos y crear un selector para estos ayuntamientos
                                 unique_ayuntamientos = sorted(df_tab4['ayuntamiento'].unique().tolist())
-                                selected_ayuntamientos = st.multiselect("Seleccione ayuntamientos:", unique_ayuntamientos, default=unique_ayuntamientos, key="council_tab4")
+                                with st.spinner(f'Cambiando los ayuntamientos para el {selected_plot_type}'):
+                                    selected_ayuntamientos = st.multiselect("Seleccione ayuntamientos:", unique_ayuntamientos, default=unique_ayuntamientos, key="council_tab4")
                                 
 
                             plot_top_ayuntamientos_for_category(df_tab4, selected_year,selected_ayuntamientos, selected_category, selected_category_values, selected_plot_type)
