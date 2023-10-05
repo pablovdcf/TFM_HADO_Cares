@@ -1,28 +1,28 @@
 # Functions and utility classes
 
 import streamlit as st
-from pycaret.classification import setup, compare_models, pull, save_model
+# from pycaret.classification import setup, compare_models, pull, save_model
 
-# Function for Machine Learning
-def machine_learning(df):
-    st.header("Build your own Machine Learning Model with Pycaret!")
-    target = st.selectbox("Select Your Target", df.columns)
-    trained = st.button("Train Model")
-    if trained:
-        with st.spinner("Wait we are training your model"):
-            setup(df, target=target)
-            setup_df = pull()
-            best_model = compare_models()
-            st.info("This is the ML Experiment settings")
-            st.dataframe(setup_df)
-            compare_df = pull()
-            st.info("This is the ML Model")
-            st.dataframe(compare_df)
-            best_model
-            save_model(best_model, 'best_model')
-            with open("best_model.pkl", 'rb') as f:
-                st.download_button("Download the Model", f, "trained_model.pkl")
-        pass
+# # Function for Machine Learning
+# def machine_learning(df):
+#     st.header("Build your own Machine Learning Model with Pycaret!")
+#     target = st.selectbox("Select Your Target", df.columns)
+#     trained = st.button("Train Model")
+#     if trained:
+#         with st.spinner("Wait we are training your model"):
+#             setup(df, target=target)
+#             setup_df = pull()
+#             best_model = compare_models()
+#             st.info("This is the ML Experiment settings")
+#             st.dataframe(setup_df)
+#             compare_df = pull()
+#             st.info("This is the ML Model")
+#             st.dataframe(compare_df)
+#             best_model
+#             save_model(best_model, 'best_model')
+#             with open("best_model.pkl", 'rb') as f:
+#                 st.download_button("Download the Model", f, "trained_model.pkl")
+#         pass
     
  
 def show_sidebar_info(selected_tab):
