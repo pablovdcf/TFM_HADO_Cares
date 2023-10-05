@@ -17,7 +17,7 @@ def plot_selected_category(df, selected_column):
     sns.countplot(data=df, y=selected_column, order=order, ax=ax, palette='pastel')
     ax.set_title(f'Distribución de {selected_column}', fontsize=16)
     ax.set_ylabel(f'Categorías de {selected_column}', fontsize=14)
-    ax.set_xlabel('Número de Pacientes',fontsize=12)
+    ax.set_xlabel('Pacientes',fontsize=12)
     ax.grid(axis='x', linestyle='--')
      
     # Showing the quantities in each bar
@@ -30,6 +30,7 @@ def plot_selected_category(df, selected_column):
     plt.tight_layout()
     st.pyplot(fig)
 
+@st.spinner("Cargando, por favor espera...")
 def plot_classification_heatmap(df, classification_column, score_column):
     # Chart style
     plt.style.use('bmh')
@@ -88,7 +89,8 @@ def plot_total_patients(df):
 
     # Show the graph in Streamlit
     st.pyplot(fig)
-    
+
+@st.spinner("Cargando, por favor espera...")
 def plot_time_trends(df, selected_column):
     # Chart style
     plt.style.use('bmh')
@@ -126,14 +128,14 @@ def plot_time_trends(df, selected_column):
         
     # Add description inside the graphic
     ax.text(0.5, -0.1, f"Este gráfico muestra la distribución de {selected_column} a lo largo de los años.",
-            ha='center', va='center', transform=ax.transAxes)
+            ha='center', va='center', transform=ax.transAxes, fontsize=14)
     # Design adjustment
     plt.tight_layout()
 
     # Show the graph in Streamlit
     st.pyplot(fig)
 
-
+@st.spinner("Cargando, por favor espera...")
 def plot_heatmap(df, selected_column, selected_column_2):
     # Chart style
     plt.style.use('bmh')
@@ -198,7 +200,7 @@ def plot_time_trends_line(df, selected_column):
 
     # Descripción dentro del gráfico
     ax.text(0.5, -0.1, f"Este gráfico muestra la evolución de {selected_column} a lo largo de los años.",
-            ha='center', va='center', transform=ax.transAxes)
+            ha='center', va='center', transform=ax.transAxes, fontsize=14)
 
     # Ajuste del diseño
     plt.tight_layout()

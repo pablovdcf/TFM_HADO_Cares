@@ -25,13 +25,7 @@ from interactive_maps import folium_static,\
                             plot_average_metrics_by_ayuntamiento,\
                             plot_top_ayuntamientos_for_category
                             
-from utils import machine_learning, ui_info, ui_spacer
-import seaborn
-import pandas
-import streamlit_pandas_profiling
-import ydata_profiling
-import geopandas
-import folium
+from utils import ui_info, ui_spacer
 
 
 st.set_page_config(page_title="HADO",
@@ -44,10 +38,11 @@ ss = st.session_state
 if 'show_filters' not in ss:
     ss.show_filters = True
     
+houston = ("![Houston](https://media3.giphy.com/media/4Hx5nJBfi8FzFWxztb/giphy.gif)") # Un poco de humor
 # Main Function
 def main():
     # Set the title and information message in the sidebar
-    st.write("# HADO CARES")
+    st.write("# 👨‍⚕️HADO CARES👩‍⚕️")
     
     with st.sidebar:
         ui_info()
@@ -55,9 +50,12 @@ def main():
     
     # Initialize with None df
     df=None
+    uploaded_file=None
+    
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "Home 🏠", "Filtros 🔍", "Visualizaciones 📊", "Mapa 🗺️", "CRUD Operations ✍️", "Pandas Profiling 📃"
     ])
+    tabs = [tab1, tab2, tab3, tab4, tab5, tab6]
     with tab1:
         md_expander = st.expander("📃Información", expanded=True)
         with md_expander:
@@ -99,11 +97,17 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
             df = sidebar_and_upload(csv_file=uploaded_file)
             
         except Exception as e:
-            st.info("Por favor suba el archivo CSV para inicialzar la aplicación")
+            ui_spacer(1)
             # st.sidebar.write(f"Ocurrió un error: {e}")
             
-    if df is not None:
+    if uploaded_file is None:
+        container = st.container()
+        col1, col2, col3 = container.columns([0.5, 2, 0.5])
+        with col2:
+            st.error(f"Por favor suba el archivo CSV para inicialzar la aplicación", icon="📄")
+            st.write(houston)
         
+    if df is not None:
         # Apply Filters
         with tab2:
             st.header("Filtrado y Descarga de Datos")
@@ -235,6 +239,7 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                 else:
                     if selected_column:
                         plot_selected_category(df_tab3, selected_column)
+# Añadir más visualizaciones para un año único con información para la categoría escogida
                 
             with col2:
                 if year_option != "Año específico":
@@ -242,7 +247,8 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                         plot_time_trends_line(df_tab3, selected_column)
                         st.divider()
                         plot_time_trends(df_tab3, selected_column)
-            st.divider()
+            
+            ui_spacer(2)
             
             with st.expander('Relación con Otra Variable', expanded=True):
                 st.info("Seleccione dos columnas distintas para explorar la relación entre ellas.")
@@ -263,17 +269,17 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                     with col2:
                         # SelectBoxes para seleccionar valores únicos
                         selected_value_col1 = st.multiselect(
-                            f"#### Seleccione un valor único para {selected_column1}:",
+                            f"#### Seleccione los valores para {selected_column1}:",
                             unique_values_col1,
                             default=unique_values_col1,
-                            key=f"unique_select_{selected_column1}"
+                            key=f"value_select_{selected_column1}"
                             )
 
                         selected_value_col2 = st.multiselect(
-                            f"#### Seleccione un valor único para {selected_column2}:",
+                            f"#### Seleccione los valores para {selected_column2}:",
                             unique_values_col2,
                             default=unique_values_col2,
-                            key=f"second_unique_select_{selected_column2}"
+                            key=f"second_value_select_{selected_column2}"
                             )
 
 
@@ -316,10 +322,10 @@ El índice de Barthel evalúa la independencia de una persona para realizar acti
 Esta herramienta es útil para valorar la funcionalidad, evolución, pronóstico del paciente y planificar su atención, permitiendo comparar el estado funcional entre pacientes.
 
 """)
-                    # if st.button("Mostrar/Ocultar Gráfico Barthel"):
-                    #     ss.show_barthel = not ss.show_barthel
-                    # if ss.show_barthel:
-                    plot_classification_heatmap(df_tab3, 'barthel_classification', 'barthel')
+                    if st.button("Mostrar/Ocultar Gráfico Barthel"):
+                        ss.show_barthel = not ss.show_barthel
+                    if ss.show_barthel:
+                        plot_classification_heatmap(df_tab3, 'barthel_classification', 'barthel')
                 
                 # PS_ECOG
                 ps_ecog_expander = st.expander("### PS_ECOG", expanded=True)
@@ -340,10 +346,10 @@ Diseñada por el Eastern Cooperative Oncology Group (ECOG) y validada por la OMS
 
 
 """)
-                    # if st.button("Mostrar/Ocultar Gráfico PS_ECOG"):
-                    #     ss.show_ps_ecog = not ss.show_ps_ecog
-                    # if ss.show_ps_ecog:
-                    plot_classification_heatmap(df_tab3, 'ps_ecog_classification', 'ps_ecog')
+                    if st.button("Mostrar/Ocultar Gráfico PS_ECOG"):
+                        ss.show_ps_ecog = not ss.show_ps_ecog
+                    if ss.show_ps_ecog:
+                        plot_classification_heatmap(df_tab3, 'ps_ecog_classification', 'ps_ecog')
                 
                 # GDS_FAST
                 gds_fast_expander = st.expander("### GDS_FAST", expanded=True)
@@ -366,10 +372,10 @@ La escala GDS-FAST mide el grado de deterioro cognitivo y funcional en personas 
 Esta escala es fundamental para evaluar la evolución, pronóstico y decidir el tratamiento y cuidados adecuados para pacientes con demencia.
 
 """)
-                    # if st.button("Mostrar/Ocultar Gráfico GDS_FAST"):
-                    #     ss.show_gds_fast = not ss.show_gds_fast
-                    # if ss.show_gds_fast:
-                    plot_classification_heatmap(df_tab3, 'gds_fast_classification', 'gds_fast')
+                    if st.button("Mostrar/Ocultar Gráfico GDS_FAST"):
+                        ss.show_gds_fast = not ss.show_gds_fast
+                    if ss.show_gds_fast:
+                        plot_classification_heatmap(df_tab3, 'gds_fast_classification', 'gds_fast')
 
         # Mapa
         with tab4:
@@ -415,35 +421,70 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
                     st.write("### Filtros 🔍")
                     st.info("La selección del año afecta a todas las visualizaciones de esta página")
                         
-                    selected_year = st.selectbox("Seleccione un año:", sorted(df_tab4['year'].unique()),index=None, placeholder="Pulsa para ver los años y seleccionar")
-                        
-                    column = st.selectbox("Seleccione la columna para visualizar:", ['barthel', 'gds_fast', 'ps_ecog', 'n_visitas', 'n_estancias'], index=None, placeholder="Escoge la columna que deseas visualizar en el mapa")
-                
+                    # Selecciona el año
+                    selected_year = st.selectbox(
+                        "Seleccione un año:",
+                        sorted(df_tab4['year'].unique()),
+                        index=None,
+                        placeholder="Pulsa para ver los años y seleccionar",
+                        key='year_select'
+                    )
+                    # Filtra el DataFrame por el año seleccionado
+                    df_filtered_by_year = df_tab4[df_tab4['year'] == selected_year]
+                    
+                    # Selecciona la columna (solo las columnas disponibles para el año seleccionado)
+                    column = st.selectbox(
+                        "Seleccione la columna para visualizar:",
+                        df_filtered_by_year.columns,
+                        index=None,
+                        placeholder="Escoge la columna que deseas visualizar en el mapa",
+                        key=f'column_select_{selected_year}'
+                    )
+                    
+                    selected_value = None  # Inicializa selected_value con None
+                    
+                    if column is not None:
+                        unique_values = sorted(df_filtered_by_year[column].unique())
+                        if df_filtered_by_year[column].dtype  not in ['int64', 'float64']:
+                            # Selecciona el valor (solo los valores disponibles para la columna y año seleccionado)
+                                selected_value = st.selectbox(
+                                    f"Seleccione valor para {column}:",
+                                    unique_values,
+                                    index=None,
+                                    key=f"map_value_select_{selected_year}_{column}",  # Añade una clave única que incluye el año y la columna seleccionados
+                                    placeholder="Escoge un valor para ver en el mapa"
+                                )
+                    else:
+                        st.error("Por favor, selecciona una columna.")
+
                 with col2:
                     if column == None:
                         map_object = None
                         st.info("Selecciona una columna para visualizar el mapa con los ayuntamientos", icon="🚨")
+                    elif df_filtered_by_year[column].dtype not in ['int64', 'float64'] and selected_value is None:
+                        # Si la columna es categórica y no se ha seleccionado un valor, mostrar un mensaje
+                        map_object = None
+                        st.info(f"Selecciona un valor para {column} para poder ver el mapa", icon="🚨")
                     else:
-                        map_object = generate_interactive_maps(df_tab4, column, gdf, selected_year)
-
+                        map_object = generate_interactive_maps(df_filtered_by_year, column, gdf, selected_year, selected_value=selected_value)
                         if isinstance(map_object, str):
                             st.error(map_object)
                         else:
                             folium_static(map_object)
+                            ui_spacer(2)
+                            
             
-                ui_spacer(1)
+                ui_spacer(2)
                 
                 with col2:
                     if selected_year != None:    
                         df_filtered_tab4 = df_tab4[df_tab4['year'] == selected_year]
                         plot_patients_by_ayuntamiento(df_filtered_tab4, selected_year)
-
-                        st.divider()
+                        ui_spacer(2)
                         plot_average_metrics_by_ayuntamiento(df_tab4, selected_year)
                         st.info("No se tienen en cuenta ayuntamientos desconocidos para el calculo de los promedios")
 
-                        st.divider()
-                        
+                        ui_spacer(2)
                         
                         st.markdown("""
                                     ## Top de Ayuntamientos por columnas

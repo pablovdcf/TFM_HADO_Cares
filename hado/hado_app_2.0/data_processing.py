@@ -9,9 +9,9 @@ import requests
 from io import StringIO
 
 # Load CSV file
-def load_csv(input_csv):
+def load_csv_home_expander(input_csv):
     df = pd.read_csv(input_csv)
-    with st.expander('Ver datos'):
+    with st.expander('Ver datos', expanded=True):
         st.write(f"{input_csv.name} tiene {df.shape[0]} filas y {df.shape[1]} columnas.")
         st.write(df)
         container = st.container()
@@ -80,7 +80,7 @@ def sidebar_and_upload(csv_file):
         # Notify the user that the file has been uploaded
             st.info("Archivo subido con éxito 😊")
         # Read the uploaded file into a pandas DataFrame
-        df_original = load_csv(csv_file)
+        df_original = load_csv_home_expander(csv_file)
         df = df_original.copy()
     
     # Return the DataFrame

@@ -19,66 +19,92 @@ def folium_static(m):
     """
     m.save("tmp_map.html")
     components.html(open("tmp_map.html", "r").read(), height=600)
-    
-    
-# Function for Data Visualizations
-def generate_interactive_maps(data, column, gdf, year):
-    """
-    Genera mapas interactivos con visualización temporal y datos agregados.
-    
-    Parámetros:
-    - df (DataFrame): DataFrame que contiene los datos a visualizar.
-    - column (str): Nombre de la columna en el DataFrame para visualizar en el mapa.
-    - gdf (GeoDataFrame): GeoDataFrame que contiene los datos geográficos de Galicia.
-    
-    Retorna:
-    - folium.Map: Objeto del mapa generado.
-    """
+
+@st.spinner("🧑‍💻Estamos cargando el mapa, por favor espera...")
+def generate_interactive_maps(data, column, gdf, year, selected_value=None):
     # Crear el mapa interactivo con zoom mínimo y máximo
     m = folium.Map(location=[42.7550000, -8.5000000], zoom_start=9, tiles="cartodb positron", min_zoom=8, max_zoom=11)
     
     # Añadir más estilos de mapas
     folium.TileLayer('openstreetmap').add_to(m)
-    folium.TileLayer('Stamen Terrain').add_to(m)
-    
+
     # Filtrar los datos por año
     data_year = data[data['year'] == year]
-    
+
     # Verificar si todos los valores de 'ayuntamiento' son 'desconocido' en data_year
     if (data_year['ayuntamiento'] == 'desconocido').all():
         # Retornar un mensaje de error si todos los ayuntamientos son "desconocido"
         return f"No existen datos para ayuntamientos conocidos en el año {year}"
     
-    # Agrupar por 'ayuntamiento' para obtener métricas
-    data_year = data_year.groupby('ayuntamiento')[column].agg(['count','mean', 'min', 'max', 'median']).reset_index()
+    if data[column].dtype in ['int64', 'float64']:  # Si la columna es numérica
+        data_year = data_year.groupby('ayuntamiento')[column].agg(['count','mean', 'min', 'max', 'median']).reset_index()
+        # Fusionar con el GeoDataFrame de Galicia
+        # Verificar si data_year está vacío
+        if data_year.empty:
+            # Retornar un mensaje de error si no hay datos
+            return f"No existen datos para este año {year} y esta categoría {column}"
+        merged_gdf_num = gdf.merge(data_year, left_on='NAME_4', right_on='ayuntamiento', how='left')
     
-    # Verificar si data_year está vacío
-    if data_year.empty:
-        # Retornar un mensaje de error si no hay datos
-        return f"No existen datos para este año {year} y esta categoría {column}"
+        # En el mapa coroplético, puedes usar cualquier columna de count_data_pivot
         
-    # Fusionar con el GeoDataFrame de Galicia
-    merged_gdf = gdf.merge(data_year, left_on='NAME_4', right_on='ayuntamiento', how='left')
+        choropleth = folium.Choropleth(
+            geo_data=merged_gdf_num,
+            name=f'choropleth_{year}',
+            data=merged_gdf_num,
+            columns=['NAME_4', 'mean'],
+            key_on='feature.properties.NAME_4',
+            fill_color='YlGnBu',
+            fill_opacity=0.7,
+            line_opacity=0.2,
+            legend_name=f'Distribución de {column} en {year}'
+        ).add_to(m)
     
-    # Choropleth map
-    choropleth = folium.Choropleth(
-        geo_data=merged_gdf,
-        name=f'choropleth_{year}',
-        data=merged_gdf,
-        columns=['NAME_4', 'mean'],
-        key_on='feature.properties.NAME_4',
-        fill_color='YlGnBu',
-        fill_opacity=0.7,
-        line_opacity=0.2,
-        legend_name=f'Distribución de {column} en {year}'
-    ).add_to(m)
-    
-    # Función para agregar popups
-    choropleth.geojson.add_child(
-        folium.features.GeoJsonTooltip(fields=['NAME_4', 'count', 'mean', 'min', 'max', 'median'], 
-                                        aliases=['Municipio:', 'Total de pacientes:', f'Media de {column}:', f'Mínimo de {column}:', f'Máximo de {column}:', f'Mediana de {column}:'], 
-                                        localize=True)
-    )
+        # Función para agregar popups
+        choropleth.geojson.add_child(
+            folium.features.GeoJsonTooltip(fields=['NAME_4', 'count', 'mean', 'min', 'max', 'median'], 
+                                            aliases=['Municipio:', 'Total de pacientes:', f'Media de {column}:', f'Mínimo de {column}:', f'Máximo de {column}:', f'Mediana de {column}:'], 
+                                            localize=True)
+                                    )
+    else:  # Si la columna no es numérica
+        if selected_value is not None:
+            # Filtra los datos para incluir solo el valor seleccionado
+            data_year = data_year[data_year[column] == selected_value]
+
+        # Agrupar por 'ayuntamiento' y 'column' para obtener conteos
+        count_data = data_year.groupby(['ayuntamiento', column]).size().reset_index(name='count')
+
+        # reorganizar el DataFrame para tener un formato más amigable
+        count_data_pivot = count_data.pivot(index='ayuntamiento', columns=column, values='count').reset_index().fillna(0)
+
+        # Verificar si count_data_pivot está vacío
+        if count_data_pivot.empty:
+            # Retornar un mensaje de error si no hay datos
+            return f"No existen datos para este año {year} y esta categoría {column}"
+        
+        # Fusionar con el GeoDataFrame de Galicia
+        merged_gdf_cat = gdf.merge(count_data_pivot, left_on='NAME_4', right_on='ayuntamiento', how='left')
+
+        # Crear un mapa coroplético para el valor seleccionado
+        choropleth = folium.Choropleth(
+            geo_data=merged_gdf_cat,
+            name=f'choropleth_{year}_{selected_value}',
+            data=merged_gdf_cat,
+            columns=['NAME_4', selected_value],
+            key_on='feature.properties.NAME_4',
+            fill_color='YlGnBu',
+            fill_opacity=0.6,
+            line_opacity=0.3,
+            legend_name=f'Distribución de {selected_value} en {year}',
+            highlight=True,
+        ).add_to(m)
+
+        # Función para agregar popups
+        choropleth.geojson.add_child(
+            folium.features.GeoJsonTooltip(fields=['NAME_4', selected_value], 
+                                            aliases=['Municipio:', f'Total de {selected_value}:'], 
+                                            localize=True)
+        )
+
     # Plugins
     folium.plugins.ScrollZoomToggler().add_to(m)
     folium.plugins.Fullscreen(
@@ -91,7 +117,6 @@ def generate_interactive_maps(data, column, gdf, year):
     folium.LayerControl().add_to(m)
     
     return m
-
 
 def plot_patients_by_ayuntamiento(df_filtered, selected_year):
     # Estilo del gráfico
