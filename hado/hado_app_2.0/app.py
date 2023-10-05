@@ -481,7 +481,7 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
                         df_filtered_tab4 = df_tab4[df_tab4['year'] == selected_year]
                         plot_patients_by_ayuntamiento(df_filtered_tab4, selected_year)
                         ui_spacer(2)
-                        plot_average_metrics_by_ayuntamiento(df_tab4, selected_year)
+                        plot_average_metrics_by_ayuntamiento(df_filtered_tab4, selected_year)
                         st.info("No se tienen en cuenta ayuntamientos desconocidos para el calculo de los promedios")
 
                         ui_spacer(2)

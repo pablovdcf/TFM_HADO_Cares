@@ -175,6 +175,7 @@ def plot_average_metrics_by_ayuntamiento(df, selected_year):
         return
 
     # Calcular los promedios de métricas por ayuntamiento
+    df_filtered = df_filtered.select_dtypes(exclude=['object'])
     average_metrics_by_ayuntamiento = df_filtered.groupby('ayuntamiento').mean().reset_index()
 
     # Eliminar 'desconocido' de los ayuntamientos para una mejor visualización
