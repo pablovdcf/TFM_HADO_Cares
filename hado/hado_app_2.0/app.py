@@ -51,7 +51,7 @@ def main():
     # Initialize with None df
     df=None
     uploaded_file=None
-    data_loaded = False
+    ss.data_loaded = False
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "Home 🏠", "Filtros 🔍", "Visualizaciones 📊", "Mapa 🗺️", "CRUD Operations ✍️", "Pandas Profiling 📃"
     ])
@@ -96,7 +96,9 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                 options = st.radio(
                                 label="Selecciona una opción:",
                                 options=["Subir Archivo", "Demo Data"],
-                                label_visibility="visible"
+                                label_visibility="visible",
+                                horizontal=True,
+                                key="options_data_app"
                                 )
 
                 if options == "Subir Archivo":
@@ -104,14 +106,14 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                     uploaded_file = st.file_uploader("Sube tu archivo Excel en formato CSV", type=["csv"], key="csv_file")
                     df = sidebar_and_upload(csv_file=uploaded_file)
                     if df is not None:
-                        data_loaded = True
+                        ss.data_loaded = True
                 elif options == "Demo Data":
                     # Create butón to load demo data
-                    st.write("Puedes cargar datos aleatorios de prueba para interactuar con la aplicación")
+                    st.write("***Puedes cargar datos aleatorios de prueba para interactuar con la aplicación***")
                     if st.button('Cargar datos'):
                         n = 20000  # número de filas de datos aleatorios a generar
                         ss.df = generate_data(n)
-                        data_loaded = True
+                        ss.data_loaded = True
                     if 'df' in ss:
                         st.write(ss.df)
                         st.write(ss.df.describe(include='object').T)
@@ -120,7 +122,7 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
             ui_spacer(1)
             st.sidebar.write(f"Ocurrió un error: {e}")
             
-    if data_loaded == False:
+    if ss.data_loaded == False:
         container = st.container()
         col1, col2, col3 = container.columns([0.5, 2, 0.5])
         with col2:
@@ -190,12 +192,12 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                 
                 st.write(df_filtered)
             
-            st.write("## Download DataFrame")
-            download_button = st.button("Download CSV")
+            st.write("## Descargar Datos en formato CSV")
+            download_button = st.button("Descargar")
             if download_button:
                 csv = df_filtered.to_csv(index=False)
                 b64 = base64.b64encode(csv.encode()).decode()
-                href = f'<a href="data:file/csv;base64,{b64}" download="modified_dataframe.csv">Download CSV File</a>'
+                href = f'<a href="data:file/csv;base64,{b64}" download="modified_dataframe.csv">Descargar CSV File</a>'
                 st.markdown(href, unsafe_allow_html=True)
                 
         
@@ -550,6 +552,8 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
         with tab5:
             if uploaded_file is not None:
                 crud_operations(df, csv_file=uploaded_file)
+            else:
+                st.write("### Debes subir un archivo CSV en la sección Home 🏠 para poder realizar operaciones CRUD")
         
             # Machine Learning
             # with tab7:
