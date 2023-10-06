@@ -3,7 +3,7 @@
 import streamlit as st
 # from pycaret.classification import setup, compare_models, pull, save_model
 
-# # Function for Machine Learning
+# Function for Machine Learning
 # def machine_learning(df):
 #     st.header("Build your own Machine Learning Model with Pycaret!")
 #     target = st.selectbox("Select Your Target", df.columns)

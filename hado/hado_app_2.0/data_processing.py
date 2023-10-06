@@ -17,6 +17,7 @@ def load_csv_home_expander(input_csv):
         container = st.container()
         col1, col2 = container.columns([1, 1])
         with col1:
+            
             st.write("Resumen de los datos numéricos:")
             st.write(df.describe(exclude='object').T, )
             st.divider()
@@ -141,6 +142,7 @@ def apply_filters(df, reset=False):
 
 
 # Function for CRUD Operations
+@st.spinner("Cargando, por favor espera...")
 def crud_operations(df, csv_file):
     # Inicializar session_state si no existe
     if 'df' not in st.session_state:
@@ -266,7 +268,6 @@ def generate_pandas_profiling(uploaded_file):
 def load_gdf():
     # Definir la ruta del archivo .geojson
     file_url = 'https://raw.githubusercontent.com/pablovdcf/TFM_HADO_Cares/main/hado/hado_app_2.0/ESP_adm4.geojson'
-    # file_path = "./hado_app_2.0/ESP_adm4.geojson"
     
     # Download the file
     response = requests.get(file_url)

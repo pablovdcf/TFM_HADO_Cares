@@ -27,6 +27,7 @@ from interactive_maps import folium_static,\
                             
 from utils import ui_info, ui_spacer
 
+from data_test import generate_data
 
 st.set_page_config(page_title="HADO",
                    layout='wide', 
@@ -38,7 +39,6 @@ ss = st.session_state
 if 'show_filters' not in ss:
     ss.show_filters = True
     
-houston = ("![Houston](https://media3.giphy.com/media/4Hx5nJBfi8FzFWxztb/giphy.gif)") # Un poco de humor
 # Main Function
 def main():
     # Set the title and information message in the sidebar
@@ -51,16 +51,16 @@ def main():
     # Initialize with None df
     df=None
     uploaded_file=None
-    
+    data_loaded = False
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "Home 🏠", "Filtros 🔍", "Visualizaciones 📊", "Mapa 🗺️", "CRUD Operations ✍️", "Pandas Profiling 📃"
     ])
-    tabs = [tab1, tab2, tab3, tab4, tab5, tab6]
+    
     with tab1:
         md_expander = st.expander("📃Información", expanded=True)
         with md_expander:
             st.markdown("""
-                        # Bienvenido a HADO CARES 🚀
+                        # Bienvenido a HADO CARES
 
 HADO CARES es una aplicación interactiva diseñada para facilitar el análisis y la exploración de datos de atención médica. Esta plataforma ofrece una variedad de herramientas para visualizar, filtrar, y comprender los datos, proporcionando insights valiosos para la toma de decisiones.
 
@@ -92,22 +92,42 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
             container = st.container()
             col1, col2, col3 = container.columns([0.5, 2, 0.5])
             with col2:
-                # Create a file uploader widget in the sidebar
-                uploaded_file = st.file_uploader("Sube tu archivo Excel en formato CSV", type=["csv"], key="csv_file")
-            df = sidebar_and_upload(csv_file=uploaded_file)
+                
+                options = st.radio(
+                                label="Selecciona una opción:",
+                                options=["Subir Archivo", "Demo Data"],
+                                label_visibility="visible"
+                                )
+
+                if options == "Subir Archivo":
+                    # Create a file uploader widget in the sidebar
+                    uploaded_file = st.file_uploader("Sube tu archivo Excel en formato CSV", type=["csv"], key="csv_file")
+                    df = sidebar_and_upload(csv_file=uploaded_file)
+                    if df is not None:
+                        data_loaded = True
+                elif options == "Demo Data":
+                    # Create butón to load demo data
+                    st.write("Puedes cargar datos aleatorios de prueba para interactuar con la aplicación")
+                    if st.button('Cargar datos'):
+                        n = 20000  # número de filas de datos aleatorios a generar
+                        ss.df = generate_data(n)
+                        data_loaded = True
+                    if 'df' in ss:
+                        st.write(ss.df)
+                        st.write(ss.df.describe(include='object').T)
             
         except Exception as e:
             ui_spacer(1)
-            # st.sidebar.write(f"Ocurrió un error: {e}")
+            st.sidebar.write(f"Ocurrió un error: {e}")
             
-    if uploaded_file is None:
+    if data_loaded == False:
         container = st.container()
         col1, col2, col3 = container.columns([0.5, 2, 0.5])
         with col2:
             st.error(f"Por favor suba el archivo CSV para inicialzar la aplicación", icon="📄")
-            st.write(houston)
         
-    if df is not None:
+    if 'df' in ss and ss.df is not None:
+        df= ss.df
         # Apply Filters
         with tab2:
             st.header("Filtrado y Descarga de Datos")
@@ -528,7 +548,8 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
                 
         # CRUD Operations
         with tab5:
-            crud_operations(df,csv_file=uploaded_file)
+            if uploaded_file is not None:
+                crud_operations(df, csv_file=uploaded_file)
         
             # Machine Learning
             # with tab7:
@@ -572,8 +593,6 @@ Esta herramienta es útil tanto para la exploración inicial de datos como para 
 - Utiliza Pandas Profiling para identificar problemas en tu conjunto de datos rápidamente.
 - Explora las correlaciones entre variables para obtener insights sobre relaciones.
 - Revisa los valores faltantes y considera estrategias de imputación.
-
----
 """)        
         container = st.container()
         col1, col2, col3 = container.columns([0.5, 2, 0.5])

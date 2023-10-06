@@ -7,3 +7,4 @@ geopandas >= 0.14.0
 folium >= 0.14.0
 matplotlib == 3.7.1
 seaborn >= 0.12.2
+numpy
