@@ -74,7 +74,7 @@ def plot_total_patients(df):
     ax.set_ylabel('Número de Pacientes', fontsize=14)
 
     # Axis limits
-    ax.set_ylim(bottom=0)
+    # ax.set_ylim(bottom=0)
 
     # Grid
     ax.grid(True, which='both')
@@ -110,7 +110,7 @@ def plot_time_trends(df, selected_column):
     ax.set_ylabel('Número de Registros', fontsize=14)
     
     # Axis limits
-    ax.set_ylim(bottom=0)
+    # ax.set_ylim(bottom=0)
 
     # Legend
     ax.legend(title=f'Valores {selected_column}', loc='best', fontsize='small', bbox_to_anchor=(1, 1))
@@ -190,7 +190,7 @@ def plot_time_trends_line(df, selected_column):
     ax.set_ylabel('Número de Registros', fontsize=14)
 
     # Límites de los ejes
-    ax.set_ylim(bottom=0)
+    # ax.set_ylim(bottom=0)
 
     # Leyenda
     ax.legend(title=f'Valores {selected_column}', loc='best', fontsize='small', bbox_to_anchor=(1, 1))
