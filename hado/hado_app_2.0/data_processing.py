@@ -267,7 +267,7 @@ def generate_pandas_profiling(uploaded_file):
 @st.cache_data(experimental_allow_widgets=True)
 def load_gdf():
     # Definir la ruta del archivo .geojson
-    file_url = 'https://raw.githubusercontent.com/pablovdcf/TFM_HADO_Cares/main/hado/hado_app_2.0/ESP_adm4.geojson'
+    file_url = 'https://raw.githubusercontent.com/pablovdcf/TFM_HADO_Cares/main/hado/hado_app_2.0/data/ESP_adm4.geojson'
     
     # Download the file
     response = requests.get(file_url)
