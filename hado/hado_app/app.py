@@ -637,10 +637,11 @@ En la parte inferior de la página, podrás explorar los ayuntamientos que desta
                             ui_spacer(2)
                             
             
-                ui_spacer(2)
+                ui_spacer(4)
                 
                 with col2:
-                    if selected_year != None:    
+                    if selected_year != None:
+                        st.write("## Visualizaciones para ayuntamientos")
                         df_filtered_tab4 = df_tab4[df_tab4['year'] == selected_year]
                         plot_patients_by_ayuntamiento(df_filtered_tab4, selected_year)
                         ui_spacer(2)
