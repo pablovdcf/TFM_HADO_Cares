@@ -1,0 +1,10 @@
+sphinx
+sphinx_rtd_theme
+sphinx.ext.autodoc
+sphinx.ext.autosummary
+sphinx-autodoc-typehints
+nbsphinx
+myst_parser
+recommonmark
+numpy
+pandas
