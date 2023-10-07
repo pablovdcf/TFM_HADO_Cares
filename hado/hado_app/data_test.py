@@ -1,8 +1,23 @@
+# Function for generate data test
+
+# Modules
 import pandas as pd
 import numpy as np
 
 def generate_data(n):
-    # Generando datos aleatorios para cada una de las columnas numéricas
+    """
+    Generates synthetic data with various attributes, aimed at simulating a dataset within a healthcare domain.
+
+    Parameters:
+    n (int): Number of entries to be generated.
+
+    Returns:
+    pd.DataFrame: A DataFrame containing the generated synthetic data.
+    
+    Description:
+    The generate_data function generates random data for a specified number of entries (n). The generated data mimics a realistic healthcare dataset, with multiple attributes concerning patient, hospital, and treatment information. NumPy's random choice functionality is utilized to generate random values for each attribute. The function also defines classifications for certain attributes based on their generated numerical values, and encapsulates all the generated data into a pandas DataFrame which is then returned.
+    """
+    # Generating random data for each of the numerical columns
     gds_fast = np.random.choice([0, 1, 2, 3, 4, 5, 6, 7], n)
     barthel = np.random.choice([0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100], n)
     ps_ecog = np.random.choice([0, 1, 2, 3, 4], n)
@@ -56,22 +71,21 @@ def generate_data(n):
                                 ], n)
     alta_categoría = np.random.choice(['Complicaciones', 'Exitus', 'Otros', 'Recuperacion'], n)
     atencion_primaria = np.random.choice(['no', 'si'], n)
-    numero_estancias = np.random.choice([21, 24, 14, 1, 2, 13, 22, 5, 9, 3, 103, 6, 69, 33, 18, 4, 8, 10, 23, 15, 11, 20, 92, 49, 30, 35, 7, 16, 98, 45, 41, 96, 100, 36, 47, 40, 26, 32, 28, 27, 34, 46, 12, 19, 25, 50, 87, 42, 17, 31, 67, 68, 141, 48, 29, 51, 39, 55, 37, 56, 0, 71, 58, 74, 38, 72, 43, 73, 99, 63, 64, 304, 54, 75, 180, 53, 78, 84, 135, 57, 76, 106, 86, 60, 79, 44, 104, 70, 52, 111, 65, 77, 61, 66, 90, 140, 130, 119, 126, 161, 62, 93, 89, 204, 91, 95, 102, 97, 131, 150, 88, 134, 142, 109, 123, 138, 107, 80, 166, 133, 59, 154, 188, 125, 101, 117, 118, 171], n)
+    numero_estancias = np.random.randint(0, 305, n)
+    numero_visitas = np.random.randint(0, 100, n)
 
-    numero_visitas = np.random.choice([10, 8, 6, 1, 2, 5, 3, 21, 31, 15, 7, 4, 40, 14, 12, 18, 35, 9, 11, 20, 37, 34, 16, 17, 23, 24, 22, 45, 48, 0, 13, 33, 28, 25, 60, 27, 26, 19, 30, 50, 36, 43, 29, 56, 51, 41, 42, 32, 54, 71, 76, 49, 68, 38, 39, 99, 80, 44], n)
 
-
-    eva_ing = np.random.choice([0, 70, 80, 60, 30, 90, 100, 50, 40, 78, 20, 23], n)
+    eva_ing = np.random.randint(0, 100, n)
     
     ayuntamiento = np.random.choice([ 'Santiago de Compostela', 'Brión', 'Lalín', 'Ames', 'Negreira',
                                     'Teo', 'Padrón', 'Rois', 'A Baña', 'Oroso', 'Ordes', 'Trazo', 'A Estrada',
                                     'O Pino', 'Touro', 'Boqueixón', 'Vedra', 'Tordoia', 'Val do Dubra', 'Dodro',
                                     'Valga', 'Santa Comba', 'Pontecesures', 'Silleda', 'Sionlla', 'Lousame',
                                     'Frades', 'Pontevea', 'Rianxo', 'Noia', 'Sigüeiro', 'Vila de Cruces', 'Ortoño'], n)
-    year = np.random.choice([2017, 2018, 2019, 2020, 2021, 2022], n)
+    year = np.random.randint(2013,2023, n)
     
     
-    # Definiendo las clasificaciones correspondientes
+    # Defining the corresponding classifications
     gds_fast_classification = [
         ['No realizado o desconocido', 'Deficit cognitivo muy leve', 'Deficit cognitivo leve',
          'Deficit cognitivo moderado', 'Deficit cognitivo moderadamente grave', 'Deficit cognitivo grave',
@@ -85,7 +99,7 @@ def generate_data(n):
         ['Totalmente asintomatico', 'Sintomas leves', 'Sintomas moderados', 
          'Necesita ayuda para la mayoria de actividades', 'Encamado el 100%'][i] for i in ps_ecog]
     
-    # Creando el DataFrame
+    # Creating the DataFrame
     data = pd.DataFrame({
         "hospital": hospital,
         "servicio_procedencia": servicio_procedencia,

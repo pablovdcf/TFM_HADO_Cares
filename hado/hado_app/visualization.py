@@ -11,6 +11,16 @@ import plotly.express as px
 
 
 def plot_selected_category(df, selected_column):
+    """
+    Plots the distribution of a selected categorical column from the dataframe.
+    
+    Parameters:
+    df (pd.DataFrame): The data frame containing the data.
+    selected_column (str): The column to be plotted.
+    
+    Returns:
+    A bar plot of the selected column's distribution displayed on Streamlit using st.pyplot(fig).
+    """
     # Chart style
     plt.style.use('bmh')
     
@@ -35,6 +45,17 @@ def plot_selected_category(df, selected_column):
 
 @st.spinner("Cargando, por favor espera...")
 def plot_classification_heatmap(df, classification_column, score_column):
+    """
+    Plots a heatmap showing the distribution of scores for each classification.
+    
+    Parameters:
+    df (pd.DataFrame): The data frame containing the data.
+    classification_column (str): The column containing the classifications.
+    score_column (str): The column containing the scores.
+    
+    Returns:
+    A heatmap of the score distribution per classification displayed on Streamlit using st.pyplot(fig).
+    """
     # Chart style
     plt.style.use('bmh')
     
@@ -62,6 +83,15 @@ def plot_classification_heatmap(df, classification_column, score_column):
 
 
 def plot_total_patients(df):
+    """
+    Plots the total number of patients per year.
+    
+    Parameters:
+    df (pd.DataFrame): The data frame containing the data.
+    
+    Returns:
+    A line plot showing the total number of patients per year displayed on Streamlit using st.pyplot(fig).
+    """
     # Chart style
     plt.style.use('bmh')
     
@@ -95,6 +125,16 @@ def plot_total_patients(df):
 
 @st.spinner("Cargando, por favor espera...")
 def plot_time_trends(df, selected_column):
+    """
+    Plots the distribution of a selected categorical column over the years.
+    
+    Parameters:
+    df (pd.DataFrame): The data frame containing the data.
+    selected_column (str): The column to be plotted.
+    
+    Returns:
+    A bar plot showing the distribution of the selected column over the years displayed on Streamlit using st.pyplot(fig).
+    """
     # Chart style
     plt.style.use('bmh')
     
@@ -140,6 +180,17 @@ def plot_time_trends(df, selected_column):
 
 @st.spinner("Cargando, por favor espera...")
 def plot_heatmap(df, selected_column, selected_column_2):
+    """
+    Plots two heatmaps showing the relationship between two selected columns, one in percentages and the other in absolute values.
+    
+    Parameters:
+    df (pd.DataFrame): The data frame containing the data.
+    selected_column (str): The first column to be plotted.
+    selected_column_2 (str): The second column to be plotted.
+    
+    Returns:
+    Two heatmaps showing the relationship between the two selected columns displayed on Streamlit using st.pyplot(fig).
+    """
     # Chart style
     plt.style.use('bmh')
     
@@ -177,6 +228,16 @@ def plot_heatmap(df, selected_column, selected_column_2):
 """)
     
 def plot_time_trends_line(df, selected_column):
+    """
+    Plots the evolution of a selected categorical column over the years.
+    
+    Parameters:
+    df (pd.DataFrame): The data frame containing the data.
+    selected_column (str): The column to be plotted.
+    
+    Returns:
+    A line plot showing the evolution of the selected column over the years displayed on Streamlit using st.pyplot(fig).
+    """
     # Chart style
     plt.style.use('bmh')
 
@@ -207,6 +268,16 @@ def plot_time_trends_line(df, selected_column):
     st.pyplot(fig)
     
 def wordcloud_or_hist_box_plot(df, selected_column):
+    """
+    Generates a word cloud for object type columns or a histogram and a boxplot for numeric columns of type int64.
+    
+    Parameters:
+    df (pd.DataFrame): The data frame containing the data.
+    selected_column (str): The column to be plotted.
+    
+    Returns:
+    A word cloud or a histogram and a boxplot based on the data type of the selected column displayed on Streamlit using st.pyplot(fig).
+    """
     plt.style.use('bmh')
     # Checks the data type of the selected column
     column_dtype = df[selected_column].dtype
@@ -230,6 +301,7 @@ def wordcloud_or_hist_box_plot(df, selected_column):
         st.pyplot(fig_wordcloud)
 
     elif column_dtype == 'int64':
+        
         # Generates a histogram and a boxplot for numeric columns of type int64
         fig, axs = plt.subplots(1, 2, figsize=(15, 5))
         sns.histplot(data=df, x=selected_column, kde=True, ax=axs[0])
@@ -246,6 +318,19 @@ def wordcloud_or_hist_box_plot(df, selected_column):
 
 
 def plot_bubble_chart(df, x_column, y_column, size_column, color_column=None):
+    """
+    Plots a bubble chart showing the relationship between three or four variables.
+    
+    Parameters:
+    df (pd.DataFrame): The data frame containing the data.
+    x_column (str): The column for the x-axis.
+    y_column (str): The column for the y-axis.
+    size_column (str): The column for the size of the bubbles.
+    color_column (str, optional): The column for the color of the bubbles.
+    
+    Returns:
+    A bubble chart showing the relationship between the specified variables displayed on Streamlit using st.pyplot(fig).
+    """
     plt.style.use('bmh')
     fig, ax = plt.subplots(figsize=(10, 6))
     
@@ -284,6 +369,19 @@ def plot_bubble_chart(df, x_column, y_column, size_column, color_column=None):
     st.pyplot(fig)
 
 def plot_animated_bubble_chart(df, x_column, y_column, size_column, color_column=None):
+    """
+    Plots an animated bubble chart showing the relationship between three or four variables over time.
+    
+    Parameters:
+    df (pd.DataFrame): The data frame containing the data.
+    x_column (str): The column for the x-axis.
+    y_column (str): The column for the y-axis.
+    size_column (str): The column for the size of the bubbles.
+    color_column (str, optional): The column for the color of the bubbles.
+    
+    Returns:
+    An animated bubble chart showing the relationship between the specified variables over time displayed on Streamlit using st.plotly_chart(fig).
+    """
     fig = px.scatter(
         df,
         x=x_column,

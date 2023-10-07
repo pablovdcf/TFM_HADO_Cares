@@ -22,30 +22,43 @@ def folium_static(m):
 
 @st.spinner("🧑‍💻Estamos cargando el mapa, por favor espera...")
 def generate_interactive_maps(data, column, gdf, year, selected_value=None):
-    # Crear el mapa interactivo con zoom mínimo y máximo
+    """
+    Generate an interactive map based on specified parameters.
+    
+    Args:
+    data (pd.DataFrame): The data frame containing the data.
+    column (str): The column based on which the data will be filtered.
+    gdf (GeoDataFrame): The geospatial data frame containing the geometry of the locations.
+    year (int): The year based on which the data will be filtered.
+    selected_value (str, optional): The selected value based on which the data will be filtered.
+    
+    Returns:
+    folium.Map: An interactive map generated based on specified parameters.
+    """
+    # Create interactive map with minimum and maximum zoom
     m = folium.Map(location=[42.7550000, -8.5000000], zoom_start=9, tiles="cartodb positron", min_zoom=8, max_zoom=11)
     
-    # Añadir más estilos de mapas
+    # Map styles
     folium.TileLayer('openstreetmap').add_to(m)
 
-    # Filtrar los datos por año
+    # Filters by year
     data_year = data[data['year'] == year]
 
-    # Verificar si todos los valores de 'ayuntamiento' son 'desconocido' en data_year
+    # Check if all values of 'ayuntamiento' are 'desconocido' in data_year
     if (data_year['ayuntamiento'] == 'desconocido').all():
-        # Retornar un mensaje de error si todos los ayuntamientos son "desconocido"
+        # Error message if 'ayuntamiento' are "desconocido"
         return f"No existen datos para ayuntamientos conocidos en el año {year}"
     
     if data[column].dtype in ['int64', 'float64']:  # Si la columna es numérica
         data_year = data_year.groupby('ayuntamiento')[column].agg(['count','mean', 'min', 'max', 'median']).reset_index()
-        # Fusionar con el GeoDataFrame de Galicia
         # Verificar si data_year está vacío
         if data_year.empty:
-            # Retornar un mensaje de error si no hay datos
+            # Error message if no data
             return f"No existen datos para este año {year} y esta categoría {column}"
+        # Merge GeoDataFrame of Galicia
         merged_gdf_num = gdf.merge(data_year, left_on='NAME_4', right_on='ayuntamiento', how='left')
     
-        # En el mapa coroplético, puedes usar cualquier columna de count_data_pivot
+        # In the choropleth map, you can use any column of count_data_pivot
         
         choropleth = folium.Choropleth(
             geo_data=merged_gdf_num,
@@ -59,32 +72,31 @@ def generate_interactive_maps(data, column, gdf, year, selected_value=None):
             legend_name=f'Distribución de {column} en {year}'
         ).add_to(m)
     
-        # Función para agregar popups
+        # Function to add popups
         choropleth.geojson.add_child(
             folium.features.GeoJsonTooltip(fields=['NAME_4', 'count', 'mean', 'min', 'max', 'median'], 
                                             aliases=['Municipio:', 'Total de pacientes:', f'Media de {column}:', f'Mínimo de {column}:', f'Máximo de {column}:', f'Mediana de {column}:'], 
                                             localize=True)
                                     )
-    else:  # Si la columna no es numérica
+    else:  # If the column is not numeric
         if selected_value is not None:
-            # Filtra los datos para incluir solo el valor seleccionado
+            # Filters the data to include only the selected value
             data_year = data_year[data_year[column] == selected_value]
 
-        # Agrupar por 'ayuntamiento' y 'column' para obtener conteos
+        # Group by 'city hall' and 'column' to get counts
         count_data = data_year.groupby(['ayuntamiento', column]).size().reset_index(name='count')
 
-        # reorganizar el DataFrame para tener un formato más amigable
+        # Reorganize the DataFrame to have a more user-friendly layout
         count_data_pivot = count_data.pivot(index='ayuntamiento', columns=column, values='count').reset_index().fillna(0)
 
-        # Verificar si count_data_pivot está vacío
+        # Check if count_data_pivot is empty
         if count_data_pivot.empty:
-            # Retornar un mensaje de error si no hay datos
+            # Error message if no data
             return f"No existen datos para este año {year} y esta categoría {column}"
         
-        # Fusionar con el GeoDataFrame de Galicia
+        # Merge GeoDataFrame of Galicia
         merged_gdf_cat = gdf.merge(count_data_pivot, left_on='NAME_4', right_on='ayuntamiento', how='left')
 
-        # Crear un mapa coroplético para el valor seleccionado
         choropleth = folium.Choropleth(
             geo_data=merged_gdf_cat,
             name=f'choropleth_{year}_{selected_value}',
@@ -98,7 +110,6 @@ def generate_interactive_maps(data, column, gdf, year, selected_value=None):
             highlight=True,
         ).add_to(m)
 
-        # Función para agregar popups
         choropleth.geojson.add_child(
             folium.features.GeoJsonTooltip(fields=['NAME_4', selected_value], 
                                             aliases=['Municipio:', f'Total de {selected_value}:'], 
@@ -120,148 +131,155 @@ def generate_interactive_maps(data, column, gdf, year, selected_value=None):
 
 @st.spinner("🧑‍💻Dibujando gráficas, por favor espera...")
 def plot_patients_by_ayuntamiento(df_filtered, selected_year):
-    # Estilo del gráfico
+    """
+    Plot the number of patients by municipality for a selected year.
+    
+    Args:
+    df_filtered (pd.DataFrame): The data frame containing the filtered data.
+    selected_year (int): The year based on which the data has been filtered.
+    """
     plt.style.use('bmh')
     
-    # Contar el número de pacientes por ayuntamiento
+    # Count the number of patients per municipality
     cases_by_ayuntamiento = df_filtered['ayuntamiento'].value_counts().reset_index()
     cases_by_ayuntamiento.columns = ['Ayuntamiento', 'Número de Pacientes']
     
-    # Permitir a los usuarios seleccionar ayuntamientos
+    # Enable users to select municipalities
     ayuntamientos_options = sorted(cases_by_ayuntamiento['Ayuntamiento'].tolist())
     selected_ayuntamientos = st.multiselect("Seleccione Ayuntamientos:", ayuntamientos_options, default=ayuntamientos_options)
     
-    # Filtrar los datos por los ayuntamientos seleccionados
+    # Filter data by the selected municipalities
     cases_by_ayuntamiento = cases_by_ayuntamiento[cases_by_ayuntamiento['Ayuntamiento'].isin(selected_ayuntamientos)]
     
-    # Verificar si todos los valores de 'ayuntamiento' son 'desconocido' en data_year
+    # Check if the values of 'ayuntamiento' are 'desconocido' in data_year
     if (df_filtered['ayuntamiento'] == 'desconocido').all():
-        # Retornar un mensaje de error si todos los ayuntamientos son "desconocido"
+        # Error message if all values from 'ayuntamiento' are "desconocido"
         return f"No existen datos para ayuntamientos conocidos en el año {selected_year}"
     
-    # Crear la figura y los ejes
     fig, ax = plt.subplots(1, 1, figsize=(12, 7))
     
-    # Datos a ser graficados
     sns.barplot(x='Número de Pacientes', y='Ayuntamiento', data=cases_by_ayuntamiento, palette="viridis", ax=ax)
     
-    # Añadir etiquetas a las barras
+    # Adding labels to bars
     for index, value in enumerate(cases_by_ayuntamiento['Número de Pacientes']):
         ax.text(value, index, f'{value}', color='black', ha="left", va="center")
     
-    # Configurar títulos y etiquetas
     ax.set_title(f'Número de Pacientes por ayuntamiento en {selected_year}', fontsize=16)
     ax.set_xlabel('Pacientes', fontsize=14)
     ax.set_ylabel('Ayuntamiento', fontsize=14)
     
-    # Límites de los ejes
     ax.set_xlim(left=0)
-    
-    # Cuadrícula
     ax.grid(True, which='both')
     
-    # Ajuste del diseño
     plt.tight_layout()
-
-    # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
 
 @st.spinner("🧑‍💻Dibujando gráficas, por favor espera...")
 def plot_average_metrics_by_ayuntamiento(df, selected_year):
+    """
+    Plot average metrics by municipality for a selected year.
+    
+    Args:
+    df (pd.DataFrame): The data frame containing the data.
+    selected_year (int): The year based on which the data will be filtered.
+    """
 
-    # Verificar si df_filtered está vacío
+    # Check if df_filtered is empty
     if df.empty:
         st.warning(f"No hay datos disponibles para el año {selected_year}.")
         return
 
-    # Almacenar temporalmente la columna 'ayuntamiento'
+    # Temporarily store the column 'ayuntamiento'
     ayuntamiento_column = df['ayuntamiento'].copy()
 
-    # Excluir las columnas categóricas
+    # Exclude categorical columns
     df_filtered = df.select_dtypes(exclude=['object'])
 
-    # Volver a agregar la columna 'ayuntamiento'
+    # Re-add the column 'ayuntamiento'
     df_filtered['ayuntamiento'] = ayuntamiento_column
     
-    # Calcular los promedios de métricas por ayuntamiento
+    # Calculate metric averages by 'ayuntamiento'
     average_metrics_by_ayuntamiento = df_filtered.groupby('ayuntamiento').mean().reset_index()
 
-    # Eliminar 'desconocido' de los ayuntamientos para una mejor visualización
+    # Remove 'desconocido' from ayuntamiento for better visualization
     average_metrics_by_ayuntamiento = average_metrics_by_ayuntamiento[average_metrics_by_ayuntamiento['ayuntamiento'] != 'desconocido']
 
-    # Ordenar los datos por cada métrica
+    # Sort data by each metric
     metrics = ['n_estancias', 'n_visitas', 'barthel', 'ps_ecog', 'gds_fast']
     sorted_data = {metric: average_metrics_by_ayuntamiento.sort_values(metric, ascending=False) for metric in metrics}
 
-    # Crear subgráficos con un estilo mejorado
+    # Create subgraphs with improved styling
     plt.style.use('bmh')
     fig, axes = plt.subplots(3, 2, figsize=(12, 18))
     fig.suptitle(f'Promedios de Métricas Clave por Ayuntamiento en {selected_year}', fontsize=20)
 
-    # Dibujar cada métrica y agregar etiquetas a las barras
+    # Metrics to add on labels
     titles = ['Promedio de Número de Estancias', 'Promedio de Número de Visitas',  'Promedio de Barthel', 'Promedio de PS ECOG', 'Promedio de GDS FAST']
     for ax, metric, title in zip(axes.flatten()[:5], metrics, titles):
         if sorted_data[metric].empty:
-            # Si los datos están vacíos, mostrar un mensaje de advertencia en el subgráfico correspondiente
+            # If the data is empty, display a warning message in the corresponding subgraph.
             ax.text(0.5, 0.5, f"No hay datos disponibles para {title.lower()} en {selected_year}", ha='center', va='center', fontsize=12, color='red')
-            ax.axis('off')  # Desactivar los ejes
+            ax.axis('off')  # Deactivate the axes
         else:
             sns.barplot(x=metric, y='ayuntamiento', data=sorted_data[metric], ax=ax, palette="viridis")
             ax.set_title(title)
-            # Añadir etiquetas a las barras
+            # Adding labels to bars
             for p in ax.patches:
                 width = p.get_width()
                 ax.text(width + 0.1, p.get_y() + p.get_height() / 2, f'{width:.2f}', ha='left', va='center')
 
-    # Eliminar el eje adicional que no se utiliza
+    # Remove unused additional shaft
     fig.delaxes(axes.flatten()[5])
 
-    # Ajuste del diseño
+    # Design adjustment
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
-    # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
 
 @st.spinner("🧑‍💻Dibujando gráficas, por favor espera...")
 def plot_top_ayuntamientos_for_category(df, selected_year, selected_ayuntamientos, category_column, selected_category_values, plot_type='bar'):
-    # Filtrar el DataFrame por el año seleccionado y los ayuntamientos seleccionados
+    """
+    Plot top municipalities for a selected category.
+    
+    Args:
+    df (pd.DataFrame): The data frame containing the data.
+    selected_year (int): The year based on which the data will be filtered.
+    selected_ayuntamientos (list): The list of selected municipalities.
+    category_column (str): The category column based on which the data will be grouped.
+    selected_category_values (list): The list of selected category values.
+    plot_type (str, optional): The type of plot to be generated ('bar' or 'point'). Defaults to 'bar'.
+    """
+    plt.style.use('bmh')
+    # Filter the DataFrame by the selected 'year' and the selected 'ayuntamiento'.
     df_filtered = df[(df['year'] == selected_year) & (df['ayuntamiento'].isin(selected_ayuntamientos))]
     
-    # Verificar si df_filtered está vacío
+    # Check if df_filtered is empty
     if df_filtered.empty:
         st.warning(f"No hay datos disponibles para el año {selected_year} y los ayuntamientos seleccionados.")
         return
     
-    # Filtrar el DataFrame por los valores seleccionados de la columna de categoría
+    # Filter the DataFrame by the selected values of the category column.
     df_filtered = df_filtered[df_filtered[category_column].isin(selected_category_values)]
     
-    # Agrupar por la columna de categoría y ayuntamiento y contar el número de casos
+    # Group by category and ayuntamiento column and count the number of cases.
     category_by_ayuntamiento = df_filtered.groupby([category_column, 'ayuntamiento']).size().reset_index(name='count')
     
-    # Ordenar y obtener los top 10 ayuntamientos por número de casos para cada categoría
+    # Order and obtain the top 10 municipalities by number of cases for each category.
     top_category_by_ayuntamiento = category_by_ayuntamiento.sort_values(['count'], ascending=False).groupby(category_column).head(10)
     
-    # Establecer el estilo de la gráfica
-    plt.style.use('bmh')
-    
-    # Crear la figura y los ejes
     fig, ax = plt.subplots(figsize=(12, 7))
     
-    # Dibujar la gráfica seleccionada
+    # Plot the selected graph
     if plot_type == 'Gráfico de barras':
         sns.barplot(x='ayuntamiento', y='count', hue=category_column, data=top_category_by_ayuntamiento, ax=ax)
     elif plot_type == 'Gráfico de puntos':
         sns.stripplot(x='ayuntamiento', y='count', hue=category_column, data=top_category_by_ayuntamiento, ax=ax, size=10, jitter=True)
     
-    # Configurar títulos y etiquetas
     ax.set_title(f'Top Ayuntamientos por {category_column.capitalize()} en {selected_year}', fontsize=16)
     ax.set_xlabel('Número de Casos', fontsize=14)
     ax.set_ylabel('Ayuntamiento', fontsize=14)
     ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
     
-    # Ajuste del diseño
     plt.tight_layout()
-    
-    # Mostrar el gráfico en Streamlit
     st.pyplot(fig)
     st.info("El número máximo de ayuntamientos a mostrar en la gráfica son 🔟")

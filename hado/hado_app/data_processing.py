@@ -1,5 +1,4 @@
 # Functions for data processing and data load
-
 # Modules and libraries
 import streamlit as st
 import pandas as pd
@@ -10,6 +9,18 @@ from io import StringIO
 
 # Load CSV file
 def load_csv_home_expander(input_csv):
+    """Load a CSV file and display its contents in a Streamlit app.
+
+    This function reads a CSV file, displays the data along with some basic statistics,
+    and explanations of data distribution and centrality measures.
+
+    Parameters:
+    input_csv (UploadedFile): The CSV file uploaded via Streamlit's file uploader.
+
+    Returns:
+    pd.DataFrame: The DataFrame created from the uploaded CSV file.
+    """
+    
     df = pd.read_csv(input_csv)
     with st.expander('Ver datos', expanded=True):
         st.write(f"{input_csv.name} tiene {df.shape[0]} filas y {df.shape[1]} columnas.")
@@ -60,19 +71,19 @@ def load_csv_home_expander(input_csv):
 # Function for sidebar and file upload
 @st.cache_data(experimental_allow_widgets=True)
 def sidebar_and_upload(csv_file):
-    """
-    The function reads the uploaded file into a pandas DataFrame.
-    If no file is uploaded, a message is displayed on the Streamlit app.
+    """Handle file upload and display a sidebar in a Streamlit app.
 
-    The function leverages Streamlit's caching mechanism to avoid reloading 
-    the file upon every interaction, which is controlled by the 
-    `@st.cache_data(experimental_allow_widgets=True)` decorator.
+    This function checks if a CSV file has been uploaded, reads it into a pandas DataFrame,
+    and displays a success message in a sidebar. The function leverages Streamlit's caching
+    mechanism to avoid reloading the file upon every interaction.
+
+    Parameters:
+    csv_file (UploadedFile): The CSV file uploaded via Streamlit's file uploader.
 
     Returns:
-        pd.DataFrame: The DataFrame created from the uploaded CSV file. 
-                      If no file is uploaded, the function will return None.
+    pd.DataFrame: The DataFrame created from the uploaded CSV file, or None if no file is uploaded.
     """
-    
+
     # Check if a file has been uploaded
     if csv_file:
         container = st.container()
@@ -89,7 +100,21 @@ def sidebar_and_upload(csv_file):
 
 # Function for Data Filters    
 def apply_filters(df, reset=False):
-    
+    """
+    Apply filters to a DataFrame based on user input in a Streamlit app.
+
+    This function takes a DataFrame and a reset flag as input. It provides interactive filter
+    options within a Streamlit app to filter the DataFrame based on various criteria such as
+    year, council, patient status, visits, stays, and category. If the reset flag is set to True,
+    it returns a copy of the original DataFrame.
+
+    Parameters:
+    df (pd.DataFrame): The DataFrame to filter.
+    reset (bool, optional): A flag to reset the filters and return the original DataFrame. Defaults to False.
+
+    Returns:
+    pd.DataFrame: The filtered DataFrame based on user-selected criteria.
+    """
     if reset:
         return df.copy()
     
@@ -139,6 +164,20 @@ def apply_filters(df, reset=False):
 # Function for CRUD Operations
 @st.spinner("Cargando, por favor espera...")
 def crud_operations(df, csv_file):
+    """
+    Perform CRUD (Create, Read, Update, Delete) operations on a DataFrame within a Streamlit app.
+
+    This function provides an interactive interface within a Streamlit app for performing
+    CRUD operations on an CSV file. Users can view, edit, delete, search for data,
+    and save changes to a CSV file.
+
+    Parameters:
+    df (pd.DataFrame): The DataFrame to perform CRUD operations on.
+    csv_file (UploadedFile): The CSV file uploaded via Streamlit's file uploader.
+
+    Returns:
+    pd.DataFrame: The updated DataFrame after performing the desired CRUD operations.
+    """
     # Inicializar session_state si no existe
     if 'df' not in st.session_state:
         st.session_state['df'] = df
@@ -254,6 +293,18 @@ def crud_operations(df, csv_file):
 
 @st.cache_data(experimental_allow_widgets=True)
 def generate_pandas_profiling(uploaded_file):
+    """
+    Generate a Pandas Profiling report from an uploaded file.
+
+    This function reads a CSV file into a pandas DataFrame and generates
+    a Pandas Profiling report with explorative analysis enabled.
+
+    Parameters:
+    uploaded_file (UploadedFile): The CSV file uploaded via Streamlit's file uploader.
+
+    Returns:
+    ProfileReport: The generated Pandas Profiling report for the given CSV file.
+    """
     df_pr = pd.read_csv(uploaded_file)
     pr = ProfileReport(df_pr, explorative=True)
     
@@ -261,16 +312,24 @@ def generate_pandas_profiling(uploaded_file):
 
 @st.cache_data(experimental_allow_widgets=True)
 def load_gdf():
-    # Definir la ruta del archivo .geojson
+    """Load and clean a GeoDataFrame from a remote geojson file.
+
+    This function retrieves a geojson file from a specified URL, reads the file into a GeoDataFrame,
+    and filters out rows where the geometry column is null.
+
+    Returns:
+    gpd.GeoDataFrame: The cleaned GeoDataFrame containing the geographic data from the specified geojson file.
+    """
+    # File path to file.geojson
     file_url = 'https://raw.githubusercontent.com/pablovdcf/TFM_HADO_Cares/main/hado/hado_app/data/ESP_adm4.geojson'
     
     # Download the file
     response = requests.get(file_url)
     response.raise_for_status() 
-    # Cargar los datos geojson
+    # Load geojson data
     gdf = gpd.read_file(StringIO(response.text))
     
-    # Limpiar el DataFrame Geo, eliminando las filas donde la geometría es nula
+    # Clean the DataFrame Geo, filtering rows where the geometry it's null
     gdf_clean = gdf[gdf['geometry'].notnull()]
     
     return gdf_clean

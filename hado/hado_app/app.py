@@ -1,4 +1,12 @@
 # Principal file for the Streamlit Aplication
+"""
+File Name: app.py
+Author: Pablo Villar del Castillo Fernandez
+Date Created: 27/09/2023
+Last Modified: 07/10/2023
+Description: Main file for the Streamlit HADO CARES application.
+"""
+# Modules
 import streamlit as st
 from streamlit_pandas_profiling import st_profile_report
 import base64
@@ -32,18 +40,31 @@ from utils import ui_info, ui_spacer
 
 from data_test import generate_data
 
-st.set_page_config(page_title="HADO",
-                   layout='wide', 
-                   initial_sidebar_state = 'auto',
-                    page_icon="🏥")
+st.set_page_config(
+    page_title="HADO",
+    layout='wide', 
+    initial_sidebar_state = 'auto',
+    page_icon="🏥",
+    menu_items={
+        'Get Help': 'https://www.example.com/help',
+        'Report a Bug': 'https://www.example.com/bug_report',
+        'About': 'https://www.example.com/about',
+    }
+    )
 
+# Obtain the current session state
 ss = st.session_state
 
+# Check if the 'show_filters' key is already present in the session state
+# If not, initialize it to True
 if 'show_filters' not in ss:
     ss.show_filters = True
     
 # Main Function
 def main():
+    """
+    Main function that runs the Streamlit application.
+    """
     # Set the title and information message in the sidebar
     st.write("# 👨‍⚕️HADO CARES👩‍⚕️")
     
@@ -279,16 +300,27 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
             col1, col2 = container.columns([1,1])
             
             if year_option != "Año específico":
-                with col1:
-                    plot_total_patients(df_tab3)
-                    ui_spacer(2)
-                    if selected_visualization == "Distribución" and selected_column:
-                        plot_selected_category(df_tab3, selected_column)
-                with col2:
-                    if selected_visualization == "Distribución" and selected_column:
-                        plot_time_trends_line(df_tab3, selected_column)
+                should_plot_total_patients = not (
+                    (selected_visualization == ":rainbow[Wordcloud o Histograma/Boxplot]") 
+                    and (year_option == "Todos los años")
+                )
+                if should_plot_total_patients:
+                    with col1:
+                        plot_total_patients(df_tab3)
                         ui_spacer(2)
-                        plot_time_trends(df_tab3, selected_column)
+                        if selected_visualization == "Distribución" and selected_column:
+                            plot_selected_category(df_tab3, selected_column)
+                    with col2:
+                        if selected_visualization == "Distribución" and selected_column:
+                            plot_time_trends_line(df_tab3, selected_column)
+                            ui_spacer(2)
+                            plot_time_trends(df_tab3, selected_column)
+                if selected_visualization == ":rainbow[Wordcloud o Histograma/Boxplot]" and selected_column and not should_plot_total_patients:
+                    wordcloud_or_hist_box_plot(df_tab3, selected_column)
+                elif selected_visualization == ":rainbow[Wordcloud o Histograma/Boxplot]" and selected_column and should_plot_total_patients:
+                    with col2:
+                        ui_spacer(1)
+                        wordcloud_or_hist_box_plot(df_tab3, selected_column)
             elif year_option == "Año específico":
                 container = st.container()
                 col1, col2, col3 = container.columns([0.2,1,0.2])
@@ -297,6 +329,8 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
                         plot_selected_category(df_tab3, selected_column)
                     if selected_visualization == ":rainbow[Wordcloud o Histograma/Boxplot]" and selected_column:
                         wordcloud_or_hist_box_plot(df_tab3, selected_column)
+
+
 
                     ui_spacer(3)
                     
