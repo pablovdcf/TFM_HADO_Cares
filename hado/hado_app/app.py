@@ -46,9 +46,7 @@ st.set_page_config(
     initial_sidebar_state = 'auto',
     page_icon="🏥",
     menu_items={
-        'Get Help': 'https://www.example.com/help',
-        'Report a Bug': 'https://www.example.com/bug_report',
-        'About': 'https://www.example.com/about',
+        'Documentation': 'https://hado-cares.readthedocs.io/en/latest/hado_app.html',
     }
     )
 
@@ -246,7 +244,7 @@ _Disfruta explorando e interactuando con los datos en HADO CARES!_
     - **Selecciona una Columna:** Escoge una columna del conjunto de datos para la visualización.
     - Las columnas disponibles varían en base al tipo de gráfico y el tipo de datos de la columna, si es numérica mostrará un histograma y boxplot o si es categórica una nube de palabras entre otros.
     
-    ## **3. Gráfico de Burbujas:**🫧
+    ## **3. Gráfico de Burbujas:** 🫧
     - **Variables X e Y:** Selecciona dos variables para representarlos como coordenadas cartesianas.
     - **Tamaño de las Burbujas** Selecciona la columna para el tamaño de las burbujas y elige una opción numérica del menú desplegable.
     - **Color de las Burbujas**: Selecciona la columna para el color de las burbujas (opcional). Si la columna es numérica, tendrás una gama de colores, y si es categórica, cada categoría tendrá un color distinto. Si no seleccionas nada, todas las burbujas serán del mismo color.
