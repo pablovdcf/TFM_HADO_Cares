@@ -8,7 +8,7 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.abspath('../../'))  # Ajusta la ruta según sea necesario
+sys.path.insert(0, os.path.abspath('../'))  # Ajusta la ruta según sea necesario
 
 project = 'HADO_CARES'
 copyright = '2023, Pablo Villar del Castillo Fernandez'

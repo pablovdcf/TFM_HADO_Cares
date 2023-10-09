@@ -1,5 +1,5 @@
 Pipeline Data Science
-====================================
+======================
 
 .. automodule:: hado.pipelines.data_science
    :members:

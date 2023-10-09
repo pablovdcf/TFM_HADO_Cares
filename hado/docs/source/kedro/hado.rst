@@ -1,5 +1,5 @@
-hado (kedro project)
-============
+Kedro Project
+==============
 
 .. automodule:: hado
    :members:
@@ -12,8 +12,8 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   hado.extras
-   hado.pipelines
+   pipelines/index
+   custom_extra/index
 
 Submodules
 ----------

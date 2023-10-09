@@ -14,7 +14,6 @@ def rename_strip_lower_column(df, key, year):
     If 'key' is 'hado_19', it renames the columns according to the dictionary 'new_column_names'.
     Then, it strips the spaces and converts all column names to lower case.
     If 'key' is 'hado_17', it drops the column "unnamed.1" with only 5 values for dataframe
-    Finally, it prints the name of the DataFrame and its columns, separated by a line of '='*80.
     """
     if key == "hado_19":
         new_column_names = {

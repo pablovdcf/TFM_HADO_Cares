@@ -1,5 +1,5 @@
 Pipeline Data Processing
-=======================================
+=========================
 
 .. automodule:: hado.pipelines.data_processing
    :members:

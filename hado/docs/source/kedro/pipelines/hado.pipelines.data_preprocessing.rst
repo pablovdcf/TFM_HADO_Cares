@@ -1,5 +1,5 @@
 Pipeline Data Preprocessing
-==========================================
+============================
 
 .. automodule:: hado.pipelines.data_preprocessing
    :members:

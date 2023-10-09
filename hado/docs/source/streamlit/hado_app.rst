@@ -1,5 +1,5 @@
-Streamlit 
-==========
+Streamlit App Documentation
+============================
 
 This is the documentation for "HADO_CARES" hado\_app 😊
 
