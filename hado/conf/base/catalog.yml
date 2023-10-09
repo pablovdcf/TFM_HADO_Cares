@@ -12,49 +12,37 @@ hado_22:
   type: hado.extras.datasets.custom_data_set.ODSDataSet
   filepath: "data/01_raw/HADO 22.ods"
   sheet: "Hoja1"
-  metadata:
-    kedro-viz:
-      layer: raw
+  layer: raw
 
 hado_21:
   type: hado.extras.datasets.custom_data_set.ODSDataSet
   filepath: "data/01_raw/HADO21.ods"
   sheet: "Hoja1"
-  metadata:
-    kedro-viz:
-      layer: raw
+  layer: raw
 
 hado_20:
   type: hado.extras.datasets.custom_data_set.ODSDataSet
   filepath: "data/01_raw/HADO 20.ods"
   sheet: "Hoja1"
-  metadata:
-    kedro-viz:
-      layer: raw
+  layer: raw
 
 hado_19:
   type: hado.extras.datasets.custom_data_set.ODSDataSet
   filepath: "data/01_raw/HADO 19.ods"
   sheet: "Hoja1"
-  metadata:
-    kedro-viz:
-      layer: raw
+  layer: raw
 
 hado_18:
   type: hado.extras.datasets.custom_data_set.ODSDataSet
   filepath: "data/01_raw/Estadistica 2018.ods"
   sheet: "Sheet1"
-  metadata:
-    kedro-viz:
-      layer: raw
+  layer: raw
 
 hado_17:
   type: hado.extras.datasets.custom_data_set.ODSDataSet
   filepath: "data/01_raw/Estadística 2017.ods"
   sheet: "Sheet1"
-  metadata:
-    kedro-viz:
-      layer: raw
+  layer: raw
 
 # MongoDB
 # hado_22:
@@ -63,8 +51,6 @@ hado_17:
 #   database: HADO_raw
 #   collection: HADO22
 #   load_args: 
-#     _id: Falsemetadata:#   
-#   kedro-viz:  
 #     layer: raw
 
 # hado_21:
@@ -73,8 +59,6 @@ hado_17:
 #   database: HADO_raw
 #   collection: HADO21
 #   load_args: 
-#     _id: Falsemetadata:#   
-#   kedro-viz:  
 #     layer: raw
 
 # hado_20:
@@ -83,8 +67,6 @@ hado_17:
 #   database: HADO_raw
 #   collection: HADO20
 #   load_args: 
-#     _id: Falsemetadata:#   
-#   kedro-viz:  
 #     layer: raw
 
 # hado_19:
@@ -93,8 +75,6 @@ hado_17:
 #   database: HADO_raw
 #   collection: HADO19
 #   load_args: 
-#     _id: Falsemetadata:#   
-#   kedro-viz:  
 #     layer: raw
 
 # hado_18:
@@ -103,8 +83,6 @@ hado_17:
 #   database: HADO_raw
 #   collection: HADO18
 #   load_args: 
-#     _id: Falsemetadata:#   
-#   kedro-viz:  
 #     layer: raw
 
 # hado_17:
@@ -113,8 +91,6 @@ hado_17:
 #   database: HADO_raw
 #   collection: HADO17
 #   load_args: 
-#     _id: Falsemetadata:#   
-#   kedro-viz:  
 #     layer: raw
 
 # Preprocessing Data
@@ -153,9 +129,7 @@ hado_concat:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: raw_preprocessing
+  layer: raw_preprocessing
 
 hado_clean:
   type: pandas.CSVDataSet
@@ -166,9 +140,7 @@ hado_clean:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: raw_processing
+  layer: raw_processing
 
 hado_clean_na:
   type: pandas.CSVDataSet
@@ -179,9 +151,7 @@ hado_clean_na:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: intermediate_processing
+  layer: intermediate_processing
 
 hado_barthel_cleaned:
   type: pandas.CSVDataSet
@@ -192,9 +162,7 @@ hado_barthel_cleaned:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: intermediate_processing
+  layer: intermediate_processing
 
 hado_ps_ecog_cleaned:
   type: pandas.CSVDataSet
@@ -205,9 +173,7 @@ hado_ps_ecog_cleaned:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: intermediate_processing
+  layer: intermediate_processing
 
 hado_gds_fast_cleaned:
   type: pandas.CSVDataSet
@@ -218,9 +184,7 @@ hado_gds_fast_cleaned:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: intermediate_processing
+  layer: intermediate_processing
 
 hado_replaced_words:
   type: pandas.CSVDataSet
@@ -231,9 +195,7 @@ hado_replaced_words:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: intermediate_processing
+  layer: intermediate_processing
 
 hado_lat_lon:
   type: pandas.CSVDataSet
@@ -244,9 +206,7 @@ hado_lat_lon:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: intermediate_processing
+  layer: intermediate_processing
 
 hado_cleaned:
   type: pandas.CSVDataSet
@@ -257,9 +217,7 @@ hado_cleaned:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: intermediate_processing
+  layer: intermediate_processing
 
 hado_cleaned_sedation:
   type: pandas.CSVDataSet
@@ -270,9 +228,7 @@ hado_cleaned_sedation:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: final_processing
+  layer: final_processing
 
 hado_cleaned_medication:
   type: pandas.CSVDataSet
@@ -283,9 +239,7 @@ hado_cleaned_medication:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: final_processing
+  layer: final_processing
 
 hado_categorized:
   type: pandas.CSVDataSet
@@ -296,9 +250,7 @@ hado_categorized:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: final_processing
+  layer: final_processing
 
 hado_final:
   type: pandas.CSVDataSet
@@ -309,9 +261,7 @@ hado_final:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: feature
+  layer: feature
 
 # Modeling
 hado_encoded:
@@ -323,125 +273,95 @@ hado_encoded:
   load_args:
     sep: ","
     na_values: ["#NA", NA]
-  metadata:
-    kedro-viz:
-      layer: model
+  layer: model
 
 # DATA SPLIT X_train `preprocessed`
 X_alta_train_preprocessed:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/X_alta_train_preprocessed.pkl
   backend: pickle
-  metadata:
-    kedro-viz:
-      layer: model_alta
+  layer: model_alta
 
 X_diag_train_preprocessed:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/X_diag_train_preprocessed.pkl
   backend: pickle
-  metadata:
-    kedro-viz:
-      layer: model_diagnostic
+  layer: model_diagnostic
 
 # DATA SPLIT Y_train
 y_alta_train:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/y_alta_train.pkl
   backend: pickle
-  metadata:
-    kedro-viz:
-      layer: model_alta
+  layer: model_alta
 
 y_diag_train:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/y_diag_train.pkl
   backend: pickle
-  metadata:
-    kedro-viz:
-      layer: model_diagnostic
+  layer: model_diagnostic
 
 # DATA SPLIT test `preprocessed`
 X_alta_test_preprocessed:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/X_alta_test_preprocessed.pkl
   backend: pickle
-  metadata:
-    kedro-viz:
-      layer: model_alta
+  layer: model_alta
 
 y_alta_test:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/y_test_alta.pkl
   backend: pickle
-  metadata:
-    kedro-viz:
-      layer: model_alta
+  layer: model_alta
 
 X_diag_test_preprocessed:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/X_test_diag_preprocessed.pkl
   backend: pickle
-  metadata:
-    kedro-viz:
-      layer: model_diagnostic
+  layer: model_diagnostic
 
 y_test_diagnosis:
   type: pickle.PickleDataSet
   filepath: data/05_model_input/y_test_diagnosis.pkl
   backend: pickle
-  metadata:
-    kedro-viz:
-      layer: model_diagnostic
+  layer: model_diagnostic
 
 # Classification Models
 random_forest_model_alta:
   type: pickle.PickleDataSet
   filepath: data/06_models/RandomForest_alta_model.pkl
   versioned: true
-  metadata:
-    kedro-viz:
-      layer: model_alta
+  layer: model_alta
 
 random_forest_model_diag:
   type: pickle.PickleDataSet
   filepath: data/06_models/RandomForest_diag_model.pkl
   versioned: true
-  metadata:
-    kedro-viz:
-      layer: model_diagnostic
+  layer: model_diagnostic
 
 xgboost_model_alta:
   type: pickle.PickleDataSet
   filepath: data/06_models/XGBoost_alta_model.pkl
   versioned: true
-  metadata:
-    kedro-viz:
-      layer: model_alta
+  layer: model_alta
 
 xgboost_model_diag:
   type: pickle.PickleDataSet
   filepath: data/06_models/XGBoost_diag_model.pkl
   versioned: true
-  metadata:
-    kedro-viz:
-      layer: model_diagnostic
+  layer: model_diagnostic
 
 lightgbm_model_alta:
   type: pickle.PickleDataSet
   filepath: data/06_models/ligthgbm_alta_model.pkl
   versioned: true
-  metadata:
-    kedro-viz:
-      layer: model_alta
+  layer: model_alta
 
 lightgbm_model_diag:
   type: pickle.PickleDataSet
   filepath: data/06_models/ligthgbm_diag_model.pkl
   versioned: true
-  metadata:
-    kedro-viz:
-      layer: model_diagnostic
+  layer: model_diagnostic
 
 confusion_matrix_rf_alta_image:
   type: kedro.extras.datasets.pillow.ImageDataSet

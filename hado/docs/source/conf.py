@@ -30,6 +30,7 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.viewcode",
     "sphinx.ext.mathjax",
+    "sphinx.ext.githubpages",
     "nbsphinx",
     "myst_parser",
 ]
