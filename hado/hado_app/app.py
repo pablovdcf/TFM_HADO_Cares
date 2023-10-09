@@ -46,7 +46,7 @@ st.set_page_config(
     initial_sidebar_state = 'auto',
     page_icon="🏥",
     menu_items={
-        'Documentation': 'https://hado-cares.readthedocs.io/en/latest/hado_app.html',
+        'About': 'https://hado-cares.readthedocs.io/en/latest/hado_app.html',
     }
     )
 
