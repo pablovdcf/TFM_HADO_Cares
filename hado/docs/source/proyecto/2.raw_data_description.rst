@@ -190,12 +190,11 @@ The datasets vary year by year, not only in terms of the number of entries but a
 
 .. code-block:: python
    :caption: Pandas profiling Report
-   :name: hado_concat.html
+   :name: hado_concat_report
 
     from ydata_profiling import ProfileReport
     profile = ProfileReport(df, title='Pandas Profiling Report')
 
-`Ver el informe de Pandas Profiling aquí <../_static/hado_concat.html>`_
 
 2.2.4 Variable Distribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -206,15 +205,3 @@ The Exploratory Data Analysis (EDA) in subsequent stages, through continuous ite
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Data preprocessing focuses on managing missing data, inconsistencies, and transforming high-cardinality variables. Additionally, it seeks to generate new variables (feature engineering) that can enrich subsequent analyses. NLP techniques can be used to extract and categorize relevant information from free-text variables like "Main Diagnosis". For example, adding the year for each data set, the use of different antibiotics, grouping diagnoses, discharges, admissions, etc.
-
-2.2.6 Implemented Solutions and Strategies
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-In order to address these problems, various strategies and solutions were implemented. Data standardization was a crucial step, where a unified and coherent dataset was created through the concatenation and standardization of several annual datasets. Additionally, text processing and data handling techniques were used to clean and transform variables, thereby improving the quality of data for future analyses. In particular, a strategy for handling NA values was proposed, grounded in the nature of each variable and the clinical context.
-
-The use of Kedro facilitated a robust and reproducible data science workflow, ensuring that analyses and models could be easily replicated and audited.
-
-2.2.7 Challenges and Future Considerations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Although measures have been taken to mitigate identified data problems, there are challenges and considerations for the future. Automating the process, from data collection to initial preprocessing phases, could enhance efficiency and consistency going forward. It is also imperative to develop more sophisticated predictive strategies or models to handle missing data, especially in critical variables. Although this work focused on cleaning and preprocessing, subsequent analysis stages should explore patterns and relationships in the data more deeply, leading to more thorough analyses.
