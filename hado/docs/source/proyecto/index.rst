@@ -3,36 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to HADO_CARES's project!
-=================================
-
-Index
-------
+Project Documentation
+======================
 
 .. toctree::
    :maxdepth: 2
 
-   proyecto/index
-   streamlit/index
-   kedro/index
-   
-Introduction
--------------
+   1.introduction
+   2.raw_data_description 
+   project_documentation
 
-In the modern era, where technology is advancing at a rapid pace, the medical field is overwhelmed with an immense amount of data. Although this data holds the potential to unveil valuable insights and enhance patient care, its efficient management and analysis pose a significant challenge, especially for healthcare institutions that still rely heavily on manual and traditional processes for data management.
-
-Specifically, in the HADO area of the Santiago de Compostela hospital, patient records are managed, among other ways, manually through Excel spreadsheets. While functional, this methodology leads to a lack of standardization in data formats and limited utilization of the gathered information, further hampered by the absence of an efficient system to process and analyze the data in a comprehensive and cohesive manner.
-
-"TFM_HADO_Cares", the core project of this Master's Thesis (TFM), emerges in response to this notable gap. It aims to implement a more sophisticated technological and analytical approach with the goal of maximizing the value derived from the collected data, providing deeper insights into diagnoses and treatments, and identifying trends that may be crucial for the continuous improvement of patient care.
-
-The primary objective of this project is to enhance the current patient monitoring process in HADO by:
-- Conducting exploratory data analysis (EDA) with a special focus on the main diagnoses.
-- Identifying trends and classifying high-cardinality variables.
-- Applying Natural Language Processing (NLP) and modeling techniques to group and classify variables.
-- Creating an application for the visualization of transformed and analyzed data, thus assisting in the decision-making process of HADO professionals.
-
-This TFM will be developed using the Kedro framework to ensure a reproducible and robust data science workflow, and the Streamlit visualization tool to develop an application serving as an interface for data visualization and results. The complete development process, from data collection and preprocessing to analysis and result visualization, will be detailed throughout this document.
-The code for this project is accessible at the repository: TFM_HADO_Cares.
 
 
 Data Problem Description and Analysis
@@ -159,6 +139,180 @@ The columns for Raw Data:
      - Float64
      - Unspecified column with sparse data, likely an error or misplaced data.
 
+
+.. list-table:: Data Dictionary for the dataframe processed
+   :header-rows: 1
+
+   * - Column
+     - Description
+     - Data Type
+   * - h_procedencia
+     - Hospital or origin center of the patient (H. Procedencia)
+     - Object
+   * - hospital_category
+     - (No description provided)
+     - Object
+   * - s_procedencia
+     - Medical service that attended to the patient (Servicio)
+     - Object
+   * - procedencia_category
+     - (No description provided)
+     - Object
+   * - diagnostico
+     - Main diagnosis during the hospital stay (Diagnóstico Principal)
+     - Object
+   * - diagnosis_category
+     - (No description provided)
+     - Object
+   * - motivo_ing
+     - Reason for the patient's admission to the hospital (Motivo ING)
+     - Object
+   * - ingreso_category
+     - (No description provided)
+     - Object
+   * - motivo_alta
+     - Reason for the patient's discharge (Motivo Alta)
+     - Object
+   * - alta_category
+     - (No description provided)
+     - Object
+   * - fecha_alta
+     - Date the patient was discharged from the hospital (Fecha de alta)
+     - Object
+   * - ap
+     - If the patient was referred from Primary Care (AP)
+     - Object
+   * - n_estancias
+     - Number of days of stay in the hospital (N.º estancias)
+     - Int64
+   * - n_visitas
+     - Number of medical visits during the hospital stay (N.º Visitas)
+     - Int64
+   * - paliativo_onc_noc
+     - If the patient is in palliative care for oncological disease (Paliativo ONC)
+     - Object
+   * - paliativo_no_onc_noc
+     - If the patient is in palliative care for non-oncological disease (Palt No ONC)
+     - Object
+   * - fiebre
+     - If the patient had a fever (Fiebre)
+     - Object
+   * - disnea
+     - If the patient experienced difficulty breathing (Disnea)
+     - Object
+   * - dolor
+     - If the patient experienced pain (Dolor)
+     - Object
+   * - delirium
+     - If the patient experienced delirium (Delirium)
+     - Object
+   * - sedacion
+     - If sedation was administered to the patient (Sedación)
+     - Object
+   * - p_terminal
+     - (No description provided)
+     - Object
+   * - agonia
+     - If the patient was in a terminal phase of the disease (Agonia)
+     - Object
+   * - ast_anorx
+     - If the patient was diagnosed with asthenia or anorexia (Ast-Anorx)
+     - Object
+   * - cronico_reag
+     - If the patient has a chronic disease with acute exacerbation (Crónico Agud.)
+     - Object
+   * - trato_antibiotico
+     - If the patient received antibiotic treatment (Trato antibiótico)
+     - Object
+   * - transfusion
+     - If the patient received a blood transfusion (Transfusion)
+     - Object
+   * - paracentesis
+     - If a paracentesis was performed on the patient (Paracentesis)
+     - Object
+   * - agudo_estable
+     - If the patient was in an acute or stable state (Agudo Estable)
+     - Object
+   * - toracocentesis
+     - If a thoracocentesis was performed on the patient (Toracocentesis)
+     - Object
+   * - fe_iv
+     - (No description provided)
+     - Object
+   * - ps_ecog
+     - Quality of life and daily activity assessment (PS/ECOG)
+     - Int64
+   * - ps_ecog_classification
+     - (No description provided)
+     - Object
+   * - barthel
+     - Degree of patient dependency for daily activities (Barthel)
+     - Int64
+   * - barthel_classification
+     - (No description provided)
+     - Object
+   * - gds_fast
+     - Cognitive function assessment (GDS/FAST)
+     - Int64
+   * - gds_fast_classification
+     - (No description provided)
+     - Object
+   * - eva_ing
+     - (No description provided)
+     - Int64
+   * - otros_complicaciones
+     - Other medical complications during the hospital stay (Otros/Complicaciones)
+     - Object
+   * - otros
+     - (No description provided)
+     - Object
+   * - otros_1
+     - (No description provided)
+     - Object
+   * - otros_2
+     - (No description provided)
+     - Object
+   * - otros_category
+     - (No description provided)
+     - Object
+   * - categorized_combined_otros
+     - (No description provided)
+     - Object
+   * - tiene_sedacion
+     - (No description provided)
+     - Int64
+   * - morfina
+     - (No description provided)
+     - Int64
+   * - midazolam
+     - (No description provided)
+     - Int64
+   * - buscapina
+     - (No description provided)
+     - Int64
+   * - haloperidol
+     - (No description provided)
+     - Int64
+   * - levomepromazina
+     - (No description provided)
+     - Int64
+   * - medico
+     - Doctor who attended to the patient (Médico)
+     - Object
+   * - ayuntamiento
+     - Place of residence of the patient (Ayuntamiento)
+     - Object
+   * - year
+     - (No description provided)
+     - Int64
+   * - latitude
+     - (No description provided)
+     - Object
+   * - longitude
+     - (No description provided)
+     - Object
+
+
 General Data Description
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -254,9 +408,46 @@ The data science workflow for this project will be as follows:
    
 6. **Interpretation and Communication of Results**: Results will be communicated through visualizations and explanatory texts, ensuring they are accessible and understandable to all stakeholders.
 
-Indices and Tables
-==================
+Summary of Main Results
+-----------------------
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+Summary
+~~~~~~~
+
+[Note: A summary of the most important results will be added once the corresponding analyses and modelings are conducted.]
+
+Reference to Jupyter Notebooks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For more detailed analysis and results, reference can be made to the Jupyter Notebooks available in the repository: TFM_HADO_Cares.
+
+Conclusions
+-----------
+
+Recapitulation of Findings
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Note: Conclusions and findings will be added once the analyses and modelings are conducted.]
+
+Implications and Recommendations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Note: Implications of the findings and recommendations for clinical practice and data management in the future will be added.]
+
+Considerations for Future Works
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Note: Suggestions and areas for future research and analysis based on the project's findings will be included.]
+
+---
+
+**Note**: Sections requiring results, conclusions, and findings will be completed more specifically and detailed once the analyses and modelings have been conducted and their results are available for discussion and interpretation.
+
+
+
+.. Indices and Tables
+.. ==================
+
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`

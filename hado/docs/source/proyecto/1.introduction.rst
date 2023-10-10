@@ -1,0 +1,40 @@
+1. Introduction
+=================
+
+1.1 Context and Problem
+~~~~~~~~~~~~~~~~~~~~~~~
+
+In the current era, where technology is advancing at a rapid pace, the realm of healthcare is flooded with a monumental amount of data. While these data have the potential to uncover valuable insights and enhance patient care, their efficient management and analysis pose a significant challenge, especially for health institutions that still largely depend on manual and traditional processes for data management.
+
+Specifically, in the HADO area of the Santiago de Compostela hospital, patient records are managed, among other ways, manually using Excel spreadsheets. This methodology, although functional, leads to a lack of standardization in data formats and limited utilization of the collected information, further hampered by the absence of an efficient system to process and analyze the data in an integrated and cohesive manner.
+
+1.2 Need and Justification for the Project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The core project of this Master's Thesis (TFM) arises in response to this notable gap. It seeks to implement a more sophisticated technological and analytical approach with the goal of maximizing the value obtained from the collected data, providing deeper insights into diagnoses and treatments, and identifying trends that can be crucial for the continuous improvement of patient care.
+
+1.3 Objectives
+~~~~~~~~~~~~~~
+
+The main objective of this project is to enhance the current process of patient tracking in HADO by:
+
+- Conducting exploratory data analyses (EDA) with a special focus on main diagnoses.
+- Identifying trends and classifying high-cardinality variables.
+- Applying Natural Language Processing (NLP) techniques and modeling to group and classify variables.
+- Creating an application for the visualization of the transformed and analyzed data, thus assisting in the decision-making process of HADO professionals.
+
+1.4 Methodological Approach
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The project is developed using the Kedro framework to ensure a reproducible and robust data science workflow and the Streamlit visualization tool, thereby providing an application that serves as an interface for data visualization and results. The complete development process, from data collection and preprocessing to analysis and visualization of results, will be detailed throughout this document.
+
+The code for this project is accessible in the repository:
+Link: `TFM GitHub project <https://github.com/pablovdcf/TFM_HADO_Cares>`_.
+
+
+.. Indices and Tables
+.. ===================
+
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`

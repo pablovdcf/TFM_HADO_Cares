@@ -1,0 +1,220 @@
+2. Data Problem Description and Analysis
+=========================================
+
+2.1 Data Issues
+---------------
+
+Throughout the EDA and data preprocessing process, various challenges associated with data quality and consistency were identified. Among these, inconsistencies and lack of standardization were particularly prevalent. The records, originating from multiple annual files and being manually managed, presented a series of inconsistencies and shortcomings that demanded detailed cleaning and preprocessing.
+
+The challenge also lay in the data quality. The need to perform extensive cleanings and transformations indicated the existence of problems in the raw data, which could be mitigated in the future through more standardized and automated data collection and management. Furthermore, the presence of null values in various critical variables required a cautious management strategy to prevent the introduction of biases or errors into subsequent analyses.
+
+2.1.1. Implemented Solutions and Strategies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To address these issues, several strategies and solutions were implemented. Data standardization was a crucial step, where a unified and coherent dataset was created through the concatenation and standardization of various annual datasets. Additionally, text processing and data handling techniques were used to clean and transform the variables, thus improving the data quality for future analyses. In particular, a strategy was proposed to handle the NA values, grounded on the nature of each variable and the clinical context.
+
+The use of Kedro facilitated a robust and reproducible data science workflow, ensuring that analyses and models could be easily replicated and audited.
+
+2.1.2. Challenges and Future Considerations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Although measures have been taken to mitigate the identified data problems, there are challenges and considerations for the future. Automating the process, from data collection to the initial preprocessing phases, could improve efficiency and consistency in the future. It is also imperative to develop more sophisticated strategies or predictive models to handle missing data, especially in critical variables. Although this work focused on cleaning and preprocessing, subsequent analysis stages should explore the patterns and relationships in the data more deeply, leading to deeper analyses.
+
+2.2 Raw Data Description
+-------------------------
+
+2.2.1 Data Dictionary
+~~~~~~~~~~~~~~~~~~~~~~
+
+These are the columns for Raw Data:
+
+.. list-table:: Data Dictionary raw Data
+   :header-rows: 1
+
+   * - Column Name
+     - Data Type
+     - Description
+   * - Hospital
+     - Object
+     - Name or identifier of the hospital.
+   * - Servicio
+     - Object
+     - Service type or department within the hospital.
+   * - AP
+     - Object
+     - Possibly refers to a specific medical procedure or department.
+   * - Otros
+     - Object
+     - A category for other miscellaneous entries.
+   * - Diagnostico
+     - Object
+     - Diagnosis information.
+   * - Motivo Ing
+     - Object
+     - Reason for admission or inquiry (e.g., symptom control).
+   * - paliativo Onc
+     - Object
+     - Indicates if palliative care for oncology is provided.
+   * - Paliativo No Onc
+     - Object
+     - Indicates if palliative care for non-oncology is provided.
+   * - Fiebre
+     - Object
+     - Indicates presence of fever.
+   * - Disnea
+     - Object
+     - Indicates presence of shortness of breath.
+   * - Dolor
+     - Object
+     - Indicates presence of pain.
+   * - Delirium
+     - Object
+     - Indicates presence of delirium.
+   * - Astenia
+     - Object
+     - Indicates presence of asthenia (weakness).
+   * - Anorexia
+     - Object
+     - Indicates presence of anorexia.
+   * - Otros.1
+     - Object
+     - Another category for other miscellaneous entries.
+   * - P terminal
+     - Object
+     - Possibly refers to terminal phase of a condition.
+   * - Agonía
+     - Object
+     - Indicates presence of agony.
+   * - PS/IK
+     - Object
+     - Possibly refers to performance status or a specific score/index.
+   * - Barthel
+     - Object
+     - Possibly refers to the Barthel Index, a measure of disability.
+   * - GDS-FAST
+     - Object
+     - Possibly refers to the Global Deterioration Scale or Functional Assessment Staging Test.
+   * - EVA ing
+     - Object
+     - Possibly refers to a type of assessment or score at admission.
+   * - Otros.2
+     - Object
+     - Another category for other miscellaneous entries.
+   * - Complicaciones
+     - Object
+     - Indicates presence of complications.
+   * - Nº estancias
+     - Float64
+     - Number of stays or admissions.
+   * - Nº visitas
+     - Float64/Object
+     - Number of visits.
+   * - SEDACIÓN
+     - Object
+     - Indicates presence of sedation.
+   * - Mot. ALTA
+     - Object
+     - Reason for discharge or end of care.
+   * - Médico
+     - Object
+     - Name or identifier of the medical professional.
+   * - unnamed.1
+     - Float64
+     - Unspecified column with sparse data, likely an error or misplaced data.
+
+2.2.2 Data Features
+~~~~~~~~~~~~~~~~~~~~
+
+The datasets vary year by year, not only in terms of the number of entries but also in their structure and quality. Below are the main characteristics of the annual datasets from 2017 to 2022:
+
+- **Inconsistencies in column names:** The datasets exhibit variability in column names, reflecting a lack of standardization in data capture and storage.
+
+- **Variability in Columns:** Some years have additional columns or fewer columns compared to other years, highlighting the need to align and reconcile these differences during preprocessing.
+  
+- **Presence of Null Values:** Certain columns, such as "Discharge Date" in 2022 and "Complications" in other years, have a significant number of null values, which requires a considered strategy for handling missing data.
+
+.. note:: 
+    This code snippet is designed for exploring multiple DataFrames within a Kedro project.
+
+    **Requirements**: 
+    Ensure that the Kedro project and the related data are executed and available. The names of the DataFrames should be defined in the Kedro catalog.
+    If you are using IDE like VS Code run %load_ext kedro.ipython
+    %load_ext kedro.ipython
+
+.. code-block:: python
+   :caption: Exploring Multiple DataFrames
+   :name: explore-dfs
+
+   # Exploring Multiple DataFrames
+   # Requirements: The Kedro project and data must be executed, DataFrame names are defined in the catalog.
+
+   # DataFrame names that you want to explore
+   dfs_names = ['hado_22', 'hado_21', 'hado_20', 'hado_19', 'hado_18', 'hado_17']
+
+   # Loop to print information for each DataFrame
+   for name in dfs_names:
+       # Assuming 'catalog.load' loads the DataFrame based on its name
+       # Adjust this line as needed if it's not the case
+       df = catalog.load(name)
+
+       print(f"Information and Describe for DataFrame: {name}")
+       print("-----------------------------------")
+
+       # Display the DataFrame information
+       print(df.info(), df.describe(include='all').T)
+
+       print("\\n\\n")  # Add a couple of blank lines to separate the information from different DataFrames
+
+
+2.2.3 Data Quality
+~~~~~~~~~~~~~~~~~~~
+
+- **Missing Data:** It is observed that the variable "Discharge Date" is only available for half of 2022, representing a limitation for any temporal analysis involving this variable. It is crucial to investigate the presence of missing data in other variables and manage them adequately to avoid biases in subsequent analyses.
+  
+.. code-block:: python
+   :caption: Exploring null values
+   :name: explore-nulls
+
+    import missingno as msno
+    df = catalog.load('hado_concat')
+    msno.matrix(df)
+
+
+.. image:: /_images/msno.matrix.hado_concat.png
+   :width: 600
+   :alt: msno.matrix.hado_concat
+
+- **Data Consistency:** Data consistency will be evaluated by analyzing outlier and unexpected values in the different variables.
+  
+- **Variable Cardinality:** Variables like "Main Diagnosis" and "Reason for Admission (ING)" present high cardinality, which complicates analysis. Following strategies like grouping or transforming categories are necessary to handle this complexity.
+
+.. code-block:: python
+   :caption: Pandas profiling Report
+   :name: hado_concat.html
+
+    from ydata_profiling import ProfileReport
+    profile = ProfileReport(df, title='Pandas Profiling Report')
+
+`Ver el informe de Pandas Profiling aquí <../_static/hado_concat.html>`_
+
+2.2.4 Variable Distribution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Exploratory Data Analysis (EDA) in subsequent stages, through continuous iterations, will provide a clearer view of the distribution of clinical and demographic variables, such as the distribution of diagnoses, length of stays, and visits. This analysis also seeks to identify patterns and anomalies in the data that may be of interest.
+
+2.2.5 Preprocessing Strategy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Data preprocessing focuses on managing missing data, inconsistencies, and transforming high-cardinality variables. Additionally, it seeks to generate new variables (feature engineering) that can enrich subsequent analyses. NLP techniques can be used to extract and categorize relevant information from free-text variables like "Main Diagnosis". For example, adding the year for each data set, the use of different antibiotics, grouping diagnoses, discharges, admissions, etc.
+
+2.2.6 Implemented Solutions and Strategies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to address these problems, various strategies and solutions were implemented. Data standardization was a crucial step, where a unified and coherent dataset was created through the concatenation and standardization of several annual datasets. Additionally, text processing and data handling techniques were used to clean and transform variables, thereby improving the quality of data for future analyses. In particular, a strategy for handling NA values was proposed, grounded in the nature of each variable and the clinical context.
+
+The use of Kedro facilitated a robust and reproducible data science workflow, ensuring that analyses and models could be easily replicated and audited.
+
+2.2.7 Challenges and Future Considerations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Although measures have been taken to mitigate identified data problems, there are challenges and considerations for the future. Automating the process, from data collection to initial preprocessing phases, could enhance efficiency and consistency going forward. It is also imperative to develop more sophisticated predictive strategies or models to handle missing data, especially in critical variables. Although this work focused on cleaning and preprocessing, subsequent analysis stages should explore patterns and relationships in the data more deeply, leading to more thorough analyses.
