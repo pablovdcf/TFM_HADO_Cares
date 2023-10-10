@@ -1,5 +1,5 @@
 hado.extras (Load data with Excel ODS and MongoDB)
-===================
+===================================================
 
 .. automodule:: hado.extras
    :members:
