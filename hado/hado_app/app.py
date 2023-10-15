@@ -94,7 +94,6 @@ En esta sección, puedes cargar tu archivo CSV para empezar a explorar los datos
 - **Visualizaciones 📊**: Explora visualizaciones detalladas generadas a partir de los datos.
 - **Mapa 🗺️**: Investiga distribuciones geográficas y patrones a través de mapas interactivos.
 - **CRUD Operations ✍️**: Realiza operaciones de Crear, Leer, Actualizar y Eliminar en los datos.
-- **ML 🖥️**: Explora y aplica algoritmos de machine learning a los datos.
 - **Pandas Profiling 📃**: Genera informes detallados del análisis exploratorio de los datos.
 
 ### ¿Cómo Utilizar HADO CARES?
