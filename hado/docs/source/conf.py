@@ -8,7 +8,7 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.abspath('../../'))  # Ajusta la ruta según sea necesario
+sys.path.insert(0, os.path.abspath('../..'))  # Ajusta la ruta según sea necesario
 
 project = 'HADO_CARES'
 copyright = '2023, Pablo Villar del Castillo Fernandez'
@@ -38,6 +38,8 @@ extensions = [
 # enable autosummary plugin (table of contents for modules/classes/class
 # methods)
 autosummary_generate = True
+autosummary_generate_overwrite = False
+napoleon_include_init_with_doc = True
 
 templates_path = ['_templates']
 

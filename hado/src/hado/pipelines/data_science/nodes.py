@@ -64,11 +64,11 @@ def preprocess_split_data(data: pd.DataFrame, parameters) -> Tuple[pd.DataFrame,
         ('scaler', StandardScaler())])
 
     categorical_features = data.select_dtypes(include=['object']).columns.tolist()
-    valid_columns_2_15 = data[categorical_features].nunique().between(2, 15)
-    selected_categorical_features_2_15 = valid_columns_2_15[valid_columns_2_15].index.tolist()
+    # valid_columns_2_15 = data[categorical_features].nunique().between(2, 15)
+    # selected_categorical_features_2_15 = valid_columns_2_15[valid_columns_2_15].index.tolist()
     
-    if target in selected_categorical_features_2_15:
-        selected_categorical_features_2_15.remove(target)
+    if target in categorical_features:
+        categorical_features.remove(target)
     else:
         pass
 
@@ -80,7 +80,7 @@ def preprocess_split_data(data: pd.DataFrame, parameters) -> Tuple[pd.DataFrame,
     preprocessor = ColumnTransformer(
         transformers=[
             ('num', numeric_transformer, numeric_features),
-            ('cat', categorical_transformer, selected_categorical_features_2_15)])
+            ('cat', categorical_transformer, categorical_features)])
 
     # Dividir los datos en conjuntos de entrenamiento y prueba
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state, stratify=y)

@@ -1,1 +1,2 @@
-from . import extras, pipeline_registry, pipelines, settings, __main__
+from .extras import datasets
+from .pipelines import __all__

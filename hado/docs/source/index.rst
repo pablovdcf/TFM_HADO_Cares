@@ -10,11 +10,11 @@ Index
 ------
 
 .. toctree::
-   :maxdepth: 2
-
+   :maxdepth: 3
+   
    proyecto/index
-   streamlit/index
    kedro/index
+   streamlit/index
    
 Introduction
 -------------
