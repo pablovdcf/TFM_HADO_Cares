@@ -256,10 +256,27 @@ def retrain_and_evaluate_best_model(data: pd.DataFrame, preprocessor: ColumnTran
     classifier_class = getattr(importlib.import_module(model_module), model_class)
     best_model = classifier_class(**model_kwargs)
     
-    best_model.fit(X_preprocessed, y)
+    # If the model is XGBClassifier, encode y
+    if model_class == "XGBClassifier":
+        label_encoder = LabelEncoder()
+        y_encoded = label_encoder.fit_transform(y)
+    else:
+        y_encoded = y
+        
+    best_model.fit(X_preprocessed, y_encoded)
+    
+    # Predict using the model
+    y_pred_encoded = best_model.predict(X_preprocessed)
+    
+    # If the model is XGBClassifier, decode y_pred and y back to original labels
+    if model_class == "XGBClassifier":
+        y_pred = label_encoder.inverse_transform(y_pred_encoded)
+        y = label_encoder.inverse_transform(y_encoded)
+    else:
+        y_pred = y_pred_encoded
     
     # Evaluate the model
-    y_pred = best_model.predict(X_preprocessed)
     report = classification_report(y, y_pred)
-    
+    confusion_mat = confusion_matrix(y, y_pred)
+    print(report, confusion_mat)
     return (report,)

@@ -404,7 +404,17 @@ best_model_alta:
   filepath: data/06_models/best_model_alta.pkl
   layer: model_alta
 
+best_model_diag:
+  type: kedro.extras.datasets.pickle.PickleDataSet
+  filepath: data/06_models/best_model_diag.pkl
+  layer: model_diag
+
 evaluation_report_alta:
   type: kedro.extras.datasets.text.TextDataSet
   filepath: data/08_reporting/evaluation_report_alta.txt
+  layer: evaluate
+
+evaluation_report_diag:
+  type: kedro.extras.datasets.text.TextDataSet
+  filepath: data/08_reporting/evaluation_report_diag.txt
   layer: evaluate

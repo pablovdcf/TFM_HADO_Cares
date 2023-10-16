@@ -101,7 +101,13 @@ def create_models_pipeline():
                 func=retrain_and_evaluate_best_model,
                 inputs=["hado_final", "preprocessor_alta", "params:best_model_alta"],
                 outputs=["evaluation_report_alta"],
-                name="retrain_and_evaluate_best_model_node"
+                name="retrain_and_evaluate_best_model_node_alta"
+                ),
+            node(
+                func=retrain_and_evaluate_best_model,
+                inputs=["hado_final", "preprocessor_diag", "params:best_model_diag"],
+                outputs=["evaluation_report_diag"],
+                name="retrain_and_evaluate_best_model_node_diag"
                 )
 
         ]

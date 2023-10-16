@@ -139,10 +139,19 @@ lgbm:
 
 
 best_model_alta:
-  module: sklearn.ensemble
-  class: RandomForestClassifier
+  module: xgboost
+  class: XGBClassifier
   kwargs:
       bootstrap: False
       max_depth: 30
       n_estimators: 150
   target: alta_category
+
+best_model_diag:
+  module: xgboost
+  class: XGBClassifier
+  kwargs:
+      bootstrap: False
+      max_depth: 30
+      n_estimators: 150
+  target: diagnosis_category
