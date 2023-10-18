@@ -1,6 +1,6 @@
 sphinx
 sphinx_rtd_theme
-sphinx_autodoc_typehints
+sphinx-autodoc-typehints
 nbsphinx
 myst_parser
 recommonmark
