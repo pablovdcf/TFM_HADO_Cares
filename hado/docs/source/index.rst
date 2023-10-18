@@ -253,10 +253,3 @@ The data science workflow for this project will be as follows:
 5. **Data Visualization**: Various visualization tools will be used to explore and present the results of the EDA and modeling in a clear and comprehensible manner.
    
 6. **Interpretation and Communication of Results**: Results will be communicated through visualizations and explanatory texts, ensuring they are accessible and understandable to all stakeholders.
-
-Indices and Tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
