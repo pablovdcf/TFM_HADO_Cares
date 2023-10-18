@@ -8,7 +8,7 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.abspath('..'))  # Ajusta la ruta según sea necesario
+sys.path.insert(0, os.path.abspath('../..'))  # Ajusta la ruta según sea necesario
 
 project = 'HADO_CARES'
 copyright = '2023, Pablo Villar del Castillo Fernandez'
@@ -22,7 +22,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.napoleon",
-    "sphinx-autodoc-typehints",
+    "sphinx_autodoc_typehints",
     "sphinx.ext.doctest",
     "sphinx.ext.todo",
     "sphinx.ext.coverage",

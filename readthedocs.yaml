@@ -18,12 +18,14 @@ build:
 # to build your documentation
 # See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
 python:
+   version: 3.10
    install:
-   - requirements: hado/src/requirements.txt
+   - requirements: hado/docs/requirements.txt
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
    configuration: hado/docs/source/conf.py
+formats: all
 
 # Optionally build your docs in additional formats such as PDF and ePub
 # formats:
