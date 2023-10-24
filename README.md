@@ -1,12 +1,14 @@
-# TFM_HADO_Cares: Healthcare Data Analysis with Kedro
+<h1 align="center">
+HADO CARES: Healthcare Data Analysis with Kedro
+</h1>
 
 ## Overview
 
-`TFM_HADO_Cares` embarks on a meticulous journey through healthcare data, utilizing the Kedro framework to orchestrate a coherent, insightful, and reproducible data science workflow. From initial data scrutiny to implementing sophisticated machine learning models, this project threads through various stages of data analysis, offering a structured, transparent, and replicable methodology encapsulated in a series of Python scripts and Jupyter notebooks.
+`HADO_CARES` embarks on a meticulous journey through healthcare data, utilizing the Kedro framework to orchestrate a coherent, insightful, and reproducible data science workflow. From initial data scrutiny to implementing sophisticated machine learning models, this project threads through various stages of data analysis, offering a structured, transparent, and replicable methodology encapsulated in a series of Python scripts and Jupyter notebooks.
 
 #### Context and Problem
 
-The HADO area of the Santiago de Compostela hospital manages patient records, among other ways, manually using Excel spreadsheets. This methodology, although functional, leads to a lack of standardization in data formats and limited utilization of the collected information, further hampered by the absence of an efficient system to process and analyze the data in a comprehensive and cohesive manner.
+The HADO area of the Santiago de Compostela hospital especialized in paliative cares, manages patient records, among other ways, manually using Excel spreadsheets. This methodology, although functional, leads to a lack of standardization in data formats and limited utilization of the collected information, further hampered by the absence of an efficient system to process and analyze the data in a comprehensive and cohesive manner.
 
 
 ### Objectives
@@ -68,12 +70,16 @@ The main objective of this project is to enhance the current patient monitoring 
    ```sh
    streamlit run hado_app/app.py
    ```
+
+If you have the data to run the notebooks install the requirements:
    
-## Structure 
+   ```sh
+   pip install -r notebooks/requirements.txt
+   ```
 
-### [Kedro Pipelines](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/src)
+## [Kedro Pipelines](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/src)
 
-#### 1.Data Preprocessing Pipeline
+### 1.Data Preprocessing Pipeline
 The data preprocessing pipeline is defined in [data_preprocessing/pipeline.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_preprocessing/pipeline.py) and involves several nodes, such as `check_convert_and_concat(**dataframes)`, which are defined in [data_preprocessing/nodes.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_preprocessing/nodes.py). Parameters are configured in [data_preprocessing.yml](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/conf/base/parameters/data_preprocessing.yml).
 
   
@@ -96,40 +102,54 @@ The data science pipeline, defined in [data_science/pipeline.py](https://github.
 Finally, the classification models are run through Random Forest, XGBoost and LightGBM to see which one gives the best result and pass it through the parameters as the best classification model. The confusion matrices are also extracted. For more details go to [data_science.yml](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/conf/base/parameters/data_science.yml).
 
 ![kedro-viz-science](hado/docs/source/_images/kedro-pipeline-data-science.png)
+<br>
 
-### [Streamlit Application](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/hado_app)
+## [Streamlit Application](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/hado_app)
 
    - **app.py**: A Python script that may serve as the main application or API.
+
 ![Home-app](hado/docs/source/_images/home_streamlit.png)
 
    - **data_processing.py**: Handles data processing within the application, like the csv upload, apply filters, CRUD or generate a pandas profiling report.
-   - 
-  ![Filters-app](hado/docs/source/_images/filtros_streamlit.png)
+ 
+![Filters-app](hado/docs/source/_images/filtros_streamlit.png)
 
    - **visualization.py**: Manages data visualization aspects of the application.
 You can choose the variables and depending on the categorical or numerical type, different graphs will be reflected, for example:
+<br>
 
 A histogram and boxplot for numerical variables.
 ![Hist-box-plot](hado/docs/source/_images/hist_box_plot.png)
+<br>
 
 By means of a bubble chart with plotly we can see the evolution if we select all the years
 ![Bubble-chart](hado/docs/source/_images/plot_animated_bubble_chart.png)
+<br>
 
 We can also choose Wordcloud by selecting a categorical variable.
 ![Wordcloud](hado/docs/source/_images/wordcloud.png)
+<br>
 
    - **interactive_maps.py**: More visualizations but for another tab "Maps" that handles visualizations for municipalities.
+<br>
 
 With folium we can see choroplethic map of Galicia with the municipalities.
+
 ![Galicia-map-municipalities](hado/docs/source/_images/generate_interactive_maps.png)
 
 And other metrics for the municipalities like the distribution by municipalities for the year selected.
+<br>
+
 ![Distribution-municipalities](hado/docs/source/_images/plot_patients_by_ayuntamiento.png)
 
    - **data_test.py**: Manages the demo data to generate random dataframes to test the application.
-   - **utils.py**: More utilities to add in the application.
+<br>
 
->You can visit the app at the link 👉[hado-cares-app](https://hado-cares.streamlit.app/)
+   - **utils.py**: More utilities to add in the application.
+<br>
+
+>You can visit the app at the link 👉[hado cares app](https://hado-cares.streamlit.app/) and the [app documentation](https://hado-cares.readthedocs.io/en/latest/streamlit/hado_app.html)
+
 ### [Notebooks](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/notebooks)
 
    - **1.1.Data cleaning and preprocessing.ipynb**: A notebook for data cleaning and preprocessing. In this notebook you can see the steps to create the first and part of the second pipelines (preprocessing and processing). 
