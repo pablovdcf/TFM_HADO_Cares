@@ -40,6 +40,17 @@ from utils import ui_info, ui_spacer
 
 from data_test import generate_data
 
+hide_menu = """
+<style>
+#MainMenu {
+    visibility: hidden;
+}
+
+footer{
+    visibilty:hidden;
+}
+</style>
+"""
 st.set_page_config(
     page_title="HADO",
     layout='wide', 
@@ -65,7 +76,8 @@ def main():
     """
     # Set the title and information message in the sidebar
     st.write("# 👨‍⚕️HADO CARES👩‍⚕️")
-    
+    st.markdown(hide_menu, unsafe_allow_html=True)
+        
     with st.sidebar:
         ui_info()
         ui_spacer(2)

@@ -69,47 +69,98 @@ The main objective of this project is to enhance the current patient monitoring 
    streamlit run hado_app/app.py
    ```
    
-## Structure
+## Structure 
 
-### 1. [hado/src](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/src)
-   - **data_preprocessing**: Contains nodes for data preprocessing tasks.
-   - **data_processing**: Includes nodes for processing the data.
-   - **data_science**: Contains nodes that handle data science-related tasks.
+### [Kedro Pipelines](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/src)
 
-### 2. [hado/hado_app](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/hado_app)
-   - **app.py**: A Python script that may serve as the main application or API.
-   - **data_processing.py**: Handles data processing within the application.
-   - **visualization.py**: Manages data visualization aspects of the application.
-
-### 3. [hado/notebooks](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/notebooks)
-   - **1.1.Data cleaning and preprocessing.ipynb**: A notebook for data cleaning and preprocessing.
-   - **2.1.Diagnostics_analysis.ipynb**: Focuses on the analysis of diagnostics.
-   - **6.Clasification_Models.ipynb**: Deals with classification models.
-   - **8.Models.ipynb**: Contains various models for data analysis.
-   - **9.Temporal_Analysis.ipynb**: Focuses on temporal data analysis.
-
-#### NLP Notebooks
-   - **1.Analisis_NLP_HADO.ipynb**: Analyzes data using NLP.
-   - **2.Validacion_Interna_Clustering.ipynb**: Handles internal validation of clustering.
-   - **3.Validacion_Externa_Clustering.ipynb**: Manages external validation of clustering.
-   - **4.Stability_Validation_Clustering.ipynb**: Focuses on stability validation of clustering.
-   - **5.PCA_and_Clustering_Visualization.ipynb**: Visualizes PCA and clustering.
-   - **6.Cross_Method_Comparison_Clustering.ipynb**: Compares clustering across different methods.
-
-## Kedro Project Overview
-
-### Data Preprocessing Pipeline
+#### 1.Data Preprocessing Pipeline
 The data preprocessing pipeline is defined in [data_preprocessing/pipeline.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_preprocessing/pipeline.py) and involves several nodes, such as `check_convert_and_concat(**dataframes)`, which are defined in [data_preprocessing/nodes.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_preprocessing/nodes.py). Parameters are configured in [data_preprocessing.yml](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/conf/base/parameters/data_preprocessing.yml).
 
+  
+   Through different files I normalize, rename, remove outliers from the columns through the parameters of the file `data_preprocessing.yml` and finally concat them to work with only a unique DataFrame.
 
-### Data Processing Pipeline
+![kedro-viz-preprocessing](hado/docs/source/_images/kedro-pipeline-preprocessing.png)
+
+### 2.Data Processing Pipeline
 The data processing pipeline, defined in [data_processing/pipeline.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_processing/pipeline.py), includes nodes like `clean_text(df: pd.DataFrame)` and `replace_missing(df: pd.DataFrame, params: Dict)`, which are defined in [data_processing/nodes.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_processing/nodes.py). Parameters are set in [data_processing.yml](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/conf/base/parameters/data_processing.yml).
 
+New variables are added through the data such as the different drugs used as `morphine`, the values for the health scales are classified, a replacement and mapping is done through lists and dictionaries for different variables and a clean DataFrame and another one with One-Hot encoding is prepared for later use in the notebooks and modeling.
 
-### Data Science Pipeline
-The data science pipeline, defined in [data_science/pipeline.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_science/pipeline.py), encompasses nodes like `preprocess_split_data(data: pd.DataFrame, parameters)`, `train_clf_model(X_train: pd.DataFrame, y_train: pd.Series, model_options: Dict[str, Any])`, and more, which are defined in [data_science/nodes.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_science/nodes.py). Parameters are configured in [data_science.yml](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/conf/base/parameters/data_science.yml).
+![kedro-viz-processing](hado/docs/source/_images/kedro-pipeline-processing-1.png)
 
- 
+### 3.Data Science Pipeline
+The data science pipeline, defined in [data_science/pipeline.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_science/pipeline.py), encompasses nodes like `preprocess_split_data(data: pd.DataFrame, parameters)`, `train_clf_model(X_train: pd.DataFrame, y_train: pd.Series, model_options: Dict[str, Any])`, and more, which are defined in [data_science/nodes.py](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/src/hado/pipelines/data_science/nodes.py). Parameters are configured in 
+[data_science.yml](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/conf/base/parameters/data_science.yml)
+
+
+Finally, the classification models are run through Random Forest, XGBoost and LightGBM to see which one gives the best result and pass it through the parameters as the best classification model. The confusion matrices are also extracted. For more details go to [data_science.yml](https://github.com/pablovdcf/TFM_HADO_Cares/blob/main/hado/conf/base/parameters/data_science.yml).
+
+![kedro-viz-science](hado/docs/source/_images/kedro-pipeline-data-science.png)
+
+### [Streamlit Application](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/hado_app)
+
+   - **app.py**: A Python script that may serve as the main application or API.
+![Home-app](hado/docs/source/_images/home_streamlit.png)
+
+   - **data_processing.py**: Handles data processing within the application, like the csv upload, apply filters, CRUD or generate a pandas profiling report.
+   - 
+  ![Filters-app](hado/docs/source/_images/filtros_streamlit.png)
+
+   - **visualization.py**: Manages data visualization aspects of the application.
+You can choose the variables and depending on the categorical or numerical type, different graphs will be reflected, for example:
+
+A histogram and boxplot for numerical variables.
+![Hist-box-plot](hado/docs/source/_images/hist_box_plot.png)
+
+By means of a bubble chart with plotly we can see the evolution if we select all the years
+![Bubble-chart](hado/docs/source/_images/plot_animated_bubble_chart.png)
+
+We can also choose Wordcloud by selecting a categorical variable.
+![Wordcloud](hado/docs/source/_images/wordcloud.png)
+
+   - **interactive_maps.py**: More visualizations but for another tab "Maps" that handles visualizations for municipalities.
+
+With folium we can see choroplethic map of Galicia with the municipalities.
+![Galicia-map-municipalities](hado/docs/source/_images/generate_interactive_maps.png)
+
+And other metrics for the municipalities like the distribution by municipalities for the year selected.
+![Distribution-municipalities](hado/docs/source/_images/plot_patients_by_ayuntamiento.png)
+
+   - **data_test.py**: Manages the demo data to generate random dataframes to test the application.
+   - **utils.py**: More utilities to add in the application.
+
+>You can visit the app at the link 👉[hado-cares-app](https://hado-cares.streamlit.app/)
+### [Notebooks](https://github.com/pablovdcf/TFM_HADO_Cares/tree/main/hado/notebooks)
+
+   - **1.1.Data cleaning and preprocessing.ipynb**: A notebook for data cleaning and preprocessing. In this notebook you can see the steps to create the first and part of the second pipelines (preprocessing and processing). 
+
+   - **2.1.Diagnostics_analysis.ipynb**: Focuses on the analysis of diagnostics. You will find NLP process, a bit of dash app, clustering, PCA and more EDA.
+
+   - **4.Insights_and_categories**: Here you will find the insights extracted by the clasiffication and EDA process.
+  
+   - **6.Clasification_Models.ipynb**: Deals with classification models.
+  
+   - **8.Models.ipynb**: Contains various models for data analysis.
+
+   - **9.Temporal_Analysis.ipynb**: Focuses on temporal data analysis.
+
+   - **10.Clustering.ipynb**: All the clustering process with DBSCAN and Outliers management.
+
+#### NLP Notebooks
+
+   - **1.Analisis_NLP_HADO.ipynb**: Analyzes data using NLP.
+
+   - **2.Validacion_Interna_Clustering.ipynb**: Handles internal validation of clustering.
+
+   - **3.Validacion_Externa_Clustering.ipynb**: Manages external validation of clustering.
+
+   - **4.Stability_Validation_Clustering.ipynb**: Focuses on stability validation of clustering.
+
+   - **5.PCA_and_Clustering_Visualization.ipynb**: Visualizes PCA and clustering.
+
+   - **6.Cross_Method_Comparison_Clustering.ipynb**: Compares clustering across different methods.
+
+
 #### General Data Description
    - **Volume of Data**: 4,013 patient records over six years.
    - **Data Characteristics**: Inconsistencies in column names, variability in columns, categorical and numerical data, and presence of null values.
