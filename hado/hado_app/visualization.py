@@ -99,7 +99,8 @@ def plot_total_patients(df):
     
     # Data to be plotted
     data_to_plot = df['year'].value_counts().sort_index()
-    ax.plot(data_to_plot.index, data_to_plot.values, marker='o', linestyle='-', color='royalblue', linewidth=2)
+    ax.plot(data_to_plot.index.to_numpy(), data_to_plot.values, marker='o', linestyle='-', color='royalblue', linewidth=2)
+
 
     # Configure titles and labels
     ax.set_title('Número de Pacientes por Año', fontsize=16)
