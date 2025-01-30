@@ -69,7 +69,7 @@ def load_csv_home_expander(input_csv):
     return df
 
 # Function for sidebar and file upload
-@st.cache_data(experimental_allow_widgets=True)
+@st.cache_data
 def sidebar_and_upload(csv_file):
     """Handle file upload and display a sidebar in a Streamlit app.
 
@@ -291,7 +291,7 @@ def crud_operations(df, csv_file):
     return st.session_state['df']
 
 
-@st.cache_data(experimental_allow_widgets=True)
+@st.cache_data
 def generate_pandas_profiling(uploaded_file):
     """
     Generate a Pandas Profiling report from an uploaded file.
@@ -310,7 +310,7 @@ def generate_pandas_profiling(uploaded_file):
     
     return pr
 
-@st.cache_data(experimental_allow_widgets=True)
+@st.cache_data
 def load_gdf():
     """Load and clean a GeoDataFrame from a remote geojson file.
 
